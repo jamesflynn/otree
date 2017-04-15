@@ -1,0 +1,16 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+    Enter your information
+{% endblock %}
+
+{% block content %}
+
+    {% formfield player.name with label="Enter your name" %}
+
+    {% formfield player.age with label="Enter your age" %}
+
+    {% next_button %}
+
+{% endblock %}
