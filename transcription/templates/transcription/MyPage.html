@@ -13,7 +13,7 @@
  	<p><strong>We will pay you for future work through a bonus  - please confirm that this is okay.</strong></p>
  	<div class="checkbox">
  	<label class="control-label field-paymentOK" for="id_paymentOK">
-		<input type="checkbox" name="paymentOK" id="id_paymentOK" required>
+		<input type="checkbox" name="paymentOK" id="id_paymentOK" value="True" required>
 		Yes, payment through MTurk Bonus is OK</label>
 	</div>
 	{{ form.paymentOK.errors }}
@@ -21,7 +21,7 @@
  	<p><strong>IMPORTANT: DO NOT CONTINUE IF YOU HAVE WORKED FOR US BEFORE, EITHER MANAGING OR TRANSCRIBING</strong></p>
     <div class="checkbox">
  	<label class="control-label field-neverWorked" for="id_neverWorked">
-		<input type="checkbox" name="neverWorked" id="id_neverWorked" required>
+		<input type="checkbox" name="neverWorked" id="id_neverWorked" value="True" required>
 		I have never worked for you in any capacity</label>
 	</div>
 	{{ form.neverWorked.errors }}
