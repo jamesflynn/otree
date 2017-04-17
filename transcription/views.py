@@ -4,6 +4,9 @@ from ._builtin import Page, WaitPage
 from .models import Constants
 
 
+class Introduction(Page):
+    pass
+
 class MyPage(Page):
     form_model = models.Player
     form_fields = ['MTurkID', 'paymentOK', 'neverWorked', 'yearBorn', 'gender']
@@ -20,6 +23,7 @@ class Results(Page):
 
 
 page_sequence = [
+	Introduction,
     MyPage,
 #    ResultsWaitPage,
     Results

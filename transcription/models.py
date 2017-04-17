@@ -14,6 +14,7 @@ Your app description
 class Constants(BaseConstants):
     name_in_url = 'transcription'
     players_per_group = None
+    instructions_template = 'lemon_market/Instructions.html'
     num_rounds = 1
 
 
