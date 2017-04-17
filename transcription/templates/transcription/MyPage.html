@@ -9,9 +9,11 @@
 
     {% formfield player.MTurkID with label="Enter your Mechanical Turk ID" %}
 
-<!--	<input type="checkbox" name="paymentOK" value="Car" required>Confirm Payment Ok<br> -->
-
-    {% formfield player.paymentOK with label="Confirm Payment OK" %}
+    <div class="checkbox">
+ 	<label class="control-label field-paymentOK" for="id_paymentOK">
+		<input type="checkbox" name="paymentOK" id="id_paymentOK" required>
+		"Confirm Payment OK"</label>
+	</div>
 
     {% formfield player.neverWorked with label="Confirm you have never worked for us before" %}
 
