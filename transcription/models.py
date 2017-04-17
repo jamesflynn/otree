@@ -27,13 +27,15 @@ class Group(BaseGroup):
     pass
 
 
+GENDER_CHOICES = (('m','Male'),('f','Female'),('o','Other'))
+
 class Player(BasePlayer):
 	MTurkID = models.CharField()
 #	paymentOK = models.BooleanField(widget=widgets.CheckboxInput())
 	paymentOK = models.BooleanField()
 	neverWorked = models.BooleanField()
-	yearBorn = models.PositiveIntegerField()
-	gender = models.CharField()
+	yearBorn = models.PositiveIntegerField(min=1916, max=2005)
+	gender = models.CharField(widget=widgets.Select(choices=GENDER_CHOICES))
 	experience = models.CharField()
 	eduLevel = models.CharField()
 	dailyHHEarn = models.FloatField()

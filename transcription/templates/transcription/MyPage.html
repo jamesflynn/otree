@@ -9,21 +9,20 @@
 
     {% formfield player.MTurkID with label="Enter your Mechanical Turk ID" %}
 
- 	<p>We will pay you for future work through a bonus  - please confirm that this is okay.</p>
+    <br>
+ 	<p><strong>We will pay you for future work through a bonus  - please confirm that this is okay.</strong></p>
  	<div class="checkbox">
  	<label class="control-label field-paymentOK" for="id_paymentOK">
 		<input type="checkbox" name="paymentOK" id="id_paymentOK" required>
 		Yes, payment through MTurk Bonus is OK</label>
 	</div>
-
- 	<p>IMPORTANT: DO NOT CONTINUE IF YOU HAVE WORKED FOR US BEFORE, EITHER MANAGING OR TRANSCRIBING</p>
+	<br>
+ 	<p><strong>IMPORTANT: DO NOT CONTINUE IF YOU HAVE WORKED FOR US BEFORE, EITHER MANAGING OR TRANSCRIBING</strong></p>
     <div class="checkbox">
  	<label class="control-label field-neverWorked" for="id_neverWorked">
 		<input type="checkbox" name="neverWorked" id="id_neverWorked" required>
 		I have never worked for you in any capacity</label>
 	</div>
-
-    {% formfield player.neverWorked with label="Confirm you have never worked for us before" %}
 
     {% formfield player.yearBorn with label="Enter your year of birth" %}
 
