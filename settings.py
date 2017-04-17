@@ -148,6 +148,12 @@ SESSION_CONFIGS = [
         'app_sequence': ['public_goods', 'payment_info'],
     },
     {
+        'name': 'transcription',
+        'display_name': "Transcription",
+        'num_demo_participants': 5,
+        'app_sequence': ['transcription', 'payment_info'],
+    },    
+    {
         'name': 'trust',
         'display_name': "Trust Game",
         'num_demo_participants': 2,
