@@ -30,6 +30,7 @@ class Group(BaseGroup):
 class Player(BasePlayer):
 	MTurkID = models.CharField()
 	paymentOK = models.BooleanField(widget=widgets.CheckboxInput())
+#	paymentOK = models.BooleanField()
 	neverWorked = models.BooleanField()
 	yearBorn = models.PositiveIntegerField()
 	gender = models.CharField()
