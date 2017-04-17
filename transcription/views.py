@@ -6,6 +6,8 @@ from .models import Constants
 
 class Introduction(Page):
     pass
+class Introduction2(Page):
+    pass
 
 class MyPage(Page):
     form_model = models.Player

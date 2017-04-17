@@ -15,6 +15,7 @@ class Constants(BaseConstants):
     name_in_url = 'transcription'
     players_per_group = None
     instructions_template = 'transcription/Instructions.html'
+    instructions_template2 = 'transcription/Instructions2.html'
     num_rounds = 1
 
 
