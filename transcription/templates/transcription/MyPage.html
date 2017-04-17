@@ -16,6 +16,7 @@
 		<input type="checkbox" name="paymentOK" id="id_paymentOK" required>
 		Yes, payment through MTurk Bonus is OK</label>
 	</div>
+	{{ form.paymentOK.errors }}
 	<br>
  	<p><strong>IMPORTANT: DO NOT CONTINUE IF YOU HAVE WORKED FOR US BEFORE, EITHER MANAGING OR TRANSCRIBING</strong></p>
     <div class="checkbox">
@@ -23,9 +24,11 @@
 		<input type="checkbox" name="neverWorked" id="id_neverWorked" required>
 		I have never worked for you in any capacity</label>
 	</div>
-
+	{{ form.neverWorked.errors }}
+	<br>
     {% formfield player.yearBorn with label="Enter your year of birth" %}
 
+    <br>
     {% formfield player.gender with label="What is your gender" %}
 
 <!--	experience = models.CharField()
