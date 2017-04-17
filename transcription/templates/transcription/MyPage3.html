@@ -1,0 +1,32 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+    Manager Survey
+{% endblock %}
+
+{% block content %}
+
+	<p>Here is a sample of the data entry job the workers will be transcribing.</p>
+
+	<img src="{% static "transcription/sample.jpeg" %}"/>
+	<br><br>
+	<p>How long do you think it takes for you to transcribe the sample table above into MS Excel at 95% accuracy, equivalent to 1 mistake in every 20 cells?</p>
+
+	<p>Note: We do not care if you spend a long time on this project.  We will only need to coordinate a start time. Please answer honestly.</p>
+
+    {% formfield player.howLong with label="How many minutes?" %}
+
+<!--	
+	howLong = models.PositiveIntegerField()
+	pref1 = models.PositiveIntegerField()
+	pref2 = models.PositiveIntegerField()
+	pref3 = models.PositiveIntegerField()
+	pref4 = models.PositiveIntegerField()
+	pref5 = models.PositiveIntegerField()
+	bid = models.PositiveIntegerField() 
+-->
+
+    {% next_button %}
+
+{% endblock %}

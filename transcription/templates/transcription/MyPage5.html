@@ -1,0 +1,39 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+    Manager Survey
+{% endblock %}
+
+{% block content %}
+
+<p>With the following set of questions, we want to find out how much you would pay to obtain this information about average cash buffer days.</p>
+ 
+<p>Below you are presented with 5 hypothetical scenarios. In each scenario, you will be given the choice of either completing a page of transcription at 95% accuracy within 48 hours OR receiving $2 without any transcription 48 hours from now. The amount of money you will be offered in these scenarios is pre-determined. For instance, in Scenario 1, you will need to choose between transcribing 1 page for $3 dollars or receiving $2 48 hours late; and in Scenario 5, you will need to choose between transcribing 1 page for $7 or receiving $2.</p>
+<p>
+If you are one of the 20 lucky survey respondents selected at random, we will randomly pick one of these 5 scenarios, and carry it out. You should answer honestly, because one of your choices might happen.
+</P>
+
+    {% formfield player.pref1 with label="Which would you prefer?" %}
+ 
+    {% formfield player.pref2 with label="Which would you prefer?" %}
+ 
+    {% formfield player.pref3 with label="Which would you prefer?" %}
+ 
+    {% formfield player.pref4 with label="Which would you prefer?" %}
+ 
+    {% formfield player.pref5 with label="Which would you prefer?" %}
+
+
+<!--	
+	pref1 = models.PositiveIntegerField()
+	pref2 = models.PositiveIntegerField()
+	pref3 = models.PositiveIntegerField()
+	pref4 = models.PositiveIntegerField()
+	pref5 = models.PositiveIntegerField()
+	bid = models.PositiveIntegerField() 
+-->
+
+    {% next_button %}
+
+{% endblock %}
