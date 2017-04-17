@@ -29,7 +29,7 @@ class Group(BaseGroup):
 
 class Player(BasePlayer):
 	MTurkID = models.CharField()
-	paymentOK = models.BooleanField()
+	paymentOK = models.BooleanField(widget=widgets.CheckboxInput(required=True))
 	neverWorked = models.BooleanField()
 	yearBorn = models.PositiveIntegerField()
 	gender = models.CharField()
