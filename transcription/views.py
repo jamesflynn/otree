@@ -26,6 +26,7 @@ class Results(Page):
 
 page_sequence = [
 	Introduction,
+	Introduction2,
     MyPage,
 #    ResultsWaitPage,
     Results
