@@ -1,0 +1,15 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+    Results
+{% endblock %}
+
+{% block content %}
+
+	 <p>Your MTurkID is {{ player.MTurkID }} and your birth year is {{ player.yearBorn }}.</p>
+
+    {% next_button %}
+{% endblock %}
+
+
