@@ -102,13 +102,12 @@ mturk_hit_settings = {
     'preview_template': 'global/MTurkPreview.html',
     'minutes_allotted_per_assignment': 60,
     'expiration_hours': 7*24, # 7 days
-    #'grant_qualification_id': 'YOUR_QUALIFICATION_ID_HERE',# to prevent retakes
+    'grant_qualification_id': '34KL6CQ3HDUZC6KKLJSC35UPJVLNSJ',# to prevent retakes
     'qualification_requirements': [
         # qualification.LocaleRequirement("EqualTo", "US"),
         # qualification.PercentAssignmentsApprovedRequirement("GreaterThanOrEqualTo", 50),
         # qualification.NumberHitsApprovedRequirement("GreaterThanOrEqualTo", 5),
-        qualification.Requirement('34KL6CQ3HDUZC6KKLJSC35UPJVLNSJ', 'DoesNotExist'),
-        qualification.Requirement('3VFIQRXYYK60OWH5USLZQ69Z1BU2ZB', 'DoesNotExist')
+        qualification.Requirement('34KL6CQ3HDUZC6KKLJSC35UPJVLNSJ', 'DoesNotExist')
     ]
 }
 
