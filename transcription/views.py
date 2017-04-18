@@ -6,23 +6,34 @@ from .models import Constants
 
 class Introduction(Page):
     pass
-class Introduction2(Page):
-    pass
+
+class Manager_Introduction(Page):
+    def is_displayed(self):
+        return self.player.id_in_group == 1
 
 class MyPage(Page):
     form_model = models.Player
     form_fields = ['MTurkID', 'paymentOK', 'neverWorked', 'yearBorn', 'gender']
 
-class MyPage2(Page):
+class SurveyManager(Page):
+    def is_displayed(self):
+        return self.player.id_in_group == 1
     form_model = models.Player
-    form_fields = ['experience', 'transExp', 'eduLevel', 'dailyHHEarn']
+    form_fields = ['experience', 'eduLevel', 'dailyHHEarn']
+
+class SurveyEmployee(Page):
+    def is_displayed(self):
+        return self.player.id_in_group != 1
+    form_model = models.Player
+    form_fields = ['transExp', 'eduLevel', 'dailyHHEarn']
 
 class MyPage3(Page):
     form_model = models.Player
     form_fields = ['howLong']
 
 class MyPage4(Page):
-	pass
+    def is_displayed(self):
+        return self.player.id_in_group == 1
 
 class MyPage5(Page):
     form_model = models.Player
@@ -32,14 +43,21 @@ class MyPage6(Page):
     form_model = models.Player
     form_fields = ['bid']
 
-class MyPage7(Page):
-	pass
+class ManagerChat(Page):
+    def is_displayed(self):
+        return self.player.id_in_group == 1
+
+class EmployeeChat(Page):
+    def is_displayed(self):
+        return self.player.id_in_group != 1
+
 #    form_fields = ['experience', 'transExp']
 
-#class ResultsWaitPage(WaitPage):
-
-#    def after_all_players_arrive(self):
- #       pass
+class ResultsWaitPage(WaitPage):
+    def is_displayed(self):
+        return self.player.id_in_group == 1
+    def after_all_players_arrive(self):
+        pass
 
 
 class Results(Page):
@@ -48,14 +66,16 @@ class Results(Page):
 
 page_sequence = [
 	Introduction,
-	Introduction2,
+	Manager_Introduction,
     MyPage,
-    MyPage2,
+    SurveyManager,
+    SurveyEmployee,
     MyPage4,
     MyPage3,
     MyPage5,
     MyPage6,
-    MyPage7,
-#    ResultsWaitPage,
+    ResultsWaitPage,
+    ManagerChat,
+    EmployeeChat,
     Results
 ]

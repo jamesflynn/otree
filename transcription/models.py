@@ -13,18 +13,16 @@ Your app description
 
 class Constants(BaseConstants):
     name_in_url = 'transcription'
-    players_per_group = None
+    players_per_group = 5
     instructions_template = 'transcription/Instructions.html'
-    instructions_template2 = 'transcription/Instructions2.html'
+    manager_instructions = 'transcription/Manager_Instructions.html'
     num_rounds = 1
-
 
 class Subsession(BaseSubsession):
     pass
 
-
 class Group(BaseGroup):
-    pass
+	pass
 
 
 GENDER_CHOICES = (('m','Male'),('f','Female'),('o','Other'))
@@ -39,6 +37,29 @@ P5_CHOICES = (('1','$45 for five pages transcribed in 2 days'),('2','$10 in 2 da
 BID_CHOICES = (('5','$5'),('10','$10'),('15','$15'),('20','$20'),('25','$25'),('30','$30'),('35','$35'),('40','$40'),('45','$45'),)
 
 class Player(BasePlayer):
+
+	def role(self):
+	    if self.id_in_group == 1:
+	        return 'Manager'
+	    else:
+	        return 'Employee'
+
+	def string1(self):
+		if self.id_in_group == 1:
+			return 'employees'
+		else:
+			return 'you'
+
+	def get_employee1(self):
+		return self.get_others_in_group()[0]
+	def get_employee2(self):
+		return self.get_others_in_group()[1]
+	def get_employee3(self):
+		return self.get_others_in_group()[2]
+	def get_employee4(self):
+		return self.get_others_in_group()[3]
+
+
 	MTurkID = models.CharField()
 #	paymentOK = models.BooleanField(widget=widgets.CheckboxInput())
 	paymentOK = models.BooleanField()

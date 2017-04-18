@@ -2,7 +2,7 @@
 {% load staticfiles otree_tags %}
 
 {% block title %}
-    Manager Survey
+    {{player.role}} Introduction
 {% endblock %}
 
 {% block content %}
@@ -24,15 +24,6 @@ If you are one of the 20 lucky survey respondents selected at random, we will ra
  
     {% formfield player.pref5 with label="Which would you prefer?" %}
 
-
-<!--	
-	pref1 = models.PositiveIntegerField()
-	pref2 = models.PositiveIntegerField()
-	pref3 = models.PositiveIntegerField()
-	pref4 = models.PositiveIntegerField()
-	pref5 = models.PositiveIntegerField()
-	bid = models.PositiveIntegerField() 
--->
 
     {% next_button %}
 

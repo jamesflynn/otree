@@ -2,12 +2,16 @@
 {% load staticfiles otree_tags %}
 
 {% block title %}
-    {{player.role}} Introduction
+    {{player.role}} Survey
 {% endblock %}
 
 {% block content %}
 
-	<p>We now show you three questions that we ask the workers, so you know the process. We are NOT asking you to do any transcription.</p>
+    {% formfield player.experience with label="How many months experience do you have managing others?" %}
+
+    {% formfield player.eduLevel with label="What is your highest level of education?" %}
+
+    {% formfield player.dailyHHEarn with label="On an average work day, how much money does your household earn from employment? (Don't count government payments or other sources)" %}
 
 <!--	
 	howLong = models.PositiveIntegerField()

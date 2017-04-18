@@ -2,12 +2,12 @@
 {% load staticfiles otree_tags %}
 
 {% block title %}
-    Manager Survey
+    {{player.role}} Introduction
 {% endblock %}
 
 {% block content %}
 
-	<p>Here is a sample of the data entry job the workers will be transcribing.</p>
+	<p>Here is a sample of the data entry job {{ player.string1 }} will be transcribing.</p>
 
 	<img src="{% static "transcription/sample.jpeg" %}"/>
 	<br><br>

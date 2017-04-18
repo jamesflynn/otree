@@ -6,6 +6,8 @@ from .models import Constants
 
 class PlayerBot(Bot):
 
-    def play_round(self):
-        yield (views.MyPage)
-        yield (views.Results)
+	def play_round(self):
+		yield (views.Introduction)
+		yield (views.Introduction2)
+		yield (views.MyPage, {'MTurkID': 23},{'paymentOK':True},{'neverWorked':True},{'yearBorn':1999},{'gender':'f'})
+		yield (views.Results)

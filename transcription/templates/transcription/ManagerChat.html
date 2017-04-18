@@ -1,0 +1,46 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+{% load otreechat %}
+
+{% block title %}
+    {{player.role}} - Chat Room
+{% endblock %}
+
+{% block content %}
+
+<p>The employees are all here, their bids were:</p>
+
+<table>
+<tbody>
+  <tr>
+    <td>Player 1 :</td>
+    <td>&nbsp;&nbsp;&nbsp;</td>
+    <td align="right"> $ {{player.get_employee1.bid}}</td>
+  </tr>
+   <tr>
+    <td>Player 2:</td>
+    <td>&nbsp;&nbsp;&nbsp;</td>
+    <td align="right"> $ {{player.get_employee2.bid}}</td>
+  </tr>
+  <tr>
+    <td>Player 3:</td>
+    <td>&nbsp;&nbsp;&nbsp;</td>
+    <td align="right"> $ {{player.get_employee3.bid}}</td>
+  </tr>
+  <tr>
+    <td>Player 4:</td>
+    <td>&nbsp;&nbsp;&nbsp;</td>
+    <td align="right"> $ {{player.get_employee4.bid}}</td>
+  </tr>
+</tbody>
+</table>
+
+	{% chat %}
+
+<br>
+    <p><b>Click here when you are all done</b></p>
+    <div>
+        <button class="btn btn-warning btn-large">Done</button>
+    </div>
+
+{% endblock %}

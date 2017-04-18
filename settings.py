@@ -63,6 +63,7 @@ REAL_WORLD_CURRENCY_CODE = 'USD'
 USE_POINTS = True
 
 
+
 # e.g. en, de, fr, it, ja, zh-hans
 # see: https://docs.djangoproject.com/en/1.9/topics/i18n/#term-language-code
 LANGUAGE_CODE = 'en'
@@ -152,6 +153,7 @@ SESSION_CONFIGS = [
         'display_name': "Transcription",
         'num_demo_participants': 5,
         'app_sequence': ['transcription', 'payment_info'],
+#        'use_browser_bots': True,
     },    
     {
         'name': 'trust',
@@ -322,6 +324,8 @@ SESSION_CONFIGS = [
     }
 
 ]
+
+SENTRY_DSN = 'http://52dc63bdd6d54a8f88a5cfa8466abab6:dc115bfc45e345089428f88fda13e2ae@sentry.otree.org/157'
 
 # anything you put after the below line will override
 # oTree's default settings. Use with caution.
