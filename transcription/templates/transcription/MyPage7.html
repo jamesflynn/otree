@@ -1,0 +1,21 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+{% load otreechat %}
+
+{% block title %}
+    Manager Survey - Chat Room
+{% endblock %}
+
+{% block content %}
+
+<p>Soon you will be joined by up to 4 employees in the below chat room. Remember you are the manager and it is your job to... </p>
+
+	{% chat %}
+
+
+    <p><b>Click here when you are done</b></p>
+    <div>
+        <button class="btn btn-primary btn-large">Done</button>
+    </div>
+
+{% endblock %}

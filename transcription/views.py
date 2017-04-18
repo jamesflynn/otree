@@ -32,6 +32,8 @@ class MyPage6(Page):
     form_model = models.Player
     form_fields = ['bid']
 
+class MyPage7(Page):
+	pass
 #    form_fields = ['experience', 'transExp']
 
 #class ResultsWaitPage(WaitPage):
@@ -53,6 +55,7 @@ page_sequence = [
     MyPage3,
     MyPage5,
     MyPage6,
+    MyPage7,
 #    ResultsWaitPage,
     Results
 ]
