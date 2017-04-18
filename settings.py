@@ -107,7 +107,8 @@ mturk_hit_settings = {
         # qualification.LocaleRequirement("EqualTo", "US"),
         # qualification.PercentAssignmentsApprovedRequirement("GreaterThanOrEqualTo", 50),
         # qualification.NumberHitsApprovedRequirement("GreaterThanOrEqualTo", 5),
-        # qualification.Requirement('YOUR_QUALIFICATION_ID_HERE', 'DoesNotExist')
+        qualification.Requirement('34KL6CQ3HDUZC6KKLJSC35UPJVLNSJ', 'DoesNotExist'),
+        qualification.Requirement('3VFIQRXYYK60OWH5USLZQ69Z1BU2ZB', 'DoesNotExist')
     ]
 }
 
