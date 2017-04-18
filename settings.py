@@ -74,34 +74,17 @@ INSTALLED_APPS = ['otree','otreechat']
 # SENTRY_DSN = ''
 
 DEMO_PAGE_INTRO_TEXT = """
-<ul>
-    <li>
-        <a href="https://github.com/oTree-org/otree" target="_blank">
-            oTree on GitHub
-        </a>.
-    </li>
-    <li>
-        <a href="http://www.otree.org/" target="_blank">
-            oTree homepage
-        </a>.
-    </li>
-</ul>
 <p>
-    Here are various games implemented with oTree. These games are all open
-    source, and you can modify them as you wish.
+    This is the control panel for all of the oTree games issued by Zoe and Bobby.
 </p>
 """
 
 ROOMS = [
     {
-        'name': 'econ101',
-        'display_name': 'Econ 101 class',
-        'participant_label_file': '_rooms/econ101.txt',
-    },
-    {
-        'name': 'live_demo',
-        'display_name': 'Room for live demo (no participant labels)',
-    },
+        'name': 'transcription_room',
+        'display_name': 'Transcription Room',
+        'participant_label_file': '_rooms/trans.txt',
+    }
 ]
 
 
@@ -113,8 +96,8 @@ ROOMS = [
 
 mturk_hit_settings = {
     'keywords': ['easy', 'bonus', 'choice', 'study'],
-    'title': 'Title for your experiment',
-    'description': 'Description for your experiment',
+    'title': 'Transcription',
+    'description': 'This HIT is about transcribing as a team',
     'frame_height': 500,
     'preview_template': 'global/MTurkPreview.html',
     'minutes_allotted_per_assignment': 60,
