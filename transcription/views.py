@@ -5,49 +5,61 @@ from .models import Constants
 
 
 class Introduction(Page):
+    timeout_seconds = 120
     pass
 
 class Manager_Introduction(Page):
+    timeout_seconds = 120
+
     def is_displayed(self):
         return self.player.id_in_group == 1
 
 class MyPage(Page):
+    timeout_seconds = 120
     form_model = models.Player
     form_fields = ['MTurkID', 'paymentOK', 'neverWorked', 'yearBorn', 'gender']
 
 class SurveyManager(Page):
+    timeout_seconds = 120
     def is_displayed(self):
         return self.player.id_in_group == 1
     form_model = models.Player
     form_fields = ['experience', 'eduLevel', 'dailyHHEarn']
 
 class SurveyEmployee(Page):
+    timeout_seconds = 120
     def is_displayed(self):
         return self.player.id_in_group != 1
     form_model = models.Player
     form_fields = ['transExp', 'eduLevel', 'dailyHHEarn']
 
 class MyPage3(Page):
+    timeout_seconds = 120
     form_model = models.Player
     form_fields = ['howLong']
 
 class MyPage4(Page):
+    timeout_seconds = 120
     def is_displayed(self):
         return self.player.id_in_group == 1
 
 class MyPage5(Page):
+    timeout_seconds = 120
     form_model = models.Player
     form_fields = ['pref1','pref2','pref3','pref4','pref5']
 
 class MyPage6(Page):
+    timeout_seconds = 120
     form_model = models.Player
     form_fields = ['bid']
 
 class ManagerChat(Page):
+    timeout_seconds = 1800
     def is_displayed(self):
         return self.player.id_in_group == 1
 
 class EmployeeChat(Page):
+    timeout_seconds = 1800
     def is_displayed(self):
         return self.player.id_in_group != 1
 
@@ -58,10 +70,6 @@ class ResultsWaitPage(WaitPage):
         return self.player.id_in_group == 1
     def after_all_players_arrive(self):
         pass
-
-
-class Results(Page):
-    pass
 
 
 page_sequence = [
@@ -76,6 +84,5 @@ page_sequence = [
     MyPage6,
     ResultsWaitPage,
     ManagerChat,
-    EmployeeChat,
-    Results
+    EmployeeChat
 ]
