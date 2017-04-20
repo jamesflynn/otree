@@ -3,13 +3,21 @@ from otree.api import (
     Currency as c, currency_range
 )
 
+from django.core.exceptions import ValidationError
+from django.utils.translation import ugettext_lazy as _
+
+def validate_nonzero(value):
+    if value == 0:
+        raise ValidationError(
+            _('%(value)s is not an acceptable answer'),
+            params={'value': value},
+        )
 
 author = 'Your name here'
 
 doc = """
 Your app description
 """
-
 
 class Constants(BaseConstants):
     name_in_url = 'transcription'
@@ -70,7 +78,7 @@ class Player(BasePlayer):
 	transExp = models.CharField(widget=widgets.Select(choices=TRANS_CHOICES))
 	eduLevel = models.CharField(widget=widgets.Select(choices=EDU_CHOICES))
 	dailyHHEarn = models.CurrencyField()
-	howLong = models.PositiveIntegerField(max=180,widget=widgets.SliderInput(attrs={'step': '5'}))
+	howLong = models.PositiveIntegerField(validators=[validate_nonzero],default=0,min=0,max=180,widget=widgets.SliderInput(attrs={'step': '5'}))
 	pref1 = models.PositiveIntegerField(widget=widgets.RadioSelectHorizontal(choices=P1_CHOICES))
 	pref2 = models.PositiveIntegerField(widget=widgets.RadioSelectHorizontal(choices=P2_CHOICES))
 	pref3 = models.PositiveIntegerField(widget=widgets.RadioSelectHorizontal(choices=P3_CHOICES))
