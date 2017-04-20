@@ -130,7 +130,7 @@ SESSION_CONFIGS = [
     {
         'name': 'transcription',
         'display_name': "Transcription",
-        'num_demo_participants': 5,
+        'num_demo_participants': 4,
         'app_sequence': ['transcription'],
 #        'use_browser_bots': True,
     }    

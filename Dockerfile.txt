@@ -3,6 +3,7 @@ FROM python:3-alpine
 ENV REDIS_URL 'redis://redis:6379'
 ENV DJANGO_SETTINGS_MODULE 'settings'
 
+
 ADD ./ /opt/otree
 
 RUN apk -U add --no-cache postgresql-dev gcc musl-dev curl \
