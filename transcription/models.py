@@ -69,7 +69,7 @@ class Player(BasePlayer):
 	experience = models.CharField(widget=widgets.Select(choices=EXP_CHOICES))
 	transExp = models.CharField(widget=widgets.Select(choices=TRANS_CHOICES))
 	eduLevel = models.CharField(widget=widgets.Select(choices=EDU_CHOICES))
-	dailyHHEarn = models.FloatField()
+	dailyHHEarn = models.CurrencyField()
 	howLong = models.PositiveIntegerField(max=180,widget=widgets.SliderInput(attrs={'step': '5'}))
 	pref1 = models.PositiveIntegerField(widget=widgets.RadioSelectHorizontal(choices=P1_CHOICES))
 	pref2 = models.PositiveIntegerField(widget=widgets.RadioSelectHorizontal(choices=P2_CHOICES))
