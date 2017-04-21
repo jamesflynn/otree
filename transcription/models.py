@@ -33,7 +33,7 @@ class Group(BaseGroup):
 	pass
 
 
-GENDER_CHOICES = (('','please select'),('m','Male'),('f','Female'),('o','Other'))
+GENDER_CHOICES = (('','please select'),('m','male'),('f','female'),('o','other'))
 EXP_CHOICES = (('','please select'),('0','no experience'),('12','1-12 months'),('24','1-2 years'),('36','more than 2 years'))
 TRANS_CHOICES = (('','please select'),('0','no experience') , ('12','1-12 months') , ('24','1-2 years') , ('36','more than 2 years') )
 EDU_CHOICES = (('','please select'),('someHS','some high school'),('HS','completed high school'),('someColl','some college'),('undergrad','undergrad degree'),('postgrad','graduate degree'))

@@ -81,8 +81,8 @@ class EmployeeChat(Page):
 #    form_fields = ['experience', 'transExp']
 
 class ResultsWaitPage(WaitPage):
-    def is_displayed(self):
-        return self.player.id_in_group == 1
+#    def is_displayed(self):
+#        return self.player.id_in_group == 1
     def after_all_players_arrive(self):
         pass
 
