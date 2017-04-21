@@ -7,17 +7,17 @@
 
 {% block content %}
 
-	<p>Here is a sample of the data entry job {{ player.string1 }} will be transcribing.</p>
+	<p>Below is a sample of the data entry job you will be transcribing.</p>
 
-	<img src="{% static "transcription/sample.jpeg" %}"/>
-	<br><br>
-	<p>How long do you think it takes for you to transcribe the sample table above into MS Excel at 95% accuracy, equivalent to 1 mistake in every 20 cells?</p>
+	<p>How long do you think it takes for you to transcribe the sample table below into MS Excel at 95% accuracy, equivalent to 1 mistake in every 20 cells?</p>
 
 	<p>Note: We do not care if you spend a long time on this project.  We will only need to coordinate a start time. Please answer honestly.</p>
 
     {% formfield player.howLong with label="How many minutes?" %}
 
-
     {% next_button %}
+	<img src="{% static "transcription/sample.jpeg" %}"/>
+	<br>
+
 
 {% endblock %}

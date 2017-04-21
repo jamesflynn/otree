@@ -33,35 +33,50 @@ class SurveyEmployee(Page):
     form_model = models.Player
     form_fields = ['transExp', 'eduLevel', 'dailyHHEarn']
 
-class MyPage3(Page):
+class SampleManager(Page):
+    def is_displayed(self):
+        return self.player.id_in_group == 1
+    timeout_seconds = 120
+    pass
+ 
+class SampleEmployee(Page):
+    def is_displayed(self):
+        return self.player.id_in_group != 1
     timeout_seconds = 120
     form_model = models.Player
     form_fields = ['howLong']
 
-class MyPage4(Page):
-    timeout_seconds = 120
+class PreferencesEmployee(Page):
     def is_displayed(self):
-        return self.player.id_in_group == 1
-
-class MyPage5(Page):
+        return self.player.id_in_group != 1
     timeout_seconds = 180
     form_model = models.Player
     form_fields = ['pref1','pref2','pref3','pref4','pref5']
 
-class MyPage6(Page):
+class BidManager(Page):
+    def is_displayed(self):
+        return self.player.id_in_group == 1
+    timeout_seconds = 180
+    pass
+
+class BidEmployee(Page):
+    def is_displayed(self):
+        return self.player.id_in_group != 1
     timeout_seconds = 180
     form_model = models.Player
     form_fields = ['bid']
 
 class ManagerChat(Page):
-    timeout_seconds = 1800
     def is_displayed(self):
         return self.player.id_in_group == 1
+    timeout_seconds = 1800
+    pass
 
 class EmployeeChat(Page):
-    timeout_seconds = 1800
     def is_displayed(self):
         return self.player.id_in_group != 1
+    timeout_seconds = 1800
+    pass
 
 #    form_fields = ['experience', 'transExp']
 
@@ -78,10 +93,11 @@ page_sequence = [
     MyPage,
     SurveyManager,
     SurveyEmployee,
-    MyPage4,
-    MyPage3,
-    MyPage5,
-    MyPage6,
+    SampleManager,
+    SampleEmployee,
+    PreferencesEmployee,
+    BidManager,
+    BidEmployee,
     ResultsWaitPage,
     ManagerChat,
     EmployeeChat
