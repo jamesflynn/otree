@@ -13,24 +13,35 @@
 <table>
 <tbody>
   <tr>
-    <td>Player 1 :</td>
+    <td>Employee 1 :</td>
     <td>&nbsp;&nbsp;&nbsp;</td>
     <td align="right"> $ {{player.get_employee1.bid}}</td>
   </tr>
    <tr>
-    <td>Player 2:</td>
+    <td>Employee 2:</td>
     <td>&nbsp;&nbsp;&nbsp;</td>
     <td align="right"> $ {{player.get_employee2.bid}}</td>
   </tr>
   <tr>
-    <td>Player 3:</td>
+    <td>Employee 3:</td>
     <td>&nbsp;&nbsp;&nbsp;</td>
     <td align="right"> $ {{player.get_employee3.bid}}</td>
   </tr>
 </tbody>
 </table>
+<br>
 
-	{% chat %}
+<p>Here are the links to the 5-page PDFs for transcriptions. Copy and paste the links and assign them to worker if you agree on a price. (The order is not important, just don't give 2 people the same one!)</p>
+
+
+<div class="instructions well well-lg">
+  https://dl.dropboxusercontent.com/u/1688949/trx/CENSUS_TABLES_FOR_TRANSCRIPTION_Part1.pdf
+  https://dl.dropboxusercontent.com/u/1688949/trx/CENSUS_TABLES_FOR_TRANSCRIPTION_Part2.pdf
+  https://dl.dropboxusercontent.com/u/1688949/trx/CENSUS_TABLES_FOR_TRANSCRIPTION_Part3.pdf
+</div>
+
+<h3>Chat Room:</h3>
+  {% chat nickname="Manager" channel=Subsession %}
 
 <br>
     <p>Click here when you're done. <b>This will end your chat session, you cannot come back.</b></p>

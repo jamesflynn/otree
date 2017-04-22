@@ -8,9 +8,9 @@
 
 {% block content %}
 
-<p>Soon you will be joined by a manager and up to 3 other employees in the chat room.</p>
+<p>Everyone is here. You, 2 other employees, and a manager.</p>
 
-	{% chat %}
+	{% chat nickname=player.chat_nickname channel=Subsession %}
 
 <br>
     <p>Click here when you're done. <b>This will end your chat session, you cannot come back.</b></p>

@@ -52,11 +52,8 @@ class Player(BasePlayer):
 	    else:
 	        return 'Employee'
 
-	def string1(self):
-		if self.id_in_group == 1:
-			return 'employees'
-		else:
-			return 'you'
+	def chat_nickname(self):
+		return '{} {}'.format(self.role(), self.id_in_group - 1 )
 
 	def get_employee1(self):
 		return self.get_others_in_group()[0]
@@ -70,6 +67,7 @@ class Player(BasePlayer):
 
 	MTurkID = models.CharField()
 #	paymentOK = models.BooleanField(widget=widgets.CheckboxInput())
+#	devSkip = models.BooleanField(blank=True,default=0)
 	paymentOK = models.BooleanField()
 	neverWorked = models.BooleanField()
 	yearBorn = models.PositiveIntegerField(min=1916, max=2005)

@@ -1,0 +1,14 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+    {{player.role}} Ready to Chat
+{% endblock %}
+
+{% block content %}
+
+	<p>When you click NEXT below, you will be taken to a chat room with the employees. The chat room will not appear until the other participants all reach this page, so please be patient. Thank you!</p>
+
+    {% next_button %}
+
+{% endblock %}
