@@ -67,7 +67,7 @@ class Player(BasePlayer):
 
 	MTurkID = models.CharField()
 #	paymentOK = models.BooleanField(widget=widgets.CheckboxInput())
-#	devSkip = models.BooleanField(blank=True,default=0)
+	devSkip = models.BooleanField(blank=True)
 	paymentOK = models.BooleanField()
 	neverWorked = models.BooleanField()
 	yearBorn = models.PositiveIntegerField(min=1916, max=2005)
