@@ -15,7 +15,7 @@
         <strong>VERY IMPORTANT: DO NOT</strong> include the digit-grouping commas that occur WITHIN a number 129,262 should be 129962
     </p>
     <div>
-        <a target="_blank" href="{% static image_path %}"><img src="{% static "transcription/picture.png" %}"/> Click here to open image</a><br><br>
+        <a target="_blank" href="{{ image_path }}"><img src="{% static "transcription/picture.png" %}"/> Click here to open image</a><br><br>
     </div>
 
     {% formfield player.transcribed_text with label="" %}
