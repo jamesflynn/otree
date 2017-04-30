@@ -125,8 +125,9 @@ class Transcribe(Page):
     def vars_for_template(self):
 
         return {
-            'image_path': 'transcription/paragraphs/{}_{}.png'.format(self.player.id_in_group,
+            'image_path': 'https://dl.dropboxusercontent.com/u/1688949/trx/{}_{}.png'.format(self.player.id_in_group,
                 self.round_number),
+#            'image_path': 'transcription/paragraphs/{}_{}.png'.format(self.player.id_in_group,self.round_number),
             'reference_text': safe_json(Constants.reference_texts[self.round_number - 1]),
             'debug': settings.DEBUG,
             'required_accuracy': 100 * (1 - Constants.allowed_error_rates[self.round_number - 1])
