@@ -6,6 +6,35 @@ from otree.api import (
 from django.core.exceptions import ValidationError
 from django.utils.translation import ugettext_lazy as _
 
+import random
+
+def levenshtein(a, b):
+    """Calculates the Levenshtein distance between a and b."""
+    n, m = len(a), len(b)
+    if n > m:
+        # Make sure n <= m, to use O(min(n,m)) space
+        a, b = b, a
+        n, m = m, n
+
+    current = range(n + 1)
+    for i in range(1, m + 1):
+        previous, current = current, [i] + [0] * n
+        for j in range(1, n + 1):
+            add, delete = previous[j] + 1, current[j - 1] + 1
+            change = previous[j - 1]
+            if a[j - 1] != b[i - 1]:
+                change = change + 1
+            current[j] = min(add, delete, change)
+
+    return current[n]
+
+
+def distance_and_ok(transcribed_text, reference_text, max_error_rate):
+    error_threshold = len(reference_text) * max_error_rate
+    distance = levenshtein(transcribed_text, reference_text)
+    ok = distance <= error_threshold
+    return distance, ok
+
 def validate_nonzero(value):
     if value == 0:
         raise ValidationError(
@@ -24,7 +53,15 @@ class Constants(BaseConstants):
     players_per_group = 4
     instructions_template = 'transcription/Instructions.html'
     manager_instructions = 'transcription/Manager_Instructions.html'
-    num_rounds = 1
+    num_rounds = 5
+    reference_texts = [
+    	"Revealed preference",
+    	"Revealed preference",
+    	"Revealed preference",
+		"Revealed preference",
+		"Revealed preference"   
+    ]
+    allowed_error_rates = [0, 0.03,0.03,0.03,0.03]
 
 class Subsession(BaseSubsession):
     pass
@@ -64,7 +101,8 @@ class Player(BasePlayer):
 #	def get_employee4(self):
 #		return self.get_others_in_group()[3]
 
-
+	transcribed_text = models.TextField()
+	levenshtein_distance = models.PositiveIntegerField()
 	MTurkID = models.CharField()
 #	paymentOK = models.BooleanField(widget=widgets.CheckboxInput())
 	devSkip = models.BooleanField(blank=True)
