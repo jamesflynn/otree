@@ -79,7 +79,7 @@ P2_CHOICES = (('4','$4 for five pages transcribed in 2 days'),('2','$2 in 2 days
 P3_CHOICES = (('5','$5 for five pages transcribed in 2 days'),('2','$2 in 2 days from now, without transcription'))
 P4_CHOICES = (('6','$6 for five pages transcribed in 2 days'),('2','$2 in 2 days from now, without transcription'))
 P5_CHOICES = (('7','$7 for five pages transcribed in 2 days'),('2','$2 in 2 days from now, without transcription'))
-BID_CHOICES = ((None,'Please select'),('5','$5'),('10','$10'),('15','$15'),('20','$20'),('25','$25'),('30','$30'),('35','$35'),('40','$40'),('45','$45'),)
+#BID_CHOICES = ((None,'Please select'),('5','$5'),('10','$10'),('15','$15'),('20','$20'),('25','$25'),('30','$30'),('35','$35'),('40','$40'),('45','$45'),)
 
 class Player(BasePlayer):
 
@@ -120,4 +120,8 @@ class Player(BasePlayer):
 	pref3 = models.PositiveIntegerField(widget=widgets.RadioSelectHorizontal(choices=P3_CHOICES))
 	pref4 = models.PositiveIntegerField(widget=widgets.RadioSelectHorizontal(choices=P4_CHOICES))
 	pref5 = models.PositiveIntegerField(widget=widgets.RadioSelectHorizontal(choices=P5_CHOICES))
-	bid = models.PositiveIntegerField(widget=widgets.Select(choices=BID_CHOICES)) 
+#	bid = models.PositiveIntegerField(widget=widgets.Select(choices=BID_CHOICES)) 
+	bid = models.CurrencyField()
+	agree2 = models.CurrencyField(min=0,max=25) 
+	agree3 = models.CurrencyField(min=0,max=25)
+	agree4 = models.CurrencyField(min=0,max=25)

@@ -6,45 +6,68 @@
     {{player.role}} - Chat Room
 {% endblock %}
 
+{% block styles %}
+
+    <!-- define a style -->
+    <style type="text/css">
+tr, td, th {
+    padding: 5px;
+    vertical-align: middle;
+}
+    </style>
+
+{% endblock %}
+
 {% block content %}
 
 <p>The employees are all here, their bids were:</p>
 
-<table>
-<tbody>
-  <tr>
-    <td>Employee 1 :</td>
-    <td>&nbsp;&nbsp;&nbsp;</td>
-    <td align="right"> $ {{player.get_employee1.bid}}</td>
-  </tr>
-   <tr>
-    <td>Employee 2:</td>
-    <td>&nbsp;&nbsp;&nbsp;</td>
-    <td align="right"> $ {{player.get_employee2.bid}}</td>
-  </tr>
-  <tr>
-    <td>Employee 3:</td>
-    <td>&nbsp;&nbsp;&nbsp;</td>
-    <td align="right"> $ {{player.get_employee3.bid}}</td>
-  </tr>
-</tbody>
-</table>
-<br>
+<div class="instructions well well-lg">
+Employee 1 : {{player.get_employee1.bid}}<br>
+Employee 2 : {{player.get_employee2.bid}}<br>
+Employee 3 : {{player.get_employee3.bid}}
+</div>
 
-<p>Here are the links to the 5-page PDFs for transcriptions. Copy and paste the links and assign them to worker if you agree on a price. (The order is not important, just don't give 2 people the same one!)</p>
+<p>Please negotiate with the employees and enter the agreed-to amount (for 5 pages) in the corresponding box below. Remember, we have a budget of $5 for every page that is completed at >95% accuracy, up to $25 for the 5 pages. (But we will pay out for each completed page). So for any bids less than $25, we'll give the rest of the money to you.</p>
 
+<p>Example: Employee #1 bids $20 ($4 per page) and completes 3 pages at 100% accuracy and 2 at 70%.</p>
+<p>In this case Employee #1 will be paid 3 x $4 = $12 and you will be paid the rest of the $5 budget for each completed page = 3 x ($5 - $4) = $3</p>
 
+<!--
 <div class="instructions well well-lg">
   https://dl.dropboxusercontent.com/u/1688949/trx/CENSUS_TABLES_FOR_TRANSCRIPTION_Part1.pdf
   https://dl.dropboxusercontent.com/u/1688949/trx/CENSUS_TABLES_FOR_TRANSCRIPTION_Part2.pdf
   https://dl.dropboxusercontent.com/u/1688949/trx/CENSUS_TABLES_FOR_TRANSCRIPTION_Part3.pdf
 </div>
+-->
 
 <h3>Chat Room:</h3>
   {% chat nickname="Manager" channel=Subsession %}
 
 <br>
-    <p>Click here when you're done. <b>This will end your chat session, you cannot come back.</b></p>
+<p>Enter the agreed-to amounts here (enter 0 if no deal is reached)</p>
+
+<table>
+<tbody>
+  <tr>
+    <td>Employee 1 :</td>
+    <td>{% formfield player.agree2 with label="" %}</td>
+    <td>Initial bid was: {{player.get_employee1.bid}}</td>
+  </tr>
+   <tr>
+    <td>Employee 2:</td>
+    <td>{% formfield player.agree3 with label="" %}</td>
+    <td>Initial bid was: {{player.get_employee2.bid}}</td>
+  </tr>
+  <tr>
+    <td>Employee 3:</td>
+    <td>{% formfield player.agree4 with label="" %}</td>
+    <td>Initial bid was: {{player.get_employee3.bid}}</td>
+  </tr>
+</tbody>
+</table>
+
+    <p>Click here when you're done. <b>This will end your HIT, you cannot come back.</b></p>
     <div>
         <button class="btn btn-warning btn-large">Done</button>
     </div>

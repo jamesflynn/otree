@@ -6,9 +6,9 @@ from django.conf import settings
 
 
 
-class Introduction(Page):       # both
+class Introduction(Page):       
     def is_displayed(self):
-        self.round_number == 1
+        return self.round_number == 1
     timeout_seconds = 60
     form_model = models.Player
     form_fields = ['devSkip']
@@ -17,13 +17,13 @@ class Introduction(Page):       # both
 class Manager_Introduction(Page):   # extra manager intro
     timeout_seconds = 60
     def is_displayed(self):
-        if ( self.player.id_in_group == 1 ) & ( self.player.devSkip == None ):
+        if ( self.player.id_in_group == 1 ) & ( self.player.devSkip == None ) & ( self.round_number == 1 ):
             return True
 
 class AcceptTerms(Page):        # both
     timeout_seconds = 180
     def is_displayed(self):
-        if ( self.player.devSkip == None ):
+        if ( self.player.devSkip == None ) & ( self.round_number == 1 ):
             return True
     form_model = models.Player
     form_fields = ['MTurkID', 'paymentOK', 'neverWorked', 'yearBorn', 'gender']
@@ -31,7 +31,7 @@ class AcceptTerms(Page):        # both
 class SurveyManager(Page):      # survey for manager
     timeout_seconds = 120
     def is_displayed(self):
-        if ( self.player.id_in_group == 1 ) & ( self.player.devSkip == None ):
+        if ( self.player.id_in_group == 1 ) & ( self.player.devSkip == None ) & ( self.round_number == 1 ):
             return True
     form_model = models.Player
     form_fields = ['experience', 'eduLevel', 'dailyHHEarn']
@@ -39,21 +39,21 @@ class SurveyManager(Page):      # survey for manager
 class SurveyEmployee(Page):     # survey for employee
     timeout_seconds = 120
     def is_displayed(self):
-        if ( self.player.id_in_group != 1 ) & ( self.player.devSkip == None ):
+        if ( self.player.id_in_group != 1 ) & ( self.player.devSkip == None ) & ( self.round_number == 1 ):
             return True
     form_model = models.Player
     form_fields = ['transExp', 'eduLevel', 'dailyHHEarn']
 
 class SampleManager(Page):      # transcription sample for manager
     def is_displayed(self):
-        if ( self.player.id_in_group == 1 ) & ( self.player.devSkip == None ):
+        if ( self.player.id_in_group == 1 ) & ( self.player.devSkip == None ) & ( self.round_number == 1 ):
             return True
     timeout_seconds = 120
     pass
  
 class SampleEmployee(Page):     #transcription sample for employee with time estimate
     def is_displayed(self):
-        if ( self.player.id_in_group != 1 ) & ( self.player.devSkip == None ):
+        if ( self.player.id_in_group != 1 ) & ( self.player.devSkip == None ) & ( self.round_number == 1 ):
             return True
     timeout_seconds = 120
     form_model = models.Player
@@ -61,7 +61,7 @@ class SampleEmployee(Page):     #transcription sample for employee with time est
 
 class PreferencesEmployee(Page):    # preferences survey for eployee
     def is_displayed(self):
-        if ( self.player.id_in_group != 1 ) & ( self.player.devSkip == None ):
+        if ( self.player.id_in_group != 1 ) & ( self.player.devSkip == None ) & ( self.round_number == 1 ):
             return True
     timeout_seconds = 180
     form_model = models.Player
@@ -69,14 +69,14 @@ class PreferencesEmployee(Page):    # preferences survey for eployee
 
 class BidManager(Page):             # bid for manager
     def is_displayed(self):
-        if ( self.player.id_in_group == 1 ) & ( self.player.devSkip == None ):
+        if ( self.player.id_in_group == 1 ) & ( self.player.devSkip == None ) & ( self.round_number == 1 ):
             return True
     timeout_seconds = 180
     pass
 
 class BidEmployee(Page):        # bid for employee
     def is_displayed(self):
-        if ( self.player.id_in_group != 1 ) & ( self.player.devSkip == None ):
+        if ( self.player.id_in_group != 1 ) & ( self.round_number == 1 ):
             return True
     timeout_seconds = 180
     form_model = models.Player
@@ -84,28 +84,29 @@ class BidEmployee(Page):        # bid for employee
 
 class PreChatManager(Page):
     def is_displayed(self):
-        if ( self.player.id_in_group == 1 ) & ( self.player.devSkip == None ):
+        if ( self.player.id_in_group == 1 ) & ( self.player.devSkip == None ) & ( self.round_number == 1 ):
             return True
     timeout_seconds = 300
     pass
 
 class PreChatEmployee(Page):
     def is_displayed(self):
-        if ( self.player.id_in_group != 1 ) & ( self.player.devSkip == None ):
+        if ( self.player.id_in_group != 1 ) & ( self.player.devSkip == None ) & ( self.round_number == 1 ):
             return True
     timeout_seconds = 300
     pass
 
 class ManagerChat(Page):
     def is_displayed(self):
-        if ( self.player.id_in_group == 1 ):
+        if ( self.player.id_in_group == 1 ) & ( self.round_number == 1 ):
             return True
 #    timeout_seconds = 1800
-    pass
+    form_model = models.Player
+    form_fields = ['agree2','agree3','agree4']
 
 class EmployeeChat(Page):
     def is_displayed(self):
-        if ( self.player.id_in_group != 1 ):
+        if ( self.player.id_in_group != 1 ) & ( self.round_number == 1 ):
             return True
 #    timeout_seconds = 1800
     pass
@@ -113,12 +114,16 @@ class EmployeeChat(Page):
 #    form_fields = ['experience', 'transExp']
 
 class ResultsWaitPage(WaitPage):
-#    def is_displayed(self):
-#        return self.player.id_in_group == 1
+    def is_displayed(self):
+        return self.round_number == 1
     def after_all_players_arrive(self):
         pass
 
 class Transcribe(Page):
+    def is_displayed(self):
+        if ( self.player.id_in_group != 1 ):
+            return True
+
     form_model = models.Player
     form_fields = ['transcribed_text']
 
@@ -168,8 +173,8 @@ class Results(Page):
         return {'table_rows': table_rows}
 
 
-page_sequence = [Introduction, Transcribe, Results]
-'''
+#page_sequence = [Introduction, Transcribe, Results]
+
 page_sequence = [
 	Introduction,
 	Manager_Introduction,
@@ -185,6 +190,6 @@ page_sequence = [
     PreChatEmployee,
     ResultsWaitPage,
     ManagerChat,
-    EmployeeChat
+    EmployeeChat,
+    Transcribe
 ]
-'''
