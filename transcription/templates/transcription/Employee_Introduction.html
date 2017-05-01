@@ -1,0 +1,9 @@
+{% extends "global/Page.html" %}
+{% load otree_tags %}
+
+{% block title %}Employee Introduction{% endblock %}
+
+{% block content %}
+{% include Constants.employee_instructions %}
+{% next_button %}
+{% endblock %}
