@@ -1,7 +1,7 @@
 from otree.api import Currency as c, currency_range, safe_json
 from . import models
 from ._builtin import Page, WaitPage
-from .models import Constants, levenshtein, distance_and_ok
+from .models import Constants, levenshtein, distance_and_ok, divide_by_five
 from django.conf import settings
 
 
@@ -137,7 +137,8 @@ class Transcribe(Page):
             'reference_text': safe_json(Constants.reference_texts[self.round_number - 1]),
             'debug': settings.DEBUG,
             'required_accuracy': 100 * (1 - Constants.allowed_error_rates[self.round_number - 1]),
-            'skipping': self.player.in_round(1).devSkip
+            'skipping': self.player.in_round(1).devSkip,
+            'agreed': divide_by_five(self.player.agree1)
         }
 
     def transcribed_text_error_message(self, transcribed_text):

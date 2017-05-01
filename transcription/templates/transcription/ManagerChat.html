@@ -10,30 +10,13 @@
 
     <!-- define a style -->
     <style type="text/css">
-tr, td, th {
-    padding: 5px;
-    vertical-align: middle;
-}
-.makered {
-  color: red;
-}
+        tr, td, th {
+          padding: 5px;
+          vertical-align: middle;
+          }
     </style>
 
 {% endblock %}
-
-{% block scripts %}
-
-    <!-- define a script -->
-
-    <script>
-    var e1bid = {{ player.get_employee1.bid|json }};
-    var e2bid = {{ player.get_employee2.bid|json }};
-    var e3bid = {{ player.get_employee3.bid|json }};
-
-    </script>
-
-{% endblock %}
-
 
 {% block content %}
 

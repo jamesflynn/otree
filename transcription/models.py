@@ -42,6 +42,9 @@ def validate_nonzero(value):
             params={'value': value},
         )
 
+def divide_by_five(value):
+	return value / 5
+
 author = 'James Flynn'
 
 doc = """
@@ -99,6 +102,7 @@ class Player(BasePlayer):
 		return self.get_others_in_group()[1]
 	def get_employee3(self):
 		return self.get_others_in_group()[2]
+
 #	def get_employee4(self):
 #		return self.get_others_in_group()[3]
 
