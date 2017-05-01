@@ -13,7 +13,9 @@
 	{% chat nickname=player.chat_nickname channel=Subsession %}
 
 <br>
-    <p>Click here when you're done. <b>This will end your chat session, you cannot come back.</b></p>
+	{% formfield player.agree1 with label="Once you have agreed on a rate for 5 pages, enter it here, and click done to proceed to transcription." %}
+
+    <p><b>This will end your chat session, you cannot come back.</b></p>
     <div>
         <button class="btn btn-warning btn-large">Done</button>
     </div>

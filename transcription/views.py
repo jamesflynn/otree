@@ -108,10 +108,8 @@ class EmployeeChat(Page):
     def is_displayed(self):
         if ( self.player.id_in_group != 1 ) & ( self.round_number == 1 ):
             return True
-#    timeout_seconds = 1800
-    pass
-
-#    form_fields = ['experience', 'transExp']
+    form_model = models.Player
+    form_fields = ['agree1']
 
 class ResultsWaitPage(WaitPage):
     def is_displayed(self):
@@ -120,12 +118,15 @@ class ResultsWaitPage(WaitPage):
         pass
 
 class Transcribe(Page):
-    def is_displayed(self):
-        if ( self.player.id_in_group != 1 ):
+
+    def is_displayed(self):        
+        if (( self.round_number > 1 ) & ((self.player.in_round(1).iQuit == 1)|(self.player.in_round(2).iQuit == 1)|(self.player.in_round(3).iQuit == 1)|(self.player.in_round(4).iQuit == 1)|(self.player.in_round(5).iQuit == 1)) ) | ( self.player.id_in_group == 1):
+            return False
+        else:
             return True
 
     form_model = models.Player
-    form_fields = ['transcribed_text']
+    form_fields = ['transcribed_text','iQuit']
 
     def vars_for_template(self):
 
@@ -135,7 +136,11 @@ class Transcribe(Page):
 #            'image_path': 'transcription/paragraphs/{}_{}.png'.format(self.player.id_in_group,self.round_number),
             'reference_text': safe_json(Constants.reference_texts[self.round_number - 1]),
             'debug': settings.DEBUG,
-            'required_accuracy': 100 * (1 - Constants.allowed_error_rates[self.round_number - 1])
+            'required_accuracy': 100 * (1 - Constants.allowed_error_rates[self.round_number - 1]),
+            'skipping': self.player.in_round(1).devSkip,
+            'quitting': self.player.in_round(floor_round(self.round_number)).iQuit,
+            'round number': self.round_number,
+            'floored round number': floor_round(self.round_number)
         }
 
     def transcribed_text_error_message(self, transcribed_text):
@@ -188,7 +193,7 @@ page_sequence = [
     BidEmployee,
     PreChatManager,
     PreChatEmployee,
-    ResultsWaitPage,
+#    ResultsWaitPage,
     ManagerChat,
     EmployeeChat,
     Transcribe

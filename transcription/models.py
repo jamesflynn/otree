@@ -42,10 +42,10 @@ def validate_nonzero(value):
             params={'value': value},
         )
 
-author = 'Your name here'
+author = 'James Flynn'
 
 doc = """
-Your app description
+Transcription Negotiation
 """
 
 class Constants(BaseConstants):
@@ -61,7 +61,8 @@ class Constants(BaseConstants):
 		"Revealed preference",
 		"Revealed preference"   
     ]
-    allowed_error_rates = [0, 0.03,0.03,0.03,0.03]
+#    allowed_error_rates = [0, 0.03,0.03,0.03,0.03]
+    allowed_error_rates = [1,1,1,1,1]
 
 class Subsession(BaseSubsession):
     pass
@@ -88,7 +89,7 @@ class Player(BasePlayer):
 	        return 'Manager'
 	    else:
 	        return 'Employee'
-
+	
 	def chat_nickname(self):
 		return '{} {}'.format(self.role(), self.id_in_group - 1 )
 
@@ -101,11 +102,12 @@ class Player(BasePlayer):
 #	def get_employee4(self):
 #		return self.get_others_in_group()[3]
 
-	transcribed_text = models.TextField()
+	transcribed_text = models.TextField(blank=True)
 	levenshtein_distance = models.PositiveIntegerField()
 	MTurkID = models.CharField()
 #	paymentOK = models.BooleanField(widget=widgets.CheckboxInput())
 	devSkip = models.BooleanField(blank=True)
+	iQuit = models.PositiveIntegerField(min=0,max=1)
 	paymentOK = models.BooleanField()
 	neverWorked = models.BooleanField()
 	yearBorn = models.PositiveIntegerField(min=1916, max=2005)
@@ -122,6 +124,9 @@ class Player(BasePlayer):
 	pref5 = models.PositiveIntegerField(widget=widgets.RadioSelectHorizontal(choices=P5_CHOICES))
 #	bid = models.PositiveIntegerField(widget=widgets.Select(choices=BID_CHOICES)) 
 	bid = models.CurrencyField()
+	agree1 = models.CurrencyField(min=0,max=25)
 	agree2 = models.CurrencyField(min=0,max=25) 
 	agree3 = models.CurrencyField(min=0,max=25)
 	agree4 = models.CurrencyField(min=0,max=25)
+
+

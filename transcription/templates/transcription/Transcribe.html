@@ -8,17 +8,26 @@
 {% block content %}
 
     <p>
-        Please transcribe (copy) the text below into the input field.
-        Be exact and make sure to get all characters and spaces correct.<br>
-        Use commas to separate table cells. If the cell is blank just leave nothing between the commas.
-        Example: Worcester,1162,2,27,,,1<br>
-        <strong>VERY IMPORTANT: DO NOT</strong> include the digit-grouping commas that occur WITHIN a number 129,262 should be 129962
+        Please transcribe the text from the table in the image into the box below.<br><br>
+        Example:<br><img src="{% static "transcription/exampleline.png" %}"/><br>
+        Maine,3,,3,,<br><br>
+        <strong>DO NOT</strong> include the digit-grouping commas that occur WITHIN a number: The number 129,262 should be entered as 129962
     </p>
+    <p>You will be paid {{ player.agree1 }} for this page, if it is transcribed better than 95% accuracy. Thank you!</p>
     <div>
         <a target="_blank" href="{{ image_path }}"><img src="{% static "transcription/picture.png" %}"/> Click here to open image</a><br><br>
     </div>
 
     {% formfield player.transcribed_text with label="" %}
+
+
+<input type="hidden" name="iQuit" value="0" />
+
+    <div class="checkbox">
+    <label class="control-label field-iQuit" for="id_iQuit">
+        <input type="checkbox" name="iQuit" id="id_iQuit" value="1">
+        I don't want to do this, I quit. (Select then hit next)</label>
+    </div>
 
     {% next_button %}
 

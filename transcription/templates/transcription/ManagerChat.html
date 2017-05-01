@@ -14,18 +14,35 @@ tr, td, th {
     padding: 5px;
     vertical-align: middle;
 }
+.makered {
+  color: red;
+}
     </style>
 
 {% endblock %}
+
+{% block scripts %}
+
+    <!-- define a script -->
+
+    <script>
+    var e1bid = {{ player.get_employee1.bid|json }};
+    var e2bid = {{ player.get_employee2.bid|json }};
+    var e3bid = {{ player.get_employee3.bid|json }};
+
+    </script>
+
+{% endblock %}
+
 
 {% block content %}
 
 <p>The employees are all here, their bids were:</p>
 
 <div class="instructions well well-lg">
-Employee 1 : {{player.get_employee1.bid}}<br>
-Employee 2 : {{player.get_employee2.bid}}<br>
-Employee 3 : {{player.get_employee3.bid}}
+Employee 1 : <span id="e1">{{player.get_employee1.bid}}</span><br>
+Employee 2 : <span id="e2">{{player.get_employee2.bid}}</span><br>
+Employee 3 : <span id="e3">{{player.get_employee3.bid}}</span>
 </div>
 
 <p>Please negotiate with the employees and enter the agreed-to amount (for 5 pages) in the corresponding box below. Remember, we have a budget of $5 for every page that is completed at >95% accuracy, up to $25 for the 5 pages. (But we will pay out for each completed page). So for any bids less than $25, we'll give the rest of the money to you.</p>
