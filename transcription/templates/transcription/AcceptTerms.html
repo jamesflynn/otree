@@ -7,8 +7,6 @@
 
 {% block content %}
 
-    {% formfield player.MTurkID with label="Enter your Mechanical Turk ID" %}
-
     <br>
  	<p><strong>We will pay you for future work through a bonus  - please confirm that this is okay.</strong></p>
  	<div class="checkbox">
@@ -25,23 +23,10 @@
 		I have never worked for you in any capacity</label>
 	</div>
 	{{ form.neverWorked.errors }}
-	<br>
+
     {% formfield player.yearBorn with label="Enter your year of birth" %}
 
-    <br>
     {% formfield player.gender with label="What is your gender" %}
-
-<!--	experience = models.CharField()
-	eduLevel = models.CharField()
-	dailyHHEarn = models.FloatField()
-	howLong = models.PositiveIntegerField()
-	pref1 = models.PositiveIntegerField()
-	pref2 = models.PositiveIntegerField()
-	pref3 = models.PositiveIntegerField()
-	pref4 = models.PositiveIntegerField()
-	pref5 = models.PositiveIntegerField()
-	bid = models.PositiveIntegerField() 
--->
 
     {% next_button %}
 

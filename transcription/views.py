@@ -9,15 +9,21 @@ from django.conf import settings
 class Introduction(Page):       
     def is_displayed(self):
         return self.round_number == 1
-    timeout_seconds = 60
+    timeout_seconds = 300
     form_model = models.Player
     form_fields = ['devSkip']
  #   pass
 
 class Manager_Introduction(Page):   # extra manager intro
-    timeout_seconds = 60
+    timeout_seconds = 300
     def is_displayed(self):
         if ( self.player.id_in_group == 1 ) & ( self.player.devSkip == None ) & ( self.round_number == 1 ):
+            return True
+
+class Employee_Introduction(Page):   # extra employee intro
+    timeout_seconds = 300
+    def is_displayed(self):
+        if ( self.player.id_in_group != 1 ) & ( self.player.devSkip == None ) & ( self.round_number == 1 ):
             return True
 
 class AcceptTerms(Page):        # both
@@ -26,7 +32,7 @@ class AcceptTerms(Page):        # both
         if ( self.player.devSkip == None ) & ( self.round_number == 1 ):
             return True
     form_model = models.Player
-    form_fields = ['MTurkID', 'paymentOK', 'neverWorked', 'yearBorn', 'gender']
+    form_fields = ['paymentOK', 'neverWorked', 'yearBorn', 'gender']
 
 class SurveyManager(Page):      # survey for manager
     timeout_seconds = 120
@@ -138,7 +144,7 @@ class Transcribe(Page):
             'debug': settings.DEBUG,
             'required_accuracy': 100 * (1 - Constants.allowed_error_rates[self.round_number - 1]),
             'skipping': self.player.in_round(1).devSkip,
-            'agreed': divide_by_five(self.player.agree1)
+            'agreed': divide_by_five(self.player.in_round(1).agree1)
         }
 
     def transcribed_text_error_message(self, transcribed_text):
@@ -179,8 +185,9 @@ class Results(Page):
 #page_sequence = [Introduction, Transcribe, Results]
 
 page_sequence = [
-	Introduction,
+#	Introduction,
 	Manager_Introduction,
+    Employee_Introduction,
     AcceptTerms,
     SurveyManager,
     SurveyEmployee,
@@ -191,7 +198,7 @@ page_sequence = [
     BidEmployee,
     PreChatManager,
     PreChatEmployee,
-#    ResultsWaitPage,
+    ResultsWaitPage,
     ManagerChat,
     EmployeeChat,
     Transcribe

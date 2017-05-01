@@ -56,6 +56,7 @@ class Constants(BaseConstants):
     players_per_group = 4
     instructions_template = 'transcription/Instructions.html'
     manager_instructions = 'transcription/Manager_Instructions.html'
+    employee_instructions = 'transcription/Employee_Instructions.html'
     num_rounds = 5
     reference_texts = [
     	"Revealed preference",
@@ -78,11 +79,11 @@ GENDER_CHOICES = (('','please select'),('m','male'),('f','female'),('o','other')
 EXP_CHOICES = (('','please select'),('0','no experience'),('12','1-12 months'),('24','1-2 years'),('36','more than 2 years'))
 TRANS_CHOICES = (('','please select'),('0','no experience') , ('12','1-12 months') , ('24','1-2 years') , ('36','more than 2 years') )
 EDU_CHOICES = (('','please select'),('someHS','some high school'),('HS','completed high school'),('someColl','some college'),('undergrad','undergrad degree'),('postgrad','graduate degree'))
-P1_CHOICES = (('3','$3 for five pages transcribed in 2 days'), ('2', '$2 in 2 days from now, without transcription'))
-P2_CHOICES = (('4','$4 for five pages transcribed in 2 days'),('2','$2 in 2 days from now, without transcription'))
-P3_CHOICES = (('5','$5 for five pages transcribed in 2 days'),('2','$2 in 2 days from now, without transcription'))
-P4_CHOICES = (('6','$6 for five pages transcribed in 2 days'),('2','$2 in 2 days from now, without transcription'))
-P5_CHOICES = (('7','$7 for five pages transcribed in 2 days'),('2','$2 in 2 days from now, without transcription'))
+P1_CHOICES = (('3','$3 each page for up to five pages of transcription'),('2','$2 only, without transcription'))
+P2_CHOICES = (('4','$4 each page for up to five pages of transcription'),('2','$2 only, without transcription'))
+P3_CHOICES = (('5','$5 each page for up to five pages of transcription'),('2','$2 only, without transcription'))
+P4_CHOICES = (('6','$6 each page for up to five pages of transcription'),('2','$2 only, without transcription'))
+P5_CHOICES = (('7','$7 each page for up to five pages of transcription'),('2','$2 only, without transcription'))
 #BID_CHOICES = ((None,'Please select'),('5','$5'),('10','$10'),('15','$15'),('20','$20'),('25','$25'),('30','$30'),('35','$35'),('40','$40'),('45','$45'),)
 
 class Player(BasePlayer):

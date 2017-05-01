@@ -7,17 +7,13 @@
 
 {% block content %}
 
-<p>Next tell us the bid you would make to do the same job (95% accuracy, 5 pages just like the one above). This will help speed up the hiring process, and will reduce time wasted if the fit isn't right for a particular job. </p>
+<p>Tell us your bid to do 5 pages just like the example (95% accuracy). This will help speed up the hiring process. </p>
 
-<p>Managers will have a fixed budget per person. Please keep in mind that <strong>managers may select you based on this bid.</strong> Managers <strong>will start with this information to negotiate a price for your services.</strong>   Note, we will audit 1 in 10 transcripts at random, and in those cases we will only pay where accuracy is over 95%. </p>
+<p>Managers will have a fixed budget. Please keep in mind the <strong>Manager will start with this information to negotiate a price for your services.</strong> Note, we will audit some transcripts at random, and in those cases will only pay where accuracy is over 95%. </p>
 
-<p>About 25% of the time we will hire you directly at your initial bid.</P>
+<br><br>
 
-	<br><br>
-
-<p>What bid will you submit to the manager for transcribing <strong>5 pages</strong> just like the example, at 95% accuracy? Note, we will audit 1 in 10 transcripts at random, and in those cases will only pay if 95% accuracy is achieved.  </p>
-
-    {% formfield player.bid with label="How much is your bid?" %}
+    {% formfield player.bid with label="How much is your total bid for 5 pages?" %}
 
     {% next_button %}
 
