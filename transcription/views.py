@@ -137,10 +137,7 @@ class Transcribe(Page):
             'reference_text': safe_json(Constants.reference_texts[self.round_number - 1]),
             'debug': settings.DEBUG,
             'required_accuracy': 100 * (1 - Constants.allowed_error_rates[self.round_number - 1]),
-            'skipping': self.player.in_round(1).devSkip,
-            'quitting': self.player.in_round(floor_round(self.round_number)).iQuit,
-            'round number': self.round_number,
-            'floored round number': floor_round(self.round_number)
+            'skipping': self.player.in_round(1).devSkip
         }
 
     def transcribed_text_error_message(self, transcribed_text):
