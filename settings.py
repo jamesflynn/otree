@@ -96,19 +96,20 @@ ROOMS = [
 
 mturk_hit_settings = {
     'keywords': ['easy', 'bonus', 'choice', 'study'],
-    'title': 'Transcription',
-    'description': 'This HIT is about transcribing as a team',
-    'frame_height': 500,
+    'title': 'Management and Transcription',
+    'description': 'You will be assigned to either manage or directly carry out transcription',
+    'frame_height': 600,
     'preview_template': 'global/MTurkPreview.html',
-    'minutes_allotted_per_assignment': 60,
+    'minutes_allotted_per_assignment': 48*60,
     'expiration_hours': 7*24, # 7 days
-    'grant_qualification_id': '3NF07PFA1K2EGWJFNBQ4JN81TXKETV',# to prevent retakes FOR REAL
+#    'grant_qualification_id': '3NF07PFA1K2EGWJFNBQ4JN81TXKETV',# to prevent retakes FOR REAL
 #    'grant_qualification_id': '3VFIQRXYYK60OWH5USLZQ69Z1BU2ZB', ## sandbox
     'qualification_requirements': [
-        # qualification.LocaleRequirement("EqualTo", "US"),
-        # qualification.PercentAssignmentsApprovedRequirement("GreaterThanOrEqualTo", 50),
+         qualification.LocaleRequirement("EqualTo", "US"),
+         qualification.PercentAssignmentsApprovedRequirement("GreaterThanOrEqualTo", 50)
         # qualification.NumberHitsApprovedRequirement("GreaterThanOrEqualTo", 5),
-        qualification.Requirement('3NF07PFA1K2EGWJFNBQ4JN81TXKETV', 'DoesNotExist') # UNCOMMENT FOR REAL
+#        qualification.Requirement('2F1QJWKUDD8XADTFD2Q0G6UTO95ALH', 'Exists'),   # MASTER
+#        qualification.Requirement('3NF07PFA1K2EGWJFNBQ4JN81TXKETV', 'DoesNotExist') # UNCOMMENT FOR REAL
 #        qualification.Requirement('3VFIQRXYYK60OWH5USLZQ69Z1BU2ZB', 'DoesNotExist')  # SANDBOX
     ]
 }
