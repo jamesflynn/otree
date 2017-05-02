@@ -9,19 +9,19 @@ from django.conf import settings
 class Introduction(Page):       
     def is_displayed(self):
         return self.round_number == 1
-    timeout_seconds = 300
+    timeout_seconds = 180
     form_model = models.Player
     form_fields = ['devSkip']
  #   pass
 
 class Manager_Introduction(Page):   # extra manager intro
-    timeout_seconds = 300
+    timeout_seconds = 180
     def is_displayed(self):
         if ( self.player.id_in_group == 1 ) & ( self.player.devSkip == None ) & ( self.round_number == 1 ):
             return True
 
 class Employee_Introduction(Page):   # extra employee intro
-    timeout_seconds = 300
+    timeout_seconds = 180
     def is_displayed(self):
         if ( self.player.id_in_group != 1 ) & ( self.player.devSkip == None ) & ( self.round_number == 1 ):
             return True
@@ -35,7 +35,7 @@ class AcceptTerms(Page):        # both
     form_fields = ['paymentOK', 'neverWorked', 'yearBorn', 'gender']
 
 class SurveyManager(Page):      # survey for manager
-    timeout_seconds = 120
+    timeout_seconds = 180
     def is_displayed(self):
         if ( self.player.id_in_group == 1 ) & ( self.player.devSkip == None ) & ( self.round_number == 1 ):
             return True
@@ -43,7 +43,7 @@ class SurveyManager(Page):      # survey for manager
     form_fields = ['experience', 'eduLevel', 'dailyHHEarn']
 
 class SurveyEmployee(Page):     # survey for employee
-    timeout_seconds = 120
+    timeout_seconds = 180
     def is_displayed(self):
         if ( self.player.id_in_group != 1 ) & ( self.player.devSkip == None ) & ( self.round_number == 1 ):
             return True
@@ -54,14 +54,14 @@ class SampleManager(Page):      # transcription sample for manager
     def is_displayed(self):
         if ( self.player.id_in_group == 1 ) & ( self.player.devSkip == None ) & ( self.round_number == 1 ):
             return True
-    timeout_seconds = 120
+    timeout_seconds = 180
     pass
  
 class SampleEmployee(Page):     #transcription sample for employee with time estimate
     def is_displayed(self):
         if ( self.player.id_in_group != 1 ) & ( self.player.devSkip == None ) & ( self.round_number == 1 ):
             return True
-    timeout_seconds = 120
+    timeout_seconds = 180
     form_model = models.Player
     form_fields = ['howLong']
 
@@ -92,21 +92,20 @@ class PreChatManager(Page):
     def is_displayed(self):
         if ( self.player.id_in_group == 1 ) & ( self.player.devSkip == None ) & ( self.round_number == 1 ):
             return True
-    timeout_seconds = 300
+    timeout_seconds = 180
     pass
 
 class PreChatEmployee(Page):
     def is_displayed(self):
         if ( self.player.id_in_group != 1 ) & ( self.player.devSkip == None ) & ( self.round_number == 1 ):
             return True
-    timeout_seconds = 300
+    timeout_seconds = 180
     pass
 
 class ManagerChat(Page):
     def is_displayed(self):
         if ( self.player.id_in_group == 1 ) & ( self.round_number == 1 ):
             return True
-#    timeout_seconds = 1800
     form_model = models.Player
     form_fields = ['agree2','agree3','agree4']
 
