@@ -144,7 +144,7 @@ class Transcribe(Page):
             'debug': settings.DEBUG,
             'required_accuracy': 100 * (1 - Constants.allowed_error_rates[self.round_number - 1]),
             'skipping': self.player.in_round(1).devSkip,
-            'agreed': divide_by_five(self.player.in_round(1).agree1)
+            'agreed': self.player.in_round(1).agree1
         }
 
     def transcribed_text_error_message(self, transcribed_text):

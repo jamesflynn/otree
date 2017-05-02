@@ -23,15 +23,15 @@
 <p>The employees are all here, their initial bids were:</p>
 
 <div class="instructions well well-lg">
-Employee 1 : <span id="e1">{{player.get_employee1.bid}}</span> for 5 pages<br>
-Employee 2 : <span id="e2">{{player.get_employee2.bid}}</span> for 5 pages<br>
-Employee 3 : <span id="e3">{{player.get_employee3.bid}}</span> for 5 pages
+Employee 1 : <span id="e1">{{player.get_employee1.bid}}</span> for each page<br>
+Employee 2 : <span id="e2">{{player.get_employee2.bid}}</span> for each page<br>
+Employee 3 : <span id="e3">{{player.get_employee3.bid}}</span> for each page
 </div>
 
-<p>Negotiate with the employees and enter the agreed-to amount (for 5 pages) in the corresponding box below. Remember, we will pay out $5 for every page that is completed at >95% accuracy, up to $25 for the 5 pages. So for any bids less than $25, we'll give the rest of the money to you.</p>
+<p>Negotiate with the employees and enter the agreed-to amount (per page) in the corresponding box below. Remember, we will pay out $5 for every page that is completed at >95% accuracy, up to $25 for the 5 pages. So for any per-page bids less than $5, we'll give the rest of the money to you.</p>
 
-<p>Example: You and an employee agree to $17.50 ($3.50 per page) and the employee completes 3 pages, but then doesn't do any more.</p>
-<p>In this case the employee will be paid 3 x $3.50 = $10.50 and you will be paid the rest of the $5 budget for each completed page, so your bonus will be $4.50</p>
+<p>Example: You and an employee agree to $3.50 per page, and the employee completes 3 pages.</p>
+<p>In this case the employee will be paid 3 x $3.50 = $10.50 and you will be paid the rest of the $5 budget for each completed page: $4.50</p>
 
 <h3>Chat Room:</h3>
   {% chat nickname="Manager" channel=Subsession %}
@@ -44,17 +44,17 @@ Employee 3 : <span id="e3">{{player.get_employee3.bid}}</span> for 5 pages
   <tr>
     <td>Employee 1 :</td>
     <td>{% formfield player.agree2 with label="" %}</td>
-    <td>Initial bid was: {{player.get_employee1.bid}}</td>
+    <td>Initial per-page bid was: {{player.get_employee1.bid}}</td>
   </tr>
    <tr>
     <td>Employee 2:</td>
     <td>{% formfield player.agree3 with label="" %}</td>
-    <td>Initial bid was: {{player.get_employee2.bid}}</td>
+    <td>Initial per-page bid was: {{player.get_employee2.bid}}</td>
   </tr>
   <tr>
     <td>Employee 3:</td>
     <td>{% formfield player.agree4 with label="" %}</td>
-    <td>Initial bid was: {{player.get_employee3.bid}}</td>
+    <td>Initial per-page bid was: {{player.get_employee3.bid}}</td>
   </tr>
 </tbody>
 </table>
