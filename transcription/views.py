@@ -34,7 +34,8 @@ class EmployeeChat(Page):
             return True
     def vars_for_template(self):
         bid = self.player.participant.vars['bid']
-        return { 'bid': bid }
+        return { 'bid': bid,
+                 'enum': self.player.id_in_group -1 }
 
     form_model = models.Player
     form_fields = ['agree1']
