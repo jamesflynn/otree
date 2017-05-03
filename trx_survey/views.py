@@ -7,7 +7,7 @@ from django.conf import settings
 class AcceptTerms(Page):
     timeout_seconds = 180
     form_model = models.Player
-    form_fields = ['paymentOK', 'neverWorked', 'yearBorn', 'gender', 'devSkip']
+    form_fields = ['paymentOK', 'neverWorked', 'yearBorn', 'gender']
 
 
 class Introduction(Page):   # extra manager intro

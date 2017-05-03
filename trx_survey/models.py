@@ -45,10 +45,10 @@ P5_CHOICES = (('7','$7 each page for up to five pages of transcription'),('2','$
 class Player(BasePlayer):
 
 	devSkip = models.BooleanField(blank=True)
-	paymentOK = models.BooleanField(blank=True)
-	neverWorked = models.BooleanField(blank=True)
-	yearBorn = models.PositiveIntegerField(blank=True,min=1916, max=2005)
-	gender = models.CharField(blank=True,widget=widgets.Select(choices=GENDER_CHOICES))
+	paymentOK = models.BooleanField()
+	neverWorked = models.BooleanField()
+	yearBorn = models.PositiveIntegerField(min=1916, max=2005)
+	gender = models.CharField(widget=widgets.Select(choices=GENDER_CHOICES))
 	experience = models.CharField(widget=widgets.Select(choices=EXP_CHOICES))
 	transExp = models.CharField(widget=widgets.Select(choices=TRANS_CHOICES))
 	eduLevel = models.CharField(widget=widgets.Select(choices=EDU_CHOICES))
