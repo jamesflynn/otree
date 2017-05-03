@@ -5,19 +5,19 @@ from .models import Constants
 from django.conf import settings
 
 class AcceptTerms(Page):
-    timeout_seconds = 180
+#    timeout_seconds = 180
     form_model = models.Player
     form_fields = ['paymentOK', 'neverWorked', 'yearBorn', 'gender']
 
 
 class Introduction(Page):   # extra manager intro
-    timeout_seconds = 180
+#    timeout_seconds = 180
     def is_displayed(self):
         if ( self.player.devSkip == None ):
             return True
 
 class Survey(Page):      # survey for manager
-    timeout_seconds = 180
+#    timeout_seconds = 180
     def is_displayed(self):
         if ( self.player.devSkip == None ):
             return True
@@ -28,7 +28,7 @@ class Sample(Page):      # transcription sample for manager
     def is_displayed(self):
         if ( self.player.devSkip == None ):
             return True
-    timeout_seconds = 180
+#    timeout_seconds = 180
     form_model = models.Player
     form_fields = ['howLong']
 
@@ -36,12 +36,12 @@ class Preferences(Page):    # preferences survey for eployee
     def is_displayed(self):
         if ( self.player.devSkip == None ):
             return True
-    timeout_seconds = 180
+#    timeout_seconds = 180
     form_model = models.Player
     form_fields = ['pref1','pref2','pref3','pref4','pref5']
 
 class Bid(Page):             
-    timeout_seconds = 180
+#    timeout_seconds = 180
     form_model = models.Player
     form_fields = ['bid']
    
