@@ -8,11 +8,12 @@
 {% block content %}
 
     <p>
-        Please transcribe the numbers from the table in the image into the box below.<br><br>
-        Example:<br><img src="{% static "transcription/exampleline.png" %}"/><br>
-        <pre>1096,9,581,136,8,7<br>5,,3,,,<br>35,3,6,8,1,<br>727,1,428,95,6,7</pre>
-        <strong>DO NOT</strong> include the digit-grouping commas that occur WITHIN a number. For example the number 129,262 should be entered as 129962
-    </p>
+        Please transcribe the numbers from the table in the image into the box below.</P>
+<div class="instructions well well-lg">
+        Example:<br><img src="{% static "transcription/exampleline.png" %}"/><br><br>
+        1096,9,581,136,8,7<br>5,,3,,,<br>35,3,6,8,1,<br>727,1,428,95,6,7</br><br>
+        DO NOT include the digit-grouping commas that occur WITHIN a number. For example the number 129,262 should be entered as 129962
+    </div>
     <p>You will be paid {{ agreed }} for this page (if it matches with the amount you and the manager agreed to, and if it is transcribed better than 95% accuracy). Thank you!</p>
     <div>
         <a target="_blank" href="{{ image_path }}"><img src="{% static "transcription/picture.png" %}"/> Click here to open image</a><br><br>
