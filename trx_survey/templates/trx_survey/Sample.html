@@ -1,0 +1,21 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+    Sample of Work
+{% endblock %}
+
+{% block content %}
+
+	<p>Below is a sample of the transcribing job.</p>
+
+	<p>How long do you think it would take for you to transcribe the sample table below at 95% accuracy, equivalent to 1 mistake in every 20 cells? We only need the numbers in the table, none of the column or row headings.</p>
+
+    {% formfield player.howLong with label="How many minutes?" %}
+
+    {% next_button %}
+	<img src="{% static "transcription/sample.jpeg" %}"/>
+	<br>
+
+
+{% endblock %}

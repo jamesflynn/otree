@@ -19,47 +19,50 @@
 {% endblock %}
 
 {% block content %}
-
-<p>The employees are all here, their initial bids were:</p>
+<h3>You are a Manager</h3>
+<p>You and the employees are all here, their initial bids were:</p>
 
 <div class="instructions well well-lg">
-Employee 1 : <span id="e1">{{player.get_employee1.bid}}</span> for each page<br>
-Employee 2 : <span id="e2">{{player.get_employee2.bid}}</span> for each page<br>
-Employee 3 : <span id="e3">{{player.get_employee3.bid}}</span> for each page
+Employee 1 : <span id="e1">{{ bid2 }}</span> for each page<br>
+Employee 2 : <span id="e2">{{ bid3 }}</span> for each page<br>
+Employee 3 : <span id="e3">{{ bid4 }}</span> for each page
 </div>
 
-<p>Negotiate with the employees and enter the agreed-to amount (per page) in the corresponding box below. Remember, we will pay out $5 for every page that is completed at >95% accuracy, up to $25 for the 5 pages. So for any per-page bids less than $5, we'll give the rest of the money to you.</p>
+<p>We will pay $5 per page of transcribed text. After this chat session the employees will be taken to a page to start transcribing up to 5 pages of text. (They don't have to do it right away, they can do it any time in the next 48 hours)</p>
 
-<p>Example: You and an employee agree to $3.50 per page, and the employee completes 3 pages.</p>
-<p>In this case the employee will be paid 3 x $3.50 = $10.50 and you will be paid the rest of the $5 budget for each completed page: $4.50</p>
+<p>We will pay the employees for those pages with an MTurk bonus</p>
+
+<p><strong>If you negotiate a lower per-page price than $5, any money left over, we will give to you, the manager.</strong></p>
+
+<p>For example, you agree to the following per-page rates:<br>Employee #1: $3, Employee #2: $4, Employee #3: $4.50. If they complete the 5 pages, you will receive a bonus of 5 x ($2 + $1 + $0.50) = $17.50</p>
 
 <h3>Chat Room:</h3>
   {% chat nickname="Manager" channel=Subsession %}
 
 <br>
-<p>Enter the agreed-to amounts here (enter 0 if no deal is reached). Remember our budget is $5 per page.</p>
+<p>Enter the agreed-to per-page amounts here (enter 0 if no deal is reached).</p>
 
 <table>
 <tbody>
   <tr>
     <td>Employee 1 :</td>
     <td>{% formfield player.agree2 with label="" %}</td>
-    <td>Initial per-page bid was: {{player.get_employee1.bid}}</td>
+    <td>Initial per-page bid was: {{ bid2 }}</td>
   </tr>
    <tr>
     <td>Employee 2:</td>
     <td>{% formfield player.agree3 with label="" %}</td>
-    <td>Initial per-page bid was: {{player.get_employee2.bid}}</td>
+    <td>Initial per-page bid was: {{ bid3 }}</td>
   </tr>
   <tr>
     <td>Employee 3:</td>
     <td>{% formfield player.agree4 with label="" %}</td>
-    <td>Initial per-page bid was: {{player.get_employee3.bid}}</td>
+    <td>Initial per-page bid was: {{ bid4 }}</td>
   </tr>
 </tbody>
 </table>
 
-    <p>Click here when you're done. <b>This will end your HIT, you cannot come back.</b></p>
+    <p>Click here when you're done. <b>This will end your HIT, you cannot come back.</b> You will receive any payment owed via an MTurk Bonus</p>
     <div>
         <button class="btn btn-warning btn-large">Done</button>
     </div>
