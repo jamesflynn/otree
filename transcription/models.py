@@ -20,18 +20,44 @@ doc = """
 Transcription Negotiation
 """
 
+def levenshtein(a, b):
+    """Calculates the Levenshtein distance between a and b."""
+    n, m = len(a), len(b)
+    if n > m:
+        # Make sure n <= m, to use O(min(n,m)) space
+        a, b = b, a
+        n, m = m, n
+
+    current = range(n + 1)
+    for i in range(1, m + 1):
+        previous, current = current, [i] + [0] * n
+        for j in range(1, n + 1):
+            add, delete = previous[j] + 1, current[j - 1] + 1
+            change = previous[j - 1]
+            if a[j - 1] != b[i - 1]:
+                change = change + 1
+            current[j] = min(add, delete, change)
+
+    return current[n]
+
+
+def distance_and_ok(transcribed_text, reference_text, max_error_rate):
+    error_threshold = len(reference_text) * max_error_rate
+    distance = levenshtein(transcribed_text, reference_text)
+    ok = distance <= error_threshold
+    return distance, ok
+
 class Constants(BaseConstants):
     name_in_url = 'transcription'
     players_per_group = 4
     num_rounds = 5
     reference_texts = [
-    	"Revealed preference",
-    	"Revealed preference",
-    	"Revealed preference",
-		"Revealed preference",
-		"Revealed preference"   
+    	"2,3,4,32,3,2,2,",
+    	"2,3,2,2,3,2,1,1,2,3,3,",
+    	"234,234,,,23,235,235,,",
+		"345345,345,345,34,,22,123,",
+		"2342,23,234,25,25,,"   
     ]
-#    allowed_error_rates = [0, 0.03,0.03,0.03,0.03]
     allowed_error_rates = [1,1,1,1,1]
 
 class Subsession(BaseSubsession):
@@ -74,7 +100,8 @@ class Player(BasePlayer):
 #		return self.get_others_in_group()[3]
 
 	transcribed_text = models.TextField(blank=True)
-#	levenshtein_distance = models.PositiveIntegerField()
+#    transcribed_text = models.TextField()
+	levenshtein_distance = models.PositiveIntegerField()
 #	MTurkID = models.CharField()
 #	paymentOK = models.BooleanField(widget=widgets.CheckboxInput())
 	devSkip = models.BooleanField(blank=True)

@@ -8,7 +8,7 @@ from django.conf import settings
 class AcceptTerms(Page):
 #    timeout_seconds = 180
     form_model = models.Player
-    form_fields = ['paymentOK', 'neverWorked', 'yearBorn', 'gender']
+    form_fields = ['yearBorn', 'gender']
 
 
 class Introduction(Page):   # extra manager intro
@@ -55,10 +55,10 @@ class Bid(Page):
 
 page_sequence = [
 
-    AcceptTerms,
+#    AcceptTerms,
     Introduction,
-    Survey,
+#    Survey,
     Sample,
-    Preferences,
+#       Preferences,
     Bid
 ]

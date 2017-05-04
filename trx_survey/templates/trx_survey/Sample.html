@@ -7,14 +7,20 @@
 
 {% block content %}
 
-	<p>Below is a sample of the transcribing job.</p>
+	<div class="instructions well well-lg">
+        <p><strong>Transcription Example</strong></p><u>Text image:</u><br><img src="{% static "trx_survey/exampleline.png" %}"/><br><br>
+        <u>Transcription:</u>
+        <pre>1096,9,581,136,8,7<br>5,,3,,,<br>35,3,6,8,1,<br>727,1,428,95,6,7</br></pre>
+        (Don't include the digit-grouping commas that occur within a number. For example the number 1,096 should be entered as 1096)
+    </div>
 
-	<p>How long do you think it would take for you to transcribe the sample table below at 95% accuracy, equivalent to 1 mistake in every 20 cells? We only need the numbers in the table, none of the column or row headings.</p>
+	<p>Now look at the sample page below. How many minutes would it take you to transcribe the page below? This information will not affect your eligibility for a bonus in any way.</p>
 
     {% formfield player.howLong with label="How many minutes?" %}
 
     {% next_button %}
-	<img src="{% static "transcription/sample.jpeg" %}"/>
+    <p><strong>Sample Page:</strong></p>
+	<img src="{% static "trx_survey/sample.png" %}"/>
 	<br>
 
 

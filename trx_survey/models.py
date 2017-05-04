@@ -46,8 +46,8 @@ P5_CHOICES = (('7','$7 each page for up to five pages of transcription'),('2','$
 class Player(BasePlayer):
 
 	devSkip = models.BooleanField(blank=True)
-	paymentOK = models.BooleanField()
-	neverWorked = models.BooleanField()
+#	paymentOK = models.BooleanField()
+#	neverWorked = models.BooleanField()
 	yearBorn = models.PositiveIntegerField(min=1916, max=2005)
 	gender = models.CharField(widget=widgets.Select(choices=GENDER_CHOICES))
 #	country = models.CharField(widget=widgets.Select(choices=COUNTRY_CHOICES))
