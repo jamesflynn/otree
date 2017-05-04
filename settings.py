@@ -132,14 +132,21 @@ SESSION_CONFIGS = [
         'name': 'transcription_survey',
         'display_name': "Transcription Survey",
         'num_demo_participants': 16,
-        'app_sequence': ['trx_survey','transcription'],
+        'app_sequence': ['trx_survey','transcription','exit_survey'],
 #        'use_browser_bots': True,
     },
     {
         'name': 'transcription',
         'display_name': "Transcription",
         'num_demo_participants': 4,
-        'app_sequence': ['transcription'],
+        'app_sequence': ['transcription','exit_survey'],
+#        'use_browser_bots': True,
+    },
+    {
+        'name': 'exit_survey',
+        'display_name': "Transcription Exit Survey",
+        'num_demo_participants': 1,
+        'app_sequence': ['exit_survey'],
 #        'use_browser_bots': True,
     }    
 

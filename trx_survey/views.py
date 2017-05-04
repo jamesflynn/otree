@@ -3,50 +3,20 @@ from . import models
 from ._builtin import Page, WaitPage
 from .models import Constants
 from django.conf import settings
-#import random
-
-class AcceptTerms(Page):
-#    timeout_seconds = 180
-    form_model = models.Player
-    form_fields = ['yearBorn', 'gender']
-
 
 class Introduction(Page):   # extra manager intro
-#    timeout_seconds = 180
     def is_displayed(self):
         if ( self.player.devSkip == None ):
             return True
-
-class Survey(Page):      # survey for manager
-#    timeout_seconds = 180
-    def is_displayed(self):
-        if ( self.player.devSkip == None ):
-            return True
-    form_model = models.Player
-    form_fields = ['experience', 'transExp', 'eduLevel', 'dailyHHEarn']
 
 class Sample(Page):      # transcription sample for manager
     def is_displayed(self):
         if ( self.player.devSkip == None ):
             return True
-#    timeout_seconds = 180
     form_model = models.Player
     form_fields = ['howLong']
 
-class Preferences(Page):    # preferences survey for eployee
-    def is_displayed(self):
-        if ( self.player.devSkip == None ):
-            return True
-#    timeout_seconds = 180
-    form_model = models.Player
-    form_fields = ['pref1','pref2','pref3','pref4','pref5']
-#    def vars_for_template(self):
-#                return {
-#                'selvar': random.randint(1,6)
-#                }
-
 class Bid(Page):             
-#    timeout_seconds = 180
     form_model = models.Player
     form_fields = ['bid']
    
@@ -55,10 +25,7 @@ class Bid(Page):
 
 page_sequence = [
 
-#    AcceptTerms,
     Introduction,
-#    Survey,
     Sample,
-#       Preferences,
     Bid
 ]

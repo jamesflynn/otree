@@ -4,7 +4,6 @@ from ._builtin import Page, WaitPage
 from .models import Constants, levenshtein, distance_and_ok
 from django.conf import settings
 
-
 class ResultsWaitPage(WaitPage):
     group_by_arrival_time = True
 
@@ -14,16 +13,15 @@ class ResultsWaitPage(WaitPage):
     def after_all_players_arrive(self):
         pass
 
-
 class ManagerChat(Page):
     def is_displayed(self):
         if ( self.player.id_in_group == 1 ) & ( self.round_number == 1 ):
             return True
 
     def vars_for_template(self):
-        bid2 = self.group.get_player_by_id(2).participant.vars['bid']
-        bid3 = self.group.get_player_by_id(3).participant.vars['bid']
-        bid4 = self.group.get_player_by_id(4).participant.vars['bid']
+        bid2 = self.group.get_player_by_id(2).participant.vars.get('bid')
+        bid3 = self.group.get_player_by_id(3).participant.vars.get('bid')
+        bid4 = self.group.get_player_by_id(4).participant.vars.get('bid')
         return {
                 'bid2': bid2,
                 'bid3': bid3,
@@ -38,14 +36,12 @@ class EmployeeChat(Page):
         if ( self.player.id_in_group != 1 ) & ( self.round_number == 1 ):
             return True
     def vars_for_template(self):
-        bid = self.player.participant.vars['bid']
+        bid = self.player.participant.vars.get('bid')
         return { 'bid': bid,
                  'enum': self.player.id_in_group -1 }
 
     form_model = models.Player
     form_fields = ['agree1']
-
-
 
 class Transcribe(Page):
 
@@ -65,8 +61,8 @@ class Transcribe(Page):
                 self.round_number),
             'reference_text': safe_json(Constants.reference_texts[self.round_number - 1]),
             'debug': settings.DEBUG,
-            'required_accuracy': 100 * (1 - Constants.allowed_error_rates[self.round_number - 1]),
-            'skipping': self.player.in_round(1).devSkip        }
+            'required_accuracy': 100 * (1 - Constants.allowed_error_rates[self.round_number - 1])
+        }
 
     def transcribed_text_error_message(self, transcribed_text):
         reference_text = Constants.reference_texts[self.round_number - 1]
@@ -105,7 +101,7 @@ class Results(Page):
 
 class ManagerResults(Page):
     def is_displayed(self):
-        if ( self.player.id_in_group == 1 ):
+        if ( self.player.id_in_group == 1) & ( self.round_number == Constants.num_rounds ):
             return True
 
 page_sequence = [
