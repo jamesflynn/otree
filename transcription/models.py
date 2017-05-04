@@ -90,5 +90,5 @@ class Player(BasePlayer):
 	man_emp1_price = models.CurrencyField(min=0,max=5)
 	man_emp2_price = models.CurrencyField(min=0,max=5) 
 	man_emp3_price = models.CurrencyField(min=0,max=5)
-
+	payoff = models.CurrencyField
 

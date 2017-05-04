@@ -43,6 +43,14 @@ class EmployeeChat(Page):
     form_model = models.Player
     form_fields = ['emp_price']
 
+#class CheckWaitPage(WaitPage): # add a value checking - look to see if i can activate when manager arrives
+#    def after_all_players_arrive(self):
+#        pass
+#    def vars_for_template(self):
+#        return { 'bid': bid,
+#                 'enum': self.player.id_in_group -1 }
+
+
 class Transcribe(Page):
 
     def is_displayed(self):        
@@ -86,6 +94,7 @@ class Results(Page):
     def vars_for_template(self):
         table_rows = []
         num_good = 0
+        checks_out = self.player.in_round(1).emp_price == get_player_by_id(1).in_round(1)
         for prev_player in self.player.in_all_rounds():
             accuracy = (1 - prev_player.levenshtein_distance / len(Constants.reference_texts[prev_player.round_number - 1]))*100
             row = {
@@ -99,7 +108,9 @@ class Results(Page):
             if (accuracy >= 95.0):
                 num_good += 1
         return {'table_rows': table_rows,
-                'num_good': num_good}
+                'num_good': num_good,
+                'emp_price': self.player.in_round(1).emp_price,
+                'bonus': round(num_good * self.player.in_round(1).emp_price,2)}
 
 class ManagerResults(Page):
     def is_displayed(self):
