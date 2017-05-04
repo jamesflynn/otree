@@ -52,11 +52,11 @@ class Constants(BaseConstants):
     players_per_group = 4
     num_rounds = 5
     reference_texts = [
-    	"2,3,4,32,3,2,2,",
-    	"2,3,2,2,3,2,1,1,2,3,3,",
-    	"234,234,,,23,235,235,,",
-		"345345,345,345,34,,22,123,",
-		"2342,23,234,25,25,,"   
+    	"abcdefghijklmnopqrstuvwxyz",
+    	"abcdefghijklmnopqrstuvwxyz",
+    	"abcdefghijklmnopqrstuvwxyz",
+		"abcdefghijklmnopqrstuvwxyz",
+		"abcdefghijklmnopqrstuvwxyz"   
     ]
     allowed_error_rates = [1,1,1,1,1]
 
@@ -86,10 +86,9 @@ class Player(BasePlayer):
 
 	transcribed_text = models.TextField(blank=True)
 	levenshtein_distance = models.PositiveIntegerField()
-	iQuit = models.PositiveIntegerField(min=0,max=1)
-	agree1 = models.CurrencyField(min=0,max=100)
-	agree2 = models.CurrencyField(min=0,max=5) 
-	agree3 = models.CurrencyField(min=0,max=5)
-	agree4 = models.CurrencyField(min=0,max=5)
+	emp_price = models.CurrencyField(min=0,max=5)
+	man_emp1_price = models.CurrencyField(min=0,max=5)
+	man_emp2_price = models.CurrencyField(min=0,max=5) 
+	man_emp3_price = models.CurrencyField(min=0,max=5)
 
 

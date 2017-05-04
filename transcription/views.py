@@ -29,7 +29,7 @@ class ManagerChat(Page):
                 }
 
     form_model = models.Player
-    form_fields = ['agree2','agree3','agree4']
+    form_fields = ['man_emp1_price','man_emp2_price','man_emp3_price']
 
 class EmployeeChat(Page):
     def is_displayed(self):
@@ -41,18 +41,15 @@ class EmployeeChat(Page):
                  'enum': self.player.id_in_group -1 }
 
     form_model = models.Player
-    form_fields = ['agree1']
+    form_fields = ['emp_price']
 
 class Transcribe(Page):
 
     def is_displayed(self):        
-        if (((self.player.in_round(1).iQuit == 1)|(self.player.in_round(2).iQuit == 1)|(self.player.in_round(3).iQuit == 1)|(self.player.in_round(4).iQuit == 1)|(self.player.in_round(5).iQuit == 1)) | ( self.player.id_in_group == 1)):
-            return False
-        else:
-            return True
+        return self.player.id_in_group != 1
 
     form_model = models.Player
-    form_fields = ['transcribed_text','iQuit']
+    form_fields = ['transcribed_text']
 
     def vars_for_template(self):
 
@@ -88,16 +85,21 @@ class Results(Page):
 
     def vars_for_template(self):
         table_rows = []
+        num_good = 0
         for prev_player in self.player.in_all_rounds():
+            accuracy = (1 - prev_player.levenshtein_distance / len(Constants.reference_texts[prev_player.round_number - 1]))*100
             row = {
                 'round_number': prev_player.round_number,
                 'reference_text_length': len(Constants.reference_texts[prev_player.round_number - 1]),
                 'transcribed_text_length': len(prev_player.transcribed_text),
                 'distance': prev_player.levenshtein_distance,
+                'accuracy': round(accuracy,2)
             }
             table_rows.append(row)
-
-        return {'table_rows': table_rows}
+            if (accuracy >= 95.0):
+                num_good += 1
+        return {'table_rows': table_rows,
+                'num_good': num_good}
 
 class ManagerResults(Page):
     def is_displayed(self):
@@ -105,7 +107,7 @@ class ManagerResults(Page):
             return True
 
 page_sequence = [
-    ResultsWaitPage,
+#    ResultsWaitPage,
     ManagerChat,
     EmployeeChat,
     Transcribe,

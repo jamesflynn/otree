@@ -7,27 +7,18 @@
 
 {% block content %}
 
-    <p class="text-success">
-        The table below shows some statistics for the transcriptions you have entered. 
-        In a real study this table would usually not be shown to subjects.
-        <br>
-        The <a href="http://en.wikipedia.org/wiki/Levenshtein_distance">Levenshtein</a> distance is given in the last column.
-        Note that the difference between the length of the given text and the length of
-        the text entered is a lower bound on the Levenshtein distance.
-    </p>
-
     <div class="panel panel-success">
-
         <div class="panel-heading">
-                Statistics for transcriptions
+                Statistics for your transcriptions
         </div>
 
         <table class="table">
             <tr>
                 <th>Transcription #</th>
-                <th>Length of given text</th>
+                <th>Length of assigned text</th>
                 <th>Length of text entered</th>
-                <th>Levenshtein distance</th>
+                <th><a href="http://en.wikipedia.org/wiki/Levenshtein_distance">Levenshtein distance</a></th>
+                <th>Accuracy</th>
             </tr>
             {% for row in table_rows %}
             <tr>
@@ -35,12 +26,16 @@
                 <td>{{ row.reference_text_length }}</td>
                 <td>{{ row.transcribed_text_length }}</td>
                 <td>{{ row.distance }}</td>
+                <td>{{ row.accuracy }} %</td>
             </tr>
             {% endfor %}
 
         </table>
 
     </div>
+
+            <p>You transcribed {{ num_good }} pages well enough</p>
+
 
 {% next_button %}
 

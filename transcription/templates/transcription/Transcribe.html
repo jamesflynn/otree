@@ -16,18 +16,9 @@
 
     {% formfield player.transcribed_text with label="" %}
 
-
-<input type="hidden" name="iQuit" value="0" />
-
-    <div class="checkbox">
-    <label class="control-label field-iQuit" for="id_iQuit">
-        <input type="checkbox" name="iQuit" id="id_iQuit" value="1">
-        I quit. Just pay me for the pages I have done, and the HIT. (Select <strong>then</strong> hit next)</label>
-    </div>
-
     {% next_button %}
 
-    Do not click until you have finished the transcription
+    <p>Do not click until you have finished the transcription!</p>
     {% if debug %}
         <div class="box papereffect">
             <h4>Explanation for researchers (shown in debug mode only)</h4>

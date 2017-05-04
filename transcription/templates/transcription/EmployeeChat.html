@@ -14,11 +14,13 @@
 	{% chat nickname=player.chat_nickname channel=Subsession %}
 
 <br>
-	{% formfield player.agree1 with label="Once you have agreed on a rate per page, enter it here, and click done to proceed to transcription." %}
+<p>
+  If there is a discrepancy between what you enter and what the manager enters, then you will not receive a bonus for work completed. Please make sure you agree!
+</p>
 
-	<p>Enter 0 if no deal is reached, then you can quit on the next page and you will be paid for the HIT only.</p>
+	{% formfield player.emp_price with label="Enter the agreed-to per-page amount here, and click done to proceed to transcription." %}
 
-    <p><b>You and the manager must agree on your per-page price before you proceed!</b> Selecting Done will end your chat session, you cannot come back to renegotiate.</p>
+    <p><b>You and the manager must agree on your per-page price before you proceed!</b> Selecting Done will end your chat session, you cannot come back.</p>
     <div>
         <button class="btn btn-warning btn-large">Done</button>
     </div>

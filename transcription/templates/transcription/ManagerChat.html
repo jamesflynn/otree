@@ -20,25 +20,21 @@
 
 {% block content %}
 <h3>You are a Manager</h3>
-<p>You and the employees are all here, their initial bids were:</p>
+
+<p>We will pay YOU $5 per page.  After you pay the agreed to wages to the transcribers, you can keep the rest. After this chat session... </p>
+
+<p>If you fail to agree to a price with one or more workers, that is fine.  You can still profit from your other agreements even if some workers choose not to do the work.</p>
+
+<p>You and the employees are all here now, their initial bids were:</p>
 
 <div class="instructions well well-lg">
-Employee 1 : <span id="e1">{{ bid2 }}</span> for each page<br>
-Employee 2 : <span id="e2">{{ bid3 }}</span> for each page<br>
-Employee 3 : <span id="e3">{{ bid4 }}</span> for each page
+Employee 1 : {{ bid2 }} for each page<br>
+Employee 2 : {{ bid3 }} for each page<br>
+Employee 3 : {{ bid4 }} for each page
 </div>
-
-<p>We will pay $5 per page of transcribed text. After this chat session the employees will be taken to a page to start transcribing up to 5 pages of text. (They don't have to do it right away, they can do it any time in the next 48 hours)</p>
-
-<p>We will pay the employees for those pages with an MTurk bonus</p>
-
-<p><strong>If you negotiate a lower per-page price than $5, any money left over, we will give to you, the manager.</strong></p>
-
-<p>For example, you agree to the following per-page rates:<br>Employee #1: $3, Employee #2: $4, Employee #3: $4.50. If they complete the 5 pages, you will receive a bonus of 5 x ($2 + $1 + $0.50) = $17.50</p>
 
 <h3>Chat Room:</h3>
   {% chat nickname="Manager" channel=Subsession %}
-
 <br>
 <p>Enter the agreed-to per-page amounts here (enter 0 if no deal is reached).</p>
 
@@ -46,21 +42,25 @@ Employee 3 : <span id="e3">{{ bid4 }}</span> for each page
 <tbody>
   <tr>
     <td>Employee 1 :</td>
-    <td>{% formfield player.agree2 with label="" %}</td>
+    <td>{% formfield player.man_emp1_price with label="" %}</td>
     <td>Initial per-page bid was: {{ bid2 }}</td>
   </tr>
    <tr>
     <td>Employee 2:</td>
-    <td>{% formfield player.agree3 with label="" %}</td>
+    <td>{% formfield player.man_emp2_price with label="" %}</td>
     <td>Initial per-page bid was: {{ bid3 }}</td>
   </tr>
   <tr>
     <td>Employee 3:</td>
-    <td>{% formfield player.agree4 with label="" %}</td>
+    <td>{% formfield player.man_emp3_price with label="" %}</td>
     <td>Initial per-page bid was: {{ bid4 }}</td>
   </tr>
 </tbody>
 </table>
+
+<p>
+  If there is a discrepancy between what you enter and what the employee enters, then NEITHER party will receive any additional bonus for work completed. Please make sure you agree!
+</p>
 
     <p><b>You and the employees MUST AGREE on their per-page price before you proceed!</b> This will end your HIT, you cannot come back.</b> You will receive any payment owed via an MTurk Bonus</p>
     <div>
