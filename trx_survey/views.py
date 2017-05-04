@@ -5,14 +5,9 @@ from .models import Constants
 from django.conf import settings
 
 class Introduction(Page):   # extra manager intro
-    def is_displayed(self):
-        if ( self.player.devSkip == None ):
-            return True
+    pass
 
 class Sample(Page):      # transcription sample for manager
-    def is_displayed(self):
-        if ( self.player.devSkip == None ):
-            return True
     form_model = models.Player
     form_fields = ['howLong']
 
