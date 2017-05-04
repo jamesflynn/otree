@@ -6,12 +6,14 @@ from django.conf import settings
 
 
 class ResultsWaitPage(WaitPage):
+    group_by_arrival_time = True
+    
     def is_displayed(self):
         if ( self.round_number == 1 ):
             return True    
     def after_all_players_arrive(self):
         pass
-    group_by_arrival_time = True
+
 
 class ManagerChat(Page):
     def is_displayed(self):
