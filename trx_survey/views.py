@@ -3,11 +3,12 @@ from . import models
 from ._builtin import Page, WaitPage
 from .models import Constants
 from django.conf import settings
+import random
 
 class AcceptTerms(Page):
 #    timeout_seconds = 180
     form_model = models.Player
-    form_fields = ['paymentOK', 'neverWorked', 'yearBorn', 'gender']
+    form_fields = ['paymentOK', 'neverWorked', 'yearBorn', 'gender','country']
 
 
 class Introduction(Page):   # extra manager intro
@@ -39,6 +40,10 @@ class Preferences(Page):    # preferences survey for eployee
 #    timeout_seconds = 180
     form_model = models.Player
     form_fields = ['pref1','pref2','pref3','pref4','pref5']
+    def vars_for_template(self):
+                return {
+                'selvar': random.randint(1,6)
+                }
 
 class Bid(Page):             
 #    timeout_seconds = 180
