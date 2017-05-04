@@ -95,9 +95,9 @@ class Player(BasePlayer):
 #	pref5 = models.PositiveIntegerField(widget=widgets.RadioSelectHorizontal(choices=P5_CHOICES))
 #	bid = models.PositiveIntegerField(widget=widgets.Select(choices=BID_CHOICES)) 
 #	bid = models.CurrencyField()
-#	agree1 = models.CurrencyField(min=0,max=100)
-#	agree2 = models.CurrencyField(min=0,max=5) 
-#	agree3 = models.CurrencyField(min=0,max=5)
-#	agree4 = models.CurrencyField(min=0,max=5)
+	agree1 = models.CurrencyField(min=0,max=100)
+	agree2 = models.CurrencyField(min=0,max=5) 
+	agree3 = models.CurrencyField(min=0,max=5)
+	agree4 = models.CurrencyField(min=0,max=5)
 
 
