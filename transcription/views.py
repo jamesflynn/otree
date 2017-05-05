@@ -78,10 +78,13 @@ class CheckMatch(Page):
 
         if (self.player.id_in_group == 1):
             if ( match1==0 & match2==0 & match3==0):
-                return { 'message' : 'No matches :(' }
+                self.participant.vars['match'] = 0
+                return { 'message' : 'No matches :(' }                
             elif (match1 & match2 & match3):
+                self.participant.vars['match'] = 1
                 return { 'message' : 'All your prices match. Good work!' }
             else:
+                self.participant.vars['match'] = 1
                 return { 'message' : 'Looks like you had some matches, good work!' }
         elif (self.player.id_in_group == 2):
             if ( match1 ):
@@ -108,7 +111,8 @@ class CheckMatch(Page):
 class Transcribe(Page):
 
     def is_displayed(self):        
-        return self.player.id_in_group != 1
+        if (self.player.id_in_group != 1) & (self.player.participant.vars.get('match') == 1):
+            return True
 
     form_model = models.Player
     form_fields = ['transcribed_text']
@@ -142,7 +146,7 @@ class Transcribe(Page):
 
 class Results(Page):
     def is_displayed(self):
-        if ( self.player.id_in_group != 1) & ( self.round_number == Constants.num_rounds ):
+        if ( self.player.id_in_group != 1) & ( self.round_number == Constants.num_rounds ) & (self.player.participant.vars.get('match') == 1):
             return True
 
     def vars_for_template(self):
