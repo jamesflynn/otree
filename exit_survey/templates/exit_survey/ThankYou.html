@@ -1,0 +1,14 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+    Thank You!
+{% endblock %}
+
+{% block content %}
+
+	<p>Thank you for completing the survey, hit next to complete the HIT!</p>
+
+    {% next_button %}
+
+{% endblock %}

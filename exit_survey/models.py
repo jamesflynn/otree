@@ -24,15 +24,15 @@ class Group(BaseGroup):
 	pass
 
 GENDER_CHOICES = (('','please select'),('m','male'),('f','female'),('o','other'))
-EXP_CHOICES = (('','please select'),('0','no experience'),('12','1-12 months'),('24','1-2 years'),('36','more than 2 years'))
+EXP_CHOICES = (('','please select'),('none','no experience'),('some','some experience'),('very','very experienced'))
 TRANS_CHOICES = (('','please select'),('0','no experience') , ('12','1-12 months') , ('24','1-2 years') , ('36','more than 2 years') )
 EDU_CHOICES = (('','please select'),('someHS','some high school'),('HS','completed high school'),('someColl','some college'),('undergrad','undergrad degree'),('postgrad','graduate degree'))
 #COUNTRY_CHOICES = (('','please select'),('china','China'),('usa','USA'),('india','India'),('other','Not Listed'))
-P1_CHOICES = (('3','$3 each page for up to five pages of transcription'),('2','$2 only, without transcription'))
-P2_CHOICES = (('4','$4 each page for up to five pages of transcription'),('2','$2 only, without transcription'))
-P3_CHOICES = (('5','$5 each page for up to five pages of transcription'),('2','$2 only, without transcription'))
-P4_CHOICES = (('6','$6 each page for up to five pages of transcription'),('2','$2 only, without transcription'))
-P5_CHOICES = (('7','$7 each page for up to five pages of transcription'),('2','$2 only, without transcription'))
+P1_CHOICES = (('3','$3 each ($15 for all 5 pages)'),('10','$10'))
+P2_CHOICES = (('4','$4 each ($20 for all 5 pages)'),('10','$10'))
+P3_CHOICES = (('5','$5 each ($25 for all 5 pages)'),('10','$10'))
+P4_CHOICES = (('6','$6 each ($30 for all 5 pages)'),('10','$10'))
+P5_CHOICES = (('7','$7 each ($35 for all 5 pages)'),('10','$10'))
 
 class Player(BasePlayer):
 
