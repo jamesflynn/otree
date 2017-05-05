@@ -1,0 +1,16 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+   {{player.role}} - Check Matches
+{% endblock %}
+
+{% block content %}
+
+    <p class="text-success">
+        {{ message }}
+    </p>
+
+{% next_button %}
+  
+{% endblock %}

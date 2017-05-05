@@ -1,0 +1,20 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+    Thank You!
+{% endblock %}
+
+{% block content %}
+
+<input type="hidden" name="optIn" value="True">
+
+	<p>We just have a few more questions, they are optional, but we'd appreciate your time to answer them.</p>
+ <div class="checkbox">
+ 	<label class="control-label field-optin" for="id_optIn">
+		<input type="checkbox" name="optIn" id="optIn" value="False">
+		Opt out</label>
+	</div>
+    {% next_button %}
+
+{% endblock %}

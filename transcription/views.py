@@ -50,6 +50,60 @@ class EmployeeChat(Page):
 #        return { 'bid': bid,
 #                 'enum': self.player.id_in_group -1 }
 
+class Check(WaitPage):
+    def is_displayed(self):
+        if ( self.round_number == 1 ):
+            return True    
+    def after_all_players_arrive(self):
+        pass
+
+class CheckMatch(Page):
+    def is_displayed(self):
+        if ( self.round_number == 1 ):
+            return True    
+    def after_all_players_arrive(self):
+        pass
+    def vars_for_template(self):
+        e1p = self.group.get_player_by_id(2).emp_price
+        e2p = self.group.get_player_by_id(3).emp_price
+        e3p = self.group.get_player_by_id(4).emp_price
+        m1p = self.group.get_player_by_id(1).man_emp1_price
+        m2p = self.group.get_player_by_id(1).man_emp2_price
+        m3p = self.group.get_player_by_id(1).man_emp3_price
+
+        match1 = (e1p == m1p) & (e1p != 0) & (m1p != 0)
+        match2 = (e2p == m2p) & (e2p != 0) & (m2p != 0)
+        match3 = (e3p == m3p) & (e3p != 0) & (m3p != 0)
+
+
+        if (self.player.id_in_group == 1):
+            if ( match1==0 & match2==0 & match3==0):
+                return { 'message' : 'No matches :(' }
+            elif (match1 & match2 & match3):
+                return { 'message' : 'All your prices match. Good work!' }
+            else:
+                return { 'message' : 'Looks like you had some matches, good work!' }
+        elif (self.player.id_in_group == 2):
+            if ( match1 ):
+                self.participant.vars['match'] = 1
+                return { 'message' : 'You matched! Great!' }
+            else:
+                self.participant.vars['match'] = 0
+                return { 'message' : 'You didn\'t agree. Sorry about that.' }
+        elif (self.player.id_in_group == 3):
+            if ( match2 ):
+                self.participant.vars['match'] = 1
+                return { 'message' : 'You matched! Great!' }
+            else:
+                self.participant.vars['match'] = 0
+                return { 'message' : 'You didn\'t agree. Sorry about that.' }
+        else:
+            if ( match3 ):
+                self.participant.vars['match'] = 1
+                return { 'message' : 'You matched! Great!' }
+            else:
+                self.participant.vars['match'] = 0
+                return { 'message' : 'You didn\'t agree. Sorry about that.' }
 
 class Transcribe(Page):
 
@@ -94,7 +148,6 @@ class Results(Page):
     def vars_for_template(self):
         table_rows = []
         num_good = 0
-        checks_out = self.player.in_round(1).emp_price == get_player_by_id(1).in_round(1)
         for prev_player in self.player.in_all_rounds():
             accuracy = (1 - prev_player.levenshtein_distance / len(Constants.reference_texts[prev_player.round_number - 1]))*100
             row = {
@@ -118,9 +171,11 @@ class ManagerResults(Page):
             return True
 
 page_sequence = [
-#    ResultsWaitPage,
+    ResultsWaitPage,
     ManagerChat,
     EmployeeChat,
+    Check,
+    CheckMatch,
     Transcribe,
     Results,
     ManagerResults
