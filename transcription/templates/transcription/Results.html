@@ -5,6 +5,31 @@
     Summary
 {% endblock %}
 
+{%block styles %}
+<style>
+.poor {
+    color: red;
+}
+</style>
+{% endblock %}
+{% block scripts %}
+<script type="text/javascript">
+$(function() {
+
+
+    $('td:nth-child(5)').each(function(index) {
+        var scale = [['poor', 95], ['good', 100]];
+        var score = $(this).text().replace('%','');
+        for (var i = 0; i < scale.length; i++) {
+            if (score <= scale[i][1]) {
+                $(this).addClass(scale[i][0]);
+            }
+        }
+    });
+});
+</script>
+{% endblock %}
+
 {% block content %}
 
     <div class="panel panel-success">
@@ -13,11 +38,16 @@
         </div>
 
         <table class="table">
+                <col id="num" />
+                <col id="len" />
+                <col id="lent" />
+                <col id="lev" />
+                <col id="score" />
             <tr>
                 <th>Transcription #</th>
                 <th>Length of assigned text</th>
                 <th>Length of text entered</th>
-                <th><a href="http://en.wikipedia.org/wiki/Levenshtein_distance">Levenshtein distance</a></th>
+                <th><a href="http://en.wikipedia.org/wiki/Levenshtein_distance" target="_blank">Levenshtein distance</a></th>
                 <th>Accuracy</th>
             </tr>
             {% for row in table_rows %}
@@ -34,9 +64,9 @@
 
     </div>
 
-            <p>You transcribed {{ num_good }} pages well enough</p>
-            <p>Your price was {{ emp_price }}</p>
-            <p>Your bonus is <strong>${{ bonus}}</strong></p>
+            <p>You transcribed {{ num_good }} pages better than 95% accuracy.</p>
+            <p>Your agreed price per-page was {{ emp_price }}</p>
+            <p>Therefore your bonus is <strong>${{ bonus}}</strong></p>
 
 
 
