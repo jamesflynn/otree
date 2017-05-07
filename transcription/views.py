@@ -120,19 +120,23 @@ class Transcribe(Page):
     def vars_for_template(self):
 
         return {
-            'image_path': 'https://dl.dropboxusercontent.com/u/1688949/trx/{}_{}.png'.format(self.player.id_in_group,
-                self.round_number),
+#            'image_path': 'https://dl.dropboxusercontent.com/u/1688949/trx/{}_{}.png'.format(self.player.id_in_group-1,
+#                self.round_number),
+            'image_path': 'https://dl.dropboxusercontent.com/u/1688949/trx/1_{}.png'.format(self.round_number),
             'reference_text': safe_json(Constants.reference_texts[self.player.id_in_group-2,self.round_number - 1]),
             'debug': settings.DEBUG,
             'required_accuracy': 100 * (1 - Constants.allowed_error_rates[self.round_number - 1])
         }
 
     def transcribed_text_error_message(self, transcribed_text):
-        reference_text = Constants.reference_texts[self.player.id_in_group-2,self.round_number - 1]
-        allowed_error_rate = Constants.allowed_error_rates[
-            self.round_number - 1]
-        clean_text = ''.join(e for e in transcribed_text if e.isalnum())
-        distance, ok = distance_and_ok(clean_text, reference_text,
+#        reference_text = Constants.reference_texts[self.player.id_in_group-2,self.round_number - 1]
+        reference_text = Constants.reference_texts[0,self.round_number - 1]
+        allowed_error_rate = Constants.allowed_error_rates[self.round_number - 1]
+        clean_trx_text = ''.join(e for e in transcribed_text if e.isalnum())
+        clean_trx_text = clean_trx_text.replace('\n', ' ').replace('\r', '')
+#        clean_ref_text = ''.join(e for e in reference_text if e.isalnum())
+#        clean_ref_text = clean_ref_text.replace('\n', ' ').replace('\r', '')
+        distance, ok = distance_and_ok(clean_trx_text, reference_text,
                                        allowed_error_rate)
         if ok:
             self.player.levenshtein_distance = distance
@@ -152,10 +156,12 @@ class Results(Page):
         num_good = 0
         for prev_player in self.player.in_all_rounds():
             accuracy = (1 - prev_player.levenshtein_distance / len(Constants.reference_texts[self.player.id_in_group-2,prev_player.round_number - 1]))*100
+            clean_trx_text = ''.join(e for e in prev_player.transcribed_text if e.isalnum())
+            clean_trx_text = clean_trx_text.replace('\n', ' ').replace('\r', '')
             row = {
                 'round_number': prev_player.round_number,
                 'reference_text_length': len(Constants.reference_texts[self.player.id_in_group-2,prev_player.round_number - 1]),
-                'transcribed_text_length': len(prev_player.transcribed_text),
+                'transcribed_text_length': len(clean_trx_text),
                 'distance': prev_player.levenshtein_distance,
                 'accuracy': round(accuracy,2)
             }
