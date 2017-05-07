@@ -25,7 +25,7 @@ class Group(BaseGroup):
 
 GENDER_CHOICES = (('','please select'),('m','male'),('f','female'),('o','other'),('opt_out','I\'d rather not say'))
 EXP_CHOICES = (('','please select'),('none','no experience'),('some','some experience'),('very','very experienced'),('opt_out','I\'d rather not say'))
-TRANS_CHOICES = (('','please select'),('0','no experience') , ('12','1-12 months') , ('24','1-2 years') , ('36','more than 2 years'),('opt_out','I\'d rather not say') )
+TRANS_CHOICES = (('','please select'),('none','no experience') , ('some','some experience') , ('very','very experienced') , ('opt_out','I\'d rather not say'))
 EDU_CHOICES = (('','please select'),('someHS','some high school'),('HS','completed high school'),('someColl','some college'),('undergrad','undergrad degree'),('postgrad','graduate degree'),('opt_out','I\'d rather not say'))
 #COUNTRY_CHOICES = (('','please select'),('china','China'),('usa','USA'),('india','India'),('other','Not Listed'))
 P1_CHOICES = (('3','$3 each ($15 for all 5 pages)'),('10','$2 each ($10)'))

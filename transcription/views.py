@@ -16,20 +16,24 @@ class ResultsWaitPage(WaitPage):
 class ManagerChat(Page):
     def is_displayed(self):
         if ( self.player.id_in_group == 1 ) & ( self.round_number == 1 ):
+            self.player.participant.vars['payoff'] = 0
             return True
 
     def vars_for_template(self):
+
         bid2 = self.group.get_player_by_id(2).participant.vars.get('bid')
         bid3 = self.group.get_player_by_id(3).participant.vars.get('bid')
         bid4 = self.group.get_player_by_id(4).participant.vars.get('bid')
         return {
                 'bid2': bid2,
                 'bid3': bid3,
-                'bid4': bid4
+                'bid4': bid4,
+                'mgr_bonus': self.player.participant.vars['payoff']
                 }
 
     form_model = models.Player
     form_fields = ['man_emp1_price','man_emp2_price','man_emp3_price']
+
 
 class EmployeeChat(Page):
     def is_displayed(self):
@@ -42,13 +46,6 @@ class EmployeeChat(Page):
 
     form_model = models.Player
     form_fields = ['emp_price']
-
-#class CheckWaitPage(WaitPage): # add a value checking - look to see if i can activate when manager arrives
-#    def after_all_players_arrive(self):
-#        pass
-#    def vars_for_template(self):
-#        return { 'bid': bid,
-#                 'enum': self.player.id_in_group -1 }
 
 class Check(WaitPage):
     def is_displayed(self):
@@ -108,6 +105,9 @@ class CheckMatch(Page):
                 self.participant.vars['match'] = 0
                 return { 'message' : 'You didn\'t agree. Sorry about that.' }
 
+    def before_next_page(self):
+        self.participant.vars['payoff'] = 0
+
 class Transcribe(Page):
 
     def is_displayed(self):        
@@ -122,16 +122,17 @@ class Transcribe(Page):
         return {
             'image_path': 'https://dl.dropboxusercontent.com/u/1688949/trx/{}_{}.png'.format(self.player.id_in_group,
                 self.round_number),
-            'reference_text': safe_json(Constants.reference_texts[self.round_number - 1]),
+            'reference_text': safe_json(Constants.reference_texts[self.player.id_in_group-2,self.round_number - 1]),
             'debug': settings.DEBUG,
             'required_accuracy': 100 * (1 - Constants.allowed_error_rates[self.round_number - 1])
         }
 
     def transcribed_text_error_message(self, transcribed_text):
-        reference_text = Constants.reference_texts[self.round_number - 1]
+        reference_text = Constants.reference_texts[self.player.id_in_group-2,self.round_number - 1]
         allowed_error_rate = Constants.allowed_error_rates[
             self.round_number - 1]
-        distance, ok = distance_and_ok(transcribed_text, reference_text,
+        clean_text = ''.join(e for e in transcribed_text if e.isalnum())
+        distance, ok = distance_and_ok(clean_text, reference_text,
                                        allowed_error_rate)
         if ok:
             self.player.levenshtein_distance = distance
@@ -140,9 +141,6 @@ class Transcribe(Page):
                 return "The transcription should be exactly the same as on the image."
             else:
                 return "This transcription appears to contain too many errors."
-
-    def before_next_page(self):
-        self.player.payoff = 0
 
 class Results(Page):
     def is_displayed(self):
@@ -153,10 +151,10 @@ class Results(Page):
         table_rows = []
         num_good = 0
         for prev_player in self.player.in_all_rounds():
-            accuracy = (1 - prev_player.levenshtein_distance / len(Constants.reference_texts[prev_player.round_number - 1]))*100
+            accuracy = (1 - prev_player.levenshtein_distance / len(Constants.reference_texts[self.player.id_in_group-2,prev_player.round_number - 1]))*100
             row = {
                 'round_number': prev_player.round_number,
-                'reference_text_length': len(Constants.reference_texts[prev_player.round_number - 1]),
+                'reference_text_length': len(Constants.reference_texts[self.player.id_in_group-2,prev_player.round_number - 1]),
                 'transcribed_text_length': len(prev_player.transcribed_text),
                 'distance': prev_player.levenshtein_distance,
                 'accuracy': round(accuracy,2)
@@ -164,10 +162,16 @@ class Results(Page):
             table_rows.append(row)
             if (accuracy >= 95.0):
                 num_good += 1
+        mbonus = round(num_good * ( 5 - self.player.in_round(1).emp_price ),2)
+        bonus = round(num_good * self.player.in_round(1).emp_price,2)
+        self.player.participant.vars['payoff'] = bonus 
+        self.group.get_player_by_id(1).participant.vars['payoff'] += mbonus
+        mgr_bonus = self.group.get_player_by_id(1).participant.vars['payoff']
         return {'table_rows': table_rows,
                 'num_good': num_good,
                 'emp_price': self.player.in_round(1).emp_price,
-                'bonus': round(num_good * self.player.in_round(1).emp_price,2)}
+                'bonus': bonus,
+                'mgr_bonus' : mgr_bonus}
 
 class ManagerResults(Page):
     def is_displayed(self):

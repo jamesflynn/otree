@@ -13,7 +13,6 @@ def validate_nonzero(value):
             params={'value': value},
         )
 
-
 author = 'James Flynn'
 
 doc = """
@@ -51,13 +50,23 @@ class Constants(BaseConstants):
     name_in_url = 'transcription'
     players_per_group = 4
     num_rounds = 5
-    reference_texts = [
-    	"abcdefghijklmnopqrstuvwxyz",
-    	"abcdefghijklmnopqrstuvwxyz",
-    	"abcdefghijklmnopqrstuvwxyz",
-		"abcdefghijklmnopqrstuvwxyz",
-		"abcdefghijklmnopqrstuvwxyz"   
-    ]
+    reference_texts = {}
+    reference_texts[0,0] = "1abcdefghijklmnopqrstuvwxyz"
+    reference_texts[0,1] = "11abcdefghijklmnopqrstuvwxyz"
+    reference_texts[0,2] = "111abcdefghijklmnopqrstuvwxyz"
+    reference_texts[0,3] = "1111abcdefghijklmnopqrstuvwxyz"
+    reference_texts[0,4] = "11111abcdefghijklmnopqrstuvwxyz"
+    reference_texts[1,0] = "2abcdefghijklmnopqrstuvwxyz"
+    reference_texts[1,1] = "22abcdefghijklmnopqrstuvwxyz"
+    reference_texts[1,2] = "222abcdefghijklmnopqrstuvwxyz"
+    reference_texts[1,3] = "2222abcdefghijklmnopqrstuvwxyz"
+    reference_texts[1,4] = "22222abcdefghijklmnopqrstuvwxyz"
+    reference_texts[2,0] = "3abcdefghijklmnopqrstuvwxyz"
+    reference_texts[2,1] = "33abcdefghijklmnopqrstuvwxyz"
+    reference_texts[2,2] = "333abcdefghijklmnopqrstuvwxyz"
+    reference_texts[2,3] = "3333abcdefghijklmnopqrstuvwxyz"
+    reference_texts[2,4] = "33333abcdefghijklmnopqrstuvwxyz"
+
     allowed_error_rates = [1,1,1,1,1]
 
 class Subsession(BaseSubsession):

@@ -6,6 +6,7 @@ from .models import Constants
 
 class PlayerBot(Bot):
 
-    def play_round(self):
-        yield (views.MyPage)
-        yield (views.Results)
+	def play_round(self):
+		yield (views.Introduction)
+		yield (views.Sample, {'howLong': 25})
+		yield (views.Bid, {'bid': 40.56})
