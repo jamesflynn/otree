@@ -130,7 +130,7 @@ class Player(BasePlayer):
 
 	transcribed_text = models.TextField(blank=True)
 	levenshtein_distance = models.PositiveIntegerField()
-	emp_price = models.CurrencyField(min=0,max=5)
+	emp_price = models.CurrencyField(min=0,max=100)
 	man_emp1_price = models.CurrencyField(min=0,max=5)
 	man_emp2_price = models.CurrencyField(min=0,max=5) 
 	man_emp3_price = models.CurrencyField(min=0,max=5)
