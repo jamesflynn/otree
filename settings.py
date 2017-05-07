@@ -141,7 +141,7 @@ SESSION_CONFIGS = [
     {
         'name': 'transcription_survey',
         'display_name': "Transcription Survey",
-        'num_demo_participants': 16,
+        'num_demo_participants': 8,
         'app_sequence': ['trx_survey','transcription','exit_survey'],
 #        'use_browser_bots': True,
     },

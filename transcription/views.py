@@ -87,21 +87,21 @@ class CheckMatch(Page):
         elif (self.player.id_in_group == 2):
             if ( match1 ):
                 self.participant.vars['match'] = 1
-                return { 'message' : 'You matched! Great!' }
+                return { 'message' : 'You matched!' }
             else:
                 self.participant.vars['match'] = 0
                 return { 'message' : 'You didn\'t agree. Sorry about that.' }
         elif (self.player.id_in_group == 3):
             if ( match2 ):
                 self.participant.vars['match'] = 1
-                return { 'message' : 'You matched! Great!' }
+                return { 'message' : 'You matched!' }
             else:
                 self.participant.vars['match'] = 0
                 return { 'message' : 'You didn\'t agree. Sorry about that.' }
         else:
             if ( match3 ):
                 self.participant.vars['match'] = 1
-                return { 'message' : 'You matched! Great!' }
+                return { 'message' : 'You matched!' }
             else:
                 self.participant.vars['match'] = 0
                 return { 'message' : 'You didn\'t agree. Sorry about that.' }
