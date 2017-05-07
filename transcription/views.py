@@ -4,7 +4,8 @@ from ._builtin import Page, WaitPage
 from .models import Constants, levenshtein, distance_and_ok
 from django.conf import settings
 
-class ResultsWaitPage(WaitPage):
+class MyWaitPage(WaitPage):
+    template_name = 'transcription/MyWaitPage.html'
     group_by_arrival_time = True
 
     def is_displayed(self):
@@ -123,9 +124,11 @@ class Transcribe(Page):
 #            'image_path': 'https://dl.dropboxusercontent.com/u/1688949/trx/{}_{}.png'.format(self.player.id_in_group-1,
 #                self.round_number),
             'image_path': 'https://dl.dropboxusercontent.com/u/1688949/trx/1_{}.png'.format(self.round_number),
-            'reference_text': safe_json(Constants.reference_texts[self.player.id_in_group-2,self.round_number - 1]),
+#            'reference_text': safe_json(Constants.reference_texts[self.player.id_in_group-2,self.round_number - 1]),
+            'reference_text': safe_json(Constants.reference_texts[0,self.round_number - 1]),
             'debug': settings.DEBUG,
-            'required_accuracy': 100 * (1 - Constants.allowed_error_rates[self.round_number - 1])
+            'required_accuracy': 100 * (1 - Constants.allowed_error_rates[self.round_number - 1]),
+            'agreed': self.player.emp_price
         }
 
     def transcribed_text_error_message(self, transcribed_text):
@@ -134,8 +137,6 @@ class Transcribe(Page):
         allowed_error_rate = Constants.allowed_error_rates[self.round_number - 1]
         clean_trx_text = ''.join(e for e in transcribed_text if e.isalnum())
         clean_trx_text = clean_trx_text.replace('\n', ' ').replace('\r', '')
-#        clean_ref_text = ''.join(e for e in reference_text if e.isalnum())
-#        clean_ref_text = clean_ref_text.replace('\n', ' ').replace('\r', '')
         distance, ok = distance_and_ok(clean_trx_text, reference_text,
                                        allowed_error_rate)
         if ok:
@@ -155,12 +156,14 @@ class Results(Page):
         table_rows = []
         num_good = 0
         for prev_player in self.player.in_all_rounds():
-            accuracy = (1 - prev_player.levenshtein_distance / len(Constants.reference_texts[self.player.id_in_group-2,prev_player.round_number - 1]))*100
+#            accuracy = (1 - prev_player.levenshtein_distance / len(Constants.reference_texts[self.player.id_in_group-2,prev_player.round_number - 1]))*100
+            accuracy = (1 - prev_player.levenshtein_distance / len(Constants.reference_texts[0,prev_player.round_number - 1]))*100
             clean_trx_text = ''.join(e for e in prev_player.transcribed_text if e.isalnum())
             clean_trx_text = clean_trx_text.replace('\n', ' ').replace('\r', '')
             row = {
                 'round_number': prev_player.round_number,
-                'reference_text_length': len(Constants.reference_texts[self.player.id_in_group-2,prev_player.round_number - 1]),
+                #'reference_text_length': len(Constants.reference_texts[self.player.id_in_group-2,prev_player.round_number - 1]),
+                'reference_text_length': len(Constants.reference_texts[0,prev_player.round_number - 1]),
                 'transcribed_text_length': len(clean_trx_text),
                 'distance': prev_player.levenshtein_distance,
                 'accuracy': round(accuracy,2)
@@ -185,7 +188,7 @@ class ManagerResults(Page):
             return True
 
 page_sequence = [
-    ResultsWaitPage,
+    MyWaitPage,
     ManagerChat,
     EmployeeChat,
     Check,
