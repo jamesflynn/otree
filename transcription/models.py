@@ -121,18 +121,11 @@ class Player(BasePlayer):
 	def chat_nickname(self):
 		return '{} {}'.format(self.role(), self.id_in_group - 1 )
 
-#	def get_employee1(self):
-#		return self.get_others_in_group()[0]
-#	def get_employee2(self):
-#		return self.get_others_in_group()[1]
-#	def get_employee3(self):
-#		return self.get_others_in_group()[2]
-
 	transcribed_text = models.TextField(blank=True)
 	levenshtein_distance = models.PositiveIntegerField()
 	emp_price = models.CurrencyField(min=0,max=100)
 	man_emp1_price = models.CurrencyField(min=0,max=5)
 	man_emp2_price = models.CurrencyField(min=0,max=5) 
 	man_emp3_price = models.CurrencyField(min=0,max=5)
-	payoff = models.CurrencyField
+#	bonus = models.CurrencyField()
 

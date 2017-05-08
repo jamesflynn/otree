@@ -148,6 +148,10 @@ class Transcribe(Page):
                 return "This transcription appears to contain too many errors."
 
 class Results(Page):
+
+#    form_model = models.Group
+#    form_fields = ['mgr_bonus']
+
     def is_displayed(self):
         if ( self.player.id_in_group != 1) & ( self.round_number == Constants.num_rounds ) & (self.player.participant.vars.get('match') == 1):
             return True
@@ -171,16 +175,15 @@ class Results(Page):
             table_rows.append(row)
             if (accuracy >= 95.0):
                 num_good += 1
-        mbonus = round(num_good * ( 5 - self.player.in_round(1).emp_price ),2)
-        bonus = round(num_good * self.player.in_round(1).emp_price,2)
-        self.player.participant.vars['payoff'] = bonus 
-        self.group.get_player_by_id(1).participant.vars['payoff'] += mbonus
-        mgr_bonus = self.group.get_player_by_id(1).participant.vars['payoff']
+
+        self.group.get_player_by_id(1).payoff += round(num_good * ( 5 - self.player.in_round(1).emp_price ),2)
+        self.player.payoff = round(num_good * self.player.in_round(1).emp_price,2)
+
         return {'table_rows': table_rows,
                 'num_good': num_good,
                 'emp_price': self.player.in_round(1).emp_price,
-                'bonus': bonus,
-                'mgr_bonus' : mgr_bonus}
+                'bonus': self.player.payoff,
+                'mgr_bonus' : self.group.get_player_by_id(1).payoff}
 
 class ManagerResults(Page):
     def is_displayed(self):
