@@ -35,6 +35,9 @@ class ManagerChat(Page):
     form_model = models.Player
     form_fields = ['man_emp1_price','man_emp2_price','man_emp3_price']
 
+#    def before_next_page(self):
+#        self.participant.vars['e1'] = self.player.man_emp1_price
+
 
 class EmployeeChat(Page):
     def is_displayed(self):

@@ -23,7 +23,7 @@ Transcription Negotiation
 
 class Constants(BaseConstants):
     name_in_url = 'trx_survey'
-    players_per_group = 16
+    players_per_group = 32
     num_rounds = 1
 
 class Subsession(BaseSubsession):

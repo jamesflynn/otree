@@ -1,7 +1,26 @@
 {% extends 'otree/WaitPage.html' %}
 {% load staticfiles otree_tags %}
+{% block scripts %}
+<script>
+function showNext() { 
+    document.getElementById("nextButton").style.display = "inline"; 
+    document.getElementById("defaultText").style.display = "none"; 
+}
+setTimeout("showNext()", 900000);
+</script>
+
+{% endblock %}
+
 {% block title %}{{ title_text }}{% endblock %}
 {% block content %}
-    {{ body_text }}
 
+		<div id="defaultText">
+			<p>Waiting for the other participants.</p>
+		</div>
+       <div id="nextButton" style="display:none">
+			<p>Looks like no-one else has turned up. We're really sorry about that. Please return the HIT and email bphecon205@gmail.com, mention the code:</p>
+			<pre>DX8BNP</pre>
+			<p>and we will send you the HIT amount.</p>
+       </div>
+    <br>
 {% endblock %}

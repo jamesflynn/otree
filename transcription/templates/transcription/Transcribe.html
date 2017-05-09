@@ -9,7 +9,7 @@
 
     <p>
         Please transcribe the numbers from the table in the image into the box below.</P>
-    <p>You will be paid {{ agreed }} for this page (if you transcribe it better than 95% accuracy). Thank you!</p>
+    <p>You will be paid {{ agreed }} for this page (if you transcribe it better than 95% accuracy) if the manager's and your price agree. Thank you!</p>
     <div>
         <a target="_blank" href="{{ image_path }}"><img src="{% static "transcription/picture.png" %}"/> Click here to open image for transcription (opens in new tab or window)</a><br><p><strong>You should only enter the NUMBERS from the table, none of the row or column headings. (No words)</strong><br>
     </div>
@@ -21,6 +21,7 @@
     <p>Do not click until you have finished the transcription!</p>
 
     <p><small>Hint: if you prefer to work in a different format such as an Excel spreadsheet, simply export to csv (comma separated delimiter) copy and paste results here.</small></p>
+    <p><small>Do not complete this transcription if you did not actively <strong>AGREE</strong> with the manager about the per-page price.</small></p>
     {% if debug %}
         <div class="box papereffect">
             <h4>Explanation for researchers (shown in debug mode only)</h4>
