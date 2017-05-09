@@ -115,7 +115,7 @@ class CheckMatch(Page):
 class Transcribe(Page):
 
     def is_displayed(self):        
-        if (self.player.id_in_group != 1):
+        if (self.player.id_in_group != 1) & (self.player.in_round(1).emp_price != 0):
             return True
 
     form_model = models.Player
@@ -156,7 +156,7 @@ class Results(Page):
 #    form_fields = ['mgr_bonus']
 
     def is_displayed(self):
-        if ( self.player.id_in_group != 1) & ( self.round_number == Constants.num_rounds ):
+        if ( self.player.id_in_group != 1) & ( self.round_number == Constants.num_rounds )  & (self.player.in_round(1).emp_price != 0):
             return True
 
     def vars_for_template(self):
