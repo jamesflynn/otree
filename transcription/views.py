@@ -112,7 +112,7 @@ class CheckMatch(Page):
 class Transcribe(Page):
 
     def is_displayed(self):        
-        if (self.player.id_in_group != 1) & (self.player.participant.vars.get('match') == 1):
+        if (self.player.id_in_group != 1):
             return True
 
     form_model = models.Player
@@ -153,7 +153,7 @@ class Results(Page):
 #    form_fields = ['mgr_bonus']
 
     def is_displayed(self):
-        if ( self.player.id_in_group != 1) & ( self.round_number == Constants.num_rounds ) & (self.player.participant.vars.get('match') == 1):
+        if ( self.player.id_in_group != 1) & ( self.round_number == Constants.num_rounds ):
             return True
 
     def vars_for_template(self):
@@ -162,6 +162,8 @@ class Results(Page):
         for prev_player in self.player.in_all_rounds():
 #            accuracy = (1 - prev_player.levenshtein_distance / len(Constants.reference_texts[self.player.id_in_group-2,prev_player.round_number - 1]))*100
             accuracy = (1 - prev_player.levenshtein_distance / len(Constants.reference_texts[0,prev_player.round_number - 1]))*100
+            if ( accuracy < 0 ):
+                accuracy = 0
             clean_trx_text = ''.join(e for e in prev_player.transcribed_text if e.isalnum())
             clean_trx_text = clean_trx_text.replace('\n', ' ').replace('\r', '')
             row = {
@@ -194,8 +196,8 @@ page_sequence = [
     MyWaitPage,
     ManagerChat,
     EmployeeChat,
-    Check,
-    CheckMatch,
+#    Check,
+#    CheckMatch,
     Transcribe,
     Results,
     ManagerResults
