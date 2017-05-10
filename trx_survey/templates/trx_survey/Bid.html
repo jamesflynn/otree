@@ -7,11 +7,11 @@
 
 {% block content %}
 
-<p>Now tell us your per-page bid to do up to 5 pages just like the example (with 95% accuracy).</p>
+<p>Now tell us your <strong>single page</strong> bid (the price for ONE page) to do up to 5 pages just like the example (with 95% accuracy).</p>
 
-<p><strong>The manager will start with this information to negotiate a price for your services.</strong> </p>
+<p>The manager will start with this information to negotiate a price for your services.</p>
 
-    {% formfield player.bid with label="How much is your bid per page, for up to 5 pages?" %}
+    {% formfield player.bid with label="How much is your bid price per single page?" %}
 
     {% next_button %}
 

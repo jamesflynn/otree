@@ -1,0 +1,22 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+    Cash Preferences
+{% endblock %}
+
+{% block content %}
+ 
+<p>Below you are presented with 5 scenarios. In each you will be given the choice between being paid for completing a page of transcription at 95% accuracy within 48 hours OR receiving $2 per page without having to do any transcription, also 48 hours from now.</p>
+
+<p>If you are one of 20 survey respondents selected at random, we will present one of these 5 options to you. You should answer honestly, because one of your choices might happen!</p>
+
+    {% formfield player.pref1 with label="Which would you prefer?" %}
+    {% formfield player.pref2 with label="Which would you prefer?" %}
+    {% formfield player.pref3 with label="Which would you prefer?" %}
+    {% formfield player.pref4 with label="Which would you prefer?" %}
+    {% formfield player.pref5 with label="Which would you prefer?" %}
+
+    {% next_button %}
+
+{% endblock %}

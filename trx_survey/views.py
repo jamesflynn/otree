@@ -11,6 +11,10 @@ class Sample(Page):      # transcription sample for manager
     form_model = models.Player
     form_fields = ['howLong']
 
+class Preferences(Page):
+    form_model = models.Player
+    form_fields = ['pref1','pref2','pref3','pref4','pref5']
+
 class Bid(Page):             
     form_model = models.Player
     form_fields = ['bid']
@@ -22,5 +26,6 @@ page_sequence = [
 
     Introduction,
     Sample,
+    Preferences,
     Bid
 ]

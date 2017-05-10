@@ -131,7 +131,7 @@ class Transcribe(Page):
             'reference_text': safe_json(Constants.reference_texts[0,self.round_number - 1]),
             'debug': settings.DEBUG,
             'required_accuracy': 100 * (1 - Constants.allowed_error_rates[self.round_number - 1]),
-            'agreed': self.player.emp_price
+            'agreed': self.player.in_round(1).emp_price
         }
 
     def transcribed_text_error_message(self, transcribed_text):
