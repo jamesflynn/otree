@@ -29,7 +29,8 @@ class ManagerChat(Page):
                 'bid2': bid2,
                 'bid3': bid3,
                 'bid4': bid4,
-                'mgr_bonus': self.player.participant.vars['payoff']
+                'mgr_bonus': self.player.participant.vars['payoff'],
+                'channel': self.group.id_in_subsession
                 }
 
     form_model = models.Player
@@ -46,7 +47,8 @@ class EmployeeChat(Page):
     def vars_for_template(self):
         bid = self.player.participant.vars.get('bid')
         return { 'bid': bid,
-                 'enum': self.player.id_in_group -1 }
+                 'enum': self.player.id_in_group -1,
+                 'channel': self.group.id_in_subsession }
 
     form_model = models.Player
     form_fields = ['emp_price']
