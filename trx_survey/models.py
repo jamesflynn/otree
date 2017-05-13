@@ -23,7 +23,7 @@ Transcription Negotiation
 
 class Constants(BaseConstants):
     name_in_url = 'trx_survey'
-    players_per_group = 128
+    players_per_group = 16
     num_rounds = 1
 
 class Subsession(BaseSubsession):
@@ -32,11 +32,12 @@ class Subsession(BaseSubsession):
 class Group(BaseGroup):
 	pass
 
-P1_CHOICES = (('3','$3 each ($15 for all 5 pages)'),('2','$2 each ($10)'))
-P2_CHOICES = (('4','$4 each ($20 for all 5 pages)'),('2','$2 each ($10)'))
-P3_CHOICES = (('5','$5 each ($25 for all 5 pages)'),('2','$2 each ($10)'))
-P4_CHOICES = (('6','$6 each ($30 for all 5 pages)'),('2','$2 each ($10)'))
-P5_CHOICES = (('7','$7 each ($35 for all 5 pages)'),('2','$2 each ($10)'))
+P1_CHOICES = (('3','$15, for 5 pages transcribed ($3 per page, 95% accuracy)'),('2','$9, no transcription required '))
+P2_CHOICES = (('4','$20, for 5 pages transcribed ($4 per page, 95% accuracy)'),('2','$9, no transcription required '))
+P3_CHOICES = (('5','$25, for 5 pages transcribed ($5 per page, 95% accuracy)'),('2','$9, no transcription required '))
+P4_CHOICES = (('6','$30, for 5 pages transcribed ($6 per page, 95% accuracy)'),('2','$9, no transcription required '))
+P5_CHOICES = (('7','$35, for 5 pages transcribed ($7 per page, 95% accuracy)'),('2','$9, no transcription required '))
+
 
 class Player(BasePlayer):
     howLong = models.PositiveIntegerField(validators=[validate_nonzero],default=0,min=0,max=180,widget=widgets.SliderInput(attrs={'step': '5'}))

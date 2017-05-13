@@ -16,7 +16,7 @@ class MyWaitPage(WaitPage):
 
 class ManagerChat(Page):
     def is_displayed(self):
-        if ( self.player.id_in_group == 1 ) & ( self.round_number == 1 ):
+        if ( self.player.id_in_subsession%4 == 1 ) & ( self.round_number == 1 ):
             self.player.participant.vars['payoff'] = 0
             return True
 
@@ -25,30 +25,49 @@ class ManagerChat(Page):
         bid2 = self.group.get_player_by_id(2).participant.vars.get('bid')
         bid3 = self.group.get_player_by_id(3).participant.vars.get('bid')
         bid4 = self.group.get_player_by_id(4).participant.vars.get('bid')
+        if Constants.split_chats:
+            channel1 = self.group.id_in_subsession + 1000
+            channel2 = self.group.id_in_subsession + 7777
+            channel3 = self.group.id_in_subsession + 8989
+        else:
+            channel1 = self.group.id_in_subsession
+            channel2 = self.group.id_in_subsession
+            channel3 = self.group.id_in_subsession            
+
         return {
                 'bid2': bid2,
                 'bid3': bid3,
                 'bid4': bid4,
                 'mgr_bonus': self.player.participant.vars['payoff'],
-                'channel': self.group.id_in_subsession
+                'channel1': channel1,
+                'channel2': channel2,
+                'channel3': channel3,
+                'split_chats': Constants.split_chats
                 }
 
     form_model = models.Player
-    form_fields = ['man_emp1_price','man_emp2_price','man_emp3_price']
-
-#    def before_next_page(self):
-#        self.participant.vars['e1'] = self.player.man_emp1_price
-
+    form_fields = ['man_emp1_price','man_emp1_accpt','man_emp2_price','man_emp2_accpt','man_emp3_price','man_emp3_accpt']
 
 class EmployeeChat(Page):
     def is_displayed(self):
-        if ( self.player.id_in_group != 1 ) & ( self.round_number == 1 ):
+        if ( self.player.id_in_subsession%4 != 1 ) & ( self.round_number == 1 ):
             return True
     def vars_for_template(self):
         bid = self.player.participant.vars.get('bid')
+        if Constants.split_chats:
+            if self.player.id_in_subsession%4 == 2:
+                channel = self.group.id_in_subsession + 1000
+            elif self.player.id_in_subsession%4 == 3:
+                channel = self.group.id_in_subsession + 7777
+            else:
+               channel = self.group.id_in_subsession + 8989
+        else:
+            channel = self.group.id_in_subsession
+
         return { 'bid': bid,
-                 'enum': self.player.id_in_group -1,
-                 'channel': self.group.id_in_subsession }
+                 'enum': (self.player.id_in_subsession-1)%4,
+                 'channel': channel,
+                 'split_chats': Constants.split_chats }
 
     form_model = models.Player
     form_fields = ['emp_price']
@@ -117,7 +136,7 @@ class CheckMatch(Page):
 class Transcribe(Page):
 
     def is_displayed(self):        
-        if (self.player.id_in_group != 1) & (self.player.in_round(1).emp_price != 0):
+        if (self.player.id_in_subsession%4 != 1) & (self.player.in_round(1).emp_price != 0):
             return True
 
     form_model = models.Player
@@ -158,7 +177,7 @@ class Results(Page):
 #    form_fields = ['mgr_bonus']
 
     def is_displayed(self):
-        if ( self.player.id_in_group != 1) & ( self.round_number == Constants.num_rounds )  & (self.player.in_round(1).emp_price != 0):
+        if ( self.player.id_in_subsession%4 != 1) & ( self.round_number == Constants.num_rounds )  & (self.player.in_round(1).emp_price != 0):
             return True
 
     def vars_for_template(self):
@@ -194,11 +213,11 @@ class Results(Page):
 
 class ManagerResults(Page):
     def is_displayed(self):
-        if ( self.player.id_in_group == 1) & ( self.round_number == Constants.num_rounds ):
+        if ( self.player.id_in_subsession%4 == 1) & ( self.round_number == Constants.num_rounds ):
             return True
 
 page_sequence = [
-    MyWaitPage,
+#    MyWaitPage,
     ManagerChat,
     EmployeeChat,
 #    Check,

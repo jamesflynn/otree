@@ -84,6 +84,7 @@ class Constants(BaseConstants):
     name_in_url = 'transcription'
     players_per_group = 4
     num_rounds = 5
+    split_chats = True
     reference_texts = {}
 
     reference_texts[0,0] = get_trx("1_1")
@@ -112,20 +113,24 @@ class Group(BaseGroup):
 
 class Player(BasePlayer):
 
-	def role(self):
-	    if self.id_in_group == 1:
-	        return 'Manager'
-	    else:
-	        return 'Employee'
+    def role(self):
+        if self.id_in_subsession%4 == 1:
+            return 'Manager'
+        else:
+            return 'Employee'
 	
-	def chat_nickname(self):
-		return '{} {}'.format(self.role(), self.id_in_group - 1 )
+    def chat_nickname(self):
+        return '{} {}'.format(self.role(), (self.id_in_subsession - 1)%4 )
 
-	transcribed_text = models.TextField(blank=True)
-	levenshtein_distance = models.PositiveIntegerField()
-	emp_price = models.CurrencyField(min=0,max=5)
-	man_emp1_price = models.CurrencyField(min=0,max=5)
-	man_emp2_price = models.CurrencyField(min=0,max=5) 
-	man_emp3_price = models.CurrencyField(min=0,max=5)
+    transcribed_text = models.TextField(blank=True)
+    levenshtein_distance = models.PositiveIntegerField()
+    emp_price = models.CurrencyField(min=0,max=5)
+    man_emp1_price = models.CurrencyField(min=0,max=5)
+    man_emp1_accpt = models.BooleanField(widget=widgets.RadioSelectHorizontal())
+    man_emp2_price = models.CurrencyField(min=0,max=5)
+    man_emp2_accpt = models.BooleanField(widget=widgets.RadioSelectHorizontal())
+    man_emp3_price = models.CurrencyField(min=0,max=5)
+    man_emp3_accpt = models.BooleanField(widget=widgets.RadioSelectHorizontal())
+    
 #	bonus = models.CurrencyField()
 

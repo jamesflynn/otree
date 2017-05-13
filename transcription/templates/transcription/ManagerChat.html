@@ -10,61 +10,140 @@
 
     <!-- define a style -->
     <style type="text/css">
-        tr, td, th {
-          padding: 5px;
-          vertical-align: middle;
-          }
+
+  table {
+    empty-cells: show;
+    border: 0px;
+}
+
+table td,
+table th {
+    padding: 5px;
+    min-width: 2em;
+    min-height: 2em;
+    border: 0px;
+    vertical-align: top;
+}
     </style>
 
 {% endblock %}
 
 {% block content %}
-<h3>You are a Manager</h3>
+<p>You are the Manager. Please negotiate with the 3 Employees below.</p>
+<p>You have a budget of <strong>$5 per page</strong>. Part of that will cover the wages to the Employees, and you can keep the rest.</p>
 
-<p>You have a fixed budget of <strong>$5 per page</strong>. Part of that will cover the wages to the transcribers, and you can keep the remainder.</p>
-
-<p>After this chat workers will be directed to a screen to transcribe scanned pages, which will be evaluated for accuracy.  For each page completed above 95% accuracy, you will receive the difference between $5 and the price you agreed to with that person.  For example, if you agree to $4 per page for all three workers, who then complete the work, you will be paid: ($5-$4) x (3 people) x (5 pages each) = $15</p>
+<p>After this chat workers will be taken to a screen to transcribe scanned pages, which will be checked for accuracy.  For each page completed above 95% accuracy, you will receive the difference between $5 and the price you agreed to with that person.  For example, if you agree to $4 per page for all three workers, who then complete the work, you will be paid: ($5-$4) x (3 people) x (5 pages each) = $15</p>
 
 <p>If you fail to agree to a price with one or more workers, you can still profit from your other agreements, and you will still be paid for the HIT.</p>
 
-<p>You and the employees are all here now, their initial bids were:</p>
+{% if split_chats %}
+<p>You and the employees are all here now, you can chat with them separately.</p>
 
-<div class="instructions well well-lg">
-Employee 1 : {{ bid2 }} for each page<br>
-Employee 2 : {{ bid3 }} for each page<br>
-Employee 3 : {{ bid4 }} for each page
-</div>
-
-<h3>Chat Room:</h3>
-  {% chat nickname="Manager" channel=group.id_in_subsession %}
 <br>
-<p>Enter the agreed-to per-page amounts here (enter 0 if no deal is reached).</p>
+<strong>Employee 1</strong>
+{% chat nickname="Manager" channel=channel1 %}<br>
 
 <table>
-<tbody>
-  <tr>
-    <td>Employee 1 :</td>
+    <thead>
+        <tr>
+            <th colspan="4">Employee 1 bid {{ bid2 }} for each page</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+    <td>Offered/agreed price:</td>
     <td>{% formfield player.man_emp1_price with label="" %}</td>
-    <td>Initial per-page bid was: {{ bid2 }}</td>
-  </tr>
-   <tr>
-    <td>Employee 2:</td>
+    <td>Did they accept/agree?</td>
+    <td>{% formfield player.man_emp1_accpt with label="" %}</td>
+        </tr>
+    </tbody>
+</table>
+<hr>
+<strong>Employee 2</strong>
+{% chat nickname="Manager" channel=channel2 %}<br>
+
+<table>
+    <thead>
+        <tr>
+            <th colspan="4">Employee 2 bid {{ bid3 }} for each page</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+    <td>Offered/agreed price:</td>
     <td>{% formfield player.man_emp2_price with label="" %}</td>
-    <td>Initial per-page bid was: {{ bid3 }}</td>
-  </tr>
-  <tr>
-    <td>Employee 3:</td>
+    <td>Did they accept/agree?</td>
+    <td>{% formfield player.man_emp2_accpt with label="" %}</td>
+        </tr>
+    </tbody>
+</table>
+<hr>
+<strong>Employee 3</strong>
+
+{% chat nickname="Manager" channel=channel3 %}<br>
+<table>
+    <thead>
+        <tr>
+            <th colspan="4">Employee 3 bid {{ bid4 }} for each page</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+    <td>Offered/agreed price:</td>
     <td>{% formfield player.man_emp3_price with label="" %}</td>
-    <td>Initial per-page bid was: {{ bid4 }}</td>
-  </tr>
-</tbody>
+    <td>Did they accept/agree?</td>
+    <td>{% formfield player.man_emp3_accpt with label="" %}</td>
+        </tr>
+    </tbody>
+</table>
+{% else %}
+
+
+<h3>Chat Room:</h3>
+  {% chat nickname="Manager" channel=channel1 %}
+<br>
+<p>Enter the per-page amounts here. (If no deal is reached please enter the highest amount you offered and select No.</p>
+
+<table>
+    <tbody>
+        <tr>
+            <td colspan="4"><strong>Employee 1</strong> bid {{ bid2 }} for each page</td>
+        </tr>
+        <tr>
+            <td>Offered/agreed price</td>
+            <td>{% formfield player.man_emp1_price with label="" %}</td>
+            <td>Did they accept/agree?</td>
+            <td>{% formfield player.man_emp1_accpt with label="" %}</td>
+        </tr>
+        <tr>
+            <td colspan="4"><strong>Employee 2</strong> bid {{ bid3 }} for each page</td>
+        </tr>
+        <tr>
+            <td>Offered/agreed price</td>
+            <td>{% formfield player.man_emp2_price with label="" %}</td>
+            <td>Did they accept/agree?</td>
+            <td>{% formfield player.man_emp2_accpt with label="" %}</td>
+        </tr>
+        <tr>
+            <td colspan="4"><strong>Employee 3</strong> bid {{ bid4 }} for each page</td>
+        </tr>
+        <tr>
+              <td>Offered/agreed price</td>
+              <td>{% formfield player.man_emp3_price with label="" %}</td>
+              <td>Did they accept/agree?</td>
+              <td>{% formfield player.man_emp3_accpt with label="" %}</td>
+        </tr>
+    </tbody>
 </table>
 
+{% endif %}
+
+
 <p>
-  If there is a discrepancy between what you enter and what the employee enters, then NEITHER party will receive any additional bonus for work completed. Please make sure you agree!
+  If there is a discrepancy between what you enter and what the employee enters, then neither party will receive any additional bonus for work completed. Please make sure you confirm! (Or select No)
 </p>
 
-    <p><b>You and the employees MUST AGREE on their per-page price before you proceed!</b> This will end your HIT, you cannot come back.</b> You will receive any payment owed via an MTurk Bonus</p>
+    <p>You will receive any payment owed via an MTurk Bonus</p>
     <div>
         <button class="btn btn-warning btn-large">Done</button>
     </div>

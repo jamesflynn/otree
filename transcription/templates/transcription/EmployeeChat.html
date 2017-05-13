@@ -8,11 +8,15 @@
 
 {% block content %}
 
+{% if split_chats %}
+<p>A manager is here, please negotiate a price per page, to do the transcription.</p>
+{% else %}
 <p>Everyone is here. You, 2 other employees, and a manager.</p>
+{% endif %}
 
 <p>Your initial bid to the manager was {{ bid }} for each page. You can renegotiate here in the chat room, but you must agree to a price in order to submit the transcription work for a bonus.  It is okay to disagree and exit. You will still be paid for the HIT.</p>
 
-	{% chat nickname=player.chat_nickname channel=group.id_in_subsession %}
+	{% chat nickname=player.chat_nickname channel=channel %}
 
 <br>
 <p>

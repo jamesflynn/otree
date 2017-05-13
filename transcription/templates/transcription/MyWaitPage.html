@@ -6,7 +6,7 @@ function showNext() {
     document.getElementById("nextButton").style.display = "inline"; 
     document.getElementById("defaultText").style.display = "none"; 
 }
-setTimeout("showNext()", 900000);
+setTimeout("showNext()", 300000);
 </script>
 
 {% endblock %}
@@ -18,9 +18,7 @@ setTimeout("showNext()", 900000);
 			<p>Waiting for the other participants.</p>
 		</div>
        <div id="nextButton" style="display:none">
-			<p>Looks like no-one else has turned up. We're really sorry about that. Please return the HIT and email bphecon205@gmail.com, mention the code:</p>
-			<pre>DX8BNP</pre>
-			<p>and we will send you the HIT amount.</p>
+			<p>Looks like no-one else has turned up. We're really sorry about that. Please return the HIT.</p>
        </div>
     <br>
 {% endblock %}
