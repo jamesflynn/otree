@@ -128,9 +128,9 @@ class Player(BasePlayer):
     man_emp1_price = models.CurrencyField(min=0,max=5)
     man_emp1_accpt = models.BooleanField(widget=widgets.RadioSelectHorizontal())
     man_emp2_price = models.CurrencyField(min=0,max=5)
-    man_emp2_accpt = models.BooleanField(widget=widgets.RadioSelectHorizontal())
-    man_emp3_price = models.CurrencyField(min=0,max=5)
-    man_emp3_accpt = models.BooleanField(widget=widgets.RadioSelectHorizontal())
+#    man_emp2_accpt = models.BooleanField(widget=widgets.RadioSelectHorizontal())
+#    man_emp3_price = models.CurrencyField(min=0,max=5)
+#    man_emp3_accpt = models.BooleanField(widget=widgets.RadioSelectHorizontal())
     
 #	bonus = models.CurrencyField()
 

@@ -46,7 +46,8 @@ class ManagerChat(Page):
                 }
 
     form_model = models.Player
-    form_fields = ['man_emp1_price','man_emp1_accpt','man_emp2_price','man_emp2_accpt','man_emp3_price','man_emp3_accpt']
+    form_fields = ['man_emp1_price','man_emp2_price','man_emp3_price']    
+#    form_fields = ['man_emp1_price','man_emp1_accpt','man_emp2_price','man_emp2_accpt','man_emp3_price','man_emp3_accpt']
 
 class EmployeeChat(Page):
     def is_displayed(self):
@@ -71,67 +72,6 @@ class EmployeeChat(Page):
 
     form_model = models.Player
     form_fields = ['emp_price']
-
-class Check(WaitPage):
-    def is_displayed(self):
-        if ( self.round_number == 1 ):
-            return True    
-    def after_all_players_arrive(self):
-        pass
-
-class CheckMatch(Page):
-    def is_displayed(self):
-        if ( self.round_number == 1 ):
-            return True    
-    def after_all_players_arrive(self):
-        pass
-    def vars_for_template(self):
-        e1p = self.group.get_player_by_id(2).emp_price
-        e2p = self.group.get_player_by_id(3).emp_price
-        e3p = self.group.get_player_by_id(4).emp_price
-        m1p = self.group.get_player_by_id(1).man_emp1_price
-        m2p = self.group.get_player_by_id(1).man_emp2_price
-        m3p = self.group.get_player_by_id(1).man_emp3_price
-
-        match1 = (e1p == m1p) & (e1p != 0) & (m1p != 0)
-        match2 = (e2p == m2p) & (e2p != 0) & (m2p != 0)
-        match3 = (e3p == m3p) & (e3p != 0) & (m3p != 0)
-
-
-        if (self.player.id_in_group == 1):
-            if ( match1==0 & match2==0 & match3==0):
-                self.participant.vars['match'] = 0
-                return { 'message' : 'No matches :(' }                
-            elif (match1 & match2 & match3):
-                self.participant.vars['match'] = 1
-                return { 'message' : 'All your prices match. Good work!' }
-            else:
-                self.participant.vars['match'] = 1
-                return { 'message' : 'Looks like you had some matches, good work!' }
-        elif (self.player.id_in_group == 2):
-            if ( match1 ):
-                self.participant.vars['match'] = 1
-                return { 'message' : 'You matched!' }
-            else:
-                self.participant.vars['match'] = 0
-                return { 'message' : 'You didn\'t agree. Sorry about that.' }
-        elif (self.player.id_in_group == 3):
-            if ( match2 ):
-                self.participant.vars['match'] = 1
-                return { 'message' : 'You matched!' }
-            else:
-                self.participant.vars['match'] = 0
-                return { 'message' : 'You didn\'t agree. Sorry about that.' }
-        else:
-            if ( match3 ):
-                self.participant.vars['match'] = 1
-                return { 'message' : 'You matched!' }
-            else:
-                self.participant.vars['match'] = 0
-                return { 'message' : 'You didn\'t agree. Sorry about that.' }
-
-    def before_next_page(self):
-        self.participant.vars['payoff'] = 0
 
 class Transcribe(Page):
 
@@ -217,11 +157,9 @@ class ManagerResults(Page):
             return True
 
 page_sequence = [
-#    MyWaitPage,
+    MyWaitPage,
     ManagerChat,
     EmployeeChat,
-#    Check,
-#    CheckMatch,
     Transcribe,
     Results,
     ManagerResults
