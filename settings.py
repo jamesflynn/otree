@@ -115,7 +115,7 @@ mturk_hit_settings = {
     'grant_qualification_id': '3NF07PFA1K2EGWJFNBQ4JN81TXKETV',# to prevent retakes FOR REAL
 #    'grant_qualification_id': '3VFIQRXYYK60OWH5USLZQ69Z1BU2ZB', ## sandbox
     'qualification_requirements': [
-         qualification.LocaleRequirement("EqualTo", "US"),
+#         qualification.LocaleRequirement("EqualTo", "US"),
          qualification.PercentAssignmentsApprovedRequirement("GreaterThanOrEqualTo", 50),
         # qualification.NumberHitsApprovedRequirement("GreaterThanOrEqualTo", 5),
 #        qualification.Requirement('2F1QJWKUDD8XADTFD2Q0G6UTO95ALH', 'Exists'),   # MASTER

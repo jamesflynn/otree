@@ -16,7 +16,7 @@ class MyWaitPage(WaitPage):
 
 class ManagerChat(Page):
     def is_displayed(self):
-        if ( self.player.id_in_subsession%4 == 1 ) & ( self.round_number == 1 ):
+        if ( self.player.id_in_group == 1 ) & ( self.round_number == 1 ):
             self.player.participant.vars['payoff'] = 0
             return True
 
@@ -46,19 +46,19 @@ class ManagerChat(Page):
                 }
 
     form_model = models.Player
-    form_fields = ['man_emp1_price','man_emp2_price','man_emp3_price']    
-#    form_fields = ['man_emp1_price','man_emp1_accpt','man_emp2_price','man_emp2_accpt','man_emp3_price','man_emp3_accpt']
+#    form_fields = ['man_emp1_price','man_emp2_price','man_emp3_price']    
+    form_fields = ['man_emp1_price','man_emp1_accpt','man_emp2_price','man_emp2_accpt','man_emp3_price','man_emp3_accpt']
 
 class EmployeeChat(Page):
     def is_displayed(self):
-        if ( self.player.id_in_subsession%4 != 1 ) & ( self.round_number == 1 ):
+        if ( self.player.id_in_group != 1 ) & ( self.round_number == 1 ):
             return True
     def vars_for_template(self):
         bid = self.player.participant.vars.get('bid')
         if Constants.split_chats:
-            if self.player.id_in_subsession%4 == 2:
+            if self.player.id_in_group == 2:
                 channel = self.group.id_in_subsession + 1000
-            elif self.player.id_in_subsession%4 == 3:
+            elif self.player.id_in_group == 3:
                 channel = self.group.id_in_subsession + 7777
             else:
                channel = self.group.id_in_subsession + 8989
@@ -76,7 +76,7 @@ class EmployeeChat(Page):
 class Transcribe(Page):
 
     def is_displayed(self):        
-        if (self.player.id_in_subsession%4 != 1) & (self.player.in_round(1).emp_price != 0):
+        if (self.player.id_in_group != 1) & (self.player.in_round(1).emp_price != 0):
             return True
 
     form_model = models.Player
@@ -117,7 +117,7 @@ class Results(Page):
 #    form_fields = ['mgr_bonus']
 
     def is_displayed(self):
-        if ( self.player.id_in_subsession%4 != 1) & ( self.round_number == Constants.num_rounds )  & (self.player.in_round(1).emp_price != 0):
+        if ( self.player.id_in_group != 1) & ( self.round_number == Constants.num_rounds )  & (self.player.in_round(1).emp_price != 0):
             return True
 
     def vars_for_template(self):
@@ -153,7 +153,7 @@ class Results(Page):
 
 class ManagerResults(Page):
     def is_displayed(self):
-        if ( self.player.id_in_subsession%4 == 1) & ( self.round_number == Constants.num_rounds ):
+        if ( self.player.id_in_group == 1) & ( self.round_number == Constants.num_rounds ):
             return True
 
 page_sequence = [
