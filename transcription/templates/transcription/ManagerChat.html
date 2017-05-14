@@ -29,10 +29,10 @@ table th {
 {% endblock %}
 
 {% block content %}
-<p>You are the Manager. Please negotiate with the 3 Employees below.</p>
+<p>You are the Manager. {% if split_chats %}Please negotiate with the 3 Employees below in the 3 chat windows.{% else %}Please negotiate with the 3 employees below.{% endif %} They should be there now.</p>
 <p>You have a budget of <strong>$5 per page</strong>. Part of that will cover the wages to the Employees, and you can keep the rest.</p>
 
-<p>After this chat workers will be taken to a screen to transcribe scanned pages, which will be checked for accuracy.  For each page completed above 95% accuracy, you will receive the difference between $5 and the price you agreed to with that person.  For example, if you agree to $4 per page for all three workers, who then complete the work, you will be paid: ($5-$4) x (3 people) x (5 pages each) = $15</p>
+<p>After this chat workers will be taken to a screen to transcribe scanned pages, which will be checked for accuracy.  For each page completed above 95% accuracy, you will receive the difference between $5 and the price you agreed to with that person.  If the work is not submitted, or does not achieve at least 95% accuracy, no one will be paid for that page. For example, if you agree to $4 per page for all three workers, who then complete the work, you will be paid: ($5-$4) x (3 people) x (5 pages each) = $15</p>
 
 <p>If you fail to agree to a price with one or more workers, you can still profit from your other agreements, and you will still be paid for the HIT.</p>
 
@@ -137,7 +137,6 @@ table th {
 </table>
 
 {% endif %}
-
 
 <p>
   If there is a discrepancy between what you enter and what the employee enters, then neither party will receive any additional bonus for work completed. Please make sure you confirm! (Or select No)

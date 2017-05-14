@@ -87,7 +87,7 @@ class Transcribe(Page):
         return {
 #            'image_path': 'https://dl.dropboxusercontent.com/u/1688949/trx/{}_{}.png'.format(self.player.id_in_group-1,
 #                self.round_number),
-            'image_path': 'https://dl.dropboxusercontent.com/u/1688949/trx/1_{}.png'.format(self.round_number),
+            'image_path': 'https://dl.dropboxusercontent.com/u/1688949/trx/4_{}.png'.format(self.round_number),
 #            'reference_text': safe_json(Constants.reference_texts[self.player.id_in_group-2,self.round_number - 1]),
             'reference_text': safe_json(Constants.reference_texts[0,self.round_number - 1]),
             'debug': settings.DEBUG,
