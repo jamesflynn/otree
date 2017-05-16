@@ -2,9 +2,13 @@ from otree.api import (
     models, widgets, BaseConstants, BaseSubsession, BaseGroup, BasePlayer,
     Currency as c, currency_range
 )
+import random
 
 from django.core.exceptions import ValidationError
 from django.utils.translation import ugettext_lazy as _
+
+# from settings import SESSION_CONFIGS
+
 
 def validate_nonzero(value):
     if value == 0:
@@ -79,6 +83,7 @@ class Constants(BaseConstants):
     reference_texts[0,4] = get_trx("1_5")
 
     allowed_error_rates = [3,3,3,3,3]
+    startwp_timer = 10
 
 class Subsession(BaseSubsession):
     pass
@@ -106,6 +111,8 @@ class Player(BasePlayer):
     man_emp2_accpt = models.BooleanField(widget=widgets.RadioSelectHorizontal())
     man_emp3_price = models.CurrencyField(min=0,max=5)
     man_emp3_accpt = models.BooleanField(widget=widgets.RadioSelectHorizontal())
-    
-#	bonus = models.CurrencyField()
+    startwp_timer_set = models.BooleanField(default=False)
+    startwp_time = models.PositiveIntegerField()
+    outofthegame = models.BooleanField()
+
 

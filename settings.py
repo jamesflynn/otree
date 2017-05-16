@@ -61,7 +61,7 @@ AUTH_LEVEL = environ.get('OTREE_AUTH_LEVEL')
 ADMIN_USERNAME = 'admin'
 # for security, best to set admin password in an environment variable
 ADMIN_PASSWORD = environ.get('OTREE_ADMIN_PASSWORD')
-
+CHANNEL_ROUTING = 'customwp.routing.channel_routing'
 
 # setting for integration with AWS Mturk
 AWS_ACCESS_KEY_ID = environ.get('AWS_ACCESS_KEY_ID')
@@ -158,7 +158,13 @@ SESSION_CONFIGS = [
         'num_demo_participants': 1,
         'app_sequence': ['exit_survey'],
 #        'use_browser_bots': True,
-    }    
+    },
+    {
+        'name': 'customwp',
+        'display_name': "Testing timeout on waiting page",
+        'num_demo_participants': 3,
+        'app_sequence': ['customwp'],
+    },
 
 ]
 
