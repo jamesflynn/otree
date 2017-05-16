@@ -3,20 +3,73 @@ from . import models
 from ._builtin import Page, WaitPage
 from .models import Constants, levenshtein, distance_and_ok
 from django.conf import settings
+##
+from .models import Constants, Player
+from otree.common import safe_json
+from otree.views.abstract import get_view_from_url
+from otree.api import widgets
+import random
+from django.http import HttpResponseRedirect, Http404, HttpResponse
+from django.template.response import TemplateResponse
+from django.core.urlresolvers import reverse
+from otree.models_concrete import (
+    PageCompletion, CompletedSubsessionWaitPage,
+    CompletedGroupWaitPage, PageTimeout, UndefinedFormModel,
+    ParticipantLockModel, GlobalLockModel, ParticipantToPlayerLookup
+)
+import time
+import channels
+import json
 
-class MyWaitPage(WaitPage):
-    template_name = 'transcription/MyWaitPage.html'
+class CustomWaitPage(WaitPage):
+    template_name = 'transcription/CustomWaitPage.html'
+
+class StartWP(CustomWaitPage):
     group_by_arrival_time = True
+    template_name = 'transcription/FirstWaitPage.html'
+
+    def get_mturk_group_name(self):
+        return 'mturkchannel_{}_{}'.format(self.session.pk, self._index_in_pages)
 
     def is_displayed(self):
-        if ( self.round_number == 1 ):
-            return True    
-    def after_all_players_arrive(self):
-        pass
+        return self.subsession.round_number == 1
+
+    def vars_for_template(self):
+        now = time.time()
+        if not self.player.startwp_timer_set:
+            self.player.startwp_timer_set = True
+            self.player.startwp_time = time.time()
+        time_left = self.player.startwp_time + Constants.startwp_timer - now
+        return {'time_left': round(time_left)}
+
+    def get_players_for_group(self, waiting_players):
+        post_dict = self.request.POST.dict()
+        endofgame = post_dict.get('endofgame')
+        if endofgame:
+            self.player.outofthegame = True
+            return [self.player]
+        print("HOW MAMMMMAMANY????", len(waiting_players))
+        if len(waiting_players) == Constants.players_per_group:
+            return waiting_players
+
+#class WaitPage(WaitPage):
+#    group_by_arrival_time = True
+#    def is_displayed(self):
+#        return self.subsession.round_number == 1 and not self.player.outofthegame
+
+#class MyWaitPage(WaitPage):
+#    template_name = 'transcription/MyWaitPage.html'
+#    group_by_arrival_time = True
+
+#    def is_displayed(self):
+#        if ( self.round_number == 1 ):
+#            return True    
+#    def after_all_players_arrive(self):
+#        pass
 
 class ManagerChat(Page):
     def is_displayed(self):
-        if ( self.player.id_in_group == 1 ) & ( self.round_number == 1 ):
+        if ( self.player.id_in_group == 1 ) & ( self.round_number == 1 ) & (self.player.outofthegame == 0):
             self.player.participant.vars['payoff'] = 0
             return True
 
@@ -51,7 +104,7 @@ class ManagerChat(Page):
 
 class EmployeeChat(Page):
     def is_displayed(self):
-        if ( self.player.id_in_group != 1 ) & ( self.round_number == 1 ):
+        if self.player.id_in_group != 1 and self.round_number == 1 and not self.player.outofthegame:
             return True
     def vars_for_template(self):
         bid = self.player.participant.vars.get('bid')
@@ -66,7 +119,7 @@ class EmployeeChat(Page):
             channel = self.group.id_in_subsession
 
         return { 'bid': bid,
-                 'enum': (self.player.id_in_subsession-1)%4,
+                 'enum': self.player.id_in_group-1,
                  'channel': channel,
                  'split_chats': Constants.split_chats }
 
@@ -76,7 +129,7 @@ class EmployeeChat(Page):
 class Transcribe(Page):
 
     def is_displayed(self):        
-        if (self.player.id_in_group != 1) & (self.player.in_round(1).emp_price != 0):
+        if self.player.id_in_group != 1 and self.player.in_round(1).emp_price != 0  and not self.player.outofthegame:
             return True
 
     form_model = models.Player
@@ -117,7 +170,7 @@ class Results(Page):
 #    form_fields = ['mgr_bonus']
 
     def is_displayed(self):
-        if ( self.player.id_in_group != 1) & ( self.round_number == Constants.num_rounds )  & (self.player.in_round(1).emp_price != 0):
+        if self.player.id_in_group != 1 and self.round_number == Constants.num_rounds and self.player.in_round(1).emp_price != 0 and not self.player.outofthegame:
             return True
 
     def vars_for_template(self):
@@ -153,14 +206,20 @@ class Results(Page):
 
 class ManagerResults(Page):
     def is_displayed(self):
-        if ( self.player.id_in_group == 1) & ( self.round_number == Constants.num_rounds ):
+        if ( self.player.id_in_group == 1) & ( self.round_number == Constants.num_rounds )  & (self.player.outofthegame == 0):
             return True
 
 page_sequence = [
-    MyWaitPage,
+    StartWP,
+#    WaitPage,
+#    MyWaitPage,
     ManagerChat,
     EmployeeChat,
     Transcribe,
     Results,
     ManagerResults
 ]
+
+
+
+

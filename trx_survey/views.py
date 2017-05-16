@@ -4,22 +4,7 @@ from ._builtin import Page, WaitPage
 from .models import Constants, Player
 from django.conf import settings
 
-#------
-from otree.views.abstract import get_view_from_url
-from otree.api import widgets
-import random
-from django.http import HttpResponseRedirect, Http404, HttpResponse
-from django.template.response import TemplateResponse
-from django.core.urlresolvers import reverse
-from otree.models_concrete import (
-    PageCompletion, CompletedSubsessionWaitPage,
-    CompletedGroupWaitPage, PageTimeout, UndefinedFormModel,
-    ParticipantLockModel, GlobalLockModel, ParticipantToPlayerLookup
-)
-import time
-import channels
-import json
-#------
+
 
 class Introduction(Page):   # extra manager intro
     pass
@@ -42,7 +27,7 @@ class Bid(Page):
 page_sequence = [
 
     Introduction,
-    Sample,
-    Preferences,
+#    Sample,
+#    Preferences,
     Bid
 ]
