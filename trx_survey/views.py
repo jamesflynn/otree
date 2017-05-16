@@ -27,7 +27,7 @@ class Bid(Page):
 page_sequence = [
 
     Introduction,
-#    Sample,
-#    Preferences,
+    Sample,
+    Preferences,
     Bid
 ]
