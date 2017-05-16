@@ -73,7 +73,7 @@ class Constants(BaseConstants):
     name_in_url = 'transcription'
     players_per_group = 4
     num_rounds = 5
-    split_chats = True
+    split_chats = settings.SPLIT
     reference_texts = {}
 
     reference_texts[0,0] = get_trx("1_1")
