@@ -31,7 +31,6 @@ if environ.get('SPLIT_CHATS') not in {True, '1'}:
 else:
     SPLIT = True
 
-WAITTIME = environ.get('WAIT_TIME')
 
 
 # don't share this with anybody.
