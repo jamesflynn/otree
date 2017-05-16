@@ -12,7 +12,7 @@ daphne==0.14.3
 dj-database-url==0.4.1
 Django==1.8.8
 django-countries==4.0
-django-easymoney==0.7.1
+django-easymoney==0.7.2
 django-floppyforms==1.7.0
 django-idmap==0.4.1
 django-vanilla-views==1.0.4
@@ -20,11 +20,10 @@ djangorestframework==3.4.6
 honcho==0.7.1
 huey==1.2.0
 IPy==0.83
-mock==2.0.0
 msgpack-python==0.4.8
-otree-core==1.3
-otreechat
+otree-core==1.3.0b2
 otree-save-the-change==1.1.3
+otreechat==0.1.7
 packaging==16.8
 pbr==1.10.0
 py==1.4.31
@@ -41,7 +40,6 @@ six==1.10.0
 Twisted==16.2.0
 txaio==2.5.1
 unicodecsv==0.14.1
-wheel==0.29.0
 whitenoise==3.2.1
 ws4py==0.3.5
 XlsxWriter==0.9.3
