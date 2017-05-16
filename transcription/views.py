@@ -52,21 +52,6 @@ class StartWP(CustomWaitPage):
         if len(waiting_players) == Constants.players_per_group:
             return waiting_players
 
-#class WaitPage(WaitPage):
-#    group_by_arrival_time = True
-#    def is_displayed(self):
-#        return self.subsession.round_number == 1 and not self.player.outofthegame
-
-#class MyWaitPage(WaitPage):
-#    template_name = 'transcription/MyWaitPage.html'
-#    group_by_arrival_time = True
-
-#    def is_displayed(self):
-#        if ( self.round_number == 1 ):
-#            return True    
-#    def after_all_players_arrive(self):
-#        pass
-
 class ManagerChat(Page):
     def is_displayed(self):
         self.player.participant.vars['payoff'] = 0
