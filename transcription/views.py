@@ -122,13 +122,17 @@ class Transcribe(Page):
     form_fields = ['transcribed_text']
 
     def vars_for_template(self):
-
+        if self.round_number == 1:
+            header_text = 'You will be shown 5 pages of transcription, one on each screen.  When you click next, your transcription of the first page will be submitted and you will be presented with a fresh link to a second page of transcription and a blank text box, and so on until the fifth page. After you submit the fifth page we ask a few basic demographic questions and give you a code to submit your HIT.'
+        else:
+            header_text = ''
         return {
 #            'image_path': 'https://dl.dropboxusercontent.com/u/1688949/trx/{}_{}.png'.format(self.player.id_in_group-1,
 #                self.round_number),
             'image_path': 'https://dl.dropboxusercontent.com/u/1688949/trx/4_{}.png'.format(self.round_number),
 #            'reference_text': safe_json(Constants.reference_texts[self.player.id_in_group-2,self.round_number - 1]),
             'reference_text': safe_json(Constants.reference_texts[0,self.round_number - 1]),
+            'header_text': header_text,
             'debug': settings.DEBUG,
             'required_accuracy': 100 * (1 - Constants.allowed_error_rates[self.round_number - 1]),
             'agreed': self.player.in_round(1).emp_price
