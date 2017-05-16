@@ -24,6 +24,12 @@ table th {
     border: 0px;
     vertical-align: top;
 }
+
+.column-left{ float: left; width: 33%; }
+.column-right{ float: right; width: 33%; }
+.column-center{ display: inline-block; width: 34%; }
+
+
     </style>
 
 {% endblock %}
@@ -40,62 +46,83 @@ table th {
 <p>You and the employees are all here now, you can chat with them separately.</p>
 
 <br>
-<strong>Employee 1</strong>
-{% chat nickname="Manager" channel=channel1 %}<br>
 
-<table>
-    <thead>
-        <tr>
-            <th colspan="4">Employee 1 bid {{ bid2 }} for each page</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-    <td>Offered/agreed price:</td>
-    <td>{% formfield player.man_emp1_price with label="" %}</td>
-    <td>Did they accept/agree?</td>
-    <td>{% formfield player.man_emp1_accpt with label="" %}</td>
-        </tr>
-    </tbody>
-</table>
-<hr>
-<strong>Employee 2</strong>
-{% chat nickname="Manager" channel=channel2 %}<br>
 
-<table>
-    <thead>
-        <tr>
-            <th colspan="4">Employee 2 bid {{ bid3 }} for each page</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-    <td>Offered/agreed price:</td>
-    <td>{% formfield player.man_emp2_price with label="" %}</td>
-    <td>Did they accept/agree?</td>
-    <td>{% formfield player.man_emp2_accpt with label="" %}</td>
-        </tr>
-    </tbody>
-</table>
-<hr>
-<strong>Employee 3</strong>
+<div id="wrapper">
+    <div class="column-left">
 
-{% chat nickname="Manager" channel=channel3 %}<br>
-<table>
-    <thead>
-        <tr>
-            <th colspan="4">Employee 3 bid {{ bid4 }} for each page</th>
+        <strong>Employee 1</strong>
+        {% chat nickname="Manager" channel=channel1 %}<br>
+
+        <table>
+            <thead>
+                <tr>
+                    <th colspan="2">Employee 1 bid {{ bid2 }} per page</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+            <td>Offered/agreed price:</td>
+            <td>{% formfield player.man_emp1_price with label="" %}</td>
         </tr>
-    </thead>
-    <tbody>
         <tr>
-    <td>Offered/agreed price:</td>
-    <td>{% formfield player.man_emp3_price with label="" %}</td>
-    <td>Did they accept/agree?</td>
-    <td>{% formfield player.man_emp3_accpt with label="" %}</td>
-        </tr>
-    </tbody>
-</table>
+            <td>Did they accept/agree?</td>
+            <td>{% formfield player.man_emp1_accpt with label="" %}</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+    <div  class="column-center">
+
+        <strong>Employee 2</strong>
+        {% chat nickname="Manager" channel=channel2 %}<br>
+
+        <table>
+            <thead>
+                <tr>
+                    <th colspan="2">Employee 2 bid {{ bid3 }} per page</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+            <td>Offered/agreed price:</td>
+            <td>{% formfield player.man_emp2_price with label="" %}</td>
+                    </tr>
+        <tr>
+            <td>Did they accept/agree?</td>
+            <td>{% formfield player.man_emp2_accpt with label="" %}</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+    <div  class="column-right">
+
+        <strong>Employee 3</strong>
+
+        {% chat nickname="Manager" channel=channel3 %}<br>
+        <table>
+            <thead>
+                <tr>
+                    <th colspan="2">Employee 3 bid {{ bid4 }} per page</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+            <td>Offered/agreed price:</td>
+            <td>{% formfield player.man_emp3_price with label="" %}</td>
+                    </tr>
+        <tr>
+            <td>Did they accept/agree?</td>
+            <td>{% formfield player.man_emp3_accpt with label="" %}</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+</div>
+
 {% else %}
 
 

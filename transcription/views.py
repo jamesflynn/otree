@@ -69,10 +69,11 @@ class StartWP(CustomWaitPage):
 
 class ManagerChat(Page):
     def is_displayed(self):
-        if ( self.player.id_in_group == 1 ) & ( self.round_number == 1 ) & (self.player.outofthegame == 0):
-            self.player.participant.vars['payoff'] = 0
+        self.player.participant.vars['payoff'] = 0
+        if self.player.id_in_group == 1 and self.round_number == 1 and not self.player.outofthegame:
             return True
 
+        
     def vars_for_template(self):
 
         bid2 = self.group.get_player_by_id(2).participant.vars.get('bid')
@@ -91,7 +92,7 @@ class ManagerChat(Page):
                 'bid2': bid2,
                 'bid3': bid3,
                 'bid4': bid4,
-                'mgr_bonus': self.player.participant.vars['payoff'],
+                'mgr_bonus': self.player.participant.vars.get('payoff'),
                 'channel1': channel1,
                 'channel2': channel2,
                 'channel3': channel3,
