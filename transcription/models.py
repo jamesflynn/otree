@@ -84,7 +84,7 @@ class Constants(BaseConstants):
     reference_texts[0,4] = get_trx("1_5")
 
     allowed_error_rates = [3,3,3,3,3]
-    startwp_timer = 720
+    startwp_timer = settings.WAITTIME
 
 class Subsession(BaseSubsession):
     pass

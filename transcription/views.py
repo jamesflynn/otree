@@ -190,18 +190,12 @@ class Results(Page):
                 'bonus': self.player.payoff,
                 'mgr_bonus' : self.group.get_player_by_id(1).payoff}
 
-class ManagerResults(Page):
-    def is_displayed(self):
-        if self.player.id_in_group == 1 and self.round_number == Constants.num_rounds and not self.player.outofthegame:
-            return True
-
 page_sequence = [
     StartWP,
     ManagerChat,
     EmployeeChat,
     Transcribe,
-    Results,
-    ManagerResults
+    Results
 ]
 
 
