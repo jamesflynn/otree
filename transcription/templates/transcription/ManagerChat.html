@@ -36,7 +36,7 @@ table th {
 
 {% block content %}
 <p>You are the Manager. {% if split_chats %}Please negotiate with the 3 Employees below in the 3 chat windows.{% else %}Please negotiate with the 3 employees below.{% endif %} They should be there now.</p>
-<p>You have a budget of <strong>$5 per page</strong>. Part of that will cover the wages to the Employees, and you can keep the rest.</p>
+<p>You have a budget of <strong>$5 per page</strong>. The employees are not aware of your budget. Part of that will cover the wages to the Employees, and you can keep the rest.</p>
 
 <p>After this chat workers will be taken to a screen to transcribe scanned pages, which will be checked for accuracy.  For each page completed above 95% accuracy, you will receive the difference between $5 and the price you agreed to with that person.  If the work is not submitted, or does not achieve at least 95% accuracy, no one will be paid for that page. For example, if you agree to $4 per page for all three workers, who then complete the work, you will be paid: ($5-$4) x (3 people) x (5 pages each) = $15</p>
 
@@ -62,7 +62,7 @@ table th {
             </thead>
             <tbody>
                 <tr>
-            <td>Offered/agreed price:</td>
+            <td>Most you offered:</td>
             <td>{% formfield player.man_emp1_price with label="" %}</td>
         </tr>
         <tr>
@@ -86,7 +86,7 @@ table th {
             </thead>
             <tbody>
                 <tr>
-            <td>Offered/agreed price:</td>
+            <td>Most you offered:</td>
             <td>{% formfield player.man_emp2_price with label="" %}</td>
                     </tr>
         <tr>
@@ -110,7 +110,7 @@ table th {
             </thead>
             <tbody>
                 <tr>
-            <td>Offered/agreed price:</td>
+            <td>Most you offered:</td>
             <td>{% formfield player.man_emp3_price with label="" %}</td>
                     </tr>
         <tr>
@@ -137,7 +137,7 @@ table th {
             <td colspan="4"><strong>Employee 1</strong> bid {{ bid2 }} for each page</td>
         </tr>
         <tr>
-            <td>Offered/agreed price</td>
+            <td>Most you offered:</td>
             <td>{% formfield player.man_emp1_price with label="" %}</td>
             <td>Did they accept/agree?</td>
             <td>{% formfield player.man_emp1_accpt with label="" %}</td>
@@ -146,7 +146,7 @@ table th {
             <td colspan="4"><strong>Employee 2</strong> bid {{ bid3 }} for each page</td>
         </tr>
         <tr>
-            <td>Offered/agreed price</td>
+            <td>Most you offered:</td>
             <td>{% formfield player.man_emp2_price with label="" %}</td>
             <td>Did they accept/agree?</td>
             <td>{% formfield player.man_emp2_accpt with label="" %}</td>
@@ -155,7 +155,7 @@ table th {
             <td colspan="4"><strong>Employee 3</strong> bid {{ bid4 }} for each page</td>
         </tr>
         <tr>
-              <td>Offered/agreed price</td>
+              <td>Most you offered:</td>
               <td>{% formfield player.man_emp3_price with label="" %}</td>
               <td>Did they accept/agree?</td>
               <td>{% formfield player.man_emp3_accpt with label="" %}</td>
