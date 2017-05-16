@@ -207,13 +207,11 @@ class Results(Page):
 
 class ManagerResults(Page):
     def is_displayed(self):
-        if ( self.player.id_in_group == 1) & ( self.round_number == Constants.num_rounds )  & (self.player.outofthegame == 0):
+        if self.player.id_in_group == 1 and self.round_number == Constants.num_rounds and not self.player.outofthegame:
             return True
 
 page_sequence = [
     StartWP,
-#    WaitPage,
-#    MyWaitPage,
     ManagerChat,
     EmployeeChat,
     Transcribe,
