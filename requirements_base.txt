@@ -22,7 +22,7 @@ huey==1.2.0
 IPy==0.83
 mock==2.0.0
 msgpack-python==0.4.8
-otree-core==1.2.8
+otree-core==1.3.0
 otreechat
 otree-save-the-change==1.1.3
 packaging==16.8
