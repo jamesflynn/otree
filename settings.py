@@ -159,12 +159,6 @@ SESSION_CONFIGS = [
         'app_sequence': ['exit_survey'],
 #        'use_browser_bots': True,
     },
-    {
-        'name': 'customwp',
-        'display_name': "Testing timeout on waiting page",
-        'num_demo_participants': 3,
-        'app_sequence': ['customwp'],
-    },
 
 ]
 
