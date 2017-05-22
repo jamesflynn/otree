@@ -166,6 +166,14 @@ SESSION_CONFIGS = [
         'app_sequence': ['exit_survey'],
 #        'use_browser_bots': True,
     },
+#{
+#        'name': 'traits',
+#        'display_name': "Traits",
+#        'num_demo_participants': 1,
+#        'app_sequence': ['traits'],
+#        'use_browser_bots': True,
+#    },
+
 
 ]
 
