@@ -9,7 +9,7 @@
 {% block content %}
 
 {% if split_chats %}
-<p>A manager is here, please negotiate a price per page, to do the transcription.</p>
+<p>A manager is here.</p>
 {% else %}
 <p>Everyone is here. You, 2 other employees, and a manager.</p>
 {% endif %}
@@ -23,7 +23,7 @@
   If there is a discrepancy between what you enter and what the manager enters, then you will <strong>not</strong> receive a bonus for work completed. <strong>Please make sure you agree!</strong>
 </p>
 
-	{% formfield player.emp_price with label="Enter the amount you bid here. If you've forgotten it you can ask the manager" %}
+	{% formfield player.emp_price with label="Enter the amount you confirm here. Enter 0 if you cannot agree" %}
 
     <p><b>You and the manager must agree on your per-page price before you proceed!</b> If your work does not achieve at least 95% accuracy, you will not be paid for that page. Selecting Done will end your chat session, you cannot come back.</p>
     <div>

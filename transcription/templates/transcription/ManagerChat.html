@@ -32,15 +32,23 @@ table th {
 
     </style>
 
+
+
+
 {% endblock %}
 
 {% block content %}
-<p>You are the Manager. Please chat with the 3 employees below. They should be there now.</p>
-<p>You have a maximum budget of <strong>$5 per page</strong>. The employees were not aware of your budget when they bid. Please look at the bids and confirm each bid amount with the employees in the chat window, then enter them in the form, and accept any that were $5 or less. Please tell the employee to do the same (in their form).</p>
+<p>You are the Manager. Please chat with the 3 employees below. They should be here now.</p>
+<p>You have a maximum budget of <strong>$5 per page.</strong> The employees were not aware
+of your budget when they bid. Please <strong>confirm each employee's bid
+amount in the chat window</strong> and <strong>accept</strong> any that were <strong>$5 or less</strong>.  If,
+and only if, the worker agrees to the <strong>original bid</strong> will the budget
+be split between you accordingly.  You are not able to renegotiate.</p>
 
 <p>After this chat employees will be taken to a screen to transcribe scanned pages, which will be checked for accuracy.  For each page completed above 95% accuracy, they will receive their bid and you will receive the difference between $5 and the confirmed price. If the work is not submitted, or does not achieve at least 95% accuracy, no one will be paid for that page. For example, if you confirm $4 per page for all three workers, who then complete the work, you will be paid: ($5-$4) x (3 people) x (5 pages each) = $15</p>
 
-<p>If some of the employees bid too high, you can still profit from your other agreements, and you will still be paid for the HIT. Please inform the employees that bid more than $5 that their bids were too high, and they should complete the HIT without doing any transcription.</p>
+<p>If some of the employees bid too high, you can still profit from your other agreements, and you will still be paid for the HIT. Decline bids above your $5 budget. Do not renegotiate.
+</p>
 
 {% if split_chats %}
 <p>You and the employees are all here now, you can chat with them separately.</p>
@@ -62,11 +70,11 @@ table th {
             </thead>
             <tbody>
                 <tr>
-            <td>Confirmed bid:</td>
+            <td>Did you confirm the bid in the chat room? If you did, and it’s not higher than $5, enter it here. (Enter 0 if too high)</td>
             <td>{% formfield player.man_emp1_price with label="" %}</td>
         </tr>
         <tr>
-            <td>Was it &le; $5?</td>
+            <td>Did you agree the worker would do the transcription at this price?</td>
             <td>{% formfield player.man_emp1_accpt with label="" %}</td>
                 </tr>
             </tbody>
@@ -86,11 +94,11 @@ table th {
             </thead>
             <tbody>
                 <tr>
-            <td>Confirmed bid:</td>
+            <td>Did you confirm the bid in the chat room? If you did, and it’s not higher than $5, enter it here. (Enter 0 if too high)</td>
             <td>{% formfield player.man_emp2_price with label="" %}</td>
                     </tr>
         <tr>
-            <td>Was it &le; $5?</td>
+            <td>Did you agree the worker would do the transcription at this price?</td>
             <td>{% formfield player.man_emp2_accpt with label="" %}</td>
                 </tr>
             </tbody>
@@ -110,11 +118,11 @@ table th {
             </thead>
             <tbody>
                 <tr>
-            <td>Confirmed bid:</td>
+            <td>Did you confirm the bid in the chat room? If you did, and it’s not higher than $5, enter it here. (Enter 0 if too high)</td>
             <td>{% formfield player.man_emp3_price with label="" %}</td>
                     </tr>
         <tr>
-            <td>Was it &le; $5?</td>
+            <td>Did you agree the worker would do the transcription at this price?</td>
             <td>{% formfield player.man_emp3_accpt with label="" %}</td>
                 </tr>
             </tbody>
@@ -122,6 +130,8 @@ table th {
 
     </div>
 </div>
+<div style="clear: both;"></div>
+<br>
 
 {% else %}
 
@@ -129,7 +139,7 @@ table th {
 <h3>Chat Room:</h3>
   {% chat nickname="Manager" channel=channel1 %}
 <br>
-<p>Enter the per-page amounts here. (If no deal is reached please enter the highest amount you offered and select No.</p>
+<p>Enter the per-page amounts here.</p>
 
 <table>
     <tbody>
@@ -137,31 +147,32 @@ table th {
             <td colspan="4"><strong>Employee 1</strong> bid {{ bid2 }} for each page</td>
         </tr>
         <tr>
-            <td>Confirmed bid:</td>
+            <td>Did you confirm the bid in the chat room? If you did, and it’s not higher than $5, enter it here. (Enter 0 if too high)</td>
             <td>{% formfield player.man_emp1_price with label="" %}</td>
-            <td>Was it &le; $5?</td>
+            <td>Did you agree the worker would do the transcription at this price?</td>
             <td>{% formfield player.man_emp1_accpt with label="" %}</td>
         </tr>
         <tr>
             <td colspan="4"><strong>Employee 2</strong> bid {{ bid3 }} for each page</td>
         </tr>
         <tr>
-            <td>Confirmed bid:</td>
+            <td>Did you confirm the bid in the chat room? If you did, and it’s not higher than $5, enter it here. (Enter 0 if too high)</td>
             <td>{% formfield player.man_emp2_price with label="" %}</td>
-            <td>Was it &le; $5?</td>
+            <td>Did you agree the worker would do the transcription at this price?</td>
             <td>{% formfield player.man_emp2_accpt with label="" %}</td>
         </tr>
         <tr>
             <td colspan="4"><strong>Employee 3</strong> bid {{ bid4 }} for each page</td>
         </tr>
         <tr>
-              <td>Confirmed bid:</td>
+              <td>Did you confirm the bid in the chat room? If you did, and it’s not higher than $5, enter it here. (Enter 0 if too high)</td>
               <td>{% formfield player.man_emp3_price with label="" %}</td>
-              <td>Was it &le; $5?</td>
+              <td>Did you agree the worker would do the transcription at this price?</td>
               <td>{% formfield player.man_emp3_accpt with label="" %}</td>
         </tr>
     </tbody>
 </table>
+
 
 {% endif %}
 
