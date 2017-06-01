@@ -1,0 +1,121 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+{% block scripts %}
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script>
+    Highcharts.chart('container', {
+    chart: {
+        spacingBottom: 30
+    },
+    title: {
+        text: 'Your Personality'
+    },
+    subtitle: {
+        text: '',
+        floating: true,
+        align: 'right',
+        verticalAlign: 'bottom',
+        y: 15
+    },
+    legend: {
+        layout: 'vertical',
+        align: 'left',
+        verticalAlign: 'top',
+        x: 210,
+        y: 100,
+        floating: true,
+        borderWidth: 1,
+        backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'
+    },
+    xAxis: {
+        categories: ['Friendliness', 'Authenticity', 'Nondefensiveness', 'Warmth', 'Flexibility', 'Generosity', 'Honesty', 'Independence', 'Chillness', 'Good Humor', 'Adult', 'Realistc', 'Sexually Alive', 'Outgoing', 'Respectful', 'Addiction Free', 'Accepting', 'Good Judgement', 'Attractive', 'Self-Assertive', 'Active']
+    },
+    yAxis: {
+        title: {
+            text: 'Score'
+        },
+        labels: {
+            formatter: function () {
+                return this.value;
+            }
+        }
+    },
+    tooltip: {
+        formatter: function () {
+            return '<b>' + this.series.name + '</b><br/>' +
+                this.x + ': ' + this.y;
+        }
+    },
+    plotOptions: {
+        area: {
+            fillOpacity: 0.5
+        }
+    },
+    credits: {
+        enabled: false
+    },
+    series: [{
+        name: 'you think',
+        data: [	{{v01|json}},
+        		{{v02|json}},
+        		{{v03|json}},
+        		{{v04|json}},
+        		{{v05|json}},
+        		{{v06|json}},
+        		{{v07|json}},
+        		{{v08|json}},
+        		{{v09|json}},
+        		{{v10|json}},
+        		{{v11|json}},
+        		{{v12|json}},
+        		{{v13|json}},
+        		{{v14|json}},
+        		{{v15|json}},
+        		{{v16|json}},
+        		{{v17|json}},
+        		{{v18|json}},
+        		{{v19|json}},
+        		{{v20|json}},
+        		{{v21|json}}
+        		]
+    }, {
+        name: 'your partner thinks',
+        data: [ {{w01|json}},
+                {{w02|json}},
+                {{w03|json}},
+                {{w04|json}},
+                {{w05|json}},
+                {{w06|json}},
+                {{w07|json}},
+                {{w08|json}},
+                {{w09|json}},
+                {{w10|json}},
+                {{w11|json}},
+                {{w12|json}},
+                {{w13|json}},
+                {{w14|json}},
+                {{w15|json}},
+                {{w16|json}},
+                {{w17|json}},
+                {{w18|json}},
+                {{w19|json}},
+                {{w20|json}},
+                {{w21|json}}
+                ]
+        }]
+});
+</script>
+{% endblock %}
+{% block title %}
+    What You and Your Partner Think About You
+{% endblock %}
+
+{% block content %}
+<div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+
+    {% next_button %}
+{% endblock %}
+
+
+

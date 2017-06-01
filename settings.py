@@ -112,7 +112,7 @@ ROOMS = [
 # https://boto.readthedocs.org/en/latest/ref/mturk.html?highlight=mturk#module-boto.mturk.qualification
 
 mturk_hit_settings = {
-    'keywords': ['easy', 'bonus', 'choice', 'study'],
+    'keywords': ['transcription', 'bonus', 'negotiation', 'study'],
     'title': 'Management and Transcription',
     'description': 'You will be assigned to either manage or directly carry out transcription',
     'frame_height': 600,
@@ -139,7 +139,7 @@ mturk_hit_settings = {
 
 SESSION_CONFIG_DEFAULTS = {
     'real_world_currency_per_point': 0.00,
-    'participation_fee': 0.00,
+    'participation_fee': 1.00,
     'doc': "",
     'mturk_hit_settings': mturk_hit_settings,
 }
@@ -166,13 +166,13 @@ SESSION_CONFIGS = [
         'app_sequence': ['exit_survey'],
 #        'use_browser_bots': True,
     },
-#{
-#        'name': 'traits',
-#        'display_name': "Traits",
-#        'num_demo_participants': 1,
-#        'app_sequence': ['traits'],
+{
+        'name': 'traits',
+        'display_name': "Traits",
+        'num_demo_participants': 2,
+        'app_sequence': ['traits'],
 #        'use_browser_bots': True,
-#    },
+    },
 
 
 ]

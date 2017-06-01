@@ -115,7 +115,7 @@ class EmployeeChat(Page):
 class Transcribe(Page):
 
     def is_displayed(self):        
-        if self.player.id_in_group != 1 and self.player.in_round(1).emp_price != 0  and not self.player.outofthegame:
+        if self.player.id_in_group != 1 and self.player.in_round(1).emp_price != 0  and not self.player.outofthegame and self.player.in_round(1).emp_price <= 5.0 :
             return True
 
     form_model = models.Player
@@ -160,7 +160,7 @@ class Results(Page):
 #    form_fields = ['mgr_bonus']
 
     def is_displayed(self):
-        if self.player.id_in_group != 1 and self.round_number == Constants.num_rounds and self.player.in_round(1).emp_price != 0 and not self.player.outofthegame:
+        if self.player.id_in_group != 1 and self.round_number == Constants.num_rounds and self.player.in_round(1).emp_price != 0 and not self.player.outofthegame and self.player.in_round(1).emp_price <= 5.0 :
             return True
 
     def vars_for_template(self):

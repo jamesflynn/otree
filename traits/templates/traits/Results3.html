@@ -1,0 +1,125 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+{% block scripts %}
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script>
+
+
+    Highcharts.chart('container', {
+    chart: {
+        spacingBottom: 30
+    },
+    title: {
+        text: 'Your Personality'
+    },
+    subtitle: {
+        text: '',
+        floating: true,
+        align: 'right',
+        verticalAlign: 'bottom',
+        y: 15
+    },
+    legend: {
+        layout: 'vertical',
+        align: 'left',
+        verticalAlign: 'top',
+        x: 210,
+        y: 100,
+        floating: true,
+        borderWidth: 1,
+        backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'
+    },
+    xAxis: {
+        categories: ['Friendliness', 'Authenticity', 'Nondefensiveness', 'Warmth', 'Flexibility', 'Generosity', 'Honesty', 'Independence', 'Chillness', 'Good Humor', 'Adult', 'Realistc', 'Sexually Alive', 'Outgoing', 'Respectful', 'Addiction Free', 'Accepting', 'Good Judgement', 'Attractive', 'Self-Assertive', 'Active']
+    },
+    yAxis: {
+        title: {
+            text: 'Score'
+        },
+        labels: {
+            formatter: function () {
+                return this.value;
+            }
+        }
+    },
+    tooltip: {
+        formatter: function () {
+            return '<b>' + this.series.name + '</b><br/>' +
+                this.x + ': ' + this.y;
+        }
+    },
+    plotOptions: {
+        area: {
+            fillOpacity: 0.5
+        }
+    },
+    credits: {
+        enabled: false
+    },
+    series: [{
+        name: 'Comparison for me',
+        data: [	{{diff01|json}},
+        		{{diff02|json}},
+        		{{diff03|json}},
+        		{{diff04|json}},
+        		{{diff05|json}},
+        		{{diff06|json}},
+        		{{diff07|json}},
+        		{{diff08|json}},
+        		{{diff09|json}},
+        		{{diff10|json}},
+        		{{diff11|json}},
+        		{{diff12|json}},
+        		{{diff13|json}},
+        		{{diff14|json}},
+        		{{diff15|json}},
+        		{{diff16|json}},
+        		{{diff17|json}},
+        		{{diff18|json}},
+        		{{diff19|json}},
+        		{{diff20|json}},
+        		{{diff21|json}}
+        		]
+    },
+{
+        name: 'Comparison for my partner',
+        data: [ {{xiff01|json}},
+                {{xiff02|json}},
+                {{xiff03|json}},
+                {{xiff04|json}},
+                {{xiff05|json}},
+                {{xiff06|json}},
+                {{xiff07|json}},
+                {{xiff08|json}},
+                {{xiff09|json}},
+                {{xiff10|json}},
+                {{xiff11|json}},
+                {{xiff12|json}},
+                {{xiff13|json}},
+                {{xiff14|json}},
+                {{xiff15|json}},
+                {{xiff16|json}},
+                {{xiff17|json}},
+                {{xiff18|json}},
+                {{xiff19|json}},
+                {{xiff20|json}},
+                {{xiff21|json}}
+                ]
+    }
+    ]
+});
+</script>
+{% endblock %}
+{% block title %}
+    What's the Difference?
+{% endblock %}
+
+{% block content %}
+<div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+
+    {% next_button %}
+{% endblock %}
+
+
+

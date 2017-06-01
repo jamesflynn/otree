@@ -1,0 +1,39 @@
+<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+<div class="container">
+  <p class="bg-warning">Note: In the Stack Snippet, you may need to click "Full Page", otherwise the container is narrow enough to cause Bootstrap to stack the labels over the fields.</p>
+    <form class="form-horizontal" role="form">
+
+    <div class="form-group">
+        <label class="col-sm-4 control-label">Season</label>
+        <div class="col-sm-8">
+            <label class="radio-inline"> <input type="radio" name="season" id="seasonSummer" value="summer" checked> Summer </label>
+            <label class="radio-inline"> <input type="radio" name="season" id="seasonWinter" value="winter"> Winter </label>
+            <label class="radio-inline"> <input type="radio" name="season" id="seasonSpringFall" value="spring-fall" disabled> Spring-Fall </label>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-sm-4 control-label">Clouds</label>
+        <div class="col-sm-8">
+            <label class="radio-inline"> <input type="radio" name="clouds" id="Clear" value="clear" checked> Clear </label>
+            <label class="radio-inline"> <input type="radio" name="clouds" id="Cloudy" value="cloudy"> Cloudy </label>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-sm-4 control-label">Load Forecast</label>
+        <div class="col-sm-8">
+            <div class="radio">
+                <label> <input type="radio" name="load" id="WeekdayAverage" value="weekdayaverage" checked> Weekday - Average </label>
+            </div>
+            <div class="radio">
+                <label> <input type="radio" name="load" id="WeekdayPeak" value="weekdaypeak"> Weekday - Peak </label>
+            </div>
+            <div class="radio">
+                <label> <input type="radio" name="load" id="Weekend" value="weekend" disabled> Weekend </label>
+            </div>
+        </div>
+    </div>
+
+    </form>
+</div>

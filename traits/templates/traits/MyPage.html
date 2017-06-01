@@ -1,0 +1,669 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+{% block title %}
+     {{ who }} Personality Traits{% endblock %}
+
+{% block styles %}
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:5;margin:5px auto;}
+.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 0px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;}
+
+.tg .tg-yw4l{vertical-align:center; text-align: right; padding: 6px 10px 6px 0px ; width:auto;}
+.tg .tg-yw4b{vertical-align:center; padding: 6px 3px 6px 3px ;}
+.tg .tg-yw4r{vertical-align:top; padding: 6px 0px 6px 10px ;width:auto;} 
+
+.donate-now {
+     margin:5px 0 0 0;
+     padding:0;
+}
+.donate-now td {
+  /*   float:left; */
+    margin:5px 5px 5px 5px;
+    width:40px;
+    height:40px;
+    position:relative;
+}
+.donate-now label, .donate-now input {
+    display:block;
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+}
+.donate-now input[type="radio"] {
+    opacity:0.011;
+    z-index:100;
+}
+.donate-now input[type="radio"]:checked + label {
+    background:#ccc;
+}
+.donate-now label {
+     padding:5px;
+     border:1px solid #CCC; 
+     cursor:pointer;
+     z-index:90;
+}
+.donate-now label:hover {
+     background:#DDD;
+}
+
+
+@media screen and (max-width: 767px) {.tg {width: auto !important;}.tg col {width: auto !important;}.tg-wrap {overflow-x: auto;-webkit-overflow-scrolling: touch;margin: auto 0px;}}
+.hideme {
+    visibility: hidden;
+    position:absolute;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+
+<span class="hideme"> {{form.errors}}</span>
+<form>
+
+<div class="donate-now tg-wrap">
+	<table class="tg" width ="100%" >
+
+<tr>
+<td class="tg-yw4l">Friendly</td>
+<td class="tg-yw4b">
+    <input type="radio" id="frndlyHstl1" name="frndlyHstl" value="4"/>
+    <label for="frndlyHstl1" class="control-label"></label>
+</td>
+<td class="tg-yw4b">
+    <input type="radio" id="frndlyHstl2" name="frndlyHstl" value="3"/>
+    <label for="frndlyHstl2"></label>
+</td>
+<td class="tg-yw4b">
+    <input type="radio" id="frndlyHstl3" required name="frndlyHstl" value="2"/>
+    <label for="frndlyHstl3"></label>
+</td>
+<td class="tg-yw4b">
+    <input type="radio" id="frndlyHstl4" name="frndlyHstl" value="1"/>
+    <label for="frndlyHstl4"></label>
+</td>
+<td class="tg-yw4b">
+    <input type="radio" id="frndlyHstl5" name="frndlyHstl" value="0"/>
+    <label for="frndlyHstl5"></label>
+</td>
+    <td class="tg-yw4r mytooltip">Hostile</td>
+</tr>
+</div>
+
+
+<!-- Authentic / Phony -->
+
+<tr>
+<td class="tg-yw4l">Authentic</td>
+<td class="tg-yw4b">
+    <input type="radio" id="authPhny1" name="authPhny" value="4"/>
+    <label for="authPhny1"></label>
+</td>
+<td class="tg-yw4b">
+    <input type="radio" id="authPhny2" name="authPhny" value="3"/>
+    <label for="authPhny2"></label>
+</td>
+<td class="tg-yw4b">
+    <input type="radio" id="authPhny3" required name="authPhny" value="2"/>
+    <label for="authPhny3"></label>
+</td>
+<td class="tg-yw4b">
+    <input type="radio" id="authPhny4" name="authPhny" value="1"/>
+    <label for="authPhny4"></label>
+</td>
+<td class="tg-yw4b">
+    <input type="radio" id="authPhny5" name="authPhny" value="0"/>
+    <label for="authPhny5"></label>
+</td>
+    <td class="tg-yw4r">Phony</td>
+</tr>
+
+<!--  /  -->
+
+<tr>
+<td class="tg-yw4l">Nondefensive</td>
+<td class="tg-yw4b">
+    <input type="radio" id="nonDfDf1" name="nonDfDf" value="4"/>
+    <label for="nonDfDf1"></label>
+</td>
+<td class="tg-yw4b">
+    <input type="radio" id="nonDfDf2" name="nonDfDf" value="3"/>
+    <label for="nonDfDf2"></label>
+</td>
+<td class="tg-yw4b">
+    <input type="radio" id="nonDfDf3" required name="nonDfDf" value="2"/>
+    <label for="nonDfDf3"></label>
+</td>
+<td class="tg-yw4b">
+    <input type="radio" id="nonDfDf4" name="nonDfDf" value="1"/>
+    <label for="nonDfDf4"></label>
+</td>
+<td class="tg-yw4b">
+    <input type="radio" id="nonDfDf5" name="nonDfDf" value="0"/>
+    <label for="nonDfDf5"></label>
+</td>
+    <td class="tg-yw4r">Defensive</td>
+</tr>
+
+<!--  /  -->
+
+<tr>
+<td class="tg-yw4l">Warm, affectionate</td>
+<td class="tg-yw4b">
+    <input type="radio" id="wrmCld1" name="wrmCld" value="4"/>
+    <label for="wrmCld1"></label>
+</td>
+<td class="tg-yw4b">
+    <input type="radio" id="wrmCld2" name="wrmCld" value="3"/>
+    <label for="wrmCld2"></label>
+</td>
+<td class="tg-yw4b">
+    <input type="radio" id="wrmCld3" required name="wrmCld" value="2"/>
+    <label for="wrmCld3"></label>
+</td>
+<td class="tg-yw4b">
+    <input type="radio" id="wrmCld4" name="wrmCld" value="1"/>
+    <label for="wrmCld4"></label>
+</td>
+<td class="tg-yw4b">
+    <input type="radio" id="wrmCld5" name="wrmCld" value="0"/>
+    <label for="wrmCld5"></label>
+</td>
+    <td class="tg-yw4r">Cold, unaffectionate</td>
+</tr>
+
+<!--  /  -->
+
+<tr>
+<td class="tg-yw4l">Flexible</td>
+<td class="tg-yw4b">
+    <input type="radio" id="flxRgd1" name="flxRgd" value="4"/>
+    <label for="flxRgd1"></label>
+</td>
+<td class="tg-yw4b">
+    <input type="radio" id="flxRgd2" name="flxRgd" value="3"/>
+    <label for="flxRgd2"></label>
+</td>
+<td class="tg-yw4b">
+    <input type="radio" id="flxRgd3" required name="flxRgd" value="2"/>
+    <label for="flxRgd3"></label>
+</td>
+<td class="tg-yw4b">
+    <input type="radio" id="flxRgd4" name="flxRgd" value="1"/>
+    <label for="flxRgd4"></label>
+</td>
+<td class="tg-yw4b">
+    <input type="radio" id="flxRgd5" name="flxRgd" value="0"/>
+    <label for="flxRgd5"></label>
+</td>
+    <td class="tg-yw4r">Rigid</td>
+</tr>
+
+<!--  /  -->
+
+<tr>
+<td class="tg-yw4l">Generous</td>
+<td class="tg-yw4b">
+    <input type="radio" id="genStgy1" name="genStgy" value="4"/>
+    <label for="genStgy1"></label>
+</td>
+<td class="tg-yw4b">
+    <input type="radio" id="genStgy2" name="genStgy" value="3"/>
+    <label for="genStgy2"></label>
+</td>
+<td class="tg-yw4b">
+    <input type="radio" id="genStgy3" required name="genStgy" value="2"/>
+    <label for="genStgy3"></label>
+</td>
+<td class="tg-yw4b">
+    <input type="radio" id="genStgy4" name="genStgy" value="1"/>
+    <label for="genStgy4"></label>
+</td>
+<td class="tg-yw4b">
+    <input type="radio" id="genStgy5" name="genStgy" value="0"/>
+    <label for="genStgy5"></label>
+</td>
+    <td class="tg-yw4r">Stingy</td>
+</tr>
+
+<!--  /  -->
+
+<tr>
+<td class="tg-yw4l">Honest</td>
+<td class="tg-yw4b">
+    <input type="radio" id="hnstDcptv1" name="hnstDcptv" value="4"/>
+    <label for="hnstDcptv1"></label>
+</td>
+<td class="tg-yw4b">
+    <input type="radio" id="hnstDcptv2" name="hnstDcptv" value="3"/>
+    <label for="hnstDcptv2"></label>
+</td>
+<td class="tg-yw4b">
+    <input type="radio" id="hnstDcptv3" required name="hnstDcptv" value="2"/>
+    <label for="hnstDcptv3"></label>
+</td>
+<td class="tg-yw4b">
+    <input type="radio" id="hnstDcptv4" name="hnstDcptv" value="1"/>
+    <label for="hnstDcptv4"></label>
+</td>
+<td class="tg-yw4b">
+    <input type="radio" id="hnstDcptv5" name="hnstDcptv" value="0"/>
+    <label for="hnstDcptv5"></label>
+</td>
+    <td class="tg-yw4r">Deceptive</td>
+</tr>
+
+<!--  /  -->
+
+<tr>
+<td class="tg-yw4l">Independent</td>
+<td class="tg-yw4b">
+    <input type="radio" id="indpDep1" name="indpDep" value="4"/>
+    <label for="indpDep1"></label>
+</td>
+<td class="tg-yw4b">
+    <input type="radio" id="indpDep2" name="indpDep" value="3"/>
+    <label for="indpDep2"></label>
+</td>
+<td class="tg-yw4b">
+    <input type="radio" id="indpDep3" required name="indpDep" value="2"/>
+    <label for="indpDep3"></label>
+</td>
+<td class="tg-yw4b">
+    <input type="radio" id="indpDep4" name="indpDep" value="1"/>
+    <label for="indpDep4"></label>
+</td>
+<td class="tg-yw4b">
+    <input type="radio" id="indpDep5" name="indpDep" value="0"/>
+    <label for="indpDep5"></label>
+</td>
+    <td class="tg-yw4r">Dependent</td>
+</tr>
+
+<!--  Relxed / Tense  -->
+
+<tr>
+<td class="tg-yw4l">Relaxed</td>
+<td class="tg-yw4b">
+    <input type="radio" id="rlxTns1" name="rlxTns" value="4"/>
+    <label for="rlxTns1"></label>
+</td>
+<td class="tg-yw4b">
+    <input type="radio" id="rlxTns2" name="rlxTns" value="3"/>
+    <label for="rlxTns2"></label>
+</td>
+<td class="tg-yw4b">
+    <input type="radio" id="rlxTns3" required name="rlxTns" value="2"/>
+    <label for="rlxTns3"></label>
+</td>
+<td class="tg-yw4b">
+    <input type="radio" id="rlxTns4" name="rlxTns" value="1"/>
+    <label for="rlxTns4"></label>
+</td>
+<td class="tg-yw4b">
+    <input type="radio" id="rlxTns5" name="rlxTns" value="0"/>
+    <label for="rlxTns5"></label>
+</td>
+    <td class="tg-yw4r">Tense</td>
+</tr>
+
+<!--  /  -->
+
+<tr>
+<td class="tg-yw4l">Good-Humoured, cheerful</td>
+<td class="tg-yw4b">
+    <input type="radio" id="gdHumUnhppy1" name="gdHumUnhppy" value="4"/>
+    <label for="gdHumUnhppy1"></label>
+</td>
+<td class="tg-yw4b">
+    <input type="radio" id="gdHumUnhppy2" name="gdHumUnhppy" value="3"/>
+    <label for="gdHumUnhppy2"></label>
+</td>
+<td class="tg-yw4b">
+    <input type="radio" id="gdHumUnhppy3" required name="gdHumUnhppy" value="2"/>
+    <label for="gdHumUnhppy3"></label>
+</td>
+<td class="tg-yw4b">
+    <input type="radio" id="gdHumUnhppy4" name="gdHumUnhppy" value="1"/>
+    <label for="gdHumUnhppy4"></label>
+</td>
+<td class="tg-yw4b">
+    <input type="radio" id="gdHumUnhppy5" name="gdHumUnhppy" value="0"/>
+    <label for="gdHumUnhppy5"></label>
+</td>
+    <td class="tg-yw4r">Unhappy</td>
+</tr>
+
+<!--  /  -->
+
+<tr>
+<td class="tg-yw4l">Adult, responsible for oneself</td>
+<td class="tg-yw4b">
+    <input type="radio" id="adltChld1" name="adltChld" value="4"/>
+    <label for="adltChld1"></label>
+</td>
+<td class="tg-yw4b">
+    <input type="radio" id="adltChld2" name="adltChld" value="3"/>
+    <label for="adltChld2"></label>
+</td>
+<td class="tg-yw4b">
+    <input type="radio" id="adltChld3" required name="adltChld" value="2"/>
+    <label for="adltChld3"></label>
+</td>
+<td class="tg-yw4b">
+    <input type="radio" id="adltChld4" name="adltChld" value="1"/>
+    <label for="adltChld4"></label>
+</td>
+<td class="tg-yw4b">
+    <input type="radio" id="adltChld5" name="adltChld" value="0"/>
+    <label for="adltChld5"></label>
+</td>
+    <td class="tg-yw4r">Childish, victimized</td>
+</tr>
+
+<!--  /  -->
+
+<tr>
+<td class="tg-yw4l">Realistic self-appraisal</td>
+<td class="tg-yw4b">
+    <input type="radio" id="rlstNrcsstc1" name="rlstNrcsstc" value="4"/>
+    <label for="rlstNrcsstc1"></label>
+</td>
+<td class="tg-yw4b">
+    <input type="radio" id="rlstNrcsstc2" name="rlstNrcsstc" value="3"/>
+    <label for="rlstNrcsstc2"></label>
+</td>
+<td class="tg-yw4b">
+    <input type="radio" id="rlstNrcsstc3" required name="rlstNrcsstc" value="2"/>
+    <label for="rlstNrcsstc3"></label>
+</td>
+<td class="tg-yw4b">
+    <input type="radio" id="rlstNrcsstc4" name="rlstNrcsstc" value="1"/>
+    <label for="rlstNrcsstc4"></label>
+</td>
+<td class="tg-yw4b">
+    <input type="radio" id="rlstNrcsstc5" name="rlstNrcsstc" value="0"/>
+    <label for="rlstNrcsstc5"></label>
+</td>
+    <td class="tg-yw4r">Narcissistic</td>
+</tr>
+
+<!--  Sexually Alive / Sexually repressed  -->
+
+<tr>
+<td class="tg-yw4l">Sexually alive</td>
+<td class="tg-yw4b">
+    <input type="radio" id="sexAlvRprsd1" name="sexAlvRprsd" value="4"/>
+    <label for="sexAlvRprsd1"></label>
+</td>
+<td class="tg-yw4b">
+    <input type="radio" id="sexAlvRprsd2" name="sexAlvRprsd" value="3"/>
+    <label for="sexAlvRprsd2"></label>
+</td>
+<td class="tg-yw4b">
+    <input type="radio" id="sexAlvRprsd3" required name="sexAlvRprsd" value="2"/>
+    <label for="sexAlvRprsd3"></label>
+</td>
+<td class="tg-yw4b">
+    <input type="radio" id="sexAlvRprsd4" name="sexAlvRprsd" value="1"/>
+    <label for="sexAlvRprsd4"></label>
+</td>
+<td class="tg-yw4b">
+    <input type="radio" id="sexAlvRprsd5" name="sexAlvRprsd" value="0"/>
+    <label for="sexAlvRprsd5"></label>
+</td>
+    <td class="tg-yw4r">Sexually repressed</td>
+</tr>
+
+<!--  /  -->
+
+<tr>
+<td class="tg-yw4l">Outgoing</td>
+<td class="tg-yw4b">
+    <input type="radio" id="outgngInwrd1" name="outgngInwrd" value="4"/>
+    <label for="outgngInwrd1"></label>
+</td>
+<td class="tg-yw4b">
+    <input type="radio" id="outgngInwrd2" name="outgngInwrd" value="3"/>
+    <label for="outgngInwrd2"></label>
+</td>
+<td class="tg-yw4b">
+    <input type="radio" id="outgngInwrd3" required name="outgngInwrd" value="2"/>
+    <label for="outgngInwrd3"></label>
+</td>
+<td class="tg-yw4b">
+    <input type="radio" id="outgngInwrd4" name="outgngInwrd" value="1"/>
+    <label for="outgngInwrd4"></label>
+</td>
+<td class="tg-yw4b">
+    <input type="radio" id="outgngInwrd5" name="outgngInwrd" value="0"/>
+    <label for="outgngInwrd5"></label>
+</td>
+    <td class="tg-yw4r">Inward</td>
+</tr>
+
+<!--  /  -->
+
+<tr>
+<td class="tg-yw4l">Respectful of boundaries</td>
+<td class="tg-yw4b">
+    <input type="radio" id="rspflIntrsv1" name="rspflIntrsv" value="4"/>
+    <label for="rspflIntrsv1"></label>
+</td>
+<td class="tg-yw4b">
+    <input type="radio" id="rspflIntrsv2" name="rspflIntrsv" value="3"/>
+    <label for="rspflIntrsv2"></label>
+</td>
+<td class="tg-yw4b">
+    <input type="radio" id="rspflIntrsv3" required name="rspflIntrsv" value="2"/>
+    <label for="rspflIntrsv3"></label>
+</td>
+<td class="tg-yw4b">
+    <input type="radio" id="rspflIntrsv4" name="rspflIntrsv" value="1"/>
+    <label for="rspflIntrsv4"></label>
+</td>
+<td class="tg-yw4b">
+    <input type="radio" id="rspflIntrsv5" name="rspflIntrsv" value="0"/>
+    <label for="rspflIntrsv5"></label>
+</td>
+    <td class="tg-yw4r">Intrusive</td>
+</tr>
+
+<!--  /  -->
+
+<tr>
+<td class="tg-yw4l">Free of addiction</td>
+<td class="tg-yw4b">
+    <input type="radio" id="frAddAdd1" name="frAddAdd" value="4"/>
+    <label for="frAddAdd1"></label>
+</td>
+<td class="tg-yw4b">
+    <input type="radio" id="frAddAdd2" name="frAddAdd" value="3"/>
+    <label for="frAddAdd2"></label>
+</td>
+<td class="tg-yw4b">
+    <input type="radio" id="frAddAdd3" required name="frAddAdd" value="2"/>
+    <label for="frAddAdd3"></label>
+</td>
+<td class="tg-yw4b">
+    <input type="radio" id="frAddAdd4" name="frAddAdd" value="1"/>
+    <label for="frAddAdd4"></label>
+</td>
+<td class="tg-yw4b">
+    <input type="radio" id="frAddAdd5" name="frAddAdd" value="0"/>
+    <label for="frAddAdd5"></label>
+</td>
+    <td class="tg-yw4r">Prone to addictions (alcohol, drugs, routines)</td>
+</tr>
+
+<!--  /  -->
+
+<tr>
+<td class="tg-yw4l">Accepting</td>
+<td class="tg-yw4b">
+    <input type="radio" id="acptJdgmntl1" name="acptJdgmntl" value="4"/>
+    <label for="acptJdgmntl1"></label>
+</td>
+<td class="tg-yw4b">
+    <input type="radio" id="acptJdgmntl2" name="acptJdgmntl" value="3"/>
+    <label for="acptJdgmntl2"></label>
+</td>
+<td class="tg-yw4b">
+    <input type="radio" id="acptJdgmntl3" required name="acptJdgmntl" value="2"/>
+    <label for="acptJdgmntl3"></label>
+</td>
+<td class="tg-yw4b">
+    <input type="radio" id="acptJdgmntl4" name="acptJdgmntl" value="1"/>
+    <label for="acptJdgmntl4"></label>
+</td>
+<td class="tg-yw4b">
+    <input type="radio" id="acptJdgmntl5" name="acptJdgmntl" value="0"/>
+    <label for="acptJdgmntl5"></label>
+</td>
+    <td class="tg-yw4r">Judgmental</td>
+</tr>
+
+<!--  /  -->
+
+<tr>
+<td class="tg-yw4l">Good judgement</td>
+<td class="tg-yw4b">
+    <input type="radio" id="gdJdgImplsv1" name="gdJdgImplsv" value="4"/>
+    <label for="gdJdgImplsv1"></label>
+</td>
+<td class="tg-yw4b">
+    <input type="radio" id="gdJdgImplsv2" name="gdJdgImplsv" value="3"/>
+    <label for="gdJdgImplsv2"></label>
+</td>
+<td class="tg-yw4b">
+    <input type="radio" id="gdJdgImplsv3" required name="gdJdgImplsv" value="2"/>
+    <label for="gdJdgImplsv3"></label>
+</td>
+<td class="tg-yw4b">
+    <input type="radio" id="gdJdgImplsv4" name="gdJdgImplsv" value="1"/>
+    <label for="gdJdgImplsv4"></label>
+</td>
+<td class="tg-yw4b">
+    <input type="radio" id="gdJdgImplsv5" name="gdJdgImplsv" value="0"/>
+    <label for="gdJdgImplsv5"></label>
+</td>
+    <td class="tg-yw4r">Impulsive</td>
+</tr>
+
+<!--  /  -->
+
+<tr>
+<td class="tg-yw4l">Attractive</td>
+<td class="tg-yw4b">
+    <input type="radio" id="attrSlppy1" name="attrSlppy" value="4"/>
+    <label for="attrSlppy1"></label>
+</td>
+<td class="tg-yw4b">
+    <input type="radio" id="attrSlppy2" name="attrSlppy" value="3"/>
+    <label for="attrSlppy2"></label>
+</td>
+<td class="tg-yw4b">
+    <input type="radio" id="attrSlppy3" required name="attrSlppy" value="2"/>
+    <label for="attrSlppy3"></label>
+</td>
+<td class="tg-yw4b">
+    <input type="radio" id="attrSlppy4" name="attrSlppy" value="1"/>
+    <label for="attrSlppy4"></label>
+</td>
+<td class="tg-yw4b">
+    <input type="radio" id="attrSlppy5" name="attrSlppy" value="0"/>
+    <label for="attrSlppy5"></label>
+</td>
+    <td class="tg-yw4r">Poor appearance, neglectful</td>
+</tr>
+
+<!--  /  -->
+
+<tr>
+<td class="tg-yw4l">Self assertive</td>
+<td class="tg-yw4b">
+    <input type="radio" id="assrtDny1" name="assrtDny" value="4"/>
+    <label for="assrtDny1"></label>
+</td>
+<td class="tg-yw4b">
+    <input type="radio" id="assrtDny2" name="assrtDny" value="3"/>
+    <label for="assrtDny2"></label>
+</td>
+<td class="tg-yw4b">
+    <input type="radio" id="assrtDny3" required name="assrtDny" value="2"/>
+    <label for="assrtDny3"></label>
+</td>
+<td class="tg-yw4b">
+    <input type="radio" id="assrtDny4" name="assrtDny" value="1"/>
+    <label for="assrtDny4"></label>
+</td>
+<td class="tg-yw4b">
+    <input type="radio" id="assrtDny5" name="assrtDny" value="0"/>
+    <label for="assrtDny5"></label>
+</td>
+    <td class="tg-yw4r">Self denying</td>
+</tr>
+
+<!--  /  -->
+
+<tr>
+<td class="tg-yw4l">Active</td>
+<td class="tg-yw4b">
+    <input type="radio" id="actvPssv1" name="actvPssv" value="4"/>
+    <label for="actvPssv1"></label>
+</td>
+<td class="tg-yw4b">
+    <input type="radio" id="actvPssv2" name="actvPssv" value="3"/>
+    <label for="actvPssv2"></label>
+</td>
+<td class="tg-yw4b">
+    <input type="radio" id="actvPssv3" required name="actvPssv" value="2"/>
+    <label for="actvPssv3"></label>
+</td>
+<td class="tg-yw4b">
+    <input type="radio" id="actvPssv4" name="actvPssv" value="1"/>
+    <label for="actvPssv4"></label>
+</td>
+<td class="tg-yw4b">
+    <input type="radio" id="actvPssv5" name="actvPssv" value="0"/>
+    <label for="actvPssv5"></label>
+</td>
+    <td class="tg-yw4r">Passive</td>
+</tr>
+
+</table></div>
+    </form>
+
+    
+    {% next_button %}
+    {% if debug %}
+        <div class="box papereffect">
+            <h4>Explanation for researchers (shown in debug mode only)</h4>
+            <p>
+                You are playing in debug mode, so you can skip the manual
+                transcription
+                by clicking <a href="#" id="prefill">this link</a>
+                and clicking "next".
+            </p>
+
+            <p>
+                A subject can only advance to the next screen if the
+                transcription is {{ required_accuracy }}% accurate.
+            </p>
+        </div>
+    {% else %}
+        <p>Fuckers</p>
+    {% endif %}
+{% endblock %}
+
+{% block scripts %}
+<script>
+    $(document).ready(function () {
+        $('a#prefill').click(function () {
+            $('#frndlyHstl3').val('2');
+        })
+    });
+</script>
+{% endblock %}
+
