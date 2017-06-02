@@ -21,7 +21,7 @@
     {% csrf_token %}
     <div>
         <br>
-     <button class="btn btn-primary" id='finish_study' style="display:none;" name="endofgame" value="True">
+         <button class="btn btn-primary" id='finish_study' style="display:none;" name="endofgame" value="{{player.pk}}">
        Bypass Group Section
      </button>
     </div><br>
