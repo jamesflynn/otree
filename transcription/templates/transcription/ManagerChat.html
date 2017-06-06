@@ -41,92 +41,44 @@ table th {
 <p>You are the Manager. Please chat with the 3 employees below. They should be here now.</p>
 <p>You have a maximum budget of <strong>$5 per page.</strong> The employees were not aware
 of your budget when they bid. Please <strong>confirm each employee's bid
-amount in the chat window</strong> and <strong>accept</strong> any that were <strong>$5 or less</strong>.  If,
-and only if, the worker agrees to the <strong>original bid</strong> will the budget
-be split between you accordingly.  You are not able to renegotiate.</p>
+amount in the chat window</strong> and <strong>accept</strong> any that were <strong>$5 or less</strong>.
 
 <p>After this chat employees will be taken to a screen to transcribe scanned pages, which will be checked for accuracy.  For each page completed above 95% accuracy, they will receive their bid and you will receive the difference between $5 and the confirmed price. If the work is not submitted, or does not achieve at least 95% accuracy, no one will be paid for that page. For example, if you confirm $4 per page for all three workers, who then complete the work, you will be paid: ($5-$4) x (3 people) x (5 pages each) = $15</p>
 
 <p>If some of the employees bid too high, you can still profit from your other agreements, and you will still be paid for the HIT. Decline bids above your $5 budget. Do not renegotiate.
 </p>
+       <input type="hidden" name="man_emp1_price" value="{{ fbid2 }}" id="id_my_hidden_input1"/>
+       <input type="hidden" name="man_emp2_price" value="{{ fbid3 }}" id="id_my_hidden_input2"/>
+       <input type="hidden" name="man_emp3_price" value="{{ fbid4 }}" id="id_my_hidden_input3"/>
 
 {% if split_chats %}
 <p>You and the employees are all here now, you can chat with them separately.</p>
 
 <br>
 
-
 <div id="wrapper">
     <div class="column-left">
 
         <strong>Employee 1</strong>
         {% chat nickname="Manager" channel=channel1 %}<br>
-
-        <table>
-            <thead>
-                <tr>
-                    <th colspan="2">Employee 1 bid {{ bid2 }} per page</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-            <td>Did you confirm the bid in the chat room? If you did, and it’s not higher than $5, enter it here. (Enter 0 if too high)</td>
-            <td>{% formfield player.man_emp1_price with label="" %}</td>
-        </tr>
-        <tr>
-            <td>Did you agree the worker would do the transcription at this price?</td>
-            <td>{% formfield player.man_emp1_accpt with label="" %}</td>
-                </tr>
-            </tbody>
-        </table>
+        <strong>Employee 1</strong> bid {{ bid2 }} for each page and it was {% if matched2 %}{% else %}not {% endif %} accepted. Please confirm this in the chat.<br><br>
+        <input type="checkbox" name="man_emp1_accpt" value="True" id="id_man_emp1_accpt" required/>&nbsp; Did you confirm {% if matched2 %}{% else %}that it was <strong>not accepted</strong> {% endif %}with the worker in the chat?
 
     </div>
     <div  class="column-center">
 
         <strong>Employee 2</strong>
         {% chat nickname="Manager" channel=channel2 %}<br>
-
-        <table>
-            <thead>
-                <tr>
-                    <th colspan="2">Employee 2 bid {{ bid3 }} per page</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-            <td>Did you confirm the bid in the chat room? If you did, and it’s not higher than $5, enter it here. (Enter 0 if too high)</td>
-            <td>{% formfield player.man_emp2_price with label="" %}</td>
-                    </tr>
-        <tr>
-            <td>Did you agree the worker would do the transcription at this price?</td>
-            <td>{% formfield player.man_emp2_accpt with label="" %}</td>
-                </tr>
-            </tbody>
-        </table>
+        <strong>Employee 2</strong> bid {{ bid3 }} for each page and it was {% if matched3 %}{% else %}not {% endif %} accepted. Please confirm this in the chat.<br><br><br>
+        <input type="checkbox" name="man_emp2_accpt" value="True" id="id_man_emp2_accpt" required/>&nbsp; Did you confirm {% if matched3 %}{% else %}that it was <strong>not accepted</strong> {% endif %}with the worker in the chat?
 
     </div>
     <div  class="column-right">
 
         <strong>Employee 3</strong>
-
         {% chat nickname="Manager" channel=channel3 %}<br>
-        <table>
-            <thead>
-                <tr>
-                    <th colspan="2">Employee 3 bid {{ bid4 }} per page</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-            <td>Did you confirm the bid in the chat room? If you did, and it’s not higher than $5, enter it here. (Enter 0 if too high)</td>
-            <td>{% formfield player.man_emp3_price with label="" %}</td>
-                    </tr>
-        <tr>
-            <td>Did you agree the worker would do the transcription at this price?</td>
-            <td>{% formfield player.man_emp3_accpt with label="" %}</td>
-                </tr>
-            </tbody>
-        </table>
+        <strong>Employee 3</strong> bid {{ bid4 }} for each page and it was {% if matched4 %}{% else %}not {% endif %} accepted. Please confirm this in the chat.<br><br>
+        <input type="checkbox" name="man_emp3_accpt" value="True" id="id_man_emp3_accpt" required/>&nbsp; Did you confirm {% if matched4 %}{% else %}that it was <strong>not accepted</strong> {% endif %}with the worker in the chat?
 
     </div>
 </div>
@@ -134,50 +86,25 @@ be split between you accordingly.  You are not able to renegotiate.</p>
 <br>
 
 {% else %}
-
-
+  
 <h3>Chat Room:</h3>
   {% chat nickname="Manager" channel=channel1 %}
 <br>
-<p>Enter the per-page amounts here.</p>
 
-<table>
-    <tbody>
-        <tr>
-            <td colspan="4"><strong>Employee 1</strong> bid {{ bid2 }} for each page</td>
-        </tr>
-        <tr>
-            <td>Did you confirm the bid in the chat room? If you did, and it’s not higher than $5, enter it here. (Enter 0 if too high)</td>
-            <td>{% formfield player.man_emp1_price with label="" %}</td>
-            <td>Did you agree the worker would do the transcription at this price?</td>
-            <td>{% formfield player.man_emp1_accpt with label="" %}</td>
-        </tr>
-        <tr>
-            <td colspan="4"><strong>Employee 2</strong> bid {{ bid3 }} for each page</td>
-        </tr>
-        <tr>
-            <td>Did you confirm the bid in the chat room? If you did, and it’s not higher than $5, enter it here. (Enter 0 if too high)</td>
-            <td>{% formfield player.man_emp2_price with label="" %}</td>
-            <td>Did you agree the worker would do the transcription at this price?</td>
-            <td>{% formfield player.man_emp2_accpt with label="" %}</td>
-        </tr>
-        <tr>
-            <td colspan="4"><strong>Employee 3</strong> bid {{ bid4 }} for each page</td>
-        </tr>
-        <tr>
-              <td>Did you confirm the bid in the chat room? If you did, and it’s not higher than $5, enter it here. (Enter 0 if too high)</td>
-              <td>{% formfield player.man_emp3_price with label="" %}</td>
-              <td>Did you agree the worker would do the transcription at this price?</td>
-              <td>{% formfield player.man_emp3_accpt with label="" %}</td>
-        </tr>
-    </tbody>
-</table>
+        <strong>Employee 1</strong> bid {{ bid2 }} for each page and it was {% if matched2 %}{% else %}not {% endif %} accepted. Please confirm this in the chat.<br><br>
+        <input type="checkbox" name="man_emp1_accpt" value="True" id="id_man_emp1_accpt" required/>&nbsp; Did you confirm {% if matched2 %}{% else %}that it was <strong>not accepted</strong> {% endif %}with the worker in the chat?<br><br>
+
+        <strong>Employee 2</strong> bid {{ bid3 }} for each page and it was {% if matched3 %}{% else %}not {% endif %} accepted. Please confirm this in the chat.<br><br>
+        <input type="checkbox" name="man_emp2_accpt" value="True" id="id_man_emp2_accpt" required/>&nbsp; Did you confirm {% if matched3 %}{% else %}that it was <strong>not accepted</strong> {% endif %}with the worker in the chat?<br><br>
+
+        <strong>Employee 3</strong> bid {{ bid4 }} for each page and it was {% if matched4 %}{% else %}not {% endif %} accepted. Please confirm this in the chat.<br><br>
+        <input type="checkbox" name="man_emp3_accpt" value="True" id="id_man_emp3_accpt" required/>&nbsp; Did you confirm {% if matched4 %}{% else %}that it was <strong>not accepted</strong> {% endif %}with the worker in the chat?
 
 
 {% endif %}
 
 <p>
-  If there is a discrepancy between what you enter and what the employee enters, then neither party will receive any additional bonus for work completed. Please make sure you confirm!
+  Please make sure you confirm the bid amounts, and the acceptance or rejection of the bid in the chat!
 </p>
 
     <p>You will receive any payment owed via an MTurk Bonus</p>

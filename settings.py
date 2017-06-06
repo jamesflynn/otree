@@ -119,15 +119,15 @@ mturk_hit_settings = {
     'preview_template': 'global/MTurkPreview.html',
     'minutes_allotted_per_assignment': 48*60,
     'expiration_hours': 7*24, # 7 days
-#    'grant_qualification_id': '3NF07PFA1K2EGWJFNBQ4JN81TXKETV',# to prevent retakes FOR REAL
+    'grant_qualification_id': '3NF07PFA1K2EGWJFNBQ4JN81TXKETV',# to prevent retakes FOR REAL
 #    'grant_qualification_id': '3VFIQRXYYK60OWH5USLZQ69Z1BU2ZB', ## sandbox
     'qualification_requirements': [
-#         qualification.LocaleRequirement("EqualTo", "US"),
-#         qualification.PercentAssignmentsApprovedRequirement("GreaterThanOrEqualTo", 50),
+         qualification.LocaleRequirement("EqualTo", "US"),
+         qualification.PercentAssignmentsApprovedRequirement("GreaterThanOrEqualTo", 50),
         # qualification.NumberHitsApprovedRequirement("GreaterThanOrEqualTo", 5),
 #        qualification.Requirement('2F1QJWKUDD8XADTFD2Q0G6UTO95ALH', 'Exists'),   # MASTER
-        qualification.Requirement('3B9KD9M9B0GOWZ0N4GFJ74F19NXNJR', 'Exists') # Follow up survey qual
-#        qualification.Requirement('3NF07PFA1K2EGWJFNBQ4JN81TXKETV', 'DoesNotExist') # UNCOMMENT FOR REAL
+#        qualification.Requirement('3B9KD9M9B0GOWZ0N4GFJ74F19NXNJR', 'Exists') # Follow up survey qual
+        qualification.Requirement('3NF07PFA1K2EGWJFNBQ4JN81TXKETV', 'DoesNotExist') # UNCOMMENT FOR REAL
 #        qualification.Requirement('3VFIQRXYYK60OWH5USLZQ69Z1BU2ZB', 'DoesNotExist')  # SANDBOX
     ]
 }

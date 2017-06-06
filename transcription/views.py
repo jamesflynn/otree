@@ -20,6 +20,9 @@ from otree.models_concrete import (
 import time
 import channels
 import json
+from re import sub
+from decimal import Decimal
+
 
 class CustomWaitPage(WaitPage):
     template_name = 'transcription/CustomWaitPage.html'
@@ -63,8 +66,11 @@ class ManagerChat(Page):
     def vars_for_template(self):
 
         bid2 = self.group.get_player_by_id(2).participant.vars.get('bid')
+        matched2 = bid2 <= 5.0
         bid3 = self.group.get_player_by_id(3).participant.vars.get('bid')
+        matched3 = bid3 <= 5.0
         bid4 = self.group.get_player_by_id(4).participant.vars.get('bid')
+        matched4 = bid4 <= 5.0
         if Constants.split_chats:
             channel1 = self.group.id_in_subsession + 1000
             channel2 = self.group.id_in_subsession + 7777
@@ -75,9 +81,15 @@ class ManagerChat(Page):
             channel3 = self.group.id_in_subsession            
 
         return {
+                'fbid2': float(bid2),
                 'bid2': bid2,
+                'matched2': matched2,
+                'fbid3': float(bid3),
                 'bid3': bid3,
+                'matched3': matched3,
+                'fbid4': float(bid4),
                 'bid4': bid4,
+                'matched4': matched4,
                 'mgr_bonus': self.player.participant.vars.get('payoff'),
                 'channel1': channel1,
                 'channel2': channel2,
@@ -89,12 +101,14 @@ class ManagerChat(Page):
 #    form_fields = ['man_emp1_price','man_emp2_price','man_emp3_price']    
     form_fields = ['man_emp1_price','man_emp1_accpt','man_emp2_price','man_emp2_accpt','man_emp3_price','man_emp3_accpt']
 
+
 class EmployeeChat(Page):
     def is_displayed(self):
         if self.player.id_in_group != 1 and self.round_number == 1 and not self.player.outofthegame:
             return True
     def vars_for_template(self):
         bid = self.player.participant.vars.get('bid')
+        match = bid <= 5.0
         if Constants.split_chats:
             if self.player.id_in_group == 2:
                 channel = self.group.id_in_subsession + 1000
@@ -105,7 +119,9 @@ class EmployeeChat(Page):
         else:
             channel = self.group.id_in_subsession
 
-        return { 'bid': bid,
+        return { 'fbid': float(bid),
+                 'bid': bid,
+                 'match': match,
                  'enum': self.player.id_in_group-1,
                  'channel': channel,
                  'split_chats': Constants.split_chats }
@@ -195,12 +211,18 @@ class Results(Page):
                 'bonus': self.player.payoff,
                 'mgr_bonus' : self.group.get_player_by_id(1).payoff}
 
+class Sorry(Page):
+    def is_displayed(self):
+        if self.player.id_in_group != 1 and self.round_number == 1 and self.player.in_round(1).emp_price == 0 and not self.player.outofthegame  :
+            return True
+
 page_sequence = [
     StartWP,
     ManagerChat,
     EmployeeChat,
     Transcribe,
-    Results
+    Results,
+    Sorry
 ]
 
 

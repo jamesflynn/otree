@@ -14,18 +14,18 @@
 <p>Everyone is here. You, 2 other employees, and a manager.</p>
 {% endif %}
 
-<p>Your initial bid to the manager was {{ bid }} for each page. The manager is here to discuss it with you. You must agree to a price in order to submit the transcription work for a bonus.  It is okay to disagree and exit. You will still be paid for the HIT.</p>
+<p>Your initial bid to the manager was {{ bid }} for each page. The manager is here to discuss it with you. If they don't show up you can click through to finish the HIT</p>
 
 	{% chat nickname=player.chat_nickname channel=channel %}
 
 <br>
-<p>
-  If there is a discrepancy between what you enter and what the manager enters, then you will <strong>not</strong> receive a bonus for work completed. <strong>Please make sure you agree!</strong>
-</p>
+	{% if match %}
+    <input type="hidden" name="emp_price" value="{{ fbid }}" id="id_my_hidden_input"/>
+    {% else %}
+    <input type="hidden" name="emp_price" value="0" id="id_my_hidden_input"/>
+    {% endif %}
 
-	{% formfield player.emp_price with label="Enter the amount you confirm here. Enter 0 if you cannot agree" %}
-
-    <p><b>You and the manager must agree on your per-page price before you proceed!</b> If your work does not achieve at least 95% accuracy, you will not be paid for that page. Selecting Done will end your chat session, you cannot come back.</p>
+    <p>Please wait to hear from the manager if your bid was accepted or not. If your work does not achieve at least 95% accuracy, you will not be paid for that page. Selecting Done will end your chat session, you cannot come back.</p>
     <div>
         <button class="btn btn-warning btn-large">Done</button>
     </div>
