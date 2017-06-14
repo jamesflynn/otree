@@ -126,7 +126,7 @@ mturk_hit_settings = {
 #         qualification.PercentAssignmentsApprovedRequirement("GreaterThanOrEqualTo", 50),
         # qualification.NumberHitsApprovedRequirement("GreaterThanOrEqualTo", 5),
 #        qualification.Requirement('2F1QJWKUDD8XADTFD2Q0G6UTO95ALH', 'Exists'),   # MASTER
-        qualification.Requirement('3B9KD9M9B0GOWZ0N4GFJ74F19NXNJR', 'Exists') # Follow up survey qual
+        qualification.Requirement('3GR2F62BN3IGDW30OAB6NYRSUHMIF3', 'Exists') # Follow up survey qual
 #        qualification.Requirement('3NF07PFA1K2EGWJFNBQ4JN81TXKETV', 'DoesNotExist') # UNCOMMENT FOR REAL
 #        qualification.Requirement('3VFIQRXYYK60OWH5USLZQ69Z1BU2ZB', 'DoesNotExist')  # SANDBOX
     ]
