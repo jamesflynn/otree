@@ -75,6 +75,7 @@ class Constants(BaseConstants):
     players_per_group = 4
     num_rounds = 5
     split_chats = settings.SPLIT
+#    split_chats = True
     reference_texts = {}
 
     reference_texts[0,0] = get_trx("1_1")
@@ -105,13 +106,13 @@ class Player(BasePlayer):
 
     transcribed_text = models.TextField(blank=True)
     levenshtein_distance = models.PositiveIntegerField()
-    emp_price = models.CurrencyField(min=0,max=5)
-    man_emp1_price = models.CurrencyField(min=0,max=5)
-    man_emp1_accpt = models.BooleanField(widget=widgets.RadioSelectHorizontal())
-    man_emp2_price = models.CurrencyField(min=0,max=5)
-    man_emp2_accpt = models.BooleanField(widget=widgets.RadioSelectHorizontal())
-    man_emp3_price = models.CurrencyField(min=0,max=5)
-    man_emp3_accpt = models.BooleanField(widget=widgets.RadioSelectHorizontal())
+    emp_price = models.CurrencyField()
+    man_emp1_price = models.CurrencyField()
+    man_emp1_accpt = models.BooleanField()
+    man_emp2_price = models.CurrencyField()
+    man_emp2_accpt = models.BooleanField()
+    man_emp3_price = models.CurrencyField()
+    man_emp3_accpt = models.BooleanField()
     startwp_timer_set = models.BooleanField(default=False)
     startwp_time = models.PositiveIntegerField()
     outofthegame = models.BooleanField()
