@@ -18,7 +18,7 @@ def validate_nonzero(value):
             params={'value': value},
         )
 
-author = 'James Flynn'
+author = 'James Flynn' 
 
 doc = """
 Transcription Negotiation
