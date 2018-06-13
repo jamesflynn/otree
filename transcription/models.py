@@ -10,7 +10,6 @@ from django.conf import settings
 
 # from settings import SESSION_CONFIGS
 
-
 def validate_nonzero(value):
     if value == 0:
         raise ValidationError(
@@ -18,7 +17,7 @@ def validate_nonzero(value):
             params={'value': value},
         )
 
-author = 'James Flynn'
+author = 'James Flynn' 
 
 doc = """
 Transcription Negotiation
