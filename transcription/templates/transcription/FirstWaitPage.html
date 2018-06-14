@@ -1,5 +1,5 @@
 {% extends 'transcription/CustomWaitPage.html' %}
-{% load staticfiles otree_tags %}
+{% load staticfiles otree %}
 {% block title %}Please wait!{% endblock %}
 {% block styles %}
 <style>
@@ -34,10 +34,10 @@
 
     <script type="text/javascript">
         $(function() {
-          $('div#otree-timeout').show();
+          $('div.otree-timer').show();
             var currentDate = new Date();
             var milliseconds = Math.floor({{ time_left|json }}*1000);
-            $('#otree-timeout').countdown(currentDate.valueOf() + milliseconds, function(event) {
+            $('.otree-timer').countdown(currentDate.valueOf() + milliseconds, function(event) {
 
                 switch(event.type) {
                     case "seconds":
@@ -48,7 +48,7 @@
                         $(this).find('span#minutes').html(event.lasting.hours * 60 + parseInt(event.value));
                         break;
                     case "finished":
-                        $('#otree-timeout').hide(duration=0);
+                        $('.otree-timer').hide(duration=0);
                         $('#finish_study').show();
 
                         break;

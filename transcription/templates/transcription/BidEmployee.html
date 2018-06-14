@@ -1,5 +1,5 @@
 {% extends "global/Page.html" %}
-{% load staticfiles otree_tags %}
+{% load staticfiles otree %}
 
 {% block title %}
     {{player.role}}  Introduction
@@ -13,7 +13,7 @@
 
 <br><br>
 
-    {% formfield player.bid with label="How much is your bid per page, for up to 5 pages?" %}
+    {% formfield player.bid label="How much is your bid per page, for up to 5 pages?" %}
 
     {% next_button %}
 

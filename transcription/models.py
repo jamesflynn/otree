@@ -72,7 +72,7 @@ def get_trx(lookup):
 
 class Constants(BaseConstants):
     name_in_url = 'transcription'
-    players_per_group = 4
+    players_per_group = 2
     num_rounds = 5
     split_chats = settings.SPLIT
 #    split_chats = True
@@ -104,7 +104,7 @@ class Player(BasePlayer):
     def chat_nickname(self):
         return '{} {}'.format(self.role(), self.id_in_group - 1 )
 
-    transcribed_text = models.TextField(blank=True)
+    transcribed_text = models.LongStringField(blank=True)
     levenshtein_distance = models.PositiveIntegerField()
     emp_price = models.CurrencyField()
     man_emp1_price = models.CurrencyField()

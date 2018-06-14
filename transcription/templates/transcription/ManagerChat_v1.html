@@ -1,6 +1,6 @@
 {% extends "global/Page.html" %}
-{% load staticfiles otree_tags %}
-{% load otreechat %}
+{% load staticfiles otree %}
+
 
 {% block title %}
     {{player.role}} - Chat Room
@@ -63,11 +63,11 @@ table th {
             <tbody>
                 <tr>
             <td>Most you offered:</td>
-            <td>{% formfield player.man_emp1_price with label="" %}</td>
+            <td>{% formfield player.man_emp1_price label="" %}</td>
         </tr>
         <tr>
             <td>Did they accept/agree?</td>
-            <td>{% formfield player.man_emp1_accpt with label="" %}</td>
+            <td>{% formfield player.man_emp1_accpt label="" %}</td>
                 </tr>
             </tbody>
         </table>
@@ -87,11 +87,11 @@ table th {
             <tbody>
                 <tr>
             <td>Most you offered:</td>
-            <td>{% formfield player.man_emp2_price with label="" %}</td>
+            <td>{% formfield player.man_emp2_price label="" %}</td>
                     </tr>
         <tr>
             <td>Did they accept/agree?</td>
-            <td>{% formfield player.man_emp2_accpt with label="" %}</td>
+            <td>{% formfield player.man_emp2_accpt label="" %}</td>
                 </tr>
             </tbody>
         </table>
@@ -111,11 +111,11 @@ table th {
             <tbody>
                 <tr>
             <td>Most you offered:</td>
-            <td>{% formfield player.man_emp3_price with label="" %}</td>
+            <td>{% formfield player.man_emp3_price label="" %}</td>
                     </tr>
         <tr>
             <td>Did they accept/agree?</td>
-            <td>{% formfield player.man_emp3_accpt with label="" %}</td>
+            <td>{% formfield player.man_emp3_accpt label="" %}</td>
                 </tr>
             </tbody>
         </table>
@@ -138,27 +138,27 @@ table th {
         </tr>
         <tr>
             <td>Most you offered:</td>
-            <td>{% formfield player.man_emp1_price with label="" %}</td>
+            <td>{% formfield player.man_emp1_price label="" %}</td>
             <td>Did they accept/agree?</td>
-            <td>{% formfield player.man_emp1_accpt with label="" %}</td>
+            <td>{% formfield player.man_emp1_accpt label="" %}</td>
         </tr>
         <tr>
             <td colspan="4"><strong>Employee 2</strong> bid {{ bid3 }} for each page</td>
         </tr>
         <tr>
             <td>Most you offered:</td>
-            <td>{% formfield player.man_emp2_price with label="" %}</td>
+            <td>{% formfield player.man_emp2_price label="" %}</td>
             <td>Did they accept/agree?</td>
-            <td>{% formfield player.man_emp2_accpt with label="" %}</td>
+            <td>{% formfield player.man_emp2_accpt label="" %}</td>
         </tr>
         <tr>
             <td colspan="4"><strong>Employee 3</strong> bid {{ bid4 }} for each page</td>
         </tr>
         <tr>
               <td>Most you offered:</td>
-              <td>{% formfield player.man_emp3_price with label="" %}</td>
+              <td>{% formfield player.man_emp3_price label="" %}</td>
               <td>Did they accept/agree?</td>
-              <td>{% formfield player.man_emp3_accpt with label="" %}</td>
+              <td>{% formfield player.man_emp3_accpt label="" %}</td>
         </tr>
     </tbody>
 </table>

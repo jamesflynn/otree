@@ -1,5 +1,5 @@
 {% extends "global/Page.html" %}
-{% load staticfiles otree_tags %}
+{% load staticfiles otree %}
 
 {% block title %}
     Survey
@@ -7,13 +7,13 @@
 
 {% block content %}
 
-    {% formfield player.experience with label="How much experience do you have managing others?" %}
+    {% formfield player.experience label="How much experience do you have managing others?" %}
 
-    {% formfield player.transExp with label="How much experience do you have doing transcription work?" %}
+    {% formfield player.transExp label="How much experience do you have doing transcription work?" %}
 
-    {% formfield player.eduLevel with label="What is your highest level of education?" %}
+    {% formfield player.eduLevel label="What is your highest level of education?" %}
 
-    {% formfield player.dailyHHEarn with label="On an average work day, how much money does your household earn from employment? (Don't count government payments or other sources)" %}
+    {% formfield player.dailyHHEarn label="On an average work day, how much money does your household earn from employment? (Don't count government payments or other sources)" %}
 
     {% next_button %}
 

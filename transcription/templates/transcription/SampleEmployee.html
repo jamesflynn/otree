@@ -1,5 +1,5 @@
 {% extends "global/Page.html" %}
-{% load staticfiles otree_tags %}
+{% load staticfiles otree %}
 
 {% block title %}
     {{player.role}} Introduction
@@ -11,7 +11,7 @@
 
 	<p>How long do you think it takes for you to transcribe the sample table below at 95% accuracy, equivalent to 1 mistake in every 20 cells? We only need the numbers in the table, none of the column or row headings.</p>
 
-    {% formfield player.howLong with label="How many minutes?" %}
+    {% formfield player.howLong label="How many minutes?" %}
 
     {% next_button %}
 	<img src="{% static "transcription/sample.jpeg" %}"/>

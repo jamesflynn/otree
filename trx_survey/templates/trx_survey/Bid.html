@@ -1,5 +1,5 @@
 {% extends "global/Page.html" %}
-{% load staticfiles otree_tags %}
+{% load staticfiles otree %}
 
 {% block title %}
     Bid for Work
@@ -11,7 +11,7 @@
 
 <p>The manager will start with this information to negotiate a price for your services.</p>
 
-    {% formfield player.bid with label="How much is your bid price per single page?" %}
+    {% formfield player.bid label="How much is your bid price per single page?" %}
 
     {% next_button %}
 

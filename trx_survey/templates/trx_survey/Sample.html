@@ -1,5 +1,5 @@
 {% extends "global/Page.html" %}
-{% load staticfiles otree_tags %}
+{% load staticfiles otree %}
 
 {% block title %}
     Example of Transcription Work
@@ -15,7 +15,7 @@
 
 	<p>Now look at the sample page below. How many minutes do you think would it take you to transcribe the page below? This information will not affect your eligibility for a bonus in any way.</p>
 
-    {% formfield player.howLong with label="How many minutes?" %}
+    {% formfield player.howLong label="How many minutes?" %}
 
     {% next_button %}
     <p><strong>Sample Page:</strong></p>

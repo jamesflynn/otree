@@ -1,5 +1,5 @@
 {% extends "global/Page.html" %}
-{% load staticfiles otree_tags %}
+{% load staticfiles otree %}
 
 {% block title %}
     Cash Preferences
@@ -11,11 +11,11 @@
 
 <p>If you are one of the 20 survey respondents selected at random, we will (also randomly) pick one of these 5 scenarios, and carry it out. So you should answer honestly, because one of your choices might happen!</p>
 
-    {% formfield player.pref1 with label="Which would you prefer?" %}
-    {% formfield player.pref2 with label="Which would you prefer?" %}
-    {% formfield player.pref3 with label="Which would you prefer?" %}
-    {% formfield player.pref4 with label="Which would you prefer?" %}
-    {% formfield player.pref5 with label="Which would you prefer?" %}
+    {% formfield player.pref1 label="Which would you prefer?" %}
+    {% formfield player.pref2 label="Which would you prefer?" %}
+    {% formfield player.pref3 label="Which would you prefer?" %}
+    {% formfield player.pref4 label="Which would you prefer?" %}
+    {% formfield player.pref5 label="Which would you prefer?" %}
 
     {% next_button %}
 

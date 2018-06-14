@@ -32,9 +32,9 @@ EDU_CHOICES = (('','please select'),('someHS','some high school'),('HS','complet
 class Player(BasePlayer):
 
 	yearBorn = models.PositiveIntegerField(min=1916, max=2005)
-	gender = models.CharField(widget=widgets.Select(choices=GENDER_CHOICES))
-	experience = models.CharField(widget=widgets.Select(choices=EXP_CHOICES))
-	transExp = models.CharField(widget=widgets.Select(choices=TRANS_CHOICES))
-	eduLevel = models.CharField(widget=widgets.Select(choices=EDU_CHOICES))
+	gender = models.StringField(widget=widgets.Select(choices=GENDER_CHOICES))
+	experience = models.StringField(widget=widgets.Select(choices=EXP_CHOICES))
+	transExp = models.StringField(widget=widgets.Select(choices=TRANS_CHOICES))
+	eduLevel = models.StringField(widget=widgets.Select(choices=EDU_CHOICES))
 	dailyHHEarn = models.CurrencyField()
 
