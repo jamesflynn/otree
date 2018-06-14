@@ -1,60 +1,64 @@
 {% extends 'transcription/CustomWaitPage.html' %}
-{% load staticfiles otree %}
+{% load static otree %}
 {% block title %}Please wait!{% endblock %}
 {% block styles %}
-<style>
-#left_to_wait{font-weight:bold;}
-</style>
+    <style>
+        #left_to_wait {
+            font-weight: bold;
+        }
+    </style>
 {% endblock %}
 {% block content %}
-    {{block.super}}
-    <div id="otree-timeout" class="alert alert-warning" style="display:block;">
-        <p>You can finish the study if your group is not complete in:
-            <span style="font-weight: bold">
-                <span class="glyphicon glyphicon-time"></span>
-                <span id="minutes"></span>:<span id="seconds"></span>
-            </span>
+    {{ block.super }}
+    <div id="otree-timeout-warning" class="alert alert-warning" style="display:block;">
+        <p>You can finish the study if nobody arrives in:
+            <span class="glyphicon glyphicon-time"></span>
+            <strong><span id="otree-timer__time-left"></span></strong>
         </p>
     </div>
 
+
     <form action="" method="post" role="form" class="form">
-    {% csrf_token %}
-    <div>
+        {% csrf_token %}
+        <div>
+            <br>
+            <button class="btn btn-primary" id='finish_study' style="display:none;" name="endofgame"
+                    value="{{ player.pk }}">
+                Bypass Group Section
+            </button>
+        </div>
         <br>
-         <button class="btn btn-primary" id='finish_study' style="display:none;" name="endofgame" value="{{player.pk}}">
-       Bypass Group Section
-     </button>
-    </div><br>
     </form>
 {% endblock %}
 
 {% block scripts %}
-    {{block.super}}
-    <script type="text/javascript" src="/static/otree/js/jquery.countdown.js"></script>
+    {{ block.super }}
+    <script src="{% static 'otree/js/jquery.countdown.min.js' %}"></script>
 
     <script type="text/javascript">
-        $(function() {
-          $('div.otree-timer').show();
-            var currentDate = new Date();
-            var milliseconds = Math.floor({{ time_left|json }}*1000);
-            $('.otree-timer').countdown(currentDate.valueOf() + milliseconds, function(event) {
-
-                switch(event.type) {
-                    case "seconds":
-                        $(this).find('span#seconds').html(event.value);
-                        console.log(event.value);
-                        break;
-                    case "minutes":
-                        $(this).find('span#minutes').html(event.lasting.hours * 60 + parseInt(event.value));
-                        break;
-                    case "finished":
-                        $('.otree-timer').hide(duration=0);
-                        $('#finish_study').show();
-
-                        break;
+        {#        $('div#otree-timeout').show();#}
+        var currentDate = new Date();
+        var milliseconds = Math.floor({{ time_left|json }} * 1000
+        )
+        ;
+        $('div#otree-timeout-warning').show();
+        $('span#otree-timer__time-left').countdown(currentDate.valueOf() + milliseconds)
+            .on('update.countdown', function (event) {
+                // %-N is "Total count of minutes till the end, non-padded"
+                // %S is seconds left
+                var format = '%-N:%S';
+                var remainingTime = event.strftime(format);
+                $(this).html(remainingTime);
+                if (event.strftime('%-M') > 30) {
+                    // Do not show if max waiting time is above 30 minutes
+                    $('div#otree-timeout-warning').filter(":visible").hide(duration = 0);
                 }
+                ;
+            })
+            .on('finish.countdown', function (event) {
+                $('div#otree-timeout-warning').hide(duration = 0);
+                $('#finish_study').show();
             });
-        });
     </script>
 
 {% endblock %}

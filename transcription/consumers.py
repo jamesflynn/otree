@@ -27,8 +27,8 @@ def send_message(message, subsession, index_in_pages, player_pk):
             those_with_us = Player.objects.filter(
                 subsession=subsession,
                 participant___index_in_pages=index_in_pages,
-                _group_by_arrival_time_arrived=True,
-                _group_by_arrival_time_grouped=False,
+                _gbat_arrived=True,
+                _gbat_grouped=False,
             )
         else:
             those_with_us = Player.objects.filter(
