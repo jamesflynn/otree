@@ -56,12 +56,19 @@ class ManagerChat(Page):
 
     def vars_for_template(self):
 
-        bid2 = self.group.get_player_by_id(2).participant.vars.get('bid')
+        if self.group.get_player_by_id(2).participant.vars.get('bid') is None:
+            bid2 = 1
+            bid3 = 1
+            bid4 = 1
+        else:
+            bid2 = self.group.get_player_by_id(2).participant.vars.get('bid')
+            bid3 = self.group.get_player_by_id(3).participant.vars.get('bid')
+            bid4 = self.group.get_player_by_id(4).participant.vars.get('bid')
+
         matched2 = bid2 <= 5.0
-        bid3 = self.group.get_player_by_id(3).participant.vars.get('bid')
         matched3 = bid3 <= 5.0
-        bid4 = self.group.get_player_by_id(4).participant.vars.get('bid')
         matched4 = bid4 <= 5.0
+
         if Constants.split_chats:
             channel1 = self.group.id_in_subsession + 1000
             channel2 = self.group.id_in_subsession + 7777
@@ -100,7 +107,10 @@ class EmployeeChat(Page):
             return True
 
     def vars_for_template(self):
-        bid = self.player.participant.vars.get('bid')
+        if self.player.participant.vars.get('bid') is None:
+            bid = 1
+        else:
+            bid = self.player.participant.vars.get('bid')
         match = bid <= 5.0
         if Constants.split_chats:
             if self.player.id_in_group == 2:

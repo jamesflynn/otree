@@ -31,8 +31,6 @@ if environ.get('SPLIT_CHATS') not in {True, '1'}:
 else:
     SPLIT = True
 
-
-
 # don't share this with anybody.
 SECRET_KEY = '62qe!ca719!_t#xhlo-^)x%o^748x5o^zub@7+znt)7ivpfp7k'
 
