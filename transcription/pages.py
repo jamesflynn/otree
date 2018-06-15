@@ -57,17 +57,23 @@ class ManagerChat(Page):
     def vars_for_template(self):
 
         if self.group.get_player_by_id(2).participant.vars.get('bid') is None:
-            bid2 = 1
-            bid3 = 1
-            bid4 = 1
+            bid2 = 0
         else:
             bid2 = self.group.get_player_by_id(2).participant.vars.get('bid')
-            bid3 = self.group.get_player_by_id(3).participant.vars.get('bid')
-            bid4 = self.group.get_player_by_id(4).participant.vars.get('bid')
+
+#        if self.group.get_player_by_id(3).participant.vars.get('bid') is None:
+#            bid3 = 0
+#        else:
+#            bid3 = self.group.get_player_by_id(3).participant.vars.get('bid')
+
+#        if self.group.get_player_by_id(4).participant.vars.get('bid') is None:
+#            bid4 = 0
+#        else:
+#            bid4 = self.group.get_player_by_id(4).participant.vars.get('bid')
 
         matched2 = bid2 <= 5.0
-        matched3 = bid3 <= 5.0
-        matched4 = bid4 <= 5.0
+#        matched3 = bid3 <= 5.0
+#        matched4 = bid4 <= 5.0
 
         if Constants.split_chats:
             channel1 = self.group.id_in_subsession + 1000
@@ -75,30 +81,32 @@ class ManagerChat(Page):
             channel3 = self.group.id_in_subsession + 8989
         else:
             channel1 = self.group.id_in_subsession
-            channel2 = self.group.id_in_subsession
-            channel3 = self.group.id_in_subsession
+#            channel2 = self.group.id_in_subsession
+#            channel3 = self.group.id_in_subsession
 
         return {
             'fbid2': float(bid2),
             'bid2': bid2,
             'matched2': matched2,
-            'fbid3': float(bid3),
-            'bid3': bid3,
-            'matched3': matched3,
-            'fbid4': float(bid4),
-            'bid4': bid4,
-            'matched4': matched4,
+#            'fbid3': float(bid3),
+#            'bid3': bid3,
+#            'matched3': matched3,
+#            'fbid4': float(bid4),
+#            'bid4': bid4,
+#            'matched4': matched4,
             'mgr_bonus': self.player.participant.vars.get('payoff'),
             'channel1': channel1,
-            'channel2': channel2,
-            'channel3': channel3,
+#            'channel2': channel2,
+#            'channel3': channel3,
             'split_chats': Constants.split_chats
         }
 
     form_model = 'player'
     #    form_fields = ['man_emp1_price','man_emp2_price','man_emp3_price']
-    form_fields = ['man_emp1_price', 'man_emp1_accpt', 'man_emp2_price', 'man_emp2_accpt', 'man_emp3_price',
-                   'man_emp3_accpt']
+#    form_fields = ['man_emp1_price', 'man_emp1_accpt', 'man_emp2_price', 'man_emp2_accpt', 'man_emp3_price',
+#                   'man_emp3_accpt']
+
+    form_fields = ['man_emp1_price', 'man_emp1_accpt']
 
 
 class EmployeeChat(Page):
@@ -108,7 +116,7 @@ class EmployeeChat(Page):
 
     def vars_for_template(self):
         if self.player.participant.vars.get('bid') is None:
-            bid = 1
+            bid = 0
         else:
             bid = self.player.participant.vars.get('bid')
         match = bid <= 5.0
@@ -150,8 +158,10 @@ class Transcribe(Page):
         return {
             #            'image_path': 'https://dl.dropboxusercontent.com/u/1688949/trx/{}_{}.png'.format(self.player.id_in_group-1,
             #                self.round_number),
-            'image_path': 'https://dl.dropboxusercontent.com/u/1688949/trx/1_{}.png'.format(self.round_number),
-            #            'reference_text': safe_json(Constants.reference_texts[self.player.id_in_group-2,self.round_number - 1]),
+#            'image_path': 'https://dl.dropboxusercontent.com/u/1688949/trx/1_{}.png'.format(self.round_number),
+#            'image_path': Constants.image_url[self.round_number],
+            'image_path': 'transcription/1_{}.png'.format(self.round_number),
+#            'reference_text': safe_json(Constants.reference_texts[self.player.id_in_group-2,self.round_number - 1]),
             'reference_text': safe_json(Constants.reference_texts[0, self.round_number - 1]),
             'header_text': header_text,
             'debug': settings.DEBUG,

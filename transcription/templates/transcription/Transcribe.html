@@ -13,7 +13,7 @@
     <p>You will be paid {{ agreed }} for this page if you submit work that is at least 95% accurate, and if {{ agreed }} matches the price the manager confirms. Thank you!</p>
 
     <div>
-        <a target="_blank" href="{{ image_path }}"><img src="{% static "transcription/picture.png" %}"/> Click here to open image for transcription (opens in new tab or window)</a><br><p><strong>You should only enter the NUMBERS from the table, none of the row or column headings. (No words)</strong><br>
+        <a target="_blank" href="{% static image_path %}"><img src="{% static "transcription/picture.png" %}"/> Click here to open image for transcription (opens in new tab or window)</a><br><p><strong>You should only enter the NUMBERS from the table, none of the row or column headings. (No words)</strong><br>
     </div>
 
     {% formfield player.transcribed_text label="" %}

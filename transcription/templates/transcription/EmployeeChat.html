@@ -3,7 +3,7 @@
 
 
 {% block title %}
-    {{player.role}} {{enum}} - Chat Room
+    {{player.role}} - Chat Room
 {% endblock %}
 
 {% block content %}
@@ -11,7 +11,7 @@
 {% if split_chats %}
 <p>A manager is here.</p>
 {% else %}
-<p>Everyone is here. You, 2 other employees, and a manager.</p>
+<p>The manager is here.</p>
 {% endif %}
 
 <p>Your initial bid to the manager was {{ bid }} for each page. The manager is here to discuss it with you. If they don't show up you can click through to finish the HIT</p>
