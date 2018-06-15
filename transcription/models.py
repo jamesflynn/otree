@@ -84,14 +84,6 @@ class Constants(BaseConstants):
     reference_texts[0,3] = get_trx("1_4")
     reference_texts[0,4] = get_trx("1_5")
 
-    image_url = {}
-
-    image_url[1] = '''https://www.dropbox.com/s/cjwxltkxd2o796o/1_1.png?dl=0'''
-    image_url[2] = '''https://www.dropbox.com/s/d6qtzbfxqpfc9cs/1_2.png?dl=0'''
-    image_url[3] = '''https://www.dropbox.com/s/inm1f3sz591gklu/1_3.png?dl=0'''
-    image_url[4] = '''https://www.dropbox.com/s/aq5n38oge14uy8i/1_4.png?dl=0'''
-    image_url[5] = '''https://www.dropbox.com/s/s9vep49uq4ybleg/1_5.png?dl=0'''
-
     allowed_error_rates = [3,3,3,3,3]
     startwp_timer = 300
 

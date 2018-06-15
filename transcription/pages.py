@@ -156,12 +156,7 @@ class Transcribe(Page):
         else:
             header_text = ''
         return {
-            #            'image_path': 'https://dl.dropboxusercontent.com/u/1688949/trx/{}_{}.png'.format(self.player.id_in_group-1,
-            #                self.round_number),
-#            'image_path': 'https://dl.dropboxusercontent.com/u/1688949/trx/1_{}.png'.format(self.round_number),
-#            'image_path': Constants.image_url[self.round_number],
             'image_path': 'transcription/1_{}.png'.format(self.round_number),
-#            'reference_text': safe_json(Constants.reference_texts[self.player.id_in_group-2,self.round_number - 1]),
             'reference_text': safe_json(Constants.reference_texts[0, self.round_number - 1]),
             'header_text': header_text,
             'debug': settings.DEBUG,
@@ -170,7 +165,6 @@ class Transcribe(Page):
         }
 
     def transcribed_text_error_message(self, transcribed_text):
-        #        reference_text = Constants.reference_texts[self.player.id_in_group-2,self.round_number - 1]
         reference_text = Constants.reference_texts[0, self.round_number - 1]
         allowed_error_rate = Constants.allowed_error_rates[self.round_number - 1]
         clean_trx_text = ''.join(e for e in transcribed_text if e.isalnum())
