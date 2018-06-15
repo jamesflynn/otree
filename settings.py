@@ -146,33 +146,25 @@ SESSION_CONFIG_DEFAULTS = {
 SESSION_CONFIGS = [
     {
         'name': 'transcription_survey',
-        'display_name': "Transcription Survey",
+        'display_name': "Entire Flow",
         'num_demo_participants': 2,
         'app_sequence': ['trx_survey','transcription','exit_survey'],
 #        'use_browser_bots': True,
     },
     {
         'name': 'transcription',
-        'display_name': "Transcription",
+        'display_name': "Start at Transcription",
         'num_demo_participants': 2,
         'app_sequence': ['transcription','exit_survey'],
 #        'use_browser_bots': True,
     },
     {
         'name': 'exit_survey',
-        'display_name': "Transcription Exit Survey",
+        'display_name': "Just the Exit Survey",
         'num_demo_participants': 1,
         'app_sequence': ['exit_survey'],
 #        'use_browser_bots': True,
     },
-{
-        'name': 'traits',
-        'display_name': "Traits",
-        'num_demo_participants': 2,
-        'app_sequence': ['traits'],
-#        'use_browser_bots': True,
-    },
-
 
 ]
 
