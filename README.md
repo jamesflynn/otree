@@ -1,3 +1,5 @@
+App is at https://fathomless-oasis-91567.herokuapp.com/demo/
+
 # oTree
 
 oTree is a framework based on Python and Django that lets you build:
