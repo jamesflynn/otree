@@ -87,9 +87,10 @@ class Constants(BaseConstants):
     allowed_error_rates = [3,3,3,3,3]
     startwp_timer = 300
 
-    budget = 5.0
-    kickin = 4.0
+    budget = 5.00
+    kickin = 4.00
     rate = 3
+    limit = round(((budget - kickin)/rate),2)
 
 class Subsession(BaseSubsession):
     pass

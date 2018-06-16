@@ -18,6 +18,11 @@ class Preferences(Page):
     form_fields = ['pref1','pref2','pref3','pref4','pref5']
 
 class Bid(Page):             
+
+    def is_displayed(self):
+        if self.player.id_in_group != 1:
+            return True
+
     form_model = 'player'
     form_fields = ['bid']
    

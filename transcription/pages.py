@@ -86,8 +86,17 @@ class ManagerChat(Page):
 
         return {
             'fbid2': float(bid2),
-            'bid2': bid2,
+            'bid2': '%.2f' % bid2,
             'matched2': matched2,
+            'budget' : '%.2f' % Constants.budget,
+            'kickin' : '%.2f' % Constants.kickin,
+            'rate' : Constants.rate*100,
+            'example' : '%.2f' % ((float(Constants.budget) - 3.5)*5),
+            'kickin_plus20' : '%.2f' % (Constants.kickin + .2),
+            'rate20' : '%.2f' % (Constants.rate * .2),
+            'eresult' : '%.2f' % (Constants.budget - (Constants.kickin + .2) - (Constants.rate * .2)),
+            'instead' : '%.2f' % (Constants.budget - (Constants.kickin + .2)),
+            'limit' : '%.2f' % (Constants.kickin + Constants.limit),
 #            'fbid3': float(bid3),
 #            'bid3': bid3,
 #            'matched3': matched3,
@@ -215,7 +224,7 @@ class Results(Page):
         if self.player.in_round(1).emp_price <= Constants.kickin:
             self.group.get_player_by_id(1).payoff += round(num_good * (Constants.budget - self.player.in_round(1).emp_price), 2)
         elif self.player.in_round(1).emp_price <= Constants.budget:
-            self.group.get_player_by_id(1).payoff += round(num_good * (1 - (self.player.in_round(1).emp_price - Constants.kickin)*Constants.rate), 2)
+            self.group.get_player_by_id(1).payoff += round(num_good * max((1 - (self.player.in_round(1).emp_price - Constants.kickin)*Constants.rate),0), 2)
         else:
             self.group.get_player_by_id(1).payoff += 0
 
@@ -225,7 +234,8 @@ class Results(Page):
                 'num_good': num_good,
                 'emp_price': self.player.in_round(1).emp_price,
                 'bonus': self.player.payoff,
-                'mgr_bonus': self.group.get_player_by_id(1).payoff}
+                'mgr_bonus': self.group.get_player_by_id(1).payoff,
+                'limit': Constants.limit}
 
 
 class Sorry(Page):
