@@ -212,7 +212,13 @@ class Results(Page):
             if (accuracy >= 95.0):
                 num_good += 1
 
-        self.group.get_player_by_id(1).payoff += round(num_good * (5 - self.player.in_round(1).emp_price), 2)
+        if self.player.in_round(1).emp_price <= Constants.kickin:
+            self.group.get_player_by_id(1).payoff += round(num_good * (Constants.budget - self.player.in_round(1).emp_price), 2)
+        elif self.player.in_round(1).emp_price <= Constants.budget:
+            self.group.get_player_by_id(1).payoff += round(num_good * (1 - (self.player.in_round(1).emp_price - Constants.kickin)*Constants.rate), 2)
+        else:
+            self.group.get_player_by_id(1).payoff += 0
+
         self.player.payoff = round(num_good * self.player.in_round(1).emp_price, 2)
 
         return {'table_rows': table_rows,
