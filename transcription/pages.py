@@ -57,7 +57,7 @@ class ManagerChat(Page):
     def vars_for_template(self):
 
         if self.group.get_player_by_id(2).participant.vars.get('bid') is None:
-            bid2 = 0
+            bid2 = 4.15
         else:
             bid2 = self.group.get_player_by_id(2).participant.vars.get('bid')
 
