@@ -81,7 +81,6 @@ class ManagerPreChat(Page):
 
 class ManagerChat(Page):
     def is_displayed(self):
-        self.player.participant.vars['payoff'] = 0
         if self.player.id_in_group == 1 and self.round_number == 1 and not self.player.outofthegame:
             return True
 
@@ -190,8 +189,10 @@ class NormalWaitPage(WaitPage):
             return True
 
     def after_all_players_arrive(self):
-        if self.group.get_player_by_id(1).in_round(1).emp_price == self.group.get_player_by_id(2).in_round(1).emp_price:
+        if self.group.get_player_by_id(1).in_round(1).emp_price == self.group.get_player_by_id(2).in_round(1).emp_price and self.group.get_player_by_id(2).in_round(1).emp_price > 0 and self.group.get_player_by_id(2).in_round(1).emp_price <= 5.00 :
             self.group.agreed = True
+            self.group.get_player_by_id(1).payoff = 5 * Constants.basepay
+            self.group.get_player_by_id(2).payoff = 0
 
 class Transcribe(Page):
     def is_displayed(self):
@@ -265,7 +266,7 @@ class Results(Page):
 
         if self.player.in_round(1).emp_price <= Constants.kickin:
             self.group.get_player_by_id(1).payoff += round(num_good * (Constants.budget - self.player.in_round(1).emp_price), 2)
-        elif self.player.in_round(1).emp_price <= Constants.budget:
+        elif self.player.in_round(1).emp_price > Constants.kickin and self.player.in_round(1).emp_price <= Constants.budget:
             self.group.get_player_by_id(1).payoff += round(num_good * max((1 - (self.player.in_round(1).emp_price - Constants.kickin)*Constants.rate),0), 2)
         else:
             self.group.get_player_by_id(1).payoff += 0

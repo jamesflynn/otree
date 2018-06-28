@@ -113,7 +113,7 @@ class Player(BasePlayer):
 
     transcribed_text = models.LongStringField(blank=True)
     levenshtein_distance = models.PositiveIntegerField()
-    emp_price = models.CurrencyField()
+    emp_price = models.CurrencyField(max=5.00,min=0.00)
     test_compre_pr = models.CurrencyField(widget=widgets.Select(choices=TEST_CHOICES))
 #    man_emp2_price = models.CurrencyField()
 #    man_emp2_accpt = models.BooleanField()
