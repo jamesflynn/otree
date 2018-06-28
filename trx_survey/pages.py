@@ -4,7 +4,9 @@ from ._builtin import Page, WaitPage
 from .models import Constants, Player
 from django.conf import settings
 
-
+class Consent(Page):
+    form_model = 'player'
+    form_fields = ['consent']
 
 class Introduction(Page):   # extra manager intro
     pass
@@ -30,7 +32,7 @@ class Bid(Page):
         self.participant.vars['bid'] = self.player.bid
 
 page_sequence = [
-
+    Consent,
     Introduction,
     Sample,
     Preferences,
