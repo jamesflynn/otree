@@ -63,8 +63,7 @@ class ManagerPreChat(Page):
         matched2 = bid2 <= 5.0
 
         return {
-            'fbid2': float(bid2),
-            'bid2': '%.2f' % bid2,
+            'bid2': bid2,
             'matched2': matched2,
             'budget' : Constants.budget,
             'kickin' : Constants.kickin,
@@ -87,7 +86,7 @@ class ManagerChat(Page):
     def vars_for_template(self):
 
         if self.group.get_player_by_id(2).participant.vars.get('bid') is None:
-            bid2 = 4.15
+            bid2 = c(4.15)
         else:
             bid2 = self.group.get_player_by_id(2).participant.vars.get('bid')
 
@@ -96,8 +95,7 @@ class ManagerChat(Page):
         channel1 = self.group.id_in_subsession
 
         return {
-            'fbid2': float(bid2),
-            'bid2': '%.2f' % bid2,
+            'bid2': bid2,
             'matched2': matched2,
             'budget' : Constants.budget,
             'kickin' : Constants.kickin,

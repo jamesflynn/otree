@@ -109,7 +109,7 @@ class Player(BasePlayer):
             return 'Employee'
 	
     def chat_nickname(self):
-        return '{} {}'.format(self.role(), self.id_in_group - 1 )
+        return '{}'.format(self.role())
 
     transcribed_text = models.LongStringField(blank=True)
     levenshtein_distance = models.PositiveIntegerField()
