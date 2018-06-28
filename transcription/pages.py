@@ -141,7 +141,7 @@ class EmployeeChat(Page):
 
 class NormalWaitPage(WaitPage):
     def is_displayed(self):
-        if self.round_number == 1 :
+        if self.round_number == 1 and self.player.in_round(1).emp_price > 0:
             return True
 
     def after_all_players_arrive(self):
