@@ -46,16 +46,16 @@ table th {
   {% chat nickname="Manager" channel=channel1 %}
 <br>
 
-<p>    {% formfield player.emp_price label="What is the confirmed price per page, paid to the employee?" %}</p>
+<p>    {% formfield player.emp_price label="What is the confirmed price per page, paid to the employee? Enter 0 if no deal reached." %}</p>
         
-    <p><small>You will receive any payment owed via an MTurk Bonus</small></p>
+    <p><small>You will receive any additional payment owed via an MTurk Bonus</small></p>
     <div>
         <button class="btn btn-warning btn-large">Done</button>
     </div>
     <br>
 
 <div class="card card-body bg-light">
-<p>You have a maximum budget of <strong>{{ budget }} per page </strong>and a {{ basepay }} base payment per page. The employee was not aware of your budget when they bid. Your task is to negotiate a wage with the employee. After chatting with you the employee will be taken to a screen to transcribe scanned pages, which will be checked for accuracy.  For each page completed above 95% accuracy, they will receive the wage you negotiate and you will receive the difference between the agreed wage and {{ budget }}. If you are unable to come to an agreement, or if the work is not submitted within 48 hours, or  it does not achieve at least 95% accuracy, the worker will not be paid for that page, and you will receive only the {{ basepay }} base payment per page.</p>
+<p>You have a maximum budget of <strong>{{ budget }} per page </strong>and a {{ basepay }} base payment per page. The employee was not aware of your budget when they bid. Your task is to negotiate a wage with the employee. After chatting with you the employee will be taken to a screen to transcribe scanned pages, which will be checked for accuracy.  For each page completed above 95% accuracy, they will receive the wage you negotiate and you will receive the difference between the agreed wage and {{ budget }}. If you are unable to come to an agreement, or if the work is not submitted with at least 95% accuracy within 48 hours, the worker will not be paid for that page, and you will receive only the {{ basepay }} base payment per page.</p>
 
 <p>You must agree to a wage with the worker in the chat room and both of you must indicate the same wage upon exiting the chat room in order to be paid.</p>
 
