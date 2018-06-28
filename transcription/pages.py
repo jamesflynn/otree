@@ -196,7 +196,7 @@ class NormalWaitPage(WaitPage):
 
 class Transcribe(Page):
     def is_displayed(self):
-        if self.player.id_in_group != 1 and self.player.in_round(1).emp_price != 0 and not self.player.outofthegame and self.player.in_round(1).emp_price <= 5.0 and self.group.agreed == True:
+        if self.player.id_in_group != 1 and self.player.in_round(1).emp_price != 0 and not self.player.outofthegame and self.player.in_round(1).emp_price <= 5.0 and self.group.in_round(1).agreed == True:
             return True
 
     form_model = 'player'
@@ -238,7 +238,7 @@ class Results(Page):
 
     def is_displayed(self):
         if self.player.id_in_group != 1 and self.round_number == Constants.num_rounds and self.player.in_round(
-                1).emp_price != 0 and not self.player.outofthegame and self.player.in_round(1).emp_price <= 5.0 and self.group.agreed == True:
+                1).emp_price != 0 and not self.player.outofthegame and self.player.in_round(1).emp_price <= 5.0 and self.group.in_round(1).agreed == True:
             return True
 
     def vars_for_template(self):
@@ -267,7 +267,8 @@ class Results(Page):
         if self.player.in_round(1).emp_price <= Constants.kickin:
             self.group.get_player_by_id(1).payoff += round(num_good * (Constants.budget - self.player.in_round(1).emp_price), 2)
         elif self.player.in_round(1).emp_price > Constants.kickin and self.player.in_round(1).emp_price <= Constants.budget:
-            self.group.get_player_by_id(1).payoff += round(num_good * max((1 - (self.player.in_round(1).emp_price - Constants.kickin)*Constants.rate),0), 2)
+#            self.group.get_player_by_id(1).payoff += round(num_good * max((1 - (self.player.in_round(1).emp_price - Constants.kickin)*Constants.rate),0), 2)
+            self.group.get_player_by_id(1).payoff += round(num_good* (Constants.budget - self.player.in_round(1).emp_price - Constants.rate * ( self.player.in_round(1).emp_price - Constants.kickin )), 2)
         else:
             self.group.get_player_by_id(1).payoff += 0
 
@@ -277,13 +278,12 @@ class Results(Page):
                 'num_good': num_good,
                 'emp_price': self.player.in_round(1).emp_price,
                 'bonus': self.player.payoff,
-                'mgr_bonus': self.group.get_player_by_id(1).payoff,
-                'limit': Constants.limit}
+                'mgr_bonus': self.group.get_player_by_id(1).payoff}
 
 
 class Sorry(Page):
     def is_displayed(self):
-        if self.player.id_in_group != 1 and self.round_number == 1 and not self.player.outofthegame and not self.group.agreed == True :
+        if self.player.id_in_group != 1 and self.round_number == 1 and not self.player.outofthegame and not self.group.in_round(1).agreed == True :
             return True
 
 
