@@ -98,7 +98,7 @@ class Subsession(BaseSubsession):
 class Group(BaseGroup):
     agreed = models.BooleanField(default=False)
 
-TEST_CHOICES = (('','please select'),(0.66,'$0.66'),(0.70,'$0.70'),(1.0,'$1.00'),(0.75,'$0.75'))
+TEST_CHOICES = (('','please select'),(0.66,'$0.66'),(0.70,'$0.70'),(0.75,'$0.75'),(0.8,'$0.80'),(1.0,'$1.00'))
 
 class Player(BasePlayer):
 
