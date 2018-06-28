@@ -19,9 +19,9 @@ class Preferences(Page):
 
 class Bid(Page):             
 
-#    def is_displayed(self):
-#        if self.player.id_in_group != 1:
-#            return True
+    def is_displayed(self):
+        if self.player.id_in_group != 1:
+            return True
 
     form_model = 'player'
     form_fields = ['bid']
