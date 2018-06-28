@@ -48,6 +48,37 @@ class StartWP(CustomWaitPage):
             return waiting_players
 
 
+class ManagerPreChat(Page):
+    def is_displayed(self):
+        if self.player.id_in_group == 1 and self.round_number == 1 and not self.player.outofthegame:
+            return True
+
+    def vars_for_template(self):
+
+        if self.group.get_player_by_id(2).participant.vars.get('bid') is None:
+            bid2 = 4.15
+        else:
+            bid2 = self.group.get_player_by_id(2).participant.vars.get('bid')
+
+        matched2 = bid2 <= 5.0
+
+        return {
+            'fbid2': float(bid2),
+            'bid2': '%.2f' % bid2,
+            'matched2': matched2,
+            'budget' : '%.2f' % Constants.budget,
+            'kickin' : '%.2f' % Constants.kickin,
+            'rate' : Constants.rate*100,
+            'basepay' : '%.2f' % Constants.basepay,
+        }
+
+    form_model = 'player'
+    form_fields = ['test_compre_pr']
+
+    def test_compre_pr_error_message(self, value):
+        if value != 0.75:
+            return 'Incorrect'
+
 class ManagerChat(Page):
     def is_displayed(self):
         self.player.participant.vars['payoff'] = 0
@@ -91,12 +122,16 @@ class ManagerChat(Page):
             'budget' : '%.2f' % Constants.budget,
             'kickin' : '%.2f' % Constants.kickin,
             'rate' : Constants.rate*100,
-            'example' : '%.2f' % ((float(Constants.budget) - 3.5)*5),
-            'kickin_plus20' : '%.2f' % (Constants.kickin + .2),
-            'rate20' : '%.2f' % (Constants.rate * .2),
-            'eresult' : '%.2f' % (Constants.budget - (Constants.kickin + .2) - (Constants.rate * .2)),
-            'instead' : '%.2f' % (Constants.budget - (Constants.kickin + .2)),
-            'limit' : '%.2f' % (Constants.kickin + Constants.limit),
+            'basepay' : '%.2f' % Constants.basepay,
+
+#            'example' : '%.2f' % ((float(Constants.budget) - 3.5)*5),
+#            'kickin_plus20' : '%.2f' % (Constants.kickin + .2),
+#            'rate20' : '%.2f' % (Constants.rate * .2),
+
+#            'eresult' : '%.2f' % (Constants.budget - (Constants.kickin + .2) - (Constants.rate * .2)),
+#            'instead' : '%.2f' % (Constants.budget - (Constants.kickin + .2)),
+#            'limit' : '%.2f' % (Constants.kickin + Constants.limit),
+
 #            'fbid3': float(bid3),
 #            'bid3': bid3,
 #            'matched3': matched3,
@@ -115,7 +150,7 @@ class ManagerChat(Page):
 #    form_fields = ['man_emp1_price', 'man_emp1_accpt', 'man_emp2_price', 'man_emp2_accpt', 'man_emp3_price',
 #                   'man_emp3_accpt']
 
-    form_fields = ['man_emp1_price', 'man_emp1_accpt']
+    form_fields = ['emp_price']
 
 
 class EmployeeChat(Page):
@@ -149,11 +184,18 @@ class EmployeeChat(Page):
     form_model = 'player'
     form_fields = ['emp_price']
 
+class NormalWaitPage(WaitPage):
+    def is_displayed(self):
+        if self.round_number == 1 :
+            return True
+
+    def after_all_players_arrive(self):
+        if self.group.get_player_by_id(1).in_round(1).emp_price == self.group.get_player_by_id(2).in_round(1).emp_price:
+            self.group.agreed = True
 
 class Transcribe(Page):
     def is_displayed(self):
-        if self.player.id_in_group != 1 and self.player.in_round(
-                1).emp_price != 0 and not self.player.outofthegame and self.player.in_round(1).emp_price <= 5.0:
+        if self.player.id_in_group != 1 and self.player.in_round(1).emp_price != 0 and not self.player.outofthegame and self.player.in_round(1).emp_price <= 5.0 and self.group.agreed == True:
             return True
 
     form_model = 'player'
@@ -195,7 +237,7 @@ class Results(Page):
 
     def is_displayed(self):
         if self.player.id_in_group != 1 and self.round_number == Constants.num_rounds and self.player.in_round(
-                1).emp_price != 0 and not self.player.outofthegame and self.player.in_round(1).emp_price <= 5.0:
+                1).emp_price != 0 and not self.player.outofthegame and self.player.in_round(1).emp_price <= 5.0 and self.group.agreed == True:
             return True
 
     def vars_for_template(self):
@@ -240,15 +282,16 @@ class Results(Page):
 
 class Sorry(Page):
     def is_displayed(self):
-        if self.player.id_in_group != 1 and self.round_number == 1 and self.player.in_round(
-                1).emp_price == 0 and not self.player.outofthegame:
+        if self.player.id_in_group != 1 and self.round_number == 1 and not self.player.outofthegame and not self.group.agreed == True :
             return True
 
 
 page_sequence = [
     StartWP,
+    ManagerPreChat,
     ManagerChat,
     EmployeeChat,
+    NormalWaitPage,
     Transcribe,
     Results,
     Sorry

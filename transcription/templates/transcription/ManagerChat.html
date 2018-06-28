@@ -32,44 +32,19 @@ table th {
 
     </style>
 
-
-
-
-
-
 {% endblock %}
 
 {% block content %}
-<p>You are the Manager. Please chat with the employee. They are here now.</p>
 
-<p>You have a maximum budget of <strong>${{ budget }} per page.</strong> The employee was not aware
-of your budget when they bid. Please <strong>confirm the employee's bid
-amount in the chat window</strong> and <strong>accept</strong> any that were <strong>${{ budget }} or less</strong>.
-
-<p>After this chat the employee will be taken to a screen to transcribe scanned pages, which will be checked for accuracy.  For each page completed above 95% accuracy, they will receive their bid and you will receive the difference between ${{ budget }} and the bid. If the work is not submitted, or does not achieve at least 95% accuracy, neither of you will be paid for that page.</p>
-
-<p><strong>However, your share of the budget will be taxed at {{ rate }}% of the amount you pay over ${{ kickin }} per page.</strong> For example if you agree on ${{ kickin_plus20 }}, you will pay a ${{ rate20 }} tax, leaving you with ${{ eresult }} instead of ${{ instead }}</p>
-
-<p>If the employee bids too high, you will still be paid to complete the HIT. Decline bids above the ${{ budget }} budget.
-</p>
-
-<p>If the bid goes over ${{ limit }} but stays under ${{ budget }} the employee will be paid, but your share will be zero.</p>
-       <input type="hidden" name="man_emp1_price" value="{{ fbid2 }}" id="id_my_hidden_input1"/>
+        <p>The employee's initial bid is ${{ bid2 }} for each page. Please confirm the final amount per page after the chat.<br><br>
   
 <h3>Chat Room:</h3>
   {% chat nickname="Manager" channel=channel1 %}
 <br>
 
-        <strong>The employee's</strong> initial bid is ${{ bid2 }} for each page and it {% if matched2 %}is feasible.{% else %} cannot be accepted.{% endif %} Please confirm the final amount per page in the chat.<br><br>
-        <input type="checkbox" name="man_emp1_accpt" value="True" id="id_man_emp1_accpt" required/>&nbsp; Did you confirm {% if matched2 %}{% else %}that it was <strong>not accepted</strong> {% endif %}with the worker in the chat?<br><br>
-
-
-<br>
-<p>
-  Please make sure you confirm the bid amounts, and the acceptance or rejection of the bid in the chat!
-</p>
-
-    <p>You will receive any payment owed via an MTurk Bonus</p>
+<p>    {% formfield player.emp_price label="What is the confirmed price per page, paid to the employee?" %}</p>
+        
+    <p><small>You will receive any payment owed via an MTurk Bonus</small></p>
     <div>
         <button class="btn btn-warning btn-large">Done</button>
     </div>

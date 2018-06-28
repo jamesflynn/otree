@@ -89,14 +89,16 @@ class Constants(BaseConstants):
 
     budget = 5.00
     kickin = 4.00
-    rate = 3
-    limit = round(((budget - kickin)/rate),2)
+    rate = 2
+    basepay = 2.00
 
 class Subsession(BaseSubsession):
     pass
 
 class Group(BaseGroup):
-	pass
+    agreed = models.BooleanField(default=False)
+
+TEST_CHOICES = (('','please select'),(0.66,'$0.66'),(0.70,'$0.70'),(1.0,'$1.00'),(0.75,'$0.75'))
 
 class Player(BasePlayer):
 
@@ -112,8 +114,7 @@ class Player(BasePlayer):
     transcribed_text = models.LongStringField(blank=True)
     levenshtein_distance = models.PositiveIntegerField()
     emp_price = models.CurrencyField()
-    man_emp1_price = models.CurrencyField()
-    man_emp1_accpt = models.BooleanField()
+    test_compre_pr = models.CurrencyField(widget=widgets.Select(choices=TEST_CHOICES))
 #    man_emp2_price = models.CurrencyField()
 #    man_emp2_accpt = models.BooleanField()
 #    man_emp3_price = models.CurrencyField()

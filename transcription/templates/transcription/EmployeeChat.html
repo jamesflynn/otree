@@ -8,13 +8,9 @@
 
 {% block content %}
 
-{% if split_chats %}
-<p>A manager is here.</p>
-{% else %}
-<p>The manager is here.</p>
-{% endif %}
+<p>A manager will be here in a minute.</p>
 
-<p>Your initial bid to the manager was {{ bid }} for each page. The manager is here to discuss it with you. If they don't show up you can click through to finish the HIT</p>
+<p>Your initial bid to the manager was {{ bid }} for each page. The manager is here to discuss it with you. If they don't show up after 5 minutes you can click through to finish the HIT</p>
 
 	{% chat nickname=player.chat_nickname channel=channel %}
 
@@ -25,7 +21,12 @@
     <input type="hidden" name="emp_price" value="0" id="id_my_hidden_input"/>
     {% endif %}
 
-    <p>Please wait to hear from the manager if your bid was accepted or not. If your work does not achieve at least 95% accuracy, you will not be paid for that page. Selecting Done will end your chat session, you cannot come back.</p>
+    <p>Please wait to talk to the manage to find out if your bid was accepted or not.</p>
+
+    <p>    {% formfield player.emp_price label="What is the confirmed price per page?" %}</p>
+
+
+    <p>If your work does not achieve at least 95% accuracy, you will not be paid for that page. Selecting Done will end your chat session, you cannot come back.</p>
     <div>
         <button class="btn btn-warning btn-large">Done</button>
     </div>
