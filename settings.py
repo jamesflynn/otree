@@ -124,12 +124,10 @@ mturk_hit_settings = {
             'QualificationTypeId': "3VFIQRXYYK60OWH5USLZQ69Z1BU2ZB",   # Prevent Repeats SANDBOX
             'Comparator': "DoesNotExist",
         },
-
 #        {
 #            'QualificationTypeId': "3NF07PFA1K2EGWJFNBQ4JN81TXKETV",   # Prevent Repeats PRODUCTION
 #            'Comparator': "DoesNotExist",
 #        },
-
         {
             'QualificationTypeId': "00000000000000000071",    # Worker_Locale
             'Comparator': "EqualTo",
@@ -138,20 +136,16 @@ mturk_hit_settings = {
         {
             'QualificationTypeId': "000000000000000000L0",    # Worker_PercentAssignmentsApproved
             'Comparator': "GreaterThan",
-            'IntegerValues': [
-                50,
-            ]
+            'IntegerValues': [50]
         },
         {
             'QualificationTypeId': "00000000000000000040",    # Worker_NumberHitsApproved
             'Comparator': "GreaterThanOrEqualTo",
-            'IntegerValues': [
-                100,
-            ]
+            'IntegerValues': [100]
         },
         {
             'QualificationTypeId': "2ARFPLSP75KLA8M8DH1HTEQVJT3SY6",    # Masters Sandbox
-            'Comparator: "Exists"
+            'Comparator': "Exists"
         },
 #        {
 #            'QualificationTypeId': "2F1QJWKUDD8XADTFD2Q0G6UTO95ALH",    # Masters Production
