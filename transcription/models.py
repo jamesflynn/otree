@@ -96,9 +96,11 @@ class Subsession(BaseSubsession):
     pass
 
 class Group(BaseGroup):
-    agreed = models.BooleanField(default=False)
+#    agreed = models.BooleanField(default=False)
+    pass
 
 TEST_CHOICES = (('','please select'),(0.66,'$0.66'),(0.70,'$0.70'),(0.75,'$0.75'),(0.8,'$0.80'),(1.0,'$1.00'))
+BOOL_CHOICES = ((True,'Yes'),(False,'No Agreement'))
 
 class Player(BasePlayer):
 
@@ -115,7 +117,7 @@ class Player(BasePlayer):
     levenshtein_distance = models.PositiveIntegerField()
     emp_price = models.CurrencyField(max=5.00,min=0.00)
     test_compre_pr = models.CurrencyField(widget=widgets.Select(choices=TEST_CHOICES))
-#    man_emp2_price = models.CurrencyField()
+    emp_price_accept = models.BooleanField(widget=widgets.RadioSelectHorizontal(choices=BOOL_CHOICES))
 #    man_emp2_accpt = models.BooleanField()
 #    man_emp3_price = models.CurrencyField()
 #    man_emp3_accpt = models.BooleanField()

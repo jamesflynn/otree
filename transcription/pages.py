@@ -134,23 +134,26 @@ class EmployeeChat(Page):
                 'match': match,
                 'enum': self.player.id_in_group - 1,
                 'channel': channel,
-                'split_chats': Constants.split_chats}
+                'split_chats': Constants.split_chats,
+                'budget': Constants.budget,
+                'kickin': Constants.kickin}
 
     form_model = 'player'
-    form_fields = ['emp_price']
+    form_fields = ['emp_price_accept']
 
-class NormalWaitPage(WaitPage):
-    def is_displayed(self):
-        if self.round_number == 1 and self.player.in_round(1).emp_price > 0:
-            return True
+#class NormalWaitPage(WaitPage):
+#    def is_displayed(self):
+#        if self.round_number == 1 and self.player.in_round(1).emp_price > 0:
+#            return True
 
-    def after_all_players_arrive(self):
-        if self.group.get_player_by_id(1).in_round(1).emp_price == self.group.get_player_by_id(2).in_round(1).emp_price and self.group.get_player_by_id(2).in_round(1).emp_price > 0 and self.group.get_player_by_id(2).in_round(1).emp_price <= 5.00 :
-            self.group.agreed = True
+#    def after_all_players_arrive(self):
+#        if self.group.get_player_by_id(1).in_round(1).emp_price == self.group.get_player_by_id(2).in_round(1).emp_price and self.group.get_player_by_id(2).in_round(1).emp_price > 0 and self.group.get_player_by_id(2).in_round(1).emp_price <= 5.00 :
+#            self.group.agreed = True
 
 class Transcribe(Page):
     def is_displayed(self):
-        if self.player.id_in_group != 1 and self.player.in_round(1).emp_price != 0 and not self.player.outofthegame and self.player.in_round(1).emp_price <= 5.0 and self.group.in_round(1).agreed == True:
+#        if self.player.id_in_group != 1 and self.player.in_round(1).emp_price != 0 and not self.player.outofthegame and self.player.in_round(1).emp_price <= 5.0: # and self.group.in_round(1).agreed == True:
+        if self.player.id_in_group != 1 and not self.player.outofthegame and self.player.in_round(1).emp_price_accept == True : # and self.group.in_round(1).agreed == True:
             return True
 
     form_model = 'player'
@@ -191,8 +194,9 @@ class Results(Page):
     #    form_fields = ['mgr_bonus']
 
     def is_displayed(self):
-        if self.player.id_in_group != 1 and self.round_number == Constants.num_rounds and self.player.in_round(
-                1).emp_price != 0 and not self.player.outofthegame and self.player.in_round(1).emp_price <= 5.0 and self.group.in_round(1).agreed == True:
+#        if self.player.id_in_group != 1 and self.round_number == Constants.num_rounds and self.player.in_round(
+#                1).emp_price != 0 and not self.player.outofthegame and self.player.in_round(1).emp_price <= 5.0: # and self.group.in_round(1).agreed == True:
+        if self.player.id_in_group != 1 and self.round_number == Constants.num_rounds and self.player.in_round(1).emp_price_accept == True and not self.player.outofthegame: # and self.group.in_round(1).agreed == True:
             return True
 
     def vars_for_template(self):
@@ -236,7 +240,7 @@ class Results(Page):
 
 class Sorry(Page):
     def is_displayed(self):
-        if self.player.id_in_group != 1 and self.round_number == 1 and not self.player.outofthegame and not self.group.in_round(1).agreed == True :
+        if self.player.id_in_group != 1 and self.round_number == 1 and not self.player.outofthegame and self.player.in_round(1).emp_price_accept == False  : # and not self.group.in_round(1).agreed == True :
             return True
 
 
@@ -245,7 +249,7 @@ page_sequence = [
     ManagerPreChat,
     ManagerChat,
     EmployeeChat,
-    NormalWaitPage,
+#    NormalWaitPage,
     Transcribe,
     Results,
     Sorry
