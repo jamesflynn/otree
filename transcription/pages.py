@@ -146,6 +146,12 @@ class OptIn(Page):
         if self.round_number == 1 and not self.player.outofthegame:
             return True
 
+    def vars_for_template(self):
+        if self.player.id_in_group != 1:
+            return {'esurvey_text': "After the exit survey you will proceed to transcription if you came to an agreement."}
+        else :
+            return {'esurvey_text': ""}
+
 class Demographics(Page):
     def is_displayed(self):
         if self.round_number == 1 and not self.player.outofthegame:
