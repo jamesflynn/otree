@@ -151,7 +151,7 @@ mturk_hit_settings = {
         },
         {
             'QualificationTypeId': "2ARFPLSP75KLA8M8DH1HTEQVJT3SY6",    # Masters Sandbox
-            'Comparator: "Exists",
+            'Comparator: "Exists"
         },
 #        {
 #            'QualificationTypeId': "2F1QJWKUDD8XADTFD2Q0G6UTO95ALH",    # Masters Production
