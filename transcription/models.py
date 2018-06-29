@@ -101,6 +101,11 @@ class Group(BaseGroup):
 
 TEST_CHOICES = (('','please select'),(0.66,'$0.66'),(0.70,'$0.70'),(0.75,'$0.75'),(0.8,'$0.80'),(1.0,'$1.00'))
 BOOL_CHOICES = ((True,'Yes'),(False,'No Agreement'))
+GENDER_CHOICES = (('','please select'),('m','male'),('f','female'),('o','other'),('opt_out','I\'d rather not say'))
+EXP_CHOICES = (('','please select'),('none','no experience'),('some','some experience'),('very','very experienced'),('opt_out','I\'d rather not say'))
+TRANS_CHOICES = (('','please select'),('none','no experience') , ('some','some experience') , ('very','very experienced') , ('opt_out','I\'d rather not say'))
+EDU_CHOICES = (('','please select'),('someHS','some high school'),('HS','completed high school'),('someColl','some college'),('undergrad','undergrad degree'),('postgrad','graduate degree'),('opt_out','I\'d rather not say'))
+
 
 class Player(BasePlayer):
 
@@ -124,5 +129,11 @@ class Player(BasePlayer):
     startwp_timer_set = models.BooleanField(default=False)
     startwp_time = models.PositiveIntegerField()
     outofthegame = models.BooleanField()
+    yearBorn = models.PositiveIntegerField(min=1916, max=2005)
+    gender = models.StringField(widget=widgets.Select(choices=GENDER_CHOICES))
+    experience = models.StringField(widget=widgets.Select(choices=EXP_CHOICES))
+    transExp = models.StringField(widget=widgets.Select(choices=TRANS_CHOICES))
+    eduLevel = models.StringField(widget=widgets.Select(choices=EDU_CHOICES))
+    dailyHHEarn = models.CurrencyField()
 
 

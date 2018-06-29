@@ -193,23 +193,23 @@ SESSION_CONFIGS = [
         'name': 'transcription_survey',
         'display_name': "Entire Flow",
         'num_demo_participants': 2,
-        'app_sequence': ['trx_survey','transcription','exit_survey'],
+        'app_sequence': ['trx_survey','transcription'],
 #        'use_browser_bots': True,
     },
     {
         'name': 'transcription',
         'display_name': "Start at Transcription",
         'num_demo_participants': 2,
-        'app_sequence': ['transcription','exit_survey'],
+        'app_sequence': ['transcription'],
 #        'use_browser_bots': True,
     },
-    {
-        'name': 'exit_survey',
-        'display_name': "Just the Exit Survey",
-        'num_demo_participants': 1,
-        'app_sequence': ['exit_survey'],
+#    {
+#        'name': 'exit_survey',
+#        'display_name': "Just the Exit Survey",
+#        'num_demo_participants': 1,
+#        'app_sequence': ['exit_survey'],
 #        'use_browser_bots': True,
-    },
+#    },
 
 ]
 

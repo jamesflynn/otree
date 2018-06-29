@@ -141,6 +141,30 @@ class EmployeeChat(Page):
     form_model = 'player'
     form_fields = ['emp_price_accept']
 
+class OptIn(Page):
+    def is_displayed(self):
+        if self.round_number == 1 and not self.player.outofthegame:
+            return True
+
+class Demographics(Page):
+    def is_displayed(self):
+        if self.round_number == 1 and not self.player.outofthegame:
+            return True
+
+    form_model = 'player'
+    form_fields = ['yearBorn', 'gender']
+
+class Household(Page):
+    def is_displayed(self):
+        if self.round_number == 1 and not self.player.outofthegame:
+            return True
+
+    form_model = 'player'
+    form_fields = ['experience', 'transExp', 'eduLevel', 'dailyHHEarn']
+
+#class ThankYou(Page):
+#    pass
+
 #class NormalWaitPage(WaitPage):
 #    def is_displayed(self):
 #        if self.round_number == 1 and self.player.in_round(1).emp_price > 0:
@@ -170,7 +194,7 @@ class Transcribe(Page):
             'header_text': header_text,
             'debug': settings.DEBUG,
             'required_accuracy': 100 * (1 - Constants.allowed_error_rates[self.round_number - 1]),
-            'agreed': self.player.in_round(1).emp_price
+            'agreed': self.group.get_player_by_id(1).in_round(1).emp_price
         }
 
     def transcribed_text_error_message(self, transcribed_text):
@@ -222,18 +246,18 @@ class Results(Page):
             if (accuracy >= 95.0):
                 num_good += 1
 
-        if self.player.in_round(1).emp_price <= Constants.kickin:
-            self.group.get_player_by_id(1).payoff = Constants.basepay * Constants.num_rounds + round(num_good * (Constants.budget - self.player.in_round(1).emp_price), 2)
-        elif self.player.in_round(1).emp_price > Constants.kickin and self.player.in_round(1).emp_price <= Constants.budget:
-            self.group.get_player_by_id(1).payoff = Constants.basepay * Constants.num_rounds + round(num_good* (Constants.budget - self.player.in_round(1).emp_price - Constants.rate * ( self.player.in_round(1).emp_price - Constants.kickin )), 2)
+        if self.group.get_player_by_id(1).in_round(1).emp_price <= Constants.kickin:
+            self.group.get_player_by_id(1).payoff = Constants.basepay * Constants.num_rounds + round(num_good * (Constants.budget - self.group.get_player_by_id(1).in_round(1).emp_price), 2)
+        elif self.group.get_player_by_id(1).in_round(1).emp_price > Constants.kickin and self.group.get_player_by_id(1).in_round(1).emp_price <= Constants.budget:
+            self.group.get_player_by_id(1).payoff = Constants.basepay * Constants.num_rounds + round(num_good* (Constants.budget - self.group.get_player_by_id(1).in_round(1).emp_price - Constants.rate * ( self.group.get_player_by_id(1).in_round(1).emp_price - Constants.kickin )), 2)
         else:
             self.group.get_player_by_id(1).payoff = 0
 
-        self.player.payoff = round(num_good * self.player.in_round(1).emp_price, 2)
+        self.player.payoff = round(num_good * self.group.get_player_by_id(1).in_round(1).emp_price, 2)
 
         return {'table_rows': table_rows,
                 'num_good': num_good,
-                'emp_price': self.player.in_round(1).emp_price,
+                'emp_price': self.group.get_player_by_id(1).in_round(1).emp_price,
                 'emp_bonus': self.player.payoff,
                 'mgr_bonus': self.group.get_player_by_id(1).payoff}
 
@@ -249,6 +273,10 @@ page_sequence = [
     ManagerPreChat,
     ManagerChat,
     EmployeeChat,
+    OptIn,
+    Demographics,
+    Household,
+#    ThankYou,    
 #    NormalWaitPage,
     Transcribe,
     Results,

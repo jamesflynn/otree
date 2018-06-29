@@ -1,0 +1,16 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+    Survey
+{% endblock %}
+
+{% block content %}
+
+    {% formfield player.yearBorn label="Enter your year of birth" %}
+
+    {% formfield player.gender label="What is your gender?" %}
+
+    {% next_button %}
+
+{% endblock %}
