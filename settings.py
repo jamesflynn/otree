@@ -119,18 +119,69 @@ mturk_hit_settings = {
     'expiration_hours': 7*24,  # 7 days
 #    'grant_qualification_id': '3NF07PFA1K2EGWJFNBQ4JN81TXKETV',# to prevent retakes FOR REAL
     'grant_qualification_id': '3VFIQRXYYK60OWH5USLZQ69Z1BU2ZB', ## sandbox
-    'qualification_requirements': [ 
-         qualification.LocaleRequirement("EqualTo", "US"),
-         qualification.PercentAssignmentsApprovedRequirement("GreaterThanOrEqualTo", 50),
-        # qualification.NumberHitsApprovedRequirement("GreaterThanOrEqualTo", 5),
-#        qualification.Requirement('2F1QJWKUDD8XADTFD2Q0G6UTO95ALH', 'Exists'),   # MASTER
-#        qualification.Requirement('3GR2F62BN3IGDW30OAB6NYRSUHMIF3', 'Exists') # Follow up survey qual
-#        qualification.Requirement('3NF07PFA1K2EGWJFNBQ4JN81TXKETV', 'DoesNotExist') # UNCOMMENT FOR REAL
-        qualification.Requirement('3VFIQRXYYK60OWH5USLZQ69Z1BU2ZB', 'DoesNotExist')  # SANDBOX
+    'qualification_requirements': [
+        {
+            'QualificationTypeId': "3VFIQRXYYK60OWH5USLZQ69Z1BU2ZB",   # Prevent Repeats SANDBOX
+            'Comparator': "DoesNotExist",
+        },
+
+#        {
+#            'QualificationTypeId': "3NF07PFA1K2EGWJFNBQ4JN81TXKETV",   # Prevent Repeats PRODUCTION
+#            'Comparator': "DoesNotExist",
+#        },
+
+        {
+            'QualificationTypeId': "00000000000000000071",    # Worker_Locale
+            'Comparator': "EqualTo",
+            'LocaleValues': [{'Country': "US"}]
+        },
+        {
+            'QualificationTypeId': "000000000000000000L0",    # Worker_PercentAssignmentsApproved
+            'Comparator': "GreaterThan",
+            'IntegerValues': [
+                50,
+            ]
+        },
+        {
+            'QualificationTypeId': "00000000000000000040",    # Worker_NumberHitsApproved
+            'Comparator': "GreaterThanOrEqualTo",
+            'IntegerValues': [
+                100,
+            ]
+        },
+        {
+            'QualificationTypeId': "2ARFPLSP75KLA8M8DH1HTEQVJT3SY6",    # Masters Sandbox
+            'Comparator: "Exists",
+        },
+#        {
+#            'QualificationTypeId': "2F1QJWKUDD8XADTFD2Q0G6UTO95ALH",    # Masters Production
+#            'Comparator': "Exists"
+#        },
+
+
     ]
-}
+    }
 
 
+
+
+#QualificationRequirements=[
+#        {
+#            'QualificationTypeId': 'string',
+#            'Comparator': 'LessThan'|'LessThanOrEqualTo'|'GreaterThan'|'GreaterThanOrEqualTo'|'EqualTo'|'NotEqualTo'|'Exists'|'DoesNotExist'|'In'|'NotIn',
+#            'IntegerValues': [
+#                123,
+#            ],
+#            'LocaleValues': [
+#                {
+#                    'Country': 'string',
+#                    'Subdivision': 'string'
+#                },
+#            ],
+#            'RequiredToPreview': True|False,
+#            'ActionsGuarded': 'Accept'|'PreviewAndAccept'|'DiscoverPreviewAndAccept'
+#        },
+#    ],
 # if you set a property in SESSION_CONFIG_DEFAULTS, it will be inherited by all configs
 # in SESSION_CONFIGS, except those that explicitly override it.
 # the session config can be accessed from methods in your apps as self.session.config,
