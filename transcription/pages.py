@@ -275,8 +275,8 @@ class Sorry(Page):
 
 
 page_sequence = [
-    StartWP,
     ManagerPreChat,
+    StartWP,
     ManagerChat,
     EmployeeChat,
     OptIn,
