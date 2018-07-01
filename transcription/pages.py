@@ -15,7 +15,7 @@ class CustomWaitPage(WaitPage):
 
 class StartWP(CustomWaitPage):
     _allow_custom_attributes = True
-    group_by_arrival_time = True
+    group_by_arrival_time = False
     template_name = 'transcription/FirstWaitPage.html'
 
     def get_mturk_group_name(self):
