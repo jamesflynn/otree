@@ -143,7 +143,7 @@ class EmployeeChat(Page):
 
 class OptIn(Page):
     def is_displayed(self):
-        if self.round_number == 1 and not self.player.outofthegame:
+        if self.round_number == 1: # and not self.player.outofthegame:
             return True
 
     def vars_for_template(self):
@@ -154,7 +154,7 @@ class OptIn(Page):
 
 class Demographics(Page):
     def is_displayed(self):
-        if self.round_number == 1 and not self.player.outofthegame:
+        if self.round_number == 1: # and not self.player.outofthegame:
             return True
 
     form_model = 'player'
@@ -162,7 +162,7 @@ class Demographics(Page):
 
 class Household(Page):
     def is_displayed(self):
-        if self.round_number == 1 and not self.player.outofthegame:
+        if self.round_number == 1: # and not self.player.outofthegame:
             return True
 
     form_model = 'player'
