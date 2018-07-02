@@ -2,7 +2,7 @@
 {% load staticfiles otree %}
 
 {% block title %}
-    Transcription task {{ subsession.round_number }}/{{ Constants.num_rounds }}
+    Transcription task 4
 {% endblock %}
 
 {% block content %}
@@ -16,7 +16,7 @@
         <a target="_blank" href="{% static image_path %}"><img src="{% static "transcription/picture.png" %}"/> Click here to open image for transcription (opens in new tab or window)</a><br><p><strong>You should only enter the NUMBERS from the table, none of the row or column headings. (No words)</strong><br>
     </div>
 
-    {% formfield player.transcribed_text label="" %}
+    {% formfield player.transcribed_text_4 label="" %}
 
     {% next_button %}
 
@@ -48,7 +48,7 @@
     $(document).ready(function () {
         var referenceText = {{ reference_text }};
         $('a#prefill').click(function () {
-            $('#id_transcribed_text').val(referenceText);
+            $('#id_transcribed_text_4').val(referenceText);
         })
     });
 </script>
