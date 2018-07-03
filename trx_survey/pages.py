@@ -9,9 +9,11 @@ class Consent(Page):
     form_model = 'player'
     form_fields = ['consent']
 
-class Introduction(Page):   # extra manager intro
     def before_next_page(self):
         self.player.rand = randint(Constants.tax_min,Constants.tax_max)
+
+#class Introduction(Page):   # extra manager intro
+#    pass
 
 class Sample(Page):      # transcription sample for manager
     form_model = 'player'
@@ -39,8 +41,8 @@ class Bid(Page):
         self.participant.vars['payoff'] = 0
 
 page_sequence = [
-#    Consent,
-    Introduction,
+    Consent,
+#    Introduction,
 #    Sample,
 #    Preferences,
     Bid
