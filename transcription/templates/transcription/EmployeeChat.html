@@ -3,28 +3,29 @@
 
 
 {% block title %}
-    {{player.role}} - Chat Room
+    {{player.role}} {{enum}} - Chat Room
 {% endblock %}
 
 {% block content %}
 
-<p>You are the Worker. Please chat with the manager. They will be here in a minute or two.</p>
+{% if split_chats %}
+<p>A manager is here.</p>
+{% else %}
+<p>Everyone is here. You, 2 other employees, and a manager.</p>
+{% endif %}
 
-<p>Your task is to negotiate a wage with the manager for the same transcription task we sampled earlier. You must agree to a wage per page with the manager in the chat room and both of you must indicate the same wage upon exiting the chat room in order to be paid.</p>
+<p>Your initial bid to the manager was {{ bid }} for each page. The manager is here to discuss it with you. If they don't show up you can click through to finish the HIT</p>
 
-<p>The manager has a budget of more than {{ kickin }} per page that you transcribe. You are paid the amount you agree to with the manager, and the manager will receive the difference between his or her budget and the wage agreed to with you in the chat room. Also, any per page wage above {{ kickin }} will also be subject to a tax for the manager, meaning that the manager will have to pay an additional 200% for marginal increases above {{ kickin }}. For example if you agree on $4.20, your wage is $4.20 but the manager will have to pay a $0.60 tax, or pay a total of $4.80 per page.</p>
-
-
-	{% chat nickname=player.chat_nickname channel=channel %}
+    {% chat nickname=player.chat_nickname channel=channel %}
 
 <br>
-	{% if match %}
+    {% if match %}
     <input type="hidden" name="emp_price" value="{{ fbid }}" id="id_my_hidden_input"/>
     {% else %}
     <input type="hidden" name="emp_price" value="0" id="id_my_hidden_input"/>
     {% endif %}
 
-    <p>Please wait to talk to the manager to find out if your bid was accepted or not.</p>
+    <p>Please talk to the manager to find out if your bid was accepted or not.</p>
 
 <p>    {% formfield player.emp_price label="What is the confirmed price you will be paid per page? Enter 0 if no deal reached." %}</p>
 

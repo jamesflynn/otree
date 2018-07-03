@@ -192,14 +192,14 @@ SESSION_CONFIGS = [
     {
         'name': 'transcription_survey',
         'display_name': "Entire Flow",
-        'num_demo_participants': 2,
+        'num_demo_participants': 4,
         'app_sequence': ['trx_survey','transcription'],
 #        'use_browser_bots': True,
     },
     {
         'name': 'transcription',
         'display_name': "Start at Transcription",
-        'num_demo_participants': 2,
+        'num_demo_participants': 4,
         'app_sequence': ['transcription'],
 #        'use_browser_bots': True,
     },

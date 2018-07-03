@@ -96,27 +96,41 @@ class ManagerChat(Page):
 
     def vars_for_template(self):
 
-        if self.group.get_player_by_id(2).participant.vars.get('bid') is None:
-            bid2 = c(4.17)
-        else:
-            bid2 = self.group.get_player_by_id(2).participant.vars.get('bid')
-
+        bid2 = self.group.get_player_by_id(2).participant.vars.get('bid')
         matched2 = bid2 <= 5.0
-
-        channel1 = self.group.id_in_subsession
+        bid3 = self.group.get_player_by_id(3).participant.vars.get('bid')
+        matched3 = bid3 <= 5.0
+        bid4 = self.group.get_player_by_id(4).participant.vars.get('bid')
+        matched4 = bid4 <= 5.0
+        if Constants.split_chats:
+            channel1 = self.group.id_in_subsession + 1000
+            channel2 = self.group.id_in_subsession + 7777
+            channel3 = self.group.id_in_subsession + 8989
+        else:
+            channel1 = self.group.id_in_subsession
+            channel2 = self.group.id_in_subsession
+            channel3 = self.group.id_in_subsession            
 
         return {
-            'bid2': bid2,
-#            'matched2': matched2,
-            'budget' : Constants.budget,
-            'kickin' : Constants.kickin,
-            'rate' : Constants.rate*100,
-            'basepay' : Constants.basepay,
-            'channel1': channel1
-        }
+                'fbid2': float(bid2),
+                'bid2': bid2,
+                'matched2': matched2,
+                'fbid3': float(bid3),
+                'bid3': bid3,
+                'matched3': matched3,
+                'fbid4': float(bid4),
+                'bid4': bid4,
+                'matched4': matched4,
+                'mgr_bonus': self.player.participant.vars.get('payoff'),
+                'channel1': channel1,
+                'channel2': channel2,
+                'channel3': channel3,
+                'split_chats': Constants.split_chats
+                }
 
-    form_model = 'player'
-    form_fields = ['emp_price']
+    form_model = models.Player
+#    form_fields = ['man_emp1_price','man_emp2_price','man_emp3_price']    
+    form_fields = ['man_emp1_price','man_emp1_accpt','man_emp2_price','man_emp2_accpt','man_emp3_price','man_emp3_accpt']
 
 
 class EmployeeChat(Page):
@@ -455,18 +469,18 @@ class Feedback(Page):
 
 page_sequence = [
     StartWP,
-    ManagerPreChat,
+#    ManagerPreChat,
     ManagerChat,
     EmployeeChat,
     OptIn,
     Demographics,
     Household,
-    Transcribe_1,
-    Transcribe_2,
-    Transcribe_3,
-    Transcribe_4,
-    Transcribe_5,
-    Results,
+#    Transcribe_1,
+#    Transcribe_2,
+#    Transcribe_3,
+#    Transcribe_4,
+#    Transcribe_5,
+#    Results,
     Finish,
     Feedback
 ]
