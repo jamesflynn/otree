@@ -441,12 +441,12 @@ class Sorry(Page):
 
 page_sequence = [
     StartWP,
-    ManagerPreChat,
+#    ManagerPreChat,
     ManagerChat,
-    EmployeeChat,
-    OptIn,
-    Demographics,
-    Household,
+#    EmployeeChat,
+#    OptIn,
+#    Demographics,
+#    Household,
     Transcribe_1,
     Transcribe_2,
     Transcribe_3,
