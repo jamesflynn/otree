@@ -39,9 +39,9 @@ class Bid(Page):
         self.participant.vars['payoff'] = 0
 
 page_sequence = [
-#    Consent,
+    Consent,
     Introduction,
-#    Sample,
-#    Preferences,
+    Sample,
+    Preferences,
     Bid
 ]
