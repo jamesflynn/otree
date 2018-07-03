@@ -55,7 +55,7 @@ amount in the chat window</strong> and <strong>accept</strong> any that were <st
 <br>
 
 <div id="wrapper">
-    <div class="column-left">
+    <div class="column-left" style="overflow: hidden;">
 
         <strong>Employee 1</strong>
         {% chat nickname="Manager" channel=channel1 %}<br>
@@ -63,7 +63,7 @@ amount in the chat window</strong> and <strong>accept</strong> any that were <st
         {% formfield player.man_emp1_price label="What is the confirmed price you will pay Employee 1 per page? Enter 0 if no deal reached." %}
 
     </div>
-    <div  class="column-center">
+    <div  class="column-center"  style="overflow: hidden;">
 
         <strong>Employee 2</strong>
         {% chat nickname="Manager" channel=channel2 %}<br>
@@ -71,7 +71,7 @@ amount in the chat window</strong> and <strong>accept</strong> any that were <st
         {% formfield player.man_emp2_price label="What is the confirmed price you will pay Employee 2 per page? Enter 0 if no deal reached." %}
 
     </div>
-    <div  class="column-right">
+    <div  class="column-right"  style="overflow: hidden;">
 
         <strong>Employee 3</strong>
         {% chat nickname="Manager" channel=channel3 %}<br>
