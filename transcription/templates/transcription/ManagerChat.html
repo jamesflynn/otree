@@ -36,18 +36,17 @@ table th {
 
 {% block content %}
 
-<p>You are the Manager. Please chat with the 3 employees below. They should be here now.</p>
-<p>You have a maximum budget of <strong>$5 per page.</strong> The employees were not aware
-of your budget when they bid. Please <strong>confirm each employee's bid
-amount in the chat window</strong> and <strong>accept</strong> any that were <strong>$5 or less</strong>.
+<p>You have been assigned to be the manager. You have been assigned to negotiate with 3 workers to split your budget.  Your budget is {{ budget }} per worker.   You will decide how to split the budget between you by negotiating. If you reach an agreement, your payoff is {{ budget }} minus the price is that you agree to. The worker will receive the price you agree to minus a random tax that only s/he knows.  If you do not reach an agreement with a particular worker, you will not receive any of your budget for that worker, and that worker will not receive additional payments.</p>
 
-<p>After this chat employees will be taken to a screen to transcribe scanned pages, which will be checked for accuracy.  For each page completed above 95% accuracy, they will receive their bid and you will receive the difference between $5 and the confirmed price. If the work is not submitted, or does not achieve at least 95% accuracy, no one will be paid for that page. For example, if you confirm $4 per page for all three workers, who then complete the work, you will be paid: ($5-$4) x (3 people) x (5 pages each) = $15</p>
+<p>This means that if you agree to a wage of $Z with one worker and a wage of $W with another, the first worker will receive $Z minus her tax, the second worker will receive $W minus her tax. You will receive {{ budget }} minus $Z from the first worker, plus {{ budget }} minus $W from the second worker.</p>
 
-<p>If some of the employees bid too high, you can still profit from your other agreements, and you will still be paid for the HIT. Decline bids above your $5 budget. Do not renegotiate.
-</p>
-       <input type="hidden" name="man_emp1_price" value="{{ fbid2 }}" id="id_my_hidden_input1"/>
-       <input type="hidden" name="man_emp2_price" value="{{ fbid3 }}" id="id_my_hidden_input2"/>
-       <input type="hidden" name="man_emp3_price" value="{{ fbid4 }}" id="id_my_hidden_input3"/>
+<p>This means that the maximum you can pay any worker is {{ budget }}.</p>
+
+<p>The opening offer from the employees are:
+    <ul><li>Employee 1 : {{ bid2 }}</li>
+        <li>Employee 2 : {{ bid3 }}</li>
+        <li>Employee 3 : {{ bid4 }}</li>
+        </ul>
 
 {% if split_chats %}
 <p>You and the employees are all here now, you can chat with them separately.</p>

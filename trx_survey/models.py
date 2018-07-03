@@ -32,6 +32,8 @@ class Constants(BaseConstants):
     name_in_url = 'trx_survey'
     players_per_group = None
     num_rounds = 1
+    tax_max = 5
+    tax_min = 1
 
 class Subsession(BaseSubsession):
     pass
@@ -49,6 +51,8 @@ P5_CHOICES = (('7','$35, for 5 pages transcribed ($7 per page, 95% accuracy)'),(
 class Player(BasePlayer):
     howLong = models.PositiveIntegerField(validators=[validate_nonzero],default=0,min=0,max=180,widget=widgets.Slider(attrs={'step': '5'}))
     bid = models.CurrencyField()
+    tax = models.CurrencyField()
+    rand = models.FloatField()
     consent = models.BooleanField(validators=[validate_nonfalse],widget= widgets.CheckboxInput(),default=False)
     pref1 = models.PositiveIntegerField(widget=widgets.RadioSelectHorizontal(choices=P1_CHOICES))
     pref2 = models.PositiveIntegerField(widget=widgets.RadioSelectHorizontal(choices=P2_CHOICES))

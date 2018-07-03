@@ -112,6 +112,7 @@ class ManagerChat(Page):
             channel3 = self.group.id_in_subsession            
 
         return {
+                'budget': Constants.budget,
                 'fbid2': float(bid2),
                 'bid2': bid2,
                 'matched2': matched2,
@@ -155,6 +156,7 @@ class EmployeeChat(Page):
             channel = self.group.id_in_subsession
 
         return {'fbid': float(bid),
+                'tax': c(self.participant.vars['tax']),
                 'bid': bid,
                 'match': match,
                 'enum': self.player.id_in_group - 1,
@@ -166,44 +168,25 @@ class EmployeeChat(Page):
     form_model = 'player'
     form_fields = ['emp_price']
 
-class OptIn(Page):
-    def is_displayed(self):
-        if self.round_number == 1: # and not self.player.outofthegame:
-            return True
-
-    def vars_for_template(self):
+    def before_next_page(self):
         if self.player.id_in_group != 1:
-            return {'esurvey_text': "After the exit survey you will proceed to transcription if you came to an agreement."}
-        else :
-            return {'esurvey_text': ""}
+            self.player.payoff = self.player.emp_price
+            self.participant.vars['payoff'] = self.player.emp_price
+            self.group.get_player_by_id(1).payoff += c(5) - self.player.emp_price
+            self.group.get_player_by_id(1).participant.vars['payoff'] += c(5) - self.player.emp_price
+
+class OptIn(Page):
+    pass
 
 class Demographics(Page):
-    def is_displayed(self):
-        if self.round_number == 1: # and not self.player.outofthegame:
-            return True
 
     form_model = 'player'
     form_fields = ['yearBorn', 'gender']
 
 class Household(Page):
-    def is_displayed(self):
-        if self.round_number == 1: # and not self.player.outofthegame:
-            return True
 
     form_model = 'player'
     form_fields = ['experience', 'transExp', 'eduLevel', 'dailyHHEarn']
-
-#class ThankYou(Page):
-#    pass
-
-#class NormalWaitPage(WaitPage):
-#    def is_displayed(self):
-#        if self.round_number == 1 and self.player.in_round(1).emp_price > 0:
-#            return True
-
-#    def after_all_players_arrive(self):
-#        if self.group.get_player_by_id(1).in_round(1).emp_price == self.group.get_player_by_id(2).in_round(1).emp_price and self.group.get_player_by_id(2).in_round(1).emp_price > 0 and self.group.get_player_by_id(2).in_round(1).emp_price <= 5.00 :
-#            self.group.agreed = True
 
 
 #<<<<<
@@ -481,6 +464,6 @@ page_sequence = [
 #    Transcribe_4,
 #    Transcribe_5,
 #    Results,
-    Finish,
+#    Finish,
     Feedback
 ]

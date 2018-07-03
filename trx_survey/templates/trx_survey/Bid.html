@@ -7,9 +7,11 @@
 
 {% block content %}
 
-<p>Now tell us your <strong>single page</strong> bid (the price for ONE page) to do up to 5 pages just like the example (with 95% accuracy).</p>
+<p>You will be assigned to be either a worker or a manager in an upcoming round of negotiations in a chatroom. There may be multiple workers in the chatroom, and the manager will be assigned a budget between $3 and $5, per worker.  You will decide how to split the budget between you by negotiating.  If you do not reach an agreement, neither of you will receive additional payments.</p>
 
-<p>If you are the employee, the manager will start with this information to negotiate a price for your services.</p>
+<p>If you are assigned to be a worker, you have a random tax assigned to you of {{ tax }}.  That means  your final payoff will be the amount you agree to with the manager minus a tax of XX. No one besides you knows this tax.
+
+<p>We will now ask you for an opening bid. If you are assigned to be a worker, the manager will see this bid and may use it to negotiate with you on a final price.</p>
 
     {% formfield player.bid label="How much is your bid price per single page?" %}
 
