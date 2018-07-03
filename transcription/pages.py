@@ -130,8 +130,8 @@ class ManagerChat(Page):
                 }
 
     form_model = models.Player
-#    form_fields = ['man_emp1_price','man_emp2_price','man_emp3_price']    
-    form_fields = ['man_emp1_price','man_emp1_accpt','man_emp2_price','man_emp2_accpt','man_emp3_price','man_emp3_accpt']
+    form_fields = ['man_emp1_price','man_emp2_price','man_emp3_price']    
+#    form_fields = ['man_emp1_price','man_emp1_accpt','man_emp2_price','man_emp2_accpt','man_emp3_price','man_emp3_accpt']
 
 
 class EmployeeChat(Page):
