@@ -96,17 +96,17 @@ class ManagerChat(Page):
 
     def vars_for_template(self):
 
-#        if self.group.get_player_by_id(2).participant.vars.get('bid') is None:
-#            bid2 = c(4.15)
-#        else:
-#            bid2 = self.group.get_player_by_id(2).participant.vars.get('bid')
+        if self.group.get_player_by_id(2).participant.vars.get('bid') is None:
+            bid2 = c(4.17)
+        else:
+            bid2 = self.group.get_player_by_id(2).participant.vars.get('bid')
 
-#        matched2 = bid2 <= 5.0
+        matched2 = bid2 <= 5.0
 
         channel1 = self.group.id_in_subsession
 
         return {
-#            'bid2': bid2,
+            'bid2': bid2,
 #            'matched2': matched2,
             'budget' : Constants.budget,
             'kickin' : Constants.kickin,
@@ -453,7 +453,6 @@ class Finish(Page):
 page_sequence = [
     StartWP,
     ManagerPreChat,
-    Bid,
     ManagerChat,
     EmployeeChat,
     OptIn,
