@@ -16,11 +16,11 @@
 
 <p>Your tax is {{ tax }}</p>
 
-<p>You have been assigned to be a worker.  We sent your bid to the manager, and the manager has received a budget.  If you reach an agreement on a wage, your payoff is (the wage you agree to minus the $Y). The manager will receive (his/her budget minus the wage you agree to).  If you do not reach an agreement, you will not receive any additional payments, and the manager will not receive any portion of his/her budget for you.</p>
+<p>You have been assigned to be a worker.  We sent your bid to the manager, and the manager has received a budget.  If you reach an agreement on a wage, your payoff is the wage you agree to minus {{ tax }}. The manager will receive the remainder of their budget, after paying the wage you agree to.  If you do not reach an agreement, you will not receive any additional payments, and the manager will not receive any portion of their budget.</p>
 
-<p>This means that if you agree to a wage of $Z, you will receive $Z minus $Y, and the manager will receive an additional payment of (his/her budget - $Z)</p>
+<p>This means that if you agree to a wage of $4.50, you will receive $4.50 minus {{ tax }}, and the manager will receive an additional payment of their budget - $4.50</p>
 
-<p>This means that the minimum wage you can accept from the manager is $Y.</p>
+<p>This means that the minimum wage you can accept from the manager is {{ tax }}.</p>
 
 <p>Your initial bid to the manager was {{ bid }} for each page. The manager is here to discuss it with you. If they don't show up you can click through to finish the HIT, but you will not receive the bonus payment.</p>
 

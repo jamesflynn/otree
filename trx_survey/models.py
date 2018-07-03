@@ -32,8 +32,8 @@ class Constants(BaseConstants):
     name_in_url = 'trx_survey'
     players_per_group = None
     num_rounds = 1
-    tax_max = 5
-    tax_min = 1
+    tax_max = 4
+    tax_min = 2
 
 class Subsession(BaseSubsession):
     pass
