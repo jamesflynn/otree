@@ -443,7 +443,7 @@ page_sequence = [
     StartWP,
 #    ManagerPreChat,
     ManagerChat,
-#    EmployeeChat,
+    EmployeeChat,
 #    OptIn,
 #    Demographics,
 #    Household,
