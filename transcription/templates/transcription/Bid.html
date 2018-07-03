@@ -1,0 +1,16 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+    Bid for Work
+{% endblock %}
+
+{% block content %}
+
+<p>Now tell us your <strong>single page</strong> bid (the price for ONE page) to do up to 5 pages just like the example we showed you (with 95% accuracy).</p>
+
+    {% formfield player.bid label="How much is your bid price per single page?" %}
+
+    {% next_button %}
+
+{% endblock %}

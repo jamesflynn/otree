@@ -110,6 +110,8 @@ class Player(BasePlayer):
     transcribed_text_5 = models.LongStringField(blank=True)
     levenshtein_distance_5 = models.PositiveIntegerField()
 
+    bid = models.CurrencyField()
+
     emp_price = models.CurrencyField(max=5.00,min=0.00)
     test_compre_pr = models.CurrencyField(widget=widgets.Select(choices=TEST_CHOICES))
 #    emp_price_accept = models.BooleanField(widget=widgets.RadioSelectHorizontal(choices=BOOL_CHOICES))

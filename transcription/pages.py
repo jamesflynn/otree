@@ -47,6 +47,17 @@ class StartWP(CustomWaitPage):
         if len(waiting_players) == Constants.players_per_group:
             return waiting_players
 
+class Bid(Page):             
+
+    def is_displayed(self):
+        if self.player.id_in_group != 1:
+            return True
+
+    form_model = 'player'
+    form_fields = ['bid']
+   
+    def before_next_page(self):
+        self.participant.vars['bid'] = self.player.bid
 
 class ManagerPreChat(Page):
     def is_displayed(self):
@@ -85,18 +96,18 @@ class ManagerChat(Page):
 
     def vars_for_template(self):
 
-        if self.group.get_player_by_id(2).participant.vars.get('bid') is None:
-            bid2 = c(4.15)
-        else:
-            bid2 = self.group.get_player_by_id(2).participant.vars.get('bid')
+#        if self.group.get_player_by_id(2).participant.vars.get('bid') is None:
+#            bid2 = c(4.15)
+#        else:
+#            bid2 = self.group.get_player_by_id(2).participant.vars.get('bid')
 
-        matched2 = bid2 <= 5.0
+#        matched2 = bid2 <= 5.0
 
         channel1 = self.group.id_in_subsession
 
         return {
-            'bid2': bid2,
-            'matched2': matched2,
+#            'bid2': bid2,
+#            'matched2': matched2,
             'budget' : Constants.budget,
             'kickin' : Constants.kickin,
             'rate' : Constants.rate*100,
@@ -433,7 +444,7 @@ class Results(Page):
                 'transcribed_list': transcribed_list}
 
 
-class Sorry(Page):
+class Finish(Page):
     def is_displayed(self):
         if self.player.id_in_group != 1 and not self.player.outofthegame and self.player.emp_price == 0  : # and not self.group.in_round(1).agreed == True :
             return True
@@ -441,17 +452,18 @@ class Sorry(Page):
 
 page_sequence = [
     StartWP,
-#    ManagerPreChat,
+    ManagerPreChat,
+    Bid,
     ManagerChat,
     EmployeeChat,
-#    OptIn,
-#    Demographics,
-#    Household,
+    OptIn,
+    Demographics,
+    Household,
     Transcribe_1,
     Transcribe_2,
     Transcribe_3,
     Transcribe_4,
     Transcribe_5,
     Results,
-    Sorry
+    Finish
 ]
