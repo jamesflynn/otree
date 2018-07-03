@@ -449,6 +449,9 @@ class Finish(Page):
         if self.player.id_in_group != 1 and not self.player.outofthegame and self.player.emp_price == 0  : # and not self.group.in_round(1).agreed == True :
             return True
 
+class Feedback(Page):
+    form_model = 'player'
+    form_fields = ['feedback_form']      #  INDEXED
 
 page_sequence = [
     StartWP,
@@ -464,5 +467,6 @@ page_sequence = [
     Transcribe_4,
     Transcribe_5,
     Results,
-    Finish
+    Finish,
+    Feedback
 ]

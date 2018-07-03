@@ -127,5 +127,6 @@ class Player(BasePlayer):
     transExp = models.StringField(widget=widgets.Select(choices=TRANS_CHOICES))
     eduLevel = models.StringField(widget=widgets.Select(choices=EDU_CHOICES))
     dailyHHEarn = models.CurrencyField()
+    feedback_form = models.LongStringField(widget=widgets.Textarea,blank=True)
 
 

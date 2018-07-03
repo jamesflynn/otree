@@ -1,0 +1,14 @@
+
+
+
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}Feedback{% endblock %}
+
+{% block content %}
+	<p>    {% formfield player.feedback_form label="Please let us know if you have any suggestions or comments about this HIT. Thank you!" %}</p>
+
+
+{% next_button %}
+{% endblock %}
