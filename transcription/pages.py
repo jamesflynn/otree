@@ -80,7 +80,7 @@ class ManagerPreChat(Page):
 
 class ManagerChat(Page):
     def is_displayed(self):
-        if self.player.id_in_group == 1 and self.round_number == 1 and not self.player.outofthegame:
+        if self.player.id_in_group == 1 and not self.player.outofthegame:
             return True
 
     def vars_for_template(self):
@@ -110,7 +110,7 @@ class ManagerChat(Page):
 
 class EmployeeChat(Page):
     def is_displayed(self):
-        if self.player.id_in_group != 1 and self.round_number == 1 and not self.player.outofthegame:
+        if self.player.id_in_group != 1 and not self.player.outofthegame:
             return True
 
     def vars_for_template(self):
@@ -197,7 +197,7 @@ class Transcribe_1(Page):
         return {
             'image_path': 'transcription/1_{}.png'.format(1),   # INDEXED
  #           'reference_text': safe_json(Constants.reference_text_1),   # INDEX -1
-            'reference_text': safe_json(Constants.reference_text_1),   # INDEX -1
+            'reference_text': safe_json(Constants.reference_text[0]),   # INDEX -1
             'header_text': 'You will be shown 5 pages of transcription, one on each screen.  When you click next, your transcription of the first page will be submitted and you will be presented with a fresh link to a second page of transcription and a blank text box, and so on until the fifth page. After you submit the fifth page your HIT will be finished.',
             'debug': settings.DEBUG,
             'required_accuracy': 100 * (1 - Constants.allowed_error_rate),  # INDEX -1
@@ -205,7 +205,7 @@ class Transcribe_1(Page):
         }
 
     def transcribed_text_1_error_message(self, transcribed_text):
-        reference_text = Constants.reference_text_1
+        reference_text = Constants.reference_text[0]
         allowed_error_rate = Constants.allowed_error_rate
         clean_trx_text = ''.join(e for e in transcribed_text if e.isalnum())
         clean_trx_text = clean_trx_text.replace('\n', ' ').replace('\r', '')
@@ -218,7 +218,6 @@ class Transcribe_1(Page):
                 return "The transcription should be exactly the same as on the image."
             else:
                 return "This transcription appears to contain too many errors."
-
 
 #<<<<<
 #<<<<<    Transcribe 2
@@ -235,7 +234,7 @@ class Transcribe_2(Page):
     def vars_for_template(self):
         return {
             'image_path': 'transcription/1_{}.png'.format(2),   # INDEXED
-            'reference_text': safe_json(Constants.reference_text_2),   # INDEX -1
+            'reference_text': safe_json(Constants.reference_text[1]),   # INDEX -1
             'header_text': '',
             'debug': settings.DEBUG,
             'required_accuracy': 100 * (1 - Constants.allowed_error_rate),  # INDEX -1
@@ -243,7 +242,7 @@ class Transcribe_2(Page):
         }
 
     def transcribed_text_2_error_message(self, transcribed_text):
-        reference_text = Constants.reference_text_2
+        reference_text = Constants.reference_text[1]
         allowed_error_rate = Constants.allowed_error_rate
         clean_trx_text = ''.join(e for e in transcribed_text if e.isalnum())
         clean_trx_text = clean_trx_text.replace('\n', ' ').replace('\r', '')
@@ -273,7 +272,7 @@ class Transcribe_3(Page):
     def vars_for_template(self):
         return {
             'image_path': 'transcription/1_{}.png'.format(3),   # INDEXED
-            'reference_text': safe_json(Constants.reference_text_3),   # INDEX -1
+            'reference_text': safe_json(Constants.reference_text[2]),   # INDEX -1
             'header_text': '',
             'debug': settings.DEBUG,
             'required_accuracy': 100 * (1 - Constants.allowed_error_rate),  # INDEX -1
@@ -281,7 +280,7 @@ class Transcribe_3(Page):
         }
 
     def transcribed_text_3_error_message(self, transcribed_text):
-        reference_text = Constants.reference_text_3
+        reference_text = Constants.reference_text[2]
         allowed_error_rate = Constants.allowed_error_rate
         clean_trx_text = ''.join(e for e in transcribed_text if e.isalnum())
         clean_trx_text = clean_trx_text.replace('\n', ' ').replace('\r', '')
@@ -311,7 +310,7 @@ class Transcribe_4(Page):
     def vars_for_template(self):
         return {
             'image_path': 'transcription/1_{}.png'.format(4),   # INDEXED
-            'reference_text': safe_json(Constants.reference_text_4),   # INDEX -1
+            'reference_text': safe_json(Constants.reference_text[3]),   # INDEX -1
             'header_text': '',
             'debug': settings.DEBUG,
             'required_accuracy': 100 * (1 - Constants.allowed_error_rate),  # INDEX -1
@@ -319,7 +318,7 @@ class Transcribe_4(Page):
         }
 
     def transcribed_text_4_error_message(self, transcribed_text):
-        reference_text = Constants.reference_text_4
+        reference_text = Constants.reference_text[3]
         allowed_error_rate = Constants.allowed_error_rate
         clean_trx_text = ''.join(e for e in transcribed_text if e.isalnum())
         clean_trx_text = clean_trx_text.replace('\n', ' ').replace('\r', '')
@@ -349,7 +348,7 @@ class Transcribe_5(Page):
     def vars_for_template(self):
         return {
             'image_path': 'transcription/1_{}.png'.format(5),   # INDEXED
-            'reference_text': safe_json(Constants.reference_text_5),   # INDEX -1
+            'reference_text': safe_json(Constants.reference_text[4]),   # INDEX -1
             'header_text': '',
             'debug': settings.DEBUG,
             'required_accuracy': 100 * (1 - Constants.allowed_error_rate),  # INDEX -1
@@ -358,7 +357,7 @@ class Transcribe_5(Page):
         }
 
     def transcribed_text_5_error_message(self, transcribed_text):
-        reference_text = Constants.reference_text_5
+        reference_text = Constants.reference_text[4]
         allowed_error_rate = Constants.allowed_error_rate
         clean_trx_text = ''.join(e for e in transcribed_text if e.isalnum())
         clean_trx_text = clean_trx_text.replace('\n', ' ').replace('\r', '')
@@ -382,92 +381,39 @@ class Results(Page):
 
     def vars_for_template(self):
         table_rows = []
+        transcribed_list = []
+        levenshteins = []
         num_good = 0
+        transcribed_list.append(self.player.transcribed_text_1)
+        transcribed_list.append(self.player.transcribed_text_2)
+        transcribed_list.append(self.player.transcribed_text_3)
+        transcribed_list.append(self.player.transcribed_text_4)
+        transcribed_list.append(self.player.transcribed_text_5)
+        levenshteins.append(self.player.levenshtein_distance_1)
+        levenshteins.append(self.player.levenshtein_distance_2)
+        levenshteins.append(self.player.levenshtein_distance_3)
+        levenshteins.append(self.player.levenshtein_distance_4)
+        levenshteins.append(self.player.levenshtein_distance_5)
+
 
         # =======  loop 1
-        accuracy = (1 - self.player.levenshtein_distance_1 / len(Constants.reference_text_1)) * 100
-        if (accuracy < 0):
-            accuracy = 0
-        clean_trx_text = ''.join(e for e in self.player.transcribed_text_1 if e.isalnum())
-        clean_trx_text = clean_trx_text.replace('\n', ' ').replace('\r', '')
-        row_1 = {
-            'round_number': 1,
-            'reference_text_length': len(Constants.reference_text_1),
-            'transcribed_text_length': len(clean_trx_text),
-            'distance': self.player.levenshtein_distance_1,
-            'accuracy': round(accuracy, 2)
-        }
-        table_rows.append(row_1)  
-        if (accuracy >= 95.0):
-            num_good += 1
+        for i in range(5):
+            accuracy = (1 - levenshteins[i] / len(Constants.reference_text[i])) * 100
+            if (accuracy < 0):
+                accuracy = 0
+            clean_trx_text = ''.join(e for e in transcribed_list[i] if e.isalnum())
+            clean_trx_text = clean_trx_text.replace('\n', ' ').replace('\r', '')
+            row = {
+                'round_number': 1,
+                'reference_text_length': len(Constants.reference_text[i]),
+                'transcribed_text_length': len(clean_trx_text),
+                'distance': levenshteins[0],
+                'accuracy': round(accuracy, 2)
+            }
+            table_rows.append(row)  
+            if (accuracy >= 95.0):
+                num_good += 1
 
-        # =======  loop 2
-        accuracy = (1 - self.player.levenshtein_distance_2 / len(Constants.reference_text_2)) * 100
-        if (accuracy < 0):
-            accuracy = 0
-        clean_trx_text = ''.join(e for e in self.player.transcribed_text_2 if e.isalnum())
-        clean_trx_text = clean_trx_text.replace('\n', ' ').replace('\r', '')
-        row_2 = {
-            'round_number': 2,
-            'reference_text_length': len(Constants.reference_text_2),
-            'transcribed_text_length': len(clean_trx_text),
-            'distance': self.player.levenshtein_distance_2,
-            'accuracy': round(accuracy, 2)
-        }
-        table_rows.append(row_2)  
-        if (accuracy >= 95.0):
-            num_good += 1
-
-        # =======  loop 5 times
-        accuracy = (1 - self.player.levenshtein_distance_3 / len(Constants.reference_text_3)) * 100
-        if (accuracy < 0):
-            accuracy = 0
-        clean_trx_text = ''.join(e for e in self.player.transcribed_text_3 if e.isalnum())
-        clean_trx_text = clean_trx_text.replace('\n', ' ').replace('\r', '')
-        row_3 = {
-            'round_number': 3,
-            'reference_text_length': len(Constants.reference_text_3),
-            'transcribed_text_length': len(clean_trx_text),
-            'distance': self.player.levenshtein_distance_3,
-            'accuracy': round(accuracy, 2)
-        }
-        table_rows.append(row_3)  
-        if (accuracy >= 95.0):
-            num_good += 1
-
-        # =======  loop 5 times
-        accuracy = (1 - self.player.levenshtein_distance_4 / len(Constants.reference_text_4)) * 100
-        if (accuracy < 0):
-            accuracy = 0
-        clean_trx_text = ''.join(e for e in self.player.transcribed_text_4 if e.isalnum())
-        clean_trx_text = clean_trx_text.replace('\n', ' ').replace('\r', '')
-        row_4 = {
-            'round_number': 4,
-            'reference_text_length': len(Constants.reference_text_4),
-            'transcribed_text_length': len(clean_trx_text),
-            'distance': self.player.levenshtein_distance_4,
-            'accuracy': round(accuracy, 2)
-        }
-        table_rows.append(row_4)  
-        if (accuracy >= 95.0):
-            num_good += 1
-
-        # =======  loop 5 times
-        accuracy = (1 - self.player.levenshtein_distance_5 / len(Constants.reference_text_5)) * 100
-        if (accuracy < 0):
-            accuracy = 0
-        clean_trx_text = ''.join(e for e in self.player.transcribed_text_5 if e.isalnum())
-        clean_trx_text = clean_trx_text.replace('\n', ' ').replace('\r', '')
-        row_5 = {
-            'round_number': 5,
-            'reference_text_length': len(Constants.reference_text_5),
-            'transcribed_text_length': len(clean_trx_text),
-            'distance': self.player.levenshtein_distance_5,
-            'accuracy': round(accuracy, 2)
-        }
-        table_rows.append(row_5)  
-        if (accuracy >= 95.0):
-            num_good += 1
 
 
         if self.player.emp_price <= Constants.kickin:
@@ -483,7 +429,8 @@ class Results(Page):
                 'num_good': num_good,
                 'emp_price': self.player.emp_price,
                 'emp_bonus': self.player.payoff,
-                'mgr_bonus': self.group.get_player_by_id(1).payoff}
+                'mgr_bonus': self.group.get_player_by_id(1).payoff,
+                'transcribed_list': transcribed_list}
 
 
 class Sorry(Page):
