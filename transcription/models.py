@@ -70,7 +70,7 @@ class Constants(BaseConstants):
     allowed_error_rate = 3
     startwp_timer = 600
 
-    budget = c(3.00)
+    budget = c(5.00)
     kickin = c(4.00)
     rate = 2
     basepay = c(2.00)
@@ -79,7 +79,7 @@ class Subsession(BaseSubsession):
     pass
 
 class Group(BaseGroup):
-#    agreed = models.BooleanField(default=False)
+    agreed = models.BooleanField(default=False)
     pass
 
 TEST_CHOICES = (('','please select'),(0.66,'$0.66'),(0.70,'$0.70'),(0.75,'$0.75'),(0.8,'$0.80'),(1.0,'$1.00'))

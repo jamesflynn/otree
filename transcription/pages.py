@@ -97,11 +97,11 @@ class ManagerChat(Page):
     def vars_for_template(self):
 
         bid2 = self.group.get_player_by_id(2).participant.vars.get('bid')
-        matched2 = bid2 <= 5.0
+        matched2 = bid2 <= Constants.budget
         bid3 = self.group.get_player_by_id(3).participant.vars.get('bid')
-        matched3 = bid3 <= 5.0
+        matched3 = bid3 <= Constants.budget
         bid4 = self.group.get_player_by_id(4).participant.vars.get('bid')
-        matched4 = bid4 <= 5.0
+        matched4 = bid4 <= Constants.budget
         if Constants.split_chats:
             channel1 = self.group.id_in_subsession + 1000
             channel2 = self.group.id_in_subsession + 7777
@@ -130,7 +130,20 @@ class ManagerChat(Page):
                 }
 
     form_model = models.Player
-    form_fields = ['man_emp1_price','man_emp2_price','man_emp3_price']    
+    form_fields = ['man_emp1_price','man_emp2_price','man_emp3_price']  
+
+    def before_next_page(self):
+        if self.player.id_in_group == 1:
+            if self.player.man_emp1_price == 0 :
+                self.player.man_emp1_price = 5
+            if self.player.man_emp2_price == 0 :
+                self.player.man_emp2_price = 5
+            if self.player.man_emp3_price == 0 :
+                self.player.man_emp3_price = 5
+
+            self.player.payoff = max(3 * Constants.budget - self.player.man_emp1_price - self.player.man_emp2_price - self.player.man_emp3_price,0)
+            self.participant.vars['payoff'] = self.player.payoff
+
 #    form_fields = ['man_emp1_price','man_emp1_accpt','man_emp2_price','man_emp2_accpt','man_emp3_price','man_emp3_accpt']
 
 
@@ -170,13 +183,16 @@ class EmployeeChat(Page):
 
     def before_next_page(self):
         if self.player.id_in_group != 1:
-            self.player.payoff = self.player.emp_price
-            self.participant.vars['payoff'] = self.player.emp_price
-            self.group.get_player_by_id(1).payoff += c(5) - self.player.emp_price
-            self.group.get_player_by_id(1).participant.vars['payoff'] += c(5) - self.player.emp_price
+            self.player.payoff = max(self.player.emp_price - self.player.participant.vars.get('tax'),0) 
+            self.participant.vars['payoff'] = max(self.player.emp_price - self.player.participant.vars.get('tax'),0)
+#            self.group.get_player_by_id(1).payoff += Constants.budget - self.player.emp_price
+#            self.group.get_player_by_id(1).participant.vars['payoff'] += c(5) - self.player.emp_price
 
 class OptIn(Page):
-    pass
+    def vars_for_template(self):
+  # fix for manager
+        return {'bonus': c(self.player.participant.vars.get('payoff'))  }
+
 
 class Demographics(Page):
 
