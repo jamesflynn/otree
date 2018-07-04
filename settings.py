@@ -110,9 +110,9 @@ ROOMS = [
 # https://boto.readthedocs.org/en/latest/ref/mturk.html?highlight=mturk#module-boto.mturk.qualification
 
 mturk_hit_settings = {
-    'keywords': ['transcription', 'bonus', 'negotiation', 'study'],
-    'title': 'Management and Transcription',
-    'description': 'You will be assigned to either manage or directly carry out transcription',
+    'keywords': [ 'bonus', 'negotiation', 'research study'],
+    'title': 'Wage Negotiation',
+    'description': 'You will be assigned to be either a manager or a worker in a negotiation',
     'frame_height': 600,
     'preview_template': 'global/MTurkPreview.html',
     'minutes_allotted_per_assignment': 48*60,

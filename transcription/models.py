@@ -101,21 +101,21 @@ class Player(BasePlayer):
     def chat_nickname(self):
         return '{} {}'.format(self.role(), self.id_in_group - 1 )
 
-    transcribed_text_1 = models.LongStringField(blank=True)
-    levenshtein_distance_1 = models.PositiveIntegerField()
-    transcribed_text_2 = models.LongStringField(blank=True)
-    levenshtein_distance_2 = models.PositiveIntegerField()
-    transcribed_text_3 = models.LongStringField(blank=True)
-    levenshtein_distance_3 = models.PositiveIntegerField()
-    transcribed_text_4 = models.LongStringField(blank=True)
-    levenshtein_distance_4 = models.PositiveIntegerField()
-    transcribed_text_5 = models.LongStringField(blank=True)
-    levenshtein_distance_5 = models.PositiveIntegerField()
+#    transcribed_text_1 = models.LongStringField(blank=True)
+#    levenshtein_distance_1 = models.PositiveIntegerField()
+#    transcribed_text_2 = models.LongStringField(blank=True)
+#    levenshtein_distance_2 = models.PositiveIntegerField()
+#    transcribed_text_3 = models.LongStringField(blank=True)
+#    levenshtein_distance_3 = models.PositiveIntegerField()
+#    transcribed_text_4 = models.LongStringField(blank=True)
+#    levenshtein_distance_4 = models.PositiveIntegerField()
+#    transcribed_text_5 = models.LongStringField(blank=True)
+#    levenshtein_distance_5 = models.PositiveIntegerField()
 
-    bid = models.CurrencyField()
+#    bid = models.CurrencyField()
 
     emp_price = models.CurrencyField(max=5.00,min=0.00)
-    test_compre_pr = models.CurrencyField(widget=widgets.Select(choices=TEST_CHOICES))
+#    test_compre_pr = models.CurrencyField(widget=widgets.Select(choices=TEST_CHOICES))
 #    emp_price_accept = models.BooleanField(widget=widgets.RadioSelectHorizontal(choices=BOOL_CHOICES))
     man_emp1_price = models.CurrencyField(max=5.00,min=0.00)
 #    man_emp1_accpt = models.BooleanField()
@@ -131,7 +131,7 @@ class Player(BasePlayer):
     experience = models.StringField(widget=widgets.Select(choices=EXP_CHOICES))
     transExp = models.StringField(widget=widgets.Select(choices=TRANS_CHOICES))
     eduLevel = models.StringField(widget=widgets.Select(choices=EDU_CHOICES))
-    dailyHHEarn = models.CurrencyField()
+    dailyHHEarn = models.CurrencyField(min=0)
     feedback_form = models.LongStringField(widget=widgets.Textarea,blank=True)
 
 

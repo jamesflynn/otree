@@ -10,7 +10,7 @@ class Consent(Page):
     form_fields = ['consent']
 
     def before_next_page(self):
-        self.player.rand = randint(Constants.tax_min,Constants.tax_max)
+        self.player.tax = randint(Constants.tax_min,Constants.tax_max)
 
 #class Introduction(Page):   # extra manager intro
 #    pass
@@ -30,7 +30,6 @@ class Bid(Page):
     form_fields = ['bid']
 
     def vars_for_template(self):
-        self.player.tax = self.player.rand
         self.participant.vars['tax'] = self.player.tax
         return{
         'tax': c(self.player.tax)
