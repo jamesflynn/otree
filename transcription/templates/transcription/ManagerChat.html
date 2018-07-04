@@ -11,10 +11,13 @@
     <!-- define a style -->
     <style type="text/css">
 
+    pre.inline {
+       display: inline;
+    }
   table {
     empty-cells: show;
     border: 0px;
-}
+    }
 
 table td,
 table th {
@@ -36,45 +39,45 @@ table th {
 
 {% block content %}
 
-<p>You have been assigned to be the manager, to negotiate with 3 workers. Your budget is $5 per worker. You will decide how to split the budget between you by negotiating. If you reach an agreement, your payoff is {{ budget }} minus the price that you agree to. The worker will receive the price you agree to minus a random tax that only they know.  If you do not reach an agreement with a particular worker, you will not receive any of your budget for that worker, and that worker will not receive additional payments.</p>
+<p>You have been assigned to be the manager, to negotiate with 3 workers. Your budget is $5 per worker. The workers do not know your budget. You will decide how to split the budget between you by negotiating. If you reach an agreement, your payoff is {{ budget }} minus the price you agree to pay the worker. The worker will receive the price you agree to minus a random tax that only they know. If you do not reach an agreement with a particular worker, you will not receive any of your budget for that worker, and that worker will not receive additional payments.</p>
 
-<p>This means if you agree to a wage of $4 with one worker and a wage of $3 with another, the first worker will receive $4 minus their tax, the second worker will receive $3 minus their tax. You will receive $1 from the first worker ($5 - $4), and $2 from the second worker ($5 - $3).</p>
+<p>For example, if you agree to a wage of $4 with one worker and a wage of $3 with another, you would receive $1 from the first agreement ($5 - $4), and $2 from the second ($5 - $3). The first worker will receive $4 minus their tax, the second worker will receive $3 minus their tax.</p>
 
-<p>This means that the maximum you should pay any worker is {{ budget }}.</p>
+<p>So the maximum you should pay any worker is {{ budget }}.</p>
 
-<p>The opening offer from the employees are:<br>
- Employee 1 : {{ bid2 }}<br>
- Employee 2 : {{ bid3 }}<br>
- Employee 3 : {{ bid4 }}</p>
+<p>The opening offers from the workers are:<br>
+Worker 1 : <span style="background-color: ghostwhite; display: inline; font-family:courier">{{bid2}}</span><br>
+Worker 2 : <span style="background-color: ghostwhite; display: inline; font-family:courier">{{bid3}}</span><br>
+Worker 3 : <span style="background-color: ghostwhite; display: inline; font-family:courier">{{bid4}}</span></p>
 
 {% if split_chats %}
-<p>You and the employees are all here now, you can chat with them separately.</p>
+<p>You and the workers are all here now, you can chat with them separately.</p>
 
 <br>
 
 <div id="wrapper">
     <div class="column-left" style="overflow: hidden;">
 
-        <strong>Employee 1</strong>
+        <strong>Worker 1</strong>
         {% chat nickname="Manager" channel=channel1 %}<br>
-        <strong>Employee 1</strong> bid {{ bid2 }} for each page. <br>
-        {% formfield player.man_emp1_price label="What is the confirmed price you will pay Employee 1 per page? Enter 0 if no deal reached." %}
+        <strong>Worker 1</strong> bid <span style="background-color: ghostwhite; display: inline; font-family:courier">{{bid2}}</span>. <br>
+        {% formfield player.man_emp1_price label="What is the confirmed price you will pay Worker 1? Enter 0 if no deal reached." %}
 
     </div>
     <div  class="column-center"  style="overflow: hidden;">
 
-        <strong>Employee 2</strong>
+        <strong>Worker 2</strong>
         {% chat nickname="Manager" channel=channel2 %}<br>
-        <strong>Employee 2</strong> bid {{ bid3 }} for each page. <br>
-        {% formfield player.man_emp2_price label="What is the confirmed price you will pay Employee 2 per page? Enter 0 if no deal reached." %}
+        <strong>Worker 2</strong> bid <span style="background-color: ghostwhite; display: inline; font-family:courier">{{bid3}}</span>. <br>
+        {% formfield player.man_emp2_price label="What is the confirmed price you will pay Worker 2? Enter 0 if no deal reached." %}
 
     </div>
     <div  class="column-right"  style="overflow: hidden;">
 
-        <strong>Employee 3</strong>
+        <strong>Worker 3</strong>
         {% chat nickname="Manager" channel=channel3 %}<br>
-        <strong>Employee 3</strong> bid {{ bid4 }} for each page. <br>
-        {% formfield player.man_emp3_price label="What is the confirmed price you will pay Employee 3 per page? Enter 0 if no deal reached." %}
+        <strong>Worker 3</strong> bid <span style="background-color: ghostwhite; display: inline; font-family:courier">{{bid4}}</span>. <br>
+        {% formfield player.man_emp3_price label="What is the confirmed price you will pay Worker 3? Enter 0 if no deal reached." %}
 
     </div>
 </div>
@@ -87,23 +90,23 @@ table th {
   {% chat nickname="Manager" channel=channel1 %}
 <br>
 
-        <strong>Employee 1</strong> bid {{ bid2 }} for each page. <br>
-        {% formfield player.man_emp1_price label="What is the confirmed price you will pay Employee 1 per page? Enter 0 if no deal reached." %}
+        <strong>Worker 1</strong> bid <span style="background-color: ghostwhite; display: inline; font-family:courier">{{bid2}}</span>. <br>
+        {% formfield player.man_emp1_price label="What is the confirmed price you will pay Worker 1? Enter 0 if no deal reached." %}
         <br>
 
-        <strong>Employee 2</strong> bid {{ bid3 }} for each page. <br>
-        {% formfield player.man_emp2_price label="What is the confirmed price you will pay Employee 2 per page? Enter 0 if no deal reached." %}
+        <strong>Worker 2</strong> bid <span style="background-color: ghostwhite; display: inline; font-family:courier">{{bid3}}</span>. <br>
+        {% formfield player.man_emp2_price label="What is the confirmed price you will pay Worker 2? Enter 0 if no deal reached." %}
         <br>
 
-        <strong>Employee 3</strong> bid {{ bid4 }} for each page. <br>
-        {% formfield player.man_emp3_price label="What is the confirmed price you will pay Employee 3 per page? Enter 0 if no deal reached." %}
+        <strong>Worker 3</strong> bid <span style="background-color: ghostwhite; display: inline; font-family:courier">{{bid4}}</span>. <br>
+        {% formfield player.man_emp3_price label="What is the confirmed price you will pay Worker 3? Enter 0 if no deal reached." %}
         <br>
 
 
 {% endif %}
 <br>
 <p>
-  Please make sure you confirm the bid amounts, and the acceptance or rejection of the bid in the chat!
+  Please make sure you confirm the amounts in the boxes, and in the chat. If these numbers are not in agreement between you and the worker, neither will be paid.
 </p>        
     <p><small>You will receive any additional payment owed via an MTurk Bonus</small></p>
     <div>

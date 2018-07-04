@@ -171,6 +171,7 @@ class EmployeeChat(Page):
         return {'fbid': float(bid),
                 'tax': c(self.participant.vars['tax']),
                 'bid': bid,
+                'example': c(4.50) - c(self.participant.vars['tax']),
                 'match': match,
                 'enum': self.player.id_in_group - 1,
                 'channel': channel,
@@ -190,8 +191,13 @@ class EmployeeChat(Page):
 
 class OptIn(Page):
     def vars_for_template(self):
-  # fix for manager
-        return {'bonus': c(self.player.participant.vars.get('payoff'))  }
+        if self.player.participant.vars.get('payoff') <= 0:
+            text = 'You will still be paid for the HIT.'
+        else :
+            text = 'After it is verified that the amounts agreed, you will be paid via MTurk.'
+
+        return {'text' : text,
+                'bonus': c(self.player.participant.vars.get('payoff'))  }
 
 
 class Demographics(Page):

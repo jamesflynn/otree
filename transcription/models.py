@@ -96,7 +96,7 @@ class Player(BasePlayer):
         if self.id_in_group == 1:
             return 'Manager'
         else:
-            return 'Employee'
+            return 'Worker'
 	
     def chat_nickname(self):
         return '{} {}'.format(self.role(), self.id_in_group - 1 )
@@ -117,12 +117,12 @@ class Player(BasePlayer):
     emp_price = models.CurrencyField(max=5.00,min=0.00)
     test_compre_pr = models.CurrencyField(widget=widgets.Select(choices=TEST_CHOICES))
 #    emp_price_accept = models.BooleanField(widget=widgets.RadioSelectHorizontal(choices=BOOL_CHOICES))
-    man_emp1_price = models.CurrencyField()
-    man_emp1_accpt = models.BooleanField()
-    man_emp2_price = models.CurrencyField()
-    man_emp2_accpt = models.BooleanField()
-    man_emp3_price = models.CurrencyField()
-    man_emp3_accpt = models.BooleanField()
+    man_emp1_price = models.CurrencyField(max=5.00,min=0.00)
+#    man_emp1_accpt = models.BooleanField()
+    man_emp2_price = models.CurrencyField(max=5.00,min=0.00)
+#    man_emp2_accpt = models.BooleanField()
+    man_emp3_price = models.CurrencyField(max=5.00,min=0.00)
+#    man_emp3_accpt = models.BooleanField()
     startwp_timer_set = models.BooleanField(default=False)
     startwp_time = models.PositiveIntegerField()
     outofthegame = models.BooleanField()

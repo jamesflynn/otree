@@ -43,7 +43,7 @@ class Bid(Page):
 page_sequence = [
     Consent,
 #    Introduction,
-    Sample,
-    Preferences,
+#    Sample,
+#    Preferences,
     Bid
 ]

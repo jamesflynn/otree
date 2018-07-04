@@ -7,15 +7,15 @@
 
 {% block content %}
 
-<p>You will be assigned to be a worker or a manager in a round of negotiations in a chatroom. There may be multiple workers in the chatroom, and the manager will have a budget between $3 and $5, for each worker. You will decide how to split the budget between you by negotiating. If you do not reach an agreement, neither of you will receive additional payments.</p>
+<p>You will be assigned to be a worker or a manager in a round of negotiations in a chatroom. You will decide how to split the budget between you by negotiating. If you do not reach an agreement, neither of you will receive additional payments.</p>
 
-<p>You have a randomly-assigned tax of: {{ tax }}.</p>
+<p>You have a randomly-assigned tax of: <span style="background-color: ghostwhite; display: inline; font-family:courier">{{tax}}</span>.</p>
 
-<p>This means if you are a worker in the upcoming negotiation, your final payoff will be the amount you agree to with the manager minus {{ tax }}. No one besides you knows this tax.</p>
+<p>This means if you are a worker in the upcoming negotiation, your final payoff will be the amount you agree to with the manager minus <span style="background-color: ghostwhite; display: inline; font-family:courier">{{tax}}</span>. No one besides you knows this tax.</p>
 
 <p>We will now ask you for an opening bid. If you are assigned to be a worker, the manager will see this bid and may use it to negotiate with you on a final price.</p>
 
-    {% formfield player.bid label="How much is your bid price per single page?" %}
+    {% formfield player.bid label="How much are you asking for?" %}
 
     {% next_button %}
 

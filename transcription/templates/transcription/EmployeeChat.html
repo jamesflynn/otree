@@ -8,37 +8,24 @@
 
 {% block content %}
 
-{% if split_chats %}
-<p>A manager is here.</p>
-{% else %}
-<p>Everyone is here. You, 2 other employees, and a manager.</p>
-{% endif %}
+<p>You have been assigned to be a worker.</p>
 
-<p>Your tax is {{ tax }}</p>
+<p>Recall, you have been personally assigned a tax of <span style="background-color: ghostwhite; display: inline; font-family:courier">{{tax}}</span>, which only you know, and may not be the same as the other workers. That means you will receive the amount you agree to below (“the wage”), minus the tax.</p>
 
-<p>You have been assigned to be a worker.  We sent your bid to the manager, and the manager has received a budget.  If you reach an agreement on a wage, your payoff is the wage you agree to minus {{ tax }}. The manager will receive the remainder of their budget, after paying the wage you agree to.  If you do not reach an agreement, you will not receive any additional payments, and the manager will not receive any portion of their budget.</p>
+<p>For example, if you agree to a wage of $4.50, you will receive <span style="background-color: ghostwhite; display: inline; font-family:courier">{{example}}</span>   ($4.50 - <span style="background-color: ghostwhite; display: inline; font-family:courier">{{tax}}</span>), and the manager will receive an additional payment of <i>their budget</i> - $4.50</p> 
 
-<p>This means that if you agree to a wage of $4.50, you will receive $4.50 minus {{ tax }}, and the manager will receive an additional payment of their budget - $4.50</p>
+<p>The minimum you can accept is <span style="background-color: ghostwhite; display: inline; font-family:courier">{{tax}}</span> which gives you a payoff of $0.00</p>
 
-<p>This means that the minimum wage you can accept from the manager is {{ tax }}.</p>
-
-<p>Your initial bid to the manager was {{ bid }} for each page. The manager is here to discuss it with you. If they don't show up you can click through to finish the HIT, but you will not receive the bonus payment.</p>
+<p>Your initial bid to the manager was <span style="background-color: ghostwhite; display: inline; font-family:courier">{{bid}}</span>. The manager is here to discuss it with you. {% if split_chats %}{% else %}There are also 2 other workers in the chat room.{% endif %} If the manager doesn't show up you can click through to finish the HIT, but you will not receive the bonus payment.</p>
 
     {% chat nickname=player.chat_nickname channel=channel %}
 
-<br>
-    {% if match %}
-    <input type="hidden" name="emp_price" value="{{ fbid }}" id="id_my_hidden_input"/>
-    {% else %}
-    <input type="hidden" name="emp_price" value="0" id="id_my_hidden_input"/>
-    {% endif %}
+    <p>Please talk to the manager to determine your payment.</p>
 
-    <p>Please talk to the manager to find out if your bid was accepted or not.</p>
-
-<p>    {% formfield player.emp_price label="What is the confirmed price you will be paid per page? Enter 0 if no deal reached." %}</p>
+<p>    {% formfield player.emp_price label="What is the confirmed price you will be paid? Enter 0 if no deal reached." %}</p>
 
 
-    <p><small>If your work does not achieve at least 95% accuracy, you will not be paid for that page. Selecting Done will end your chat session, you cannot come back. If you do not come to an agreement you will still be paid for the HIT. You will receive any additional payment owed via an MTurk Bonus</small></p>
+    <p><small>Clicking Done will end your chat session, you cannot come back. If you do not come to an agreement you will still be paid for the HIT. You will receive any additional payment owed via an MTurk Bonus</small></p>
     <div>
         <button class="btn btn-warning btn-large">Done</button>
     </div>
