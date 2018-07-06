@@ -117,7 +117,7 @@ mturk_hit_settings = {
     'preview_template': 'global/MTurkPreview.html',
     'minutes_allotted_per_assignment': 60,
     'expiration_hours': 2,  # 7 days
-#    'grant_qualification_id': '3NF07PFA1K2EGWJFNBQ4JN81TXKETV',# to prevent retakes FOR REAL
+    'grant_qualification_id': '3NF07PFA1K2EGWJFNBQ4JN81TXKETV',# to prevent retakes FOR REAL
 #    'grant_qualification_id': '3VFIQRXYYK60OWH5USLZQ69Z1BU2ZB', ## sandbox
     'qualification_requirements': [
 #        {
@@ -127,21 +127,25 @@ mturk_hit_settings = {
         {
             'QualificationTypeId': "3NF07PFA1K2EGWJFNBQ4JN81TXKETV",   # Prevent Repeats PRODUCTION
             'Comparator': "DoesNotExist",
+            'ActionsGuarded': "DiscoverPreviewAndAccept"
         },
         {
             'QualificationTypeId': "00000000000000000071",    # Worker_Locale
             'Comparator': "EqualTo",
-            'LocaleValues': [{'Country': "US"}]
+            'LocaleValues': [{'Country': "US"}],
+            'ActionsGuarded': "DiscoverPreviewAndAccept"
         },
-#        {
-#            'QualificationTypeId': "000000000000000000L0",    # Worker_PercentAssignmentsApproved
-#            'Comparator': "GreaterThan",
-#            'IntegerValues': [50]
-#        },
+        {
+            'QualificationTypeId': "000000000000000000L0",    # Worker_PercentAssignmentsApproved
+            'Comparator': "GreaterThan",
+            'IntegerValues': [50],
+            'ActionsGuarded': "DiscoverPreviewAndAccept"
+        },
         {
             'QualificationTypeId': "00000000000000000040",    # Worker_NumberHitsApproved
             'Comparator': "GreaterThanOrEqualTo",
-            'IntegerValues': [100]
+            'IntegerValues': [100],
+            'ActionsGuarded': "DiscoverPreviewAndAccept"
         },
 #        {
 #            'QualificationTypeId': "2ARFPLSP75KLA8M8DH1HTEQVJT3SY6",    # Masters Sandbox
