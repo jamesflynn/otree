@@ -11,38 +11,8 @@ class Consent(Page):
 
     def before_next_page(self):
         self.player.tax = randint(Constants.tax_min,Constants.tax_max)
-
-#class Introduction(Page):   # extra manager intro
-#    pass
-
-class Sample(Page):      # transcription sample for manager
-    form_model = 'player'
-    form_fields = ['howLong']
-
-class Preferences(Page):
-    form_model = 'player'
-    form_fields = ['pref1','pref2','pref3','pref4','pref5']
-
-
-class Bid(Page):             
-
-    form_model = 'player'
-    form_fields = ['bid']
-
-    def vars_for_template(self):
         self.participant.vars['tax'] = self.player.tax
-        return{
-        'tax': c(self.player.tax)
-        }
-   
-    def before_next_page(self):
-        self.participant.vars['bid'] = self.player.bid
-        self.participant.vars['payoff'] = 0
 
 page_sequence = [
-    Consent,
-#    Introduction,
-#    Sample,
-#    Preferences,
-    Bid
+    Consent
 ]

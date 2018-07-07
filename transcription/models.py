@@ -18,6 +18,7 @@ def validate_nonzero(value):
             params={'value': value},
         )
 
+
 author = 'James Flynn' 
 
 doc = """
@@ -68,7 +69,7 @@ class Constants(BaseConstants):
     "682156145306785237520141615361344193435661262188225180373811130171137118941749105157124574531302102637552346104951286254888957151525147240265612016551062672346261505961955452325267142083452927148117631170823216131211121124444211114712456922211437112155831111181611192151122211239632321216422448127244103937122516921411210731812112151521943318912222311713214314451008966131423261432273649608981917681171822131124141361518259591621119159243744068191244662214231111221113811614722211216421102275871421417218411313952102846658382236512514551491333241062161441459206621917463361571134413522291651921217164412171033791231837332912192521741234210912688101111285167107591132914933112131580747986503354958699293735110077919262281310434011945322510505427782856183406316121332462066411544512746538124161111358482620118170392462421121411112211114211881311021152194814122611275641073481143123024692124"\
     ]
     allowed_error_rate = 3
-    startwp_timer = 600
+    startwp_timer = 300
 
     budget = c(5.00)
     kickin = c(4.00)
@@ -101,28 +102,17 @@ class Player(BasePlayer):
     def chat_nickname(self):
         return '{} {}'.format(self.role(), self.id_in_group - 1 )
 
-#    transcribed_text_1 = models.LongStringField(blank=True)
-#    levenshtein_distance_1 = models.PositiveIntegerField()
-#    transcribed_text_2 = models.LongStringField(blank=True)
-#    levenshtein_distance_2 = models.PositiveIntegerField()
-#    transcribed_text_3 = models.LongStringField(blank=True)
-#    levenshtein_distance_3 = models.PositiveIntegerField()
-#    transcribed_text_4 = models.LongStringField(blank=True)
-#    levenshtein_distance_4 = models.PositiveIntegerField()
-#    transcribed_text_5 = models.LongStringField(blank=True)
-#    levenshtein_distance_5 = models.PositiveIntegerField()
 
-#    bid = models.CurrencyField()
-
-    emp_price = models.CurrencyField(max=5.00,min=0.00)
-#    test_compre_pr = models.CurrencyField(widget=widgets.Select(choices=TEST_CHOICES))
-#    emp_price_accept = models.BooleanField(widget=widgets.RadioSelectHorizontal(choices=BOOL_CHOICES))
-    man_emp1_price = models.CurrencyField(max=5.00,min=0.00)
-#    man_emp1_accpt = models.BooleanField()
-    man_emp2_price = models.CurrencyField(max=5.00,min=0.00)
-#    man_emp2_accpt = models.BooleanField()
-    man_emp3_price = models.CurrencyField(max=5.00,min=0.00)
-#    man_emp3_accpt = models.BooleanField()
+    emp_price = models.CurrencyField(blank=True)
+    emp_nodeal = models.BooleanField(widget= widgets.CheckboxInput(),default=False)
+    tax = models.CurrencyField()
+    bid = models.CurrencyField()
+    man_emp1_price = models.CurrencyField(blank=True)
+    man_emp1_nodeal = models.BooleanField(widget= widgets.CheckboxInput(),default=False)
+    man_emp2_price = models.CurrencyField(blank=True)
+    man_emp2_nodeal = models.BooleanField(widget= widgets.CheckboxInput(),default=False)
+    man_emp3_price = models.CurrencyField(blank=True)
+    man_emp3_nodeal = models.BooleanField(widget= widgets.CheckboxInput(),default=False)
     startwp_timer_set = models.BooleanField(default=False)
     startwp_time = models.PositiveIntegerField()
     outofthegame = models.BooleanField()

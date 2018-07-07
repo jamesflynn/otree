@@ -39,19 +39,13 @@ table th {
 
 {% block content %}
 
-<p>You have been assigned to be the manager, to negotiate with 3 workers. Your budget is $5 per worker. The workers do not know your budget. You will decide how to split the budget between you by negotiating. If you reach an agreement, your payoff is {{ budget }} minus the price you agree to pay the worker. The worker will receive the price you agree to minus a random tax that only they know. If you do not reach an agreement with a particular worker, you will not receive any of your budget for that worker, and that worker will not receive additional payments.</p>
-
-<p>For example, if you agree to a wage of $4 with one worker and a wage of $3 with another, you would receive $1 from the first agreement ($5 - $4), and $2 from the second ($5 - $3). The first worker will receive $4 minus their tax, the second worker will receive $3 minus their tax.</p>
-
+<p>You have been assigned to be the Manager, to negotiate with 3 Workers. Your budget is $5 per Worker. The Workers do not know your budget. You will decide how to split the budget between you by negotiating. If you reach an agreement, your payoff is {{ budget }} minus the wage you agree to pay the worker. If you do not reach an agreement with a Worker, you will not receive any of your budget for that Worker, and that Worker will not receive additional payments.</p>
+<p>For example, if you agree to a wage of $4 with one worker and a wage of $3 with another, you would receive $1 from the first agreement ($5 - $4), and $2 from the second ($5 - $3).</p>
 <p>So the maximum you should pay any worker is {{ budget }}.</p>
-
-<p>The opening offers from the workers are:<br>
-Worker 1 : <span style="background-color: ghostwhite; display: inline; font-family:courier">{{bid2}}</span><br>
-Worker 2 : <span style="background-color: ghostwhite; display: inline; font-family:courier">{{bid3}}</span><br>
-Worker 3 : <span style="background-color: ghostwhite; display: inline; font-family:courier">{{bid4}}</span></p>
+<p>If you do not reach an agreement with one Worker, it will not affect your bonus payment from the other Workers. If any Workers don't show up you can still click through to finish the HIT.</p>
 
 {% if split_chats %}
-<p>You and the workers are all here now, you can chat with them separately.</p>
+<p>You and the Workers are all here now, you can chat with them separately.</p>
 
 <br>
 
@@ -61,7 +55,8 @@ Worker 3 : <span style="background-color: ghostwhite; display: inline; font-fami
         <strong>Worker 1</strong>
         {% chat nickname="Manager" channel=channel1 %}<br>
         <strong>Worker 1</strong> bid <span style="background-color: ghostwhite; display: inline; font-family:courier">{{bid2}}</span>. <br>
-        {% formfield player.man_emp1_price label="What is the confirmed price you will pay Worker 1? Enter 0 if no deal reached." %}
+        {% formfield player.man_emp1_price label="What is the confirmed wage you will pay Worker 1?" %}
+        {% formfield player.man_emp1_nodeal label="Check here if <strong>no deal</strong> reached with Worker 1." %}
 
     </div>
     <div  class="column-center"  style="overflow: hidden;">
@@ -69,7 +64,8 @@ Worker 3 : <span style="background-color: ghostwhite; display: inline; font-fami
         <strong>Worker 2</strong>
         {% chat nickname="Manager" channel=channel2 %}<br>
         <strong>Worker 2</strong> bid <span style="background-color: ghostwhite; display: inline; font-family:courier">{{bid3}}</span>. <br>
-        {% formfield player.man_emp2_price label="What is the confirmed price you will pay Worker 2? Enter 0 if no deal reached." %}
+        {% formfield player.man_emp2_price label="What is the confirmed wage you will pay Worker 2?" %}
+        {% formfield player.man_emp2_nodeal label="Check here if <strong>no deal</strong> reached with Worker 2." %}
 
     </div>
     <div  class="column-right"  style="overflow: hidden;">
@@ -77,8 +73,8 @@ Worker 3 : <span style="background-color: ghostwhite; display: inline; font-fami
         <strong>Worker 3</strong>
         {% chat nickname="Manager" channel=channel3 %}<br>
         <strong>Worker 3</strong> bid <span style="background-color: ghostwhite; display: inline; font-family:courier">{{bid4}}</span>. <br>
-        {% formfield player.man_emp3_price label="What is the confirmed price you will pay Worker 3? Enter 0 if no deal reached." %}
-
+        {% formfield player.man_emp3_price label="What is the confirmed wage you will pay Worker 3?" %}
+        {% formfield player.man_emp3_nodeal label="Check here if <strong>no deal</strong> reached with Worker 3." %}
     </div>
 </div>
 <div style="clear: both;"></div>
@@ -91,16 +87,18 @@ Worker 3 : <span style="background-color: ghostwhite; display: inline; font-fami
 <br>
 
         <strong>Worker 1</strong> bid <span style="background-color: ghostwhite; display: inline; font-family:courier">{{bid2}}</span>. <br>
-        {% formfield player.man_emp1_price label="What is the confirmed price you will pay Worker 1? Enter 0 if no deal reached." %}
-        <br>
+        {% formfield player.man_emp1_price label="What is the confirmed wage you will pay Worker 1?" %}{% formfield player.man_emp1_nodeal label="Check here if <strong>no deal</strong> reached with Worker 1." %}
+        <hr>
 
         <strong>Worker 2</strong> bid <span style="background-color: ghostwhite; display: inline; font-family:courier">{{bid3}}</span>. <br>
-        {% formfield player.man_emp2_price label="What is the confirmed price you will pay Worker 2? Enter 0 if no deal reached." %}
-        <br>
+        {% formfield player.man_emp2_price label="What is the confirmed wage you will pay Worker 2?" %}
+        {% formfield player.man_emp2_nodeal label="Check here if <strong>no deal</strong> reached with Worker 2." %}
+        <hr>
 
         <strong>Worker 3</strong> bid <span style="background-color: ghostwhite; display: inline; font-family:courier">{{bid4}}</span>. <br>
-        {% formfield player.man_emp3_price label="What is the confirmed price you will pay Worker 3? Enter 0 if no deal reached." %}
-        <br>
+        {% formfield player.man_emp3_price label="What is the confirmed wage you will pay Worker 3?" %}
+        {% formfield player.man_emp3_nodeal label="Check here if <strong>no deal</strong> reached with Worker 3." %}
+        <hr>
 
 
 {% endif %}
