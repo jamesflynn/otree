@@ -77,9 +77,22 @@ class ManagerChat(Page):
 
     def vars_for_template(self):
 
-        bid2 = self.group.get_player_by_id(2).participant.vars.get('bid')
-        bid3 = self.group.get_player_by_id(3).participant.vars.get('bid')
-        bid4 = self.group.get_player_by_id(4).participant.vars.get('bid')
+        if self.group.get_player_by_id(2).participant.vars.get('bid') is None:
+            bid2 = 0
+        else:
+            bid2 = self.group.get_player_by_id(2).participant.vars.get('bid')
+
+        if self.group.get_player_by_id(3).participant.vars.get('bid') is None:
+            bid3 = 0
+        else:
+            bid3 = self.group.get_player_by_id(3).participant.vars.get('bid')
+
+
+        if self.group.get_player_by_id(4).participant.vars.get('bid') is None:
+            bid4 = 0
+        else:
+            bid4 = self.group.get_player_by_id(4).participant.vars.get('bid')
+            
         if Constants.split_chats:
             channel1 = self.group.id_in_subsession + 1000
             channel2 = self.group.id_in_subsession + 7777
@@ -205,6 +218,13 @@ class EmployeeChat(Page):
 
 class OptIn(Page):
     def vars_for_template(self):
+
+        if self.player.participant.vars.get('payoff') is None:
+            self.player.participant.vars['payoff'] = 0
+
+        if self.player.payoff is None:
+            self.player.payoff = 0
+
         if self.player.participant.vars.get('payoff') <= 0:
             text = 'You will still be paid for the HIT.'
         else :
