@@ -8,25 +8,24 @@
 
 {% block content %}
 
-<p>Recall, you have been assigned a tax of <span style="background-color: ghostwhite; display: inline; font-family:courier">{{tax}}</span>, which only you know, and may not be the same as the other workers. That means you will receive the amount you agree to below (“the wage”), minus the tax.</p>
+<p><strong>All payoffs are real. You will be paid via an MTurk bonus.</strong></p>
 
-<p>For example, if you agree to a wage of $4.50, you will receive <span style="background-color: ghostwhite; display: inline; font-family:courier">{{example}}</span>   ($4.50 - <span style="background-color: ghostwhite; display: inline; font-family:courier">{{tax}}</span>), and the manager will receive an additional payment of <i>their budget</i> - $4.50</p> 
+<p>Rememeber you have been assigned a tax of <span style="background-color: ghostwhite; display: inline; font-family:courier">{{tax}}</span>, which only you know, and may not be the same as the other Workers. You can keep this information private if you want. You will receive the amount you agree to with the Manager, minus the tax.</p>
 
-<p>The minimum you can accept is <span style="background-color: ghostwhite; display: inline; font-family:courier">{{tax}}</span> which gives you a payoff of $0.00</p>
+<p>The minimum you can accept is <span style="background-color: ghostwhite; display: inline; font-family:courier">{{tax}}</span>, to cover your tax.</p>
 
-<p>Your initial bid to the manager was <span style="background-color: ghostwhite; display: inline; font-family:courier">{{bid}}</span>. The manager is here to discuss it with you. {% if split_chats %}There are also 2 other workers in separate chat rooms talking to the same manager, just like you are. You do not need to agree to the same wage as the other workers. {% else %}There are also 2 other workers in the chat room, you do not need to agree to the same wage as the other workers.{% endif %} If the manager doesn't show up you can click through to finish the HIT, but you will not receive the bonus payment.</p>
-
-<p>Only you know your tax, you can keep this information private if you want.</p>
+<p>Your initial bid to the manager was <span style="background-color: ghostwhite; display: inline; font-family:courier">{{bid}}</span>. The manager is here to discuss it with you. {% if split_chats %}There are also 2 other workers in separate chat rooms talking to the same manager, just like you are. You do not need to agree to the same wage as the other workers. {% else %}There are also 2 other workers in the chat room, you do not need to agree to the same wage as the other workers.{% endif %}</p>
+    <p>Please talk to the manager to determine your payment.</p>
 
     {% chat nickname=player.chat_nickname channel=channel %}
 
-    <p>Please talk to the manager to determine your payment.</p>
+<p>If the manager doesn't show up you can click through to finish the HIT.</p>
 
 <p>    {% formfield player.emp_price label="What is the confirmed wage you will be paid?" %}</p>
 <p>    {% formfield player.emp_nodeal label=" Check here if you cannot reach a deal." %}</p>
 
 
-    <p><small>Clicking Done will end your chat session, you cannot come back. If you do not come to an agreement you will still be paid for the HIT. You will receive any additional payment owed via an MTurk Bonus</small></p>
+    <p><small>Clicking Done will end your chat session, you cannot come back. If you do not come to an agreement you will still be paid for the HIT.</small></p>
     <div>
         <button class="btn btn-warning btn-large">Done</button>
     </div>

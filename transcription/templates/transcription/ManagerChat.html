@@ -31,22 +31,47 @@ table th {
 .column-left{ float: left; width: 33%; }
 .column-right{ float: right; width: 33%; }
 .column-center{ display: inline-block; width: 34%; }
-
+li:nth-child(2) {
+  list-style: none;
+}
+li:nth-child(4) {
+  list-style: none;
+}
+li:nth-child(6) {
+  list-style: none;
+}
+li:nth-child(7) {
+    list-style-type: circle;
+}
 
     </style>
 
 {% endblock %}
 
 {% block content %}
+<p><strong>All payoffs are real. You will be paid via an MTurk bonus.</strong></p>
 
-<p>You have been assigned to be the Manager, to negotiate with 3 Workers. Your budget is $5 per Worker. The Workers do not know your budget. You will decide how to split the budget between you by negotiating. If you reach an agreement, your payoff is {{ budget }} minus the wage you agree to pay the worker. The worker will receive the remainder of the payment, minus a random tax of either $2, $3, or $4. If you do not reach an agreement with a Worker, you will not receive any of your budget for that Worker, and that Worker will not receive additional payments.</p>
+<p>You have been assigned to be the Manager, to negotiate with 3 Workers. Your budget is {{ budget }} per Worker.</p>
+<p>Your payoff will be:</p>
+<ul>
+<li>{{ budget }} - (the wage you agree to pay Worker 1)</li>
+<li>+</li>
+<li>{{ budget }} - (the wage you agree to pay Worker 2)</li>
+<li>+</li>
+<li>{{ budget }} - (the wage you agree to pay Worker 3)</li>
+<li>&nbsp;</li>
+<li>Each worker will receive the wage you and that Worker agree to.</li>
+</ul>
 
-<p>For example, if you agree to a wage of $4 with one worker and a wage of $3 with another, you would receive $1 from the first agreement ($5 - $4), and $2 from the second ($5 - $3).</p>
-<p>So the maximum you should pay any worker is {{ budget }}.</p>
-<p>You will receive a bonus for each Worker with whom you agree to a wage. You do not need to reach an agreement with all Workers. If you do not reach an agreement with one Worker, it will not affect your bonus payment from the other Workers. If any Workers don't show up you can still click through to finish the HIT.</p>
+<p>But each worker has been randomly assigned a tax between $2 and $4.</p>
+
+<p>The Workers do not know your budget. They only know it is between $3 and $5.</p>
+
+<p>If you don't agree with a Worker you will still receive the payoff from the agreements with the other workers.</p>
+
+<p>If any Workers don't show up you can still click through to finish the HIT.</p>
 
 {% if split_chats %}
-<p>You and the Workers are all here now, you can chat with them separately.</p>
 
 <br>
 
@@ -82,7 +107,6 @@ table th {
 <br>
 
 {% else %}
-  
 <h3>Chat Room:</h3>
   {% chat nickname="Manager" channel=channel1 %}
 <br>
@@ -107,7 +131,6 @@ table th {
 <p>
   Please make sure you confirm the amounts in the boxes, and in the chat. If these numbers are not in agreement between you and the worker, neither will be paid.
 </p>        
-    <p><small>You will receive any additional payment owed via an MTurk Bonus</small></p>
     <div>
         <button class="btn btn-warning btn-large">Done</button>
     </div>

@@ -106,7 +106,7 @@ class Player(BasePlayer):
     emp_price = models.CurrencyField(blank=True)
     emp_nodeal = models.BooleanField(widget= widgets.CheckboxInput(),default=False)
     tax = models.CurrencyField()
-    bid = models.CurrencyField()
+    bid = models.CurrencyField(min=0,max=Constants.budget)
     man_emp1_price = models.CurrencyField(blank=True)
     man_emp1_nodeal = models.BooleanField(widget= widgets.CheckboxInput(),default=False)
     man_emp2_price = models.CurrencyField(blank=True)

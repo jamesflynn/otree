@@ -7,9 +7,9 @@
 
 {% block content %}
 
-<p>You have been assigned to be a Worker in a round of negotiations in a chatroom. You will decide how to split the budget with a Manager by negotiating. If you do not reach an agreement, neither of you will receive additional payments.</p>
+<p>You have been assigned to be a Worker in a round of negotiations in a chatroom. You will decide how to split the budget with a Manager by negotiating. If you do not reach an agreement, neither you nor the manager will receive additional payments.</p>
 
-<p>You have a randomly-assigned tax of: <span style="background-color: ghostwhite; display: inline; font-family:courier">{{tax}}</span>. Other workers have a randomly-assigned tax of $2, $3, or $4.</p>
+<p>All workers have a random tax between $2 and $4.</p><p>Your random tax is: <span style="background-color: ghostwhite; display: inline; font-family:courier">{{tax}}</span></p>
 
 <p>This means your final payoff will be the amount you agree to with the Manager minus <span style="background-color: ghostwhite; display: inline; font-family:courier">{{tax}}</span>. No one besides you knows this tax.</p>
 
