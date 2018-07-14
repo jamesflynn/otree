@@ -80,7 +80,6 @@ li:nth-child(7) {
 
         <strong>Worker 1</strong>
         {% chat nickname="Manager" channel=channel1 %}<br>
-        <strong>Worker 1</strong> bid <span style="background-color: ghostwhite; display: inline; font-family:courier">{{bid2}}</span>. <br>
         {% formfield player.man_emp1_price label="What is the confirmed wage you will pay Worker 1?" %}
         {% formfield player.man_emp1_nodeal label="Check here if <strong>no deal</strong> reached with Worker 1." %}
 
@@ -89,7 +88,6 @@ li:nth-child(7) {
 
         <strong>Worker 2</strong>
         {% chat nickname="Manager" channel=channel2 %}<br>
-        <strong>Worker 2</strong> bid <span style="background-color: ghostwhite; display: inline; font-family:courier">{{bid3}}</span>. <br>
         {% formfield player.man_emp2_price label="What is the confirmed wage you will pay Worker 2?" %}
         {% formfield player.man_emp2_nodeal label="Check here if <strong>no deal</strong> reached with Worker 2." %}
 
@@ -98,7 +96,6 @@ li:nth-child(7) {
 
         <strong>Worker 3</strong>
         {% chat nickname="Manager" channel=channel3 %}<br>
-        <strong>Worker 3</strong> bid <span style="background-color: ghostwhite; display: inline; font-family:courier">{{bid4}}</span>. <br>
         {% formfield player.man_emp3_price label="What is the confirmed wage you will pay Worker 3?" %}
         {% formfield player.man_emp3_nodeal label="Check here if <strong>no deal</strong> reached with Worker 3." %}
     </div>
@@ -111,16 +108,16 @@ li:nth-child(7) {
   {% chat nickname="Manager" channel=channel1 %}
 <br>
 
-        <strong>Worker 1</strong> bid <span style="background-color: ghostwhite; display: inline; font-family:courier">{{bid2}}</span>. <br>
+        <strong>Worker 1</strong><br>
         {% formfield player.man_emp1_price label="What is the confirmed wage you will pay Worker 1?" %}{% formfield player.man_emp1_nodeal label="Check here if <strong>no deal</strong> reached with Worker 1." %}
         <hr>
 
-        <strong>Worker 2</strong> bid <span style="background-color: ghostwhite; display: inline; font-family:courier">{{bid3}}</span>. <br>
+        <strong>Worker 2</strong><br>
         {% formfield player.man_emp2_price label="What is the confirmed wage you will pay Worker 2?" %}
         {% formfield player.man_emp2_nodeal label="Check here if <strong>no deal</strong> reached with Worker 2." %}
         <hr>
 
-        <strong>Worker 3</strong> bid <span style="background-color: ghostwhite; display: inline; font-family:courier">{{bid4}}</span>. <br>
+        <strong>Worker 3</strong><br>
         {% formfield player.man_emp3_price label="What is the confirmed wage you will pay Worker 3?" %}
         {% formfield player.man_emp3_nodeal label="Check here if <strong>no deal</strong> reached with Worker 3." %}
         <hr>
@@ -129,7 +126,7 @@ li:nth-child(7) {
 {% endif %}
 <br>
 <p>
-  Please make sure you confirm the amounts in the boxes, and in the chat. If these numbers are not in agreement between you and the worker, neither will be paid.
+<small>Please make sure you confirm the amounts in the chat. If these numbers are not in agreement between you and the worker, neither will be paid.</small>
 </p>        
     <div>
         <button class="btn btn-warning btn-large">Done</button>

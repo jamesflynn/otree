@@ -8,13 +8,15 @@
 
 {% block content %}
 
+
 <p><strong>All payoffs are real. You will be paid via an MTurk bonus.</strong></p>
+<p>You have been assigned to be a Worker. You will negotiate with the Manager to split the budget. If you do not reach an agreement, you will not receive additional payments.</p>
 
-<p>Rememeber you have been assigned a tax of <span style="background-color: ghostwhite; display: inline; font-family:courier">{{tax}}</span>, which only you know, and may not be the same as the other Workers. You can keep this information private if you want. You will receive the amount you agree to with the Manager, minus the tax.</p>
+<p>All workers have a random tax between $2 and $4.</p><p>Your random tax is: <span style="background-color: ghostwhite; display: inline; font-family:courier">{{tax}}</span></p>
 
-<p>The minimum you can accept is <span style="background-color: ghostwhite; display: inline; font-family:courier">{{tax}}</span>, to cover your tax.</p>
+<p>Your final payoff will be the amount you agree to with the Manager minus <span style="background-color: ghostwhite; display: inline; font-family:courier">{{tax}}</span>. No one besides you knows this tax. You can keep this information private if you want, but the minimum you can accept is <span style="background-color: ghostwhite; display: inline; font-family:courier">{{tax}}</span>, to cover your tax.</p>
 
-<p>Your initial bid to the manager was <span style="background-color: ghostwhite; display: inline; font-family:courier">{{bid}}</span>. The manager is here to discuss it with you. {% if split_chats %}There are also 2 other workers in separate chat rooms talking to the same manager, just like you are. You do not need to agree to the same wage as the other workers. {% else %}There are also 2 other workers in the chat room, you do not need to agree to the same wage as the other workers.{% endif %}</p>
+<p>The manager is here to negotiate with you. {% if split_chats %}There are also 2 other Workers in separate chat rooms talking to the same manager, just like you are. You do not need to agree to the same wage as the other Workers. {% else %}There are also 2 other Workers in the chat room.{% endif %} Your payoff <strong>does not depend on the other Workers reaching an agreement</strong>.</p>
     <p>Please talk to the manager to determine your payment.</p>
 
     {% chat nickname=player.chat_nickname channel=channel %}

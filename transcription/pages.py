@@ -104,9 +104,9 @@ class ManagerChat(Page):
 
         return {
                 'budget': Constants.budget,
-                'bid2': bid2,
-                'bid3': bid3,
-                'bid4': bid4,
+#                'bid2': bid2,
+#                'bid3': bid3,
+#                'bid4': bid4,
                 'channel1': channel1,
                 'channel2': channel2,
                 'channel3': channel3,
@@ -168,6 +168,11 @@ class EmployeeChat(Page):
             return True
 
     def vars_for_template(self):
+        if self.player.participant.vars.get('tax') is None:
+            self.player.tax = 0
+        else:
+            self.player.tax = self.player.participant.vars.get('tax')
+
         if self.player.participant.vars.get('bid') is None:
             bid = 0
         else:
@@ -252,7 +257,7 @@ class Feedback(Page):
 page_sequence = [
     StartWP,
     ManagerChat,
-    Bid,
+#    Bid,
     EmployeeChat,
     OptIn,
     Demographics,
