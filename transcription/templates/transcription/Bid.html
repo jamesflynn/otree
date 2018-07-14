@@ -9,13 +9,13 @@
 
 <p>You have been assigned to be a Worker in a round of negotiations in a chatroom. You will decide how to split the budget with a Manager by negotiating. If you do not reach an agreement, neither of you will receive additional payments.</p>
 
-<p>You have a randomly-assigned tax of: <span style="background-color: ghostwhite; display: inline; font-family:courier">{{tax}}</span>.</p>
+<p>You have a randomly-assigned tax of: <span style="background-color: ghostwhite; display: inline; font-family:courier">{{tax}}</span>. Other workers have a randomly-assigned tax of $2, $3, or $4.</p>
 
 <p>This means your final payoff will be the amount you agree to with the Manager minus <span style="background-color: ghostwhite; display: inline; font-family:courier">{{tax}}</span>. No one besides you knows this tax.</p>
 
 <p>We will now ask you for an opening bid. The manager will see this bid and may use it to negotiate with you on a final price.</p>
 
-    {% formfield player.bid label="How much are you asking for?" %}
+    {% formfield player.bid label="The manager's budget is between $3 and $5. How much are you asking for?" %}
 
     {% next_button %}
 
