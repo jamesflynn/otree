@@ -55,7 +55,7 @@ def distance_and_ok(transcribed_text, reference_text, max_error_rate):
 
 class Constants(BaseConstants):
     name_in_url = 'transcription'
-    players_per_group = 2
+    players_per_group = 4
     num_rounds = 1
     split_chats = settings.SPLIT
     reference_text = [ \
