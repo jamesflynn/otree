@@ -36,9 +36,9 @@ table th {
 
 {% block content %}
 <p>You are the Manager. {% if split_chats %}Please chat with the 3 Employees below in the 3 chat windows.{% else %}Please chat with the 3 employees below.{% endif %} They should be there now.</p>
-<p>You have a maximum budget of <strong>$9 per page</strong>. The employees were not aware of your budget when they bid. Please <strong>confirm each employee's bid amount in the chat window</strong> and accept any that were <strong>$9 or less.</strong> If, and only if, the worker agrees to the <strong>original bid</strong> will the budget be split between you accordingly. You are not able to negotiate.
+<p>You have a maximum budget of <strong>$9 per page</strong>. The employees were not aware of your budget when they bid. Please <strong>confirm each employee's bid amount in the chat window</strong> and accept any that were <strong>$9 or less.</strong> If, and only if, the employee agrees to the <strong>original bid</strong> will the budget be split between you accordingly. You are not able to negotiate.
     
-<p>After this chat employees will be taken to a screen to transcribe scanned pages, which will be checked for accuracy.  For each page completed above 95% accuracy, they will receive their bid and you will receive the difference between $9 and the confirmed price.  If the work is not submitted, or does not achieve at least 95% accuracy, no one will be paid for that page. For example, if you confirm $4 per page for all three workers, who then complete the work, you will be paid: ($9-$4) x (3 people) x (5 pages each) = $75</p>
+<p>After this chat employees will be taken to a screen to transcribe scanned pages, which will be checked for accuracy.  For each page completed above 95% accuracy, they will receive their bid and you will receive the difference between $9 and the confirmed price.  If the work is not submitted, or does not achieve at least 95% accuracy, no one will be paid for that page. For example, if you confirm $4 per page for all three employees, who then complete the work, you will be paid: ($9-$4) x (3 people) x (5 pages each) = $75</p>
 
 <p>If some of the employees bid too high, you can still profit from your other agreements, and you will still be paid for the HIT. Decline bids above your $9 budget. Do not renegotiate.</p>
 
@@ -53,7 +53,7 @@ table th {
         <strong>Employee 1</strong>
         {% chat nickname="Manager" channel=channel1 %}<br>
         {% formfield player.man_emp1_price label="Did you confirm the bid in the chat room? If you did, and it's not higher than $9, enter it here." %}
-        {% formfield player.man_emp1_nodeal label="Check here if <strong>no deal</strong> reached with Worker 1." %}
+        {% formfield player.man_emp1_nodeal label="Check here if <strong>no deal</strong> reached with Employee 1." %}
 
     </div>
     <div  class="column-center"  style="overflow: hidden;">
@@ -61,7 +61,7 @@ table th {
         <strong>Employee 2</strong>
         {% chat nickname="Manager" channel=channel2 %}<br>
         {% formfield player.man_emp2_price label="Did you confirm the bid in the chat room? If you did, and it's not higher than $9, enter it here." %}
-        {% formfield player.man_emp2_nodeal label="Check here if <strong>no deal</strong> reached with Worker 2." %}
+        {% formfield player.man_emp2_nodeal label="Check here if <strong>no deal</strong> reached with Employee 2." %}
 
     </div>
     <div  class="column-right"  style="overflow: hidden;">
@@ -69,7 +69,7 @@ table th {
         <strong>Employee 3</strong>
         {% chat nickname="Manager" channel=channel3 %}<br>
         {% formfield player.man_emp3_price label="Did you confirm the bid in the chat room? If you did, and it's not higher than $9, enter it here." %}
-        {% formfield player.man_emp3_nodeal label="Check here if <strong>no deal</strong> reached with Worker 3." %}
+        {% formfield player.man_emp3_nodeal label="Check here if <strong>no deal</strong> reached with Employee 3." %}
     </div>
 </div>
 <div style="clear: both;"></div>
@@ -84,17 +84,17 @@ table th {
 
         <strong>Employee 1</strong><br>
         {% formfield player.man_emp1_price label="Did you confirm the bid in the chat room? If you did, and it's not higher than $9, enter it here." %}
-        {% formfield player.man_emp1_nodeal label="Check here if <strong>no deal</strong> reached with Worker 1." %}
+        {% formfield player.man_emp1_nodeal label="Check here if <strong>no deal</strong> reached with Employee 1." %}
         <hr>
 
         <strong>Employee 2</strong><br>
         {% formfield player.man_emp2_price label="Did you confirm the bid in the chat room? If you did, and it's not higher than $9, enter it here." %}
-        {% formfield player.man_emp2_nodeal label="Check here if <strong>no deal</strong> reached with Worker 2." %}
+        {% formfield player.man_emp2_nodeal label="Check here if <strong>no deal</strong> reached with Employee 2." %}
         <hr>
 
         <strong>Employee 3</strong><br>
         {% formfield player.man_emp3_price label="Did you confirm the bid in the chat room? If you did, and it's not higher than $9, enter it here." %}
-        {% formfield player.man_emp3_nodeal label="Check here if <strong>no deal</strong> reached with Worker 3." %}
+        {% formfield player.man_emp3_nodeal label="Check here if <strong>no deal</strong> reached with Employee 3." %}
         <hr>
 
 

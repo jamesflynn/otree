@@ -155,27 +155,27 @@ class ManagerChat(Page):
     def error_message(self, values):
         if values["man_emp1_nodeal"]==False:
             if values["man_emp1_price"] is None:
-                return 'Please enter a price for Worker 1, or check box for no deal'
+                return 'Please enter a price for Employee 1, or check box for no deal'
             elif (values["man_emp1_price"] < 0):
-                return 'Your price for Worker 1 cannot be less than 0'
+                return 'Your price for Employee 1 cannot be less than 0'
             elif  (values["man_emp1_price"] > 5):
-                return 'Your price for Worker 1 must be less than or equal to the $5 budget!'
+                return 'Your price for Employee 1 must be less than or equal to the $5 budget!'
 
         if values["man_emp2_nodeal"]==False:
             if values["man_emp2_price"] is None:
-                return 'Please enter a price for Worker 2, or check box for no deal'
+                return 'Please enter a price for Employee 2, or check box for no deal'
             elif (values["man_emp2_price"] < 0):
-                return 'Your price for Worker 2 cannot be less than 0'
+                return 'Your price for Employee 2 cannot be less than 0'
             elif  (values["man_emp2_price"] > 5):
-                return 'Your price for Worker 2 must be less than or equal to the $5 budget!'
+                return 'Your price for Employee 2 must be less than or equal to the $5 budget!'
 
         if values["man_emp3_nodeal"]==False:
             if values["man_emp3_price"] is None:
-                return 'Please enter a price for Worker 3, or check box for no deal'
+                return 'Please enter a price for Employee 3, or check box for no deal'
             elif (values["man_emp3_price"] < 0):
-                return 'Your price for Worker 3 cannot be less than 0'
+                return 'Your price for Employee 3 cannot be less than 0'
             elif  (values["man_emp3_price"] > 5):
-                return 'Your price for Worker 3 must be less than or equal to the $5 budget!'
+                return 'Your price for Employee 3 must be less than or equal to the $5 budget!'
 
     def before_next_page(self):
         if self.player.id_in_group == 1:
