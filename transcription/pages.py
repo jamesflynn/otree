@@ -97,12 +97,29 @@ class ManagerChat(Page):
 
     def vars_for_template(self):
 
-        bid2 = self.group.get_player_by_id(2).participant.vars.get('bid')
-        matched2 = bid2 <= 5.0
-        bid3 = self.group.get_player_by_id(3).participant.vars.get('bid')
-        matched3 = bid3 <= 5.0
-        bid4 = self.group.get_player_by_id(4).participant.vars.get('bid')
-        matched4 = bid4 <= 5.0
+        if self.group.get_player_by_id(2).participant.vars.get('bid') is None:
+            bid2 = 0
+        else:
+            bid2 = self.group.get_player_by_id(2).participant.vars.get('bid')
+
+        if self.group.get_player_by_id(3).participant.vars.get('bid') is None:
+            bid3 = 0
+        else:
+            bid3 = self.group.get_player_by_id(3).participant.vars.get('bid')
+
+        if self.group.get_player_by_id(4).participant.vars.get('bid') is None:
+            bid4 = 0
+        else:
+            bid4 = self.group.get_player_by_id(4).participant.vars.get('bid')
+            
+#        bid2 = self.group.get_player_by_id(2).participant.vars.get('bid')
+#        matched2 = bid2 <= 5.0
+#        bid3 = self.group.get_player_by_id(3).participant.vars.get('bid')
+#        matched3 = bid3 <= 5.0
+#        bid4 = self.group.get_player_by_id(4).participant.vars.get('bid')
+#        matched4 = bid4 <= 5.0
+        
+        
         if Constants.split_chats:
             channel1 = self.group.id_in_subsession + 1000
             channel2 = self.group.id_in_subsession + 7777
@@ -115,13 +132,13 @@ class ManagerChat(Page):
         return {
                 'fbid2': float(bid2),
                 'bid2': bid2,
-                'matched2': matched2,
+#                'matched2': matched2,
                 'fbid3': float(bid3),
                 'bid3': bid3,
-                'matched3': matched3,
+#                'matched3': matched3,
                 'fbid4': float(bid4),
                 'bid4': bid4,
-                'matched4': matched4,
+#                'matched4': matched4,
 #                'bid3':0,
 #                'bid4':0,
             
