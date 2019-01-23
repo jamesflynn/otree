@@ -68,7 +68,7 @@ class Constants(BaseConstants):
     allowed_error_rate = 3
     startwp_timer = 300
 
-    budget = c(5.00)
+    budget = c(9.00)
     kickin = c(4.00)
     rate = 2
     basepay = c(2.00)
@@ -110,17 +110,17 @@ class Player(BasePlayer):
     transcribed_text_5 = models.LongStringField(blank=True)
     levenshtein_distance_5 = models.PositiveIntegerField()
 
-    bid = models.CurrencyField()
 
-    emp_price = models.CurrencyField(max=5.00,min=0.00)
+    emp_price = models.CurrencyField(max=9.00,min=0.00)
     test_compre_pr = models.CurrencyField(widget=widgets.Select(choices=TEST_CHOICES))
-#    emp_price_accept = models.BooleanField(widget=widgets.RadioSelectHorizontal(choices=BOOL_CHOICES))
-    man_emp1_price = models.CurrencyField()
-    man_emp1_accpt = models.BooleanField()
-    man_emp2_price = models.CurrencyField()
-    man_emp2_accpt = models.BooleanField()
-    man_emp3_price = models.CurrencyField()
-    man_emp3_accpt = models.BooleanField()
+    emp_nodeal = models.BooleanField(widget= widgets.CheckboxInput(),default=False)
+    bid = models.CurrencyField(min=0,max=Constants.budget)
+    man_emp1_price = models.CurrencyField(blank=True)
+    man_emp1_nodeal = models.BooleanField(widget= widgets.CheckboxInput(),default=False)
+    man_emp2_price = models.CurrencyField(blank=True)
+    man_emp2_nodeal = models.BooleanField(widget= widgets.CheckboxInput(),default=False)
+    man_emp3_price = models.CurrencyField(blank=True)
+    man_emp3_nodeal = models.BooleanField(widget= widgets.CheckboxInput(),default=False)
     startwp_timer_set = models.BooleanField(default=False)
     startwp_time = models.PositiveIntegerField()
     outofthegame = models.BooleanField()

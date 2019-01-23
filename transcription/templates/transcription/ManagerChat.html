@@ -35,34 +35,79 @@ table th {
 {% endblock %}
 
 {% block content %}
+<p>You are the Manager. {% if split_chats %}Please chat with the 3 Employees below in the 3 chat windows.{% else %}Please chat with the 3 employees below.{% endif %} They should be there now.</p>
+<p>You have a maximum budget of <strong>$9 per page</strong>. The employees were not aware of your budget when they bid. Please <strong>confirm each employee's bid amount in the chat window</strong> and accept any that were <strong>$9 or less.</strong> If, and only if, the worker agrees to the <strong>original bid</strong> will the budget be split between you accordingly. You are not able to negotiate.
+    
+<p>After this chat employees will be taken to a screen to transcribe scanned pages, which will be checked for accuracy.  For each page completed above 95% accuracy, they will receive their bid and you will receive the difference between $9 and the confirmed price.  If the work is not submitted, or does not achieve at least 95% accuracy, no one will be paid for that page. For example, if you confirm $4 per page for all three workers, who then complete the work, you will be paid: ($9-$4) x (3 people) x (5 pages each) = $75</p>
 
-<p>You are the Manager. Please chat with the employee now. They are waiting. The instructions are repeated below in case you need to refer to them.</p>
+<p>If some of the employees bid too high, you can still profit from your other agreements, and you will still be paid for the HIT. Decline bids above your $9 budget. Do not renegotiate.</p>
 
 
-<p>The employee's initial bid is {{ bid2 }} for each page. Please confirm the final amount per page negotiated, below the chat.<br><br>
-  
+{% if split_chats %}
 
+<br>
+
+<div id="wrapper">
+    <div class="column-left" style="overflow: hidden;">
+
+        <strong>Employee 1</strong>
+        {% chat nickname="Manager" channel=channel1 %}<br>
+        {% formfield player.man_emp1_price label="Did you confirm the bid in the chat room? If you did, and it's not higher than $9, enter it here." %}
+        {% formfield player.man_emp1_nodeal label="Check here if <strong>no deal</strong> reached with Worker 1." %}
+
+    </div>
+    <div  class="column-center"  style="overflow: hidden;">
+
+        <strong>Employee 2</strong>
+        {% chat nickname="Manager" channel=channel2 %}<br>
+        {% formfield player.man_emp2_price label="Did you confirm the bid in the chat room? If you did, and it's not higher than $9, enter it here." %}
+        {% formfield player.man_emp2_nodeal label="Check here if <strong>no deal</strong> reached with Worker 2." %}
+
+    </div>
+    <div  class="column-right"  style="overflow: hidden;">
+
+        <strong>Employee 3</strong>
+        {% chat nickname="Manager" channel=channel3 %}<br>
+        {% formfield player.man_emp3_price label="Did you confirm the bid in the chat room? If you did, and it's not higher than $9, enter it here." %}
+        {% formfield player.man_emp3_nodeal label="Check here if <strong>no deal</strong> reached with Worker 3." %}
+    </div>
+</div>
+<div style="clear: both;"></div>
+<br>
+
+{% else %}
 <h3>Chat Room:</h3>
   {% chat nickname="Manager" channel=channel1 %}
 <br>
 
-<p>    {% formfield player.emp_price label="What is the confirmed price per page, paid to the employee? Enter 0 if no deal reached." %}</p>
-        
-    <p><small>You will receive any additional payment owed via an MTurk Bonus</small></p>
+<p>Enter the per-page amounts here.</p>
+
+        <strong>Employee 1</strong><br>
+        {% formfield player.man_emp1_price label="Did you confirm the bid in the chat room? If you did, and it's not higher than $9, enter it here." %}
+        {% formfield player.man_emp1_nodeal label="Check here if <strong>no deal</strong> reached with Worker 1." %}
+        <hr>
+
+        <strong>Employee 2</strong><br>
+        {% formfield player.man_emp2_price label="Did you confirm the bid in the chat room? If you did, and it's not higher than $9, enter it here." %}
+        {% formfield player.man_emp2_nodeal label="Check here if <strong>no deal</strong> reached with Worker 2." %}
+        <hr>
+
+        <strong>Employee 3</strong><br>
+        {% formfield player.man_emp3_price label="Did you confirm the bid in the chat room? If you did, and it's not higher than $9, enter it here." %}
+        {% formfield player.man_emp3_nodeal label="Check here if <strong>no deal</strong> reached with Worker 3." %}
+        <hr>
+
+
+{% endif %}
+
+
+<p>
+  If there is a discrepancy between what you enter and what the employee enters, then neither party will receive any additional bonus for work completed. Please make sure you confirm!
+</p>
+
+    <p>You will receive any payment owed via an MTurk Bonus</p>
     <div>
         <button class="btn btn-warning btn-large">Done</button>
     </div>
-    <br>
-
-<div class="card card-body bg-light">
-<p>You have a maximum budget of <strong>{{ budget }} per page </strong>and a {{ basepay }} base payment per page. The employee was not aware of your budget when they bid. Your task is to negotiate a wage with the employee. After chatting with you the employee will be taken to a screen to transcribe scanned pages, which will be checked for accuracy.  For each page completed above 95% accuracy, they will receive the wage you negotiate and you will receive the difference between the agreed wage and {{ budget }}. If you are unable to come to an agreement, or if the work is not submitted with at least 95% accuracy within 48 hours, the worker will not be paid for that page, and you will receive only the {{ basepay }} base payment per page.</p>
-
-<p>You must agree to a wage with the worker in the chat room and both of you must indicate the same wage upon exiting the chat room in order to be paid.</p>
-
-<p>However, if you agree to a wage over {{ kickin }}, you have to start to give back the {{ basepay }} base payment.  We calculate the amount you give back by assessing a {{ rate }}% tax for all wages above {{ kickin }}. 
-
-<p>For example if you agree on $4.50, you will pay back $1.00 from the base rate of {{ basepay }}, leaving you with a payment of $0.50 from the budget, plus $1.00 remaining of the base payment. Note that this tax only applies to wages over {{ kickin }}. If you agree to pay a worker {{ budget }}, you will have to completely pay back your initial payment, and you will receive no money per completed page. Do not agree to a wage above {{ budget }}. </p>
-
-</div>
 
 {% endblock %}

@@ -90,7 +90,6 @@ class ManagerPreChat(Page):
             return 'Incorrect'
 
 class ManagerChat(Page):
-    template_name = 'transcription/ManagerChat_v1.html'
     def is_displayed(self):
         if self.player.id_in_group == 1 and not self.player.outofthegame:
             return True
@@ -149,14 +148,58 @@ class ManagerChat(Page):
                 'split_chats': Constants.split_chats
                 }
 
-    form_model = models.Player
-#    form_fields = ['man_emp1_price','man_emp2_price','man_emp3_price']    
-    form_fields = ['man_emp1_price','man_emp1_accpt','man_emp2_price','man_emp2_accpt','man_emp3_price','man_emp3_accpt']
 
+    form_model = models.Player
+    form_fields = ['man_emp1_price','man_emp1_nodeal','man_emp2_price','man_emp2_nodeal','man_emp3_price','man_emp3_nodeal']  
+
+    def error_message(self, values):
+        if values["man_emp1_nodeal"]==False:
+            if values["man_emp1_price"] is None:
+                return 'Please enter a price for Worker 1, or check box for no deal'
+            elif (values["man_emp1_price"] < 0):
+                return 'Your price for Worker 1 cannot be less than 0'
+            elif  (values["man_emp1_price"] > 5):
+                return 'Your price for Worker 1 must be less than or equal to the $5 budget!'
+
+        if values["man_emp2_nodeal"]==False:
+            if values["man_emp2_price"] is None:
+                return 'Please enter a price for Worker 2, or check box for no deal'
+            elif (values["man_emp2_price"] < 0):
+                return 'Your price for Worker 2 cannot be less than 0'
+            elif  (values["man_emp2_price"] > 5):
+                return 'Your price for Worker 2 must be less than or equal to the $5 budget!'
+
+        if values["man_emp3_nodeal"]==False:
+            if values["man_emp3_price"] is None:
+                return 'Please enter a price for Worker 3, or check box for no deal'
+            elif (values["man_emp3_price"] < 0):
+                return 'Your price for Worker 3 cannot be less than 0'
+            elif  (values["man_emp3_price"] > 5):
+                return 'Your price for Worker 3 must be less than or equal to the $5 budget!'
+
+    def before_next_page(self):
+        if self.player.id_in_group == 1:
+            self.player.payoff = 0
+
+            if self.player.man_emp1_nodeal == True :
+                self.player.payoff += 0
+            else:
+                self.player.payoff += Constants.budget - self.player.man_emp1_price
+
+            if self.player.man_emp2_nodeal == True :
+                self.player.payoff += 0
+            else:
+                self.player.payoff += Constants.budget - self.player.man_emp2_price
+
+            if self.player.man_emp3_nodeal == True :
+                self.player.payoff += 0
+            else:
+                self.player.payoff += Constants.budget - self.player.man_emp3_price
+
+            self.participant.vars['payoff'] = self.player.payoff
 
 
 class EmployeeChat(Page):
-    template_name = 'transcription/EmployeeChat_v1.html'
     def is_displayed(self):
         if self.player.id_in_group != 1 and not self.player.outofthegame:
             return True
@@ -187,8 +230,28 @@ class EmployeeChat(Page):
                 'kickin': Constants.kickin}
 
     form_model = 'player'
-    form_fields = ['emp_price']
+    form_fields = ['emp_price','emp_nodeal']
 
+    def error_message(self, values):
+
+        if values["emp_nodeal"]==False:
+            if values["emp_price"] is None:
+                return 'Please enter a value for the confirmed price, or check box for no deal'
+            elif (values["emp_price"] < self.player.tax):
+                return 'Your price must at least cover your {} tax!'.format(self.player.tax)
+#            elif  (values["emp_price"] > 5):
+#                return 'Your price be less than or equal to the $5 budget!'
+
+
+    def before_next_page(self):
+        if self.player.id_in_group != 1:
+            if self.player.emp_nodeal == False:
+                self.player.payoff = max(self.player.emp_price - self.player.participant.vars.get('tax'),0) 
+                self.participant.vars['payoff'] = max(self.player.emp_price - self.player.participant.vars.get('tax'),0)
+            else:
+                self.player.payoff = 0
+                self.participant.vars['payoff'] = 0
+    
 class OptIn(Page):
     def is_displayed(self):
         if self.round_number == 1: # and not self.player.outofthegame:
