@@ -9,3 +9,4 @@ _coverage_results
 _static_root
 _bots*s
 __temp*
+./scripts
