@@ -78,7 +78,6 @@ REAL_WORLD_CURRENCY_CODE = 'USD'
 USE_POINTS = False
 
 
-
 # e.g. en, de, fr, it, ja, zh-hans
 # see: https://docs.djangoproject.com/en/1.9/topics/i18n/#term-language-code
 LANGUAGE_CODE = 'en'
