@@ -59,35 +59,35 @@ class Bid(Page):
     def before_next_page(self):
         self.participant.vars['bid'] = self.player.bid
 
-class ManagerPreChat(Page):
-    def is_displayed(self):
-        if self.player.id_in_group == 1 and self.round_number == 1 and not self.player.outofthegame:
-            return True
+#class ManagerPreChat(Page):
+#    def is_displayed(self):
+#        if self.player.id_in_group == 1 and self.round_number == 1 and not self.player.outofthegame:
+#            return True
 
-    def vars_for_template(self):
+#    def vars_for_template(self):
 
-        if self.group.get_player_by_id(2).participant.vars.get('bid') is None:
-            bid2 = 4.15
-        else:
-            bid2 = self.group.get_player_by_id(2).participant.vars.get('bid')
+#        if self.group.get_player_by_id(2).participant.vars.get('bid') is None:
+#            bid2 = 4.15
+#        else:
+#            bid2 = self.group.get_player_by_id(2).participant.vars.get('bid')
 
-        matched2 = bid2 <= 5.0
+#        matched2 = bid2 <= 5.0
 
-        return {
-            'bid2': bid2,
-            'matched2': matched2,
-            'budget' : Constants.budget,
-            'kickin' : Constants.kickin,
-            'rate' : Constants.rate*100,
-            'basepay' : Constants.basepay,
-        }
+#        return {
+#            'bid2': bid2,
+#            'matched2': matched2,
+#            'budget' : Constants.budget,
+#            'kickin' : Constants.kickin,
+#            'rate' : Constants.rate*100,
+#            'basepay' : Constants.basepay,
+#        }
 
-    form_model = 'player'
-    form_fields = ['test_compre_pr']
+#    form_model = 'player'
+#    form_fields = ['test_compre_pr']
 
-    def test_compre_pr_error_message(self, value):
-        if value != 0.75:
-            return 'Incorrect'
+#    def test_compre_pr_error_message(self, value):
+#        if value != 0.75:
+#            return 'Incorrect'
 
 class ManagerChat(Page):
     def is_displayed(self):
@@ -158,24 +158,24 @@ class ManagerChat(Page):
                 return 'Please enter a price for Employee 1, or check box for no deal'
             elif (values["man_emp1_price"] < 0):
                 return 'Your price for Employee 1 cannot be less than 0'
-            elif  (values["man_emp1_price"] > 5):
-                return 'Your price for Employee 1 must be less than or equal to the $5 budget!'
+            elif  (values["man_emp1_price"] > 9):
+                return 'Your price for Employee 1 must be less than or equal to the $9 budget!'
 
         if values["man_emp2_nodeal"]==False:
             if values["man_emp2_price"] is None:
                 return 'Please enter a price for Employee 2, or check box for no deal'
             elif (values["man_emp2_price"] < 0):
                 return 'Your price for Employee 2 cannot be less than 0'
-            elif  (values["man_emp2_price"] > 5):
-                return 'Your price for Employee 2 must be less than or equal to the $5 budget!'
+            elif  (values["man_emp2_price"] > 9):
+                return 'Your price for Employee 2 must be less than or equal to the $9 budget!'
 
         if values["man_emp3_nodeal"]==False:
             if values["man_emp3_price"] is None:
                 return 'Please enter a price for Employee 3, or check box for no deal'
             elif (values["man_emp3_price"] < 0):
                 return 'Your price for Employee 3 cannot be less than 0'
-            elif  (values["man_emp3_price"] > 5):
-                return 'Your price for Employee 3 must be less than or equal to the $5 budget!'
+            elif  (values["man_emp3_price"] > 9):
+                return 'Your price for Employee 3 must be less than or equal to the $9 budget!'
 
     def before_next_page(self):
         if self.player.id_in_group == 1:
@@ -209,7 +209,7 @@ class EmployeeChat(Page):
             bid = 0
         else:
             bid = self.player.participant.vars.get('bid')
-        match = bid <= 5.0
+        match = bid <= 9.0
         if Constants.split_chats:
             if self.player.id_in_group == 2:
                 channel = self.group.id_in_subsession + 1000
@@ -237,17 +237,17 @@ class EmployeeChat(Page):
         if values["emp_nodeal"]==False:
             if values["emp_price"] is None:
                 return 'Please enter a value for the confirmed price, or check box for no deal'
-            elif (values["emp_price"] < self.player.tax):
-                return 'Your price must at least cover your {} tax!'.format(self.player.tax)
-#            elif  (values["emp_price"] > 5):
-#                return 'Your price be less than or equal to the $5 budget!'
+#            elif (values["emp_price"] < self.player.tax):
+#                return 'Your price must at least cover your {} tax!'.format(self.player.tax)
+            elif  (values["emp_price"] > 9):
+                return 'Your price be less than or equal to the $9 budget!'
 
 
     def before_next_page(self):
         if self.player.id_in_group != 1:
             if self.player.emp_nodeal == False:
-                self.player.payoff = max(self.player.emp_price - self.player.participant.vars.get('tax'),0) 
-                self.participant.vars['payoff'] = max(self.player.emp_price - self.player.participant.vars.get('tax'),0)
+                self.player.payoff = max(self.player.emp_price,0) 
+                self.participant.vars['payoff'] = max(self.player.emp_price,0)
             else:
                 self.player.payoff = 0
                 self.participant.vars['payoff'] = 0
