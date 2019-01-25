@@ -116,29 +116,29 @@ mturk_hit_settings = {
     'preview_template': 'global/MTurkPreview.html',
     'minutes_allotted_per_assignment': 48*60,
     'expiration_hours': 7*24,  # 7 days
-#    'grant_qualification_id': '3NF07PFA1K2EGWJFNBQ4JN81TXKETV',# to prevent retakes FOR REAL
+    'grant_qualification_id': '3NF07PFA1K2EGWJFNBQ4JN81TXKETV',# to prevent retakes FOR REAL
 #    'grant_qualification_id': '3VFIQRXYYK60OWH5USLZQ69Z1BU2ZB', ## sandbox
     'qualification_requirements': [
-#        {   # this one
-#            'QualificationTypeId': "3VFIQRXYYK60OWH5USLZQ69Z1BU2ZB",   # Prevent Repeats SANDBOX
-#            'QualificationTypeId': "3NF07PFA1K2EGWJFNBQ4JN81TXKETV",   # Prevent Repeats PRODUCTION
-#            'Comparator': "DoesNotExist",
-#        },
-#        {   # this one
-#            'QualificationTypeId': "00000000000000000071",    # Worker_Locale
-#            'Comparator': "EqualTo",
-#            'LocaleValues': [{'Country': "US"}]
-#        },
+        {   # this one
+            'QualificationTypeId': "3VFIQRXYYK60OWH5USLZQ69Z1BU2ZB",   # Prevent Repeats SANDBOX
+            'QualificationTypeId': "3NF07PFA1K2EGWJFNBQ4JN81TXKETV",   # Prevent Repeats PRODUCTION
+            'Comparator': "DoesNotExist",
+        },
+        {   # this one
+            'QualificationTypeId': "00000000000000000071",    # Worker_Locale
+            'Comparator': "EqualTo",
+            'LocaleValues': [{'Country': "US"}]
+        },
 #        {
 #            'QualificationTypeId': "000000000000000000L0",    # Worker_PercentAssignmentsApproved
 #            'Comparator': "GreaterThan",
 #            'IntegerValues': [50]
 #        },
-#        {   # this one
-#            'QualificationTypeId': "00000000000000000040",    # Worker_NumberHitsApproved
-#            'Comparator': "GreaterThanOrEqualTo",
-#            'IntegerValues': [50]
-#        },
+        {   # this one
+            'QualificationTypeId': "00000000000000000040",    # Worker_NumberHitsApproved
+            'Comparator': "GreaterThanOrEqualTo",
+            'IntegerValues': [50]
+        },
 #        {
 #            'QualificationTypeId': "2ARFPLSP75KLA8M8DH1HTEQVJT3SY6",    # Masters Sandbox
 #            'Comparator': "Exists"
