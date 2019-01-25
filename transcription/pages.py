@@ -209,7 +209,7 @@ class EmployeeChat(Page):
             bid = 0
         else:
             bid = self.player.participant.vars.get('bid')
-        match = bid <= 9.0
+#        match = bid <= 9.0
         if Constants.split_chats:
             if self.player.id_in_group == 2:
                 channel = self.group.id_in_subsession + 1000
@@ -222,7 +222,7 @@ class EmployeeChat(Page):
 
         return {'fbid': float(bid),
                 'bid': bid,
-                'match': match,
+ #               'match': match,
                 'enum': self.player.id_in_group - 1,
                 'channel': channel,
                 'split_chats': Constants.split_chats,
@@ -239,8 +239,8 @@ class EmployeeChat(Page):
                 return 'Please enter a value for the confirmed price, or check box for no deal'
             elif (values["emp_price"] < 0):
                 return 'Your price must be greater than 0!'.format(self.player.tax)
-            elif  (values["emp_price"] > 9):
-                return 'Your price must be less than or equal to the $9 budget!'
+#            elif  (values["emp_price"] > 9):
+#                return 'Your price must be less than or equal to the $9 budget!'
 
 
     def before_next_page(self):
