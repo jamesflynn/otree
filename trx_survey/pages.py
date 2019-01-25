@@ -23,6 +23,14 @@ class Bid(Page):
 
     form_model = 'player'
     form_fields = ['bid']
+    
+    
+    def error_message(self, values):
+
+        if values["bid"] is None:
+            return 'Please enter a value for your bid'
+        elif (values["bid"] < 0):
+            return 'Your bid must be greater than 0'
    
     def before_next_page(self):
         self.participant.vars['bid'] = self.player.bid
