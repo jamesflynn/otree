@@ -226,8 +226,8 @@ class EmployeeChat(Page):
                 'enum': self.player.id_in_group - 1,
                 'channel': channel,
                 'split_chats': Constants.split_chats,
-                'budget': Constants.budget,
-                'kickin': Constants.kickin}
+                'budget': Constants.budget}
+#                    'kickin': Constants.kickin}
 
     form_model = 'player'
     form_fields = ['emp_price','emp_nodeal']
@@ -518,7 +518,7 @@ class Results(Page):
                 'round_number': 1,
                 'reference_text_length': len(Constants.reference_text[i]),
                 'transcribed_text_length': len(clean_trx_text),
-                'distance': levenshteins[0],
+                'distance': levenshteins[i],
                 'accuracy': round(accuracy, 2)
             }
             table_rows.append(row)  
@@ -527,13 +527,18 @@ class Results(Page):
 
 
 
-        if self.player.emp_price <= Constants.kickin:
-            self.group.get_player_by_id(1).payoff = Constants.basepay * 5 + round(num_good * (Constants.budget - self.player.emp_price), 2)
-        elif self.player.emp_price > Constants.kickin and self.player.emp_price <= Constants.budget:
-            self.group.get_player_by_id(1).payoff = Constants.basepay * 5 + round(num_good* (Constants.budget - self.player.emp_price - Constants.rate * ( self.player.emp_price - Constants.kickin )), 2)
+#        if self.player.emp_price <= Constants.kickin:
+#            self.group.get_player_by_id(1).payoff = Constants.basepay * 5 + round(num_good * (Constants.budget - self.player.emp_price), 2)
+#        elif self.player.emp_price > Constants.kickin and self.player.emp_price <= Constants.budget:
+#            self.group.get_player_by_id(1).payoff = Constants.basepay * 5 + round(num_good* (Constants.budget - self.player.emp_price - Constants.rate * ( self.player.emp_price - Constants.kickin )), 2)
+#        else:
+#            self.group.get_player_by_id(1).payoff = 0
+
+        if self.player.emp_price > 0 and self.player.emp_price <= Constants.budget:
+            self.group.get_player_by_id(1).payoff = round(num_good * (Constants.budget - self.player.emp_price), 2)
         else:
             self.group.get_player_by_id(1).payoff = 0
-
+            
         self.player.payoff = round(num_good * self.player.emp_price, 2)
 
         return {'table_rows': table_rows,
@@ -558,9 +563,9 @@ page_sequence = [
 #    ManagerPreChat,
     ManagerChat,
     EmployeeChat,
-    OptIn,
-    Demographics,
-    Household,
+#    OptIn,
+#    Demographics,
+#    Household,
     Transcribe_1,
     Transcribe_2,
     Transcribe_3,

@@ -69,9 +69,9 @@ class Constants(BaseConstants):
     startwp_timer = 300
 
     budget = c(9.00)
-    kickin = c(4.00)
-    rate = 2
-    basepay = c(2.00)
+#    kickin = c(0.0)
+#    rate = 1
+#    basepay = c(0.0)
 
 class Subsession(BaseSubsession):
     pass
