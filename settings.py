@@ -89,7 +89,7 @@ INSTALLED_APPS = ['otree',]
 
 DEMO_PAGE_INTRO_TEXT = """
 <p>
-    This is the control panel for all of the oTree games issued by Zoe and Bobby.
+    This is the control panel for all of the oTree games issued by Zo&euml; and Bobby.
 </p>
 """
 
@@ -140,7 +140,7 @@ mturk_hit_settings = {
         {
             'QualificationTypeId': "00000000000000000040",    # Worker_NumberHitsApproved
             'Comparator': "GreaterThanOrEqualTo",
-            'IntegerValues': [100]
+            'IntegerValues': [50]
         },
 #        {
 #            'QualificationTypeId': "2ARFPLSP75KLA8M8DH1HTEQVJT3SY6",    # Masters Sandbox

@@ -237,10 +237,10 @@ class EmployeeChat(Page):
         if values["emp_nodeal"]==False:
             if values["emp_price"] is None:
                 return 'Please enter a value for the confirmed price, or check box for no deal'
-#            elif (values["emp_price"] < self.player.tax):
-#                return 'Your price must at least cover your {} tax!'.format(self.player.tax)
+            elif (values["emp_price"] < 0):
+                return 'Your price must be greater than 0!'.format(self.player.tax)
             elif  (values["emp_price"] > 9):
-                return 'Your price be less than or equal to the $9 budget!'
+                return 'Your price must be less than or equal to the $9 budget!'
 
 
     def before_next_page(self):
@@ -298,7 +298,7 @@ class Household(Page):
 
 class Transcribe_1(Page):
     def is_displayed(self):
-        if self.player.id_in_group != 1 and not self.player.outofthegame:
+        if self.player.id_in_group != 1 and not self.player.outofthegame and self.player.emp_nodeal == False:
             return True
 
     form_model = 'player'
@@ -336,7 +336,7 @@ class Transcribe_1(Page):
 
 class Transcribe_2(Page):
     def is_displayed(self):
-        if self.player.id_in_group != 1 and not self.player.outofthegame:
+        if self.player.id_in_group != 1 and not self.player.outofthegame and self.player.emp_nodeal == False:
             return True
 
     form_model = 'player'
@@ -374,7 +374,7 @@ class Transcribe_2(Page):
 
 class Transcribe_3(Page):
     def is_displayed(self):
-        if self.player.id_in_group != 1 and not self.player.outofthegame:
+        if self.player.id_in_group != 1 and not self.player.outofthegame and self.player.emp_nodeal == False:
             return True
 
     form_model = 'player'
@@ -412,7 +412,7 @@ class Transcribe_3(Page):
 
 class Transcribe_4(Page):
     def is_displayed(self):
-        if self.player.id_in_group != 1 and not self.player.outofthegame:
+        if self.player.id_in_group != 1 and not self.player.outofthegame and self.player.emp_nodeal == False:
             return True
 
     form_model = 'player'
@@ -450,7 +450,7 @@ class Transcribe_4(Page):
 
 class Transcribe_5(Page):
     def is_displayed(self):
-        if self.player.id_in_group != 1 and not self.player.outofthegame:
+        if self.player.id_in_group != 1 and not self.player.outofthegame and self.player.emp_nodeal == False:
             return True
 
     form_model = 'player'
@@ -487,7 +487,7 @@ class Transcribe_5(Page):
 class Results(Page):
 
     def is_displayed(self):
-        if self.player.id_in_group != 1 and not self.player.outofthegame:
+        if self.player.id_in_group != 1 and not self.player.outofthegame and self.player.emp_nodeal == False:
             return True
 
     def vars_for_template(self):

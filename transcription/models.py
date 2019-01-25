@@ -111,7 +111,7 @@ class Player(BasePlayer):
     levenshtein_distance_5 = models.PositiveIntegerField()
 
 
-    emp_price = models.CurrencyField(max=9.00,min=0.00)
+    emp_price = models.CurrencyField(blank=True,min=0.00)
     test_compre_pr = models.CurrencyField(widget=widgets.Select(choices=TEST_CHOICES))
     emp_nodeal = models.BooleanField(widget= widgets.CheckboxInput(),default=False)
     bid = models.CurrencyField(min=0,max=Constants.budget)
@@ -124,7 +124,7 @@ class Player(BasePlayer):
     startwp_timer_set = models.BooleanField(default=False)
     startwp_time = models.PositiveIntegerField()
     outofthegame = models.BooleanField()
-    yearBorn = models.PositiveIntegerField(min=1916, max=2005)
+    yearBorn = models.PositiveIntegerField(min=1916, max=2007)
     gender = models.StringField(widget=widgets.Select(choices=GENDER_CHOICES))
     experience = models.StringField(widget=widgets.Select(choices=EXP_CHOICES))
     transExp = models.StringField(widget=widgets.Select(choices=TRANS_CHOICES))

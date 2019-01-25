@@ -59,7 +59,7 @@ table th {
 <div id="wrapper">
     <div class="column-left" style="overflow: hidden;">
 
-        <strong>Employee 1</strong>
+        <strong>Employee 1</strong> bid {{ bid2 }} for each page. <br>
         {% chat nickname="Manager" channel=channel1 %}<br>
         {% formfield player.man_emp1_price label="What wage did you and Employee 1 agree to? If the number you agreed is not higher than $9, enter it here." %}
         {% formfield player.man_emp1_nodeal label="Check here if <strong>no deal</strong> reached with Employee 1." %}
@@ -67,7 +67,7 @@ table th {
     </div>
     <div  class="column-center"  style="overflow: hidden;">
 
-        <strong>Employee 2</strong>
+        <strong>Employee 2</strong> bid {{ bid3 }} for each page. <br>
         {% chat nickname="Manager" channel=channel2 %}<br>
         {% formfield player.man_emp2_price label="What wage did you and Employee 2 agree to? If the number you agreed is not higher than $9, enter it here." %}
         {% formfield player.man_emp2_nodeal label="Check here if <strong>no deal</strong> reached with Employee 2." %}
@@ -75,7 +75,7 @@ table th {
     </div>
     <div  class="column-right"  style="overflow: hidden;">
 
-        <strong>Employee 3</strong>
+        <strong>Employee 3</strong> bid {{ bid4 }} for each page. <br>
         {% chat nickname="Manager" channel=channel3 %}<br>
         {% formfield player.man_emp3_price label="What wage did you and Employee 3 agree to? If the number you agreed is not higher than $9, enter it here." %}
         {% formfield player.man_emp3_nodeal label="Check here if <strong>no deal</strong> reached with Employee 3." %}
@@ -91,17 +91,17 @@ table th {
 
 <p>Enter the per-page amounts here.</p>
 
-        <strong>Employee 1</strong><br>
-        {% formfield player.man_emp1_price label="DWhat wage did you and Employee 1 agree to? If the number you agreed is not higher than $9, enter it here." %}
+        <strong>Employee 1</strong> bid {{ bid2 }} for each page. <br>
+        {% formfield player.man_emp1_price label="What wage did you and Employee 1 agree to? If the number you agreed is not higher than $9, enter it here." %}
         {% formfield player.man_emp1_nodeal label="Check here if <strong>no deal</strong> reached with Employee 1." %}
         <hr>
 
-        <strong>Employee 2</strong><br>
+        <strong>Employee 2</strong> bid {{ bid3 }} for each page. <br>
         {% formfield player.man_emp2_price label="What wage did you and Employee 2 agree to? If the number you agreed is not higher than $9, enter it here." %}
         {% formfield player.man_emp2_nodeal label="Check here if <strong>no deal</strong> reached with Employee 2." %}
         <hr>
 
-        <strong>Employee 3</strong><br>
+        <strong>Employee 3</strong> bid {{ bid4 }} for each page. <br>
         {% formfield player.man_emp3_price label="What wage did you and Employee 3 agree to? If the number you agreed is not higher than $9, enter it here." %}
         {% formfield player.man_emp3_nodeal label="Check here if <strong>no deal</strong> reached with Employee 3." %}
         <hr>
