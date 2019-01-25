@@ -238,7 +238,7 @@ class EmployeeChat(Page):
             if values["emp_price"] is None:
                 return 'Please enter a value for the confirmed price, or check box for no deal'
             elif (values["emp_price"] < 0):
-                return 'Your price must be greater than 0!'.format(self.player.tax)
+                return 'Your price must be greater than 0!'
 #            elif  (values["emp_price"] > 9):
 #                return 'Your price must be less than or equal to the $9 budget!'
 
