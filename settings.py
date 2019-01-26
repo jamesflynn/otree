@@ -116,7 +116,7 @@ mturk_hit_settings = {
     'preview_template': 'global/MTurkPreview.html',
     'minutes_allotted_per_assignment': 48*60,
     'expiration_hours': 2,  # 7 days
-#    'grant_qualification_id': '3NF07PFA1K2EGWJFNBQ4JN81TXKETV',# to prevent retakes FOR REAL
+    'grant_qualification_id': '3NF07PFA1K2EGWJFNBQ4JN81TXKETV',# to prevent retakes FOR REAL
 #    'grant_qualification_id': '3VFIQRXYYK60OWH5USLZQ69Z1BU2ZB', ## sandbox
     'qualification_requirements': [
         {   # this one
