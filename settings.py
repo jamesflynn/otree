@@ -122,8 +122,7 @@ mturk_hit_settings = {
         {   # this one
 #            'QualificationTypeId': "3VFIQRXYYK60OWH5USLZQ69Z1BU2ZB",   # Prevent Repeats SANDBOX
             'QualificationTypeId': "3NF07PFA1K2EGWJFNBQ4JN81TXKETV",   # Prevent Repeats PRODUCTION
-            'Comparator': "DoesNotExist",
-	        'ActionsGuarded': "DiscoverPreviewAndAccept"
+            'Comparator': "DoesNotExist"
         },
         {   # this one
             'QualificationTypeId': "00000000000000000071",    # Worker_Locale
