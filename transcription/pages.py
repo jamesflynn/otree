@@ -175,14 +175,14 @@ class ManagerChat(Page):
                 self.participant.vars['man_emp1_price'] = self.player.man_emp1_price
 
             if self.player.man_emp2_nodeal == True :
-                self.participant_vars['man_emp2_price'] = 0
+                self.participant.vars['man_emp2_price'] = 0
             else:
-                self.participant_vars['man_emp2_price'] = self.player.man_emp2_price
+                self.participant.vars['man_emp2_price'] = self.player.man_emp2_price
 
             if self.player.man_emp3_nodeal == True :
-                self.participant_vars['man_emp3_price'] = 0
+                self.participant.vars['man_emp3_price'] = 0
             else:
-                self.participant_vars['man_emp3_price'] = self.player.man_emp3_price
+                self.participant.vars['man_emp3_price'] = self.player.man_emp3_price
 
 
 class EmployeeChat(Page):
