@@ -119,11 +119,12 @@ mturk_hit_settings = {
 #    'grant_qualification_id': '3NF07PFA1K2EGWJFNBQ4JN81TXKETV',# to prevent retakes FOR REAL
 #    'grant_qualification_id': '3VFIQRXYYK60OWH5USLZQ69Z1BU2ZB', ## sandbox
     'qualification_requirements': [
-#        {   # this one
+        {   # this one
 #            'QualificationTypeId': "3VFIQRXYYK60OWH5USLZQ69Z1BU2ZB",   # Prevent Repeats SANDBOX
-#            'QualificationTypeId': "3NF07PFA1K2EGWJFNBQ4JN81TXKETV",   # Prevent Repeats PRODUCTION
-#            'Comparator': "DoesNotExist"
-#        },
+            'QualificationTypeId': "3NF07PFA1K2EGWJFNBQ4JN81TXKETV",   # Prevent Repeats PRODUCTION
+            'Comparator': "DoesNotExist",
+            'RequiredToPreview': True
+        },
         {   # this one
             'QualificationTypeId': "00000000000000000071",    # Worker_Locale
             'Comparator': "EqualTo",
@@ -134,11 +135,11 @@ mturk_hit_settings = {
 #            'Comparator': "GreaterThan",
 #            'IntegerValues': [50]
 #        },
-#        {   # this one
-#            'QualificationTypeId': "00000000000000000040",    # Worker_NumberHitsApproved
-#            'Comparator': "GreaterThanOrEqualTo",
-#            'IntegerValues': [50]
-#        },
+        {   # this one
+            'QualificationTypeId': "00000000000000000040",    # Worker_NumberHitsApproved
+            'Comparator': "GreaterThanOrEqualTo",
+            'IntegerValues': [50]
+        },
 #        {
 #            'QualificationTypeId': "2ARFPLSP75KLA8M8DH1HTEQVJT3SY6",    # Masters Sandbox
 #            'Comparator': "Exists"
