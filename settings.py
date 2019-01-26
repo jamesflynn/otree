@@ -109,20 +109,21 @@ ROOMS = [
 # https://boto.readthedocs.org/en/latest/ref/mturk.html?highlight=mturk#module-boto.mturk.qualification
 
 mturk_hit_settings = {
-    'keywords': ['transcription', 'bonus', 'negotiation', 'study'],
-    'title': 'Management and Transcription',
-    'description': 'You will be assigned to either manage or directly carry out transcription',
-    'frame_height': 600,
+    'keywords': ['bonus', 'negotiation', 'study','survey','data entry', 'data-entry'],
+    'title': 'Survey plus longer data-entry work opportunity',
+    'description': 'We ask 10 questions in total and present the option to negotiate a data-entry job offer',
+    'frame_height': 800,
     'preview_template': 'global/MTurkPreview.html',
     'minutes_allotted_per_assignment': 48*60,
-    'expiration_hours': 7*24,  # 7 days
+    'expiration_hours': 2,  # 7 days
     'grant_qualification_id': '3NF07PFA1K2EGWJFNBQ4JN81TXKETV',# to prevent retakes FOR REAL
 #    'grant_qualification_id': '3VFIQRXYYK60OWH5USLZQ69Z1BU2ZB', ## sandbox
     'qualification_requirements': [
         {   # this one
-            'QualificationTypeId': "3VFIQRXYYK60OWH5USLZQ69Z1BU2ZB",   # Prevent Repeats SANDBOX
+#            'QualificationTypeId': "3VFIQRXYYK60OWH5USLZQ69Z1BU2ZB",   # Prevent Repeats SANDBOX
             'QualificationTypeId': "3NF07PFA1K2EGWJFNBQ4JN81TXKETV",   # Prevent Repeats PRODUCTION
             'Comparator': "DoesNotExist",
+	        'ActionsGuarded': "DiscoverPreviewAndAccept"
         },
         {   # this one
             'QualificationTypeId': "00000000000000000071",    # Worker_Locale
@@ -137,7 +138,7 @@ mturk_hit_settings = {
         {   # this one
             'QualificationTypeId': "00000000000000000040",    # Worker_NumberHitsApproved
             'Comparator': "GreaterThanOrEqualTo",
-            'IntegerValues': [50]
+            'IntegerValues': [1000]
         },
 #        {
 #            'QualificationTypeId': "2ARFPLSP75KLA8M8DH1HTEQVJT3SY6",    # Masters Sandbox
