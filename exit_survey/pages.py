@@ -19,7 +19,7 @@ class ThankYou(Page):
     pass
 
 page_sequence = [
-	OptIn,
+#	OptIn,
     Demographics,
     Household,
 	ThankYou

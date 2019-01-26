@@ -199,13 +199,13 @@ SESSION_CONFIGS = [
         'app_sequence': ['transcription'],
 #        'use_browser_bots': True,
     },
-#    {
-#        'name': 'exit_survey',
-#        'display_name': "Just the Exit Survey",
-#        'num_demo_participants': 1,
-#        'app_sequence': ['exit_survey'],
+    {
+        'name': 'exit_survey',
+        'display_name': "Just the Exit Survey",
+        'num_demo_participants': 1,
+        'app_sequence': ['exit_survey'],
 #        'use_browser_bots': True,
-#    },
+    },
 
 ]
 
