@@ -47,17 +47,6 @@ class StartWP(CustomWaitPage):
         if len(waiting_players) == Constants.players_per_group:
             return waiting_players
 
-class Bid(Page):             
-
-    def is_displayed(self):
-        if self.player.id_in_group != 1:
-            return True
-
-    form_model = 'player'
-    form_fields = ['bid']
-   
-    def before_next_page(self):
-        self.participant.vars['bid'] = self.player.bid
 
 #class ManagerPreChat(Page):
 #    def is_displayed(self):
@@ -179,24 +168,21 @@ class ManagerChat(Page):
 
     def before_next_page(self):
         if self.player.id_in_group == 1:
-            self.player.payoff = 0
 
             if self.player.man_emp1_nodeal == True :
-                self.player.payoff += 0
+                self.participant.vars['man_emp1_price'] = 0
             else:
-                self.player.payoff += Constants.budget - self.player.man_emp1_price
+                self.participant.vars['man_emp1_price'] = self.player.man_emp1_price
 
             if self.player.man_emp2_nodeal == True :
-                self.player.payoff += 0
+                self.participant_vars['man_emp2_price'] = 0
             else:
-                self.player.payoff += Constants.budget - self.player.man_emp2_price
+                self.participant_vars['man_emp2_price'] = self.player.man_emp2_price
 
             if self.player.man_emp3_nodeal == True :
-                self.player.payoff += 0
+                self.participant_vars['man_emp3_price'] = 0
             else:
-                self.player.payoff += Constants.budget - self.player.man_emp3_price
-
-            self.participant.vars['payoff'] = self.player.payoff
+                self.participant_vars['man_emp3_price'] = self.player.man_emp3_price
 
 
 class EmployeeChat(Page):
