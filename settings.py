@@ -138,7 +138,7 @@ mturk_hit_settings = {
         {   # this one
             'QualificationTypeId': "00000000000000000040",    # Worker_NumberHitsApproved
             'Comparator': "GreaterThanOrEqualTo",
-            'IntegerValues': [1000]
+            'IntegerValues': [50]
         },
 #        {
 #            'QualificationTypeId': "2ARFPLSP75KLA8M8DH1HTEQVJT3SY6",    # Masters Sandbox
