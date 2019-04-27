@@ -110,8 +110,8 @@ ROOMS = [
 
 mturk_hit_settings = {
     'keywords': ['bonus', 'negotiation', 'study','survey','data entry', 'data-entry'],
-    'title': 'Survey plus longer data-entry work opportunity',
-    'description': 'We ask 10 questions in total and present the option to negotiate a data-entry job offer',
+    'title': '10-minute survey plus opportunity for additional paid data-entry work',
+    'description': 'We ask 10 questions in total and present the option to negotiate a clearly-defined data-entry job offer, which will be paid via bonus',
     'frame_height': 800,
     'preview_template': 'global/MTurkPreview.html',
     'minutes_allotted_per_assignment': 48*60,

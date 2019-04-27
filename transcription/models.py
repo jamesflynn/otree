@@ -68,7 +68,7 @@ class Constants(BaseConstants):
     allowed_error_rate = 3
     startwp_timer = 300
 
-    budget = c(9.00)
+    budget = c(5.00)
 #    kickin = c(0.0)
 #    rate = 1
 #    basepay = c(0.0)
@@ -99,6 +99,9 @@ class Player(BasePlayer):
     def chat_nickname(self):
         return '{} {}'.format(self.role(), self.id_in_group - 1 )
 
+#    def get_mturk_group_name(self):
+#        return 'mturkchannel_{}_{}'.format(self.session.pk, self._index_in_pages)
+    
     transcribed_text_1 = models.LongStringField(blank=True)
     levenshtein_distance_1 = models.PositiveIntegerField()
     transcribed_text_2 = models.LongStringField(blank=True)
@@ -132,4 +135,6 @@ class Player(BasePlayer):
     dailyHHEarn = models.CurrencyField()
     feedback_form = models.LongStringField(widget=widgets.Textarea,blank=True)
 
+    participant_vars_dump = models.StringField()
+    man_participant_vars_dump = models.StringField()
 

@@ -33,6 +33,9 @@ class StartWP(CustomWaitPage):
 
     def vars_for_template(self):
         now = time.time()
+        self.player.payoff = 0
+        self.participant.vars['payoff'] = 0
+        
         if not self.player.startwp_timer_set:
             self.player.startwp_timer_set = True
             self.player.startwp_time = time.time()
@@ -47,36 +50,6 @@ class StartWP(CustomWaitPage):
         if len(waiting_players) == Constants.players_per_group:
             return waiting_players
 
-
-#class ManagerPreChat(Page):
-#    def is_displayed(self):
-#        if self.player.id_in_group == 1 and self.round_number == 1 and not self.player.outofthegame:
-#            return True
-
-#    def vars_for_template(self):
-
-#        if self.group.get_player_by_id(2).participant.vars.get('bid') is None:
-#            bid2 = 4.15
-#        else:
-#            bid2 = self.group.get_player_by_id(2).participant.vars.get('bid')
-
-#        matched2 = bid2 <= 5.0
-
-#        return {
-#            'bid2': bid2,
-#            'matched2': matched2,
-#            'budget' : Constants.budget,
-#            'kickin' : Constants.kickin,
-#            'rate' : Constants.rate*100,
-#            'basepay' : Constants.basepay,
-#        }
-
-#    form_model = 'player'
-#    form_fields = ['test_compre_pr']
-
-#    def test_compre_pr_error_message(self, value):
-#        if value != 0.75:
-#            return 'Incorrect'
 
 class ManagerChat(Page):
     def is_displayed(self):
@@ -100,14 +73,6 @@ class ManagerChat(Page):
         else:
             bid4 = self.group.get_player_by_id(4).participant.vars.get('bid')
             
-#        bid2 = self.group.get_player_by_id(2).participant.vars.get('bid')
-#        matched2 = bid2 <= 5.0
-#        bid3 = self.group.get_player_by_id(3).participant.vars.get('bid')
-#        matched3 = bid3 <= 5.0
-#        bid4 = self.group.get_player_by_id(4).participant.vars.get('bid')
-#        matched4 = bid4 <= 5.0
-        
-        
         if Constants.split_chats:
             channel1 = self.group.id_in_subsession + 1000
             channel2 = self.group.id_in_subsession + 7777
@@ -120,17 +85,11 @@ class ManagerChat(Page):
         return {
                 'fbid2': float(bid2),
                 'bid2': bid2,
-#                'matched2': matched2,
                 'fbid3': float(bid3),
                 'bid3': bid3,
-#                'matched3': matched3,
                 'fbid4': float(bid4),
                 'bid4': bid4,
-#                'matched4': matched4,
-#                'bid3':0,
-#                'bid4':0,
-            
-                'mgr_bonus': self.player.participant.vars.get('payoff'),
+
                 'channel1': channel1,
                 'channel2': channel2,
                 'channel3': channel3,
@@ -147,24 +106,24 @@ class ManagerChat(Page):
                 return 'Please enter a price for Employee 1, or check box for no deal'
             elif (values["man_emp1_price"] < 0):
                 return 'Your price for Employee 1 cannot be less than 0'
-            elif  (values["man_emp1_price"] > 9):
-                return 'Your price for Employee 1 must be less than or equal to the $9 budget!'
+            elif  (values["man_emp1_price"] > 5):
+                return 'Your price for Employee 1 must be less than or equal to the $5 budget!'
 
         if values["man_emp2_nodeal"]==False:
             if values["man_emp2_price"] is None:
                 return 'Please enter a price for Employee 2, or check box for no deal'
             elif (values["man_emp2_price"] < 0):
                 return 'Your price for Employee 2 cannot be less than 0'
-            elif  (values["man_emp2_price"] > 9):
-                return 'Your price for Employee 2 must be less than or equal to the $9 budget!'
+            elif  (values["man_emp2_price"] > 5):
+                return 'Your price for Employee 2 must be less than or equal to the $5 budget!'
 
         if values["man_emp3_nodeal"]==False:
             if values["man_emp3_price"] is None:
                 return 'Please enter a price for Employee 3, or check box for no deal'
             elif (values["man_emp3_price"] < 0):
                 return 'Your price for Employee 3 cannot be less than 0'
-            elif  (values["man_emp3_price"] > 9):
-                return 'Your price for Employee 3 must be less than or equal to the $9 budget!'
+            elif  (values["man_emp3_price"] > 5):
+                return 'Your price for Employee 3 must be less than or equal to the $5 budget!'
 
     def before_next_page(self):
         if self.player.id_in_group == 1:
@@ -225,18 +184,15 @@ class EmployeeChat(Page):
                 return 'Please enter a value for the confirmed price, or check box for no deal'
             elif (values["emp_price"] < 0):
                 return 'Your price must be greater than 0!'
-#            elif  (values["emp_price"] > 9):
-#                return 'Your price must be less than or equal to the $9 budget!'
+
 
 
     def before_next_page(self):
         if self.player.id_in_group != 1:
             if self.player.emp_nodeal == False:
-                self.player.payoff = max(self.player.emp_price,0) 
-                self.participant.vars['payoff'] = max(self.player.emp_price,0)
+                self.participant.vars['emp_price'] = max(self.player.emp_price,0)
             else:
-                self.player.payoff = 0
-                self.participant.vars['payoff'] = 0
+                self.participant.vars['emp_price'] = 0
     
 class OptIn(Page):
     def is_displayed(self):
@@ -264,19 +220,6 @@ class Household(Page):
 
     form_model = 'player'
     form_fields = ['experience', 'transExp', 'eduLevel', 'dailyHHEarn']
-
-#class ThankYou(Page):
-#    pass
-
-#class NormalWaitPage(WaitPage):
-#    def is_displayed(self):
-#        if self.round_number == 1 and self.player.in_round(1).emp_price > 0:
-#            return True
-
-#    def after_all_players_arrive(self):
-#        if self.group.get_player_by_id(1).in_round(1).emp_price == self.group.get_player_by_id(2).in_round(1).emp_price and self.group.get_player_by_id(2).in_round(1).emp_price > 0 and self.group.get_player_by_id(2).in_round(1).emp_price <= 5.00 :
-#            self.group.agreed = True
-
 
 #<<<<<
 #<<<<<    Transcribe 1
@@ -511,22 +454,29 @@ class Results(Page):
             if (accuracy >= 95.0):
                 num_good += 1
 
+        if self.player.id_in_group == 2:
+            man_price = self.group.get_player_by_id(1).participant.vars.get('man_emp1_price',0)
+        elif self.player.id_in_group == 3:
+            man_price = self.group.get_player_by_id(1).participant.vars.get('man_emp2_price',0)
+        elif self.player.id_in_group == 4:
+            man_price = self.group.get_player_by_id(1).participant.vars.get('man_emp3_price',0)
+        else: 
+            man_price = 0
 
-
-#        if self.player.emp_price <= Constants.kickin:
-#            self.group.get_player_by_id(1).payoff = Constants.basepay * 5 + round(num_good * (Constants.budget - self.player.emp_price), 2)
-#        elif self.player.emp_price > Constants.kickin and self.player.emp_price <= Constants.budget:
-#            self.group.get_player_by_id(1).payoff = Constants.basepay * 5 + round(num_good* (Constants.budget - self.player.emp_price - Constants.rate * ( self.player.emp_price - Constants.kickin )), 2)
-#        else:
-#            self.group.get_player_by_id(1).payoff = 0
-
-        if self.player.emp_price > 0 and self.player.emp_price <= Constants.budget:
-            self.group.get_player_by_id(1).payoff = round(num_good * (Constants.budget - self.player.emp_price), 2)
+        man_payoff = self.group.get_player_by_id(1).participant.vars.get('payoff',0)
+                 
+        if self.player.emp_price > 0 and self.player.emp_price <= Constants.budget and man_price == self.player.emp_price :
+            self.group.get_player_by_id(1).payoff += round(num_good * (Constants.budget - self.player.emp_price), 2)
+            self.group.get_player_by_id(1).participant.vars['payoff'] = man_payoff + round(num_good * (Constants.budget - self.player.emp_price), 2)
         else:
-            self.group.get_player_by_id(1).payoff = 0
+            self.group.get_player_by_id(1).payoff += 0
+            self.group.get_player_by_id(1).participant.vars['payoff'] = man_payoff
             
         self.player.payoff = round(num_good * self.player.emp_price, 2)
 
+        self.player.participant_vars_dump = str(self.participant.vars)
+        self.player.man_participant_vars_dump = str(self.group.get_player_by_id(1).participant.vars)
+        
         return {'table_rows': table_rows,
                 'num_good': num_good,
                 'emp_price': self.player.emp_price,

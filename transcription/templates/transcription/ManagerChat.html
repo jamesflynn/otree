@@ -45,10 +45,10 @@ table th {
 <p>If some of the employees bid too high, you can still profit from your other agreements, and you will still be paid for the HIT. Decline bids above your $9 budget. Do not renegotiate.</p>
 
 -->
-<p>You have a maximum budget of <strong>$9 per page</strong>. The employees were not aware of your budget when they bid. <strong>Your job is to negotiate a wage for each employee</strong>. Wages can be the same or different for different employees. You can negotiate however you want. If, and only if, you and the employee agree to a wage will the budget be split between you accordingly. </p>
-<p>After this chat, employees will be taken to a screen to transcribe scanned pages, which will be checked for accuracy.  For each page completed above 95% accuracy, they will receive their bid and you will receive the difference between $9 and the wage you agree to with that worker.  If the work is not submitted, or does not achieve at least 95% accuracy, no one will be paid for that page. For example, if you agree to $6 per page for all three workers, who then complete the work, you will be paid: ($9-$6) x (3 people) x (5 pages each) = $45</p>
+<p>You have a maximum budget of <strong>$5 per page</strong>. The employees were not aware of your budget when they bid. <strong>Your job is to negotiate a wage for each employee</strong>. Wages can be the same or different for different employees. You can negotiate however you want. If, and only if, you and the employee agree to a wage will the budget be split between you accordingly. </p>
+<p>After this chat, employees will be taken to a screen to transcribe scanned pages, which will be checked for accuracy.  For each page completed above 95% accuracy, they will receive their bid and you will receive the difference between $5 and the wage you agree to with that worker.  If the work is not submitted, or does not achieve at least 95% accuracy, no one will be paid for that page. For example, if you agree to $2 per page for all three workers, who then complete the work, you will be paid: ($5-$2) x (3 people) x (5 pages each) = $45</p>
 
-<p><strong>You do not have to come to agreements with all employees.</strong> You will still profit from the wage arrangements you make with the other workers, and you will still be paid for the HIT. You cannot agree to a wage above the $9 budget.</p>
+<p><strong>You do not have to come to agreements with all employees.</strong> You will still profit from the wage arrangements you make with the other workers, and you will still be paid for the HIT. You cannot agree to a wage above the $5 budget.</p>
 
 
 
@@ -61,7 +61,7 @@ table th {
 
         <strong>Employee 1</strong> bid {{ bid2 }} for each page. <br>
         {% chat nickname="Manager" channel=channel1 %}<br>
-        {% formfield player.man_emp1_price label="What wage did you and Employee 1 agree to? If the number you agreed is not higher than $9, enter it here." %}
+        {% formfield player.man_emp1_price label="What wage did you and Employee 1 agree to? If the number you agreed is not higher than $5, enter it here." %}
         {% formfield player.man_emp1_nodeal label="Check here if <strong>no deal</strong> reached with Employee 1." %}
 
     </div>
@@ -69,7 +69,7 @@ table th {
 
         <strong>Employee 2</strong> bid {{ bid3 }} for each page. <br>
         {% chat nickname="Manager" channel=channel2 %}<br>
-        {% formfield player.man_emp2_price label="What wage did you and Employee 2 agree to? If the number you agreed is not higher than $9, enter it here." %}
+        {% formfield player.man_emp2_price label="What wage did you and Employee 2 agree to? If the number you agreed is not higher than $5, enter it here." %}
         {% formfield player.man_emp2_nodeal label="Check here if <strong>no deal</strong> reached with Employee 2." %}
 
     </div>
@@ -77,7 +77,7 @@ table th {
 
         <strong>Employee 3</strong> bid {{ bid4 }} for each page. <br>
         {% chat nickname="Manager" channel=channel3 %}<br>
-        {% formfield player.man_emp3_price label="What wage did you and Employee 3 agree to? If the number you agreed is not higher than $9, enter it here." %}
+        {% formfield player.man_emp3_price label="What wage did you and Employee 3 agree to? If the number you agreed is not higher than $5, enter it here." %}
         {% formfield player.man_emp3_nodeal label="Check here if <strong>no deal</strong> reached with Employee 3." %}
     </div>
 </div>
@@ -92,17 +92,17 @@ table th {
 <p>Enter the per-page amounts here.</p>
 
         <strong>Employee 1</strong> bid {{ bid2 }} for each page. <br>
-        {% formfield player.man_emp1_price label="What wage did you and Employee 1 agree to? If the number you agreed is not higher than $9, enter it here." %}
+        {% formfield player.man_emp1_price label="What wage did you and Employee 1 agree to? If the number you agreed is not higher than $5, enter it here." %}
         {% formfield player.man_emp1_nodeal label="Check here if <strong>no deal</strong> reached with Employee 1." %}
         <hr>
 
         <strong>Employee 2</strong> bid {{ bid3 }} for each page. <br>
-        {% formfield player.man_emp2_price label="What wage did you and Employee 2 agree to? If the number you agreed is not higher than $9, enter it here." %}
+        {% formfield player.man_emp2_price label="What wage did you and Employee 2 agree to? If the number you agreed is not higher than $5, enter it here." %}
         {% formfield player.man_emp2_nodeal label="Check here if <strong>no deal</strong> reached with Employee 2." %}
         <hr>
 
         <strong>Employee 3</strong> bid {{ bid4 }} for each page. <br>
-        {% formfield player.man_emp3_price label="What wage did you and Employee 3 agree to? If the number you agreed is not higher than $9, enter it here." %}
+        {% formfield player.man_emp3_price label="What wage did you and Employee 3 agree to? If the number you agreed is not higher than $5, enter it here." %}
         {% formfield player.man_emp3_nodeal label="Check here if <strong>no deal</strong> reached with Employee 3." %}
         <hr>
 
