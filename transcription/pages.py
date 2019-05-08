@@ -93,7 +93,9 @@ class ManagerChat(Page):
                 'channel1': channel1,
                 'channel2': channel2,
                 'channel3': channel3,
-                'split_chats': Constants.split_chats
+                'split_chats': Constants.split_chats,
+                'budget' : Constants.budget,
+                'budgetminus2times15' : (Constants.budget - c(2)) * 15
                 }
 
 
@@ -106,24 +108,24 @@ class ManagerChat(Page):
                 return 'Please enter a price for Employee 1, or check box for no deal'
             elif (values["man_emp1_price"] < 0):
                 return 'Your price for Employee 1 cannot be less than 0'
-            elif  (values["man_emp1_price"] > 5):
-                return 'Your price for Employee 1 must be less than or equal to the $5 budget!'
+            elif  (values["man_emp1_price"] > Constants.budget ):
+                return 'Your price for Employee 1 must be less than or equal to the budget!'
 
         if values["man_emp2_nodeal"]==False:
             if values["man_emp2_price"] is None:
                 return 'Please enter a price for Employee 2, or check box for no deal'
             elif (values["man_emp2_price"] < 0):
                 return 'Your price for Employee 2 cannot be less than 0'
-            elif  (values["man_emp2_price"] > 5):
-                return 'Your price for Employee 2 must be less than or equal to the $5 budget!'
+            elif  (values["man_emp2_price"] > Constants.budget ):
+                return 'Your price for Employee 2 must be less than or equal to the budget!'
 
         if values["man_emp3_nodeal"]==False:
             if values["man_emp3_price"] is None:
                 return 'Please enter a price for Employee 3, or check box for no deal'
             elif (values["man_emp3_price"] < 0):
                 return 'Your price for Employee 3 cannot be less than 0'
-            elif  (values["man_emp3_price"] > 5):
-                return 'Your price for Employee 3 must be less than or equal to the $5 budget!'
+            elif  (values["man_emp3_price"] > Constants.budget ):
+                return 'Your price for Employee 3 must be less than or equal to the budget!'
 
     def before_next_page(self):
         if self.player.id_in_group == 1:
@@ -227,7 +229,7 @@ class Household(Page):
 
 class Transcribe_1(Page):
     def is_displayed(self):
-        if self.player.id_in_group != 1 and not self.player.outofthegame and self.player.emp_nodeal == False:
+        if self.player.id_in_group != 1 and not self.player.outofthegame and self.player.emp_nodeal == False and self.player.emp_price > 0 and self.player.emp_price <= Constants.budget :
             return True
 
     form_model = 'player'
@@ -265,7 +267,7 @@ class Transcribe_1(Page):
 
 class Transcribe_2(Page):
     def is_displayed(self):
-        if self.player.id_in_group != 1 and not self.player.outofthegame and self.player.emp_nodeal == False:
+        if self.player.id_in_group != 1 and not self.player.outofthegame and self.player.emp_nodeal == False and self.player.emp_price > 0 and self.player.emp_price <= Constants.budget :
             return True
 
     form_model = 'player'
@@ -303,7 +305,7 @@ class Transcribe_2(Page):
 
 class Transcribe_3(Page):
     def is_displayed(self):
-        if self.player.id_in_group != 1 and not self.player.outofthegame and self.player.emp_nodeal == False:
+        if self.player.id_in_group != 1 and not self.player.outofthegame and self.player.emp_nodeal == False and self.player.emp_price > 0 and self.player.emp_price <= Constants.budget :
             return True
 
     form_model = 'player'
@@ -341,7 +343,7 @@ class Transcribe_3(Page):
 
 class Transcribe_4(Page):
     def is_displayed(self):
-        if self.player.id_in_group != 1 and not self.player.outofthegame and self.player.emp_nodeal == False:
+        if self.player.id_in_group != 1 and not self.player.outofthegame and self.player.emp_nodeal == False and self.player.emp_price > 0 and self.player.emp_price <= Constants.budget :
             return True
 
     form_model = 'player'
@@ -379,7 +381,7 @@ class Transcribe_4(Page):
 
 class Transcribe_5(Page):
     def is_displayed(self):
-        if self.player.id_in_group != 1 and not self.player.outofthegame and self.player.emp_nodeal == False:
+        if self.player.id_in_group != 1 and not self.player.outofthegame and self.player.emp_nodeal == False and self.player.emp_price > 0 and self.player.emp_price <= Constants.budget :
             return True
 
     form_model = 'player'
@@ -416,7 +418,7 @@ class Transcribe_5(Page):
 class Results(Page):
 
     def is_displayed(self):
-        if self.player.id_in_group != 1 and not self.player.outofthegame and self.player.emp_nodeal == False:
+        if self.player.id_in_group != 1 and not self.player.outofthegame and self.player.emp_nodeal == False and self.player.emp_price > 0 and self.player.emp_price <= Constants.budget :
             return True
 
     def vars_for_template(self):
@@ -487,7 +489,7 @@ class Results(Page):
 
 class Finish(Page):
     def is_displayed(self):
-        if self.player.id_in_group != 1 and not self.player.outofthegame and self.player.emp_price == 0  : # and not self.group.in_round(1).agreed == True :
+        if ( self.player.id_in_group != 1 and not self.player.outofthegame ) and ( self.player.emp_price == 0 or self.player.emp_price > Constants.budget or self.player.emp_nodeal == True )  :
             return True
 
 class Feedback(Page):

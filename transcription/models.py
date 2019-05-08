@@ -68,7 +68,7 @@ class Constants(BaseConstants):
     allowed_error_rate = 3
     startwp_timer = 300
 
-    budget = c(5.00)
+    budget = c(9.00)
 #    kickin = c(0.0)
 #    rate = 1
 #    basepay = c(0.0)
