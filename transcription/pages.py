@@ -489,7 +489,7 @@ class Results(Page):
 
 class Finish(Page):
     def is_displayed(self):
-        if ( self.player.id_in_group != 1 and not self.player.outofthegame ) and ( self.player.emp_price == 0 or self.player.emp_price > Constants.budget or self.player.emp_nodeal == True )  :
+        if ( self.player.id_in_group != 1 and not self.player.outofthegame ) and ( self.player.emp_price == 0 or self.player.emp_nodeal == True )  :
             return True
 
 class Feedback(Page):
